@@ -215,6 +215,8 @@ function GetQuote() {
   }, []);
 
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const [form, setForm] = useState({
     name: "",
@@ -235,18 +237,87 @@ function GetQuote() {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setSubmitted(true);
 
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    if (!form.phone.trim()) {
+      setSubmitError("Please enter your phone / WhatsApp number.");
+      return;
+    }
+
+    if (!form.service) {
+      setSubmitError("Please select a primary service.");
+      return;
+    }
+
+    if (!form.budget) {
+      setSubmitError("Please select your approximate budget.");
+      return;
+    }
+
+    if (!form.timeline) {
+      setSubmitError("Please select your preferred timeline.");
+      return;
+    }
+
+    setSubmitting(true);
+    setSubmitError("");
+
+    try {
+      const response = await fetch(
+        "https://webqenzo-backend.vercel.app/api/quotes",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            fullName: form.name.trim(),
+            email: form.email.trim(),
+            phone: form.phone.trim(),
+            company: form.company.trim(),
+            service: form.service,
+            budget: form.budget,
+            timeline: form.timeline,
+            existingWebsite: form.website.trim(),
+            projectDescription: form.message.trim(),
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        const validationMessage =
+          data?.errors?.map((error) => error.message).join(" ") ||
+          data?.message ||
+          "Something went wrong. Please try again.";
+
+        throw new Error(validationMessage);
+      }
+
+      setSubmitted(true);
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    } catch (error) {
+      console.error("Quote submission error:", error);
+
+      setSubmitError(
+        error.message ||
+          "Unable to submit your enquiry. Please try again."
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const resetForm = () => {
     setSubmitted(false);
+    setSubmitting(false);
+    setSubmitError("");
     setForm({
       name: "",
       email: "",
@@ -609,10 +680,11 @@ function GetQuote() {
                     </div>
 
                     <div>
-                      <FieldLabel>Phone / WhatsApp</FieldLabel>
+                      <FieldLabel required>Phone / WhatsApp</FieldLabel>
 
                       <input
                         type="tel"
+                        required
                         value={form.phone}
                         onChange={(e) => updateField("phone", e.target.value)}
                         placeholder="+91 XXXXX XXXXX"
@@ -704,7 +776,7 @@ function GetQuote() {
 
                   <div className="mt-8 grid gap-6 sm:grid-cols-2">
                     <div>
-                      <FieldLabel>Approximate budget</FieldLabel>
+                      <FieldLabel required>Approximate budget</FieldLabel>
 
                       <div className="relative">
                         <WalletCards
@@ -742,7 +814,7 @@ function GetQuote() {
                     </div>
 
                     <div>
-                      <FieldLabel>Preferred timeline</FieldLabel>
+                      <FieldLabel required>Preferred timeline</FieldLabel>
 
                       <div className="relative">
                         <Clock3
@@ -835,14 +907,28 @@ function GetQuote() {
                   </div>
                 </div>
 
+                {submitError && (
+                  <div
+                    role="alert"
+                    className="mt-6 rounded-2xl border border-red-400/20 bg-red-400/[0.05] px-5 py-4 text-sm leading-6 text-red-300"
+                  >
+                    {submitError}
+                  </div>
+                )}
+
                 <button
                   type="submit"
-                  className="group mt-6 flex w-full items-center justify-center gap-3 rounded-2xl bg-white px-6 py-4 text-sm font-bold text-[#05070B] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_50px_rgba(255,255,255,.08)]"
+                  disabled={submitting}
+                  className="group mt-6 flex w-full items-center justify-center gap-3 rounded-2xl bg-white px-6 py-4 text-sm font-bold text-[#05070B] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_50px_rgba(255,255,255,.08)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
                 >
-                  Send Project Enquiry
+                  {submitting ? "Sending Enquiry..." : "Send Project Enquiry"}
 
                   <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#05070B] text-white transition group-hover:translate-x-1">
-                    <Send size={14} />
+                    {submitting ? (
+                      <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                    ) : (
+                      <Send size={14} />
+                    )}
                   </span>
                 </button>
               </form>
@@ -872,9 +958,9 @@ function GetQuote() {
                 </h2>
 
                 <p className="relative mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-400">
-                  Your project brief has been captured in this frontend
-                  experience. Once the WebQenzo backend is connected, this
-                  enquiry can be securely sent and stored automatically.
+                  Your project enquiry has been submitted successfully and
+                  securely stored. We have received your requirements and can
+                  now review the project details you shared with WebQenzo.
                 </p>
 
                 <div className="relative mx-auto mt-12 grid max-w-3xl gap-3 sm:grid-cols-4">

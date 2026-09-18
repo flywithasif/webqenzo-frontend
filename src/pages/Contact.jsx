@@ -1,18 +1,111 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowUpRight,
   Mail,
+  Phone,
   MessageCircle,
   Clock3,
   MapPin,
   Sparkles,
   CheckCircle2,
+  Send,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 
 function Contact() {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    mobile: "",
+    subject: "",
+    message: "",
+  });
+
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+
+  const updateField = (field, value) => {
+    setForm((current) => ({
+      ...current,
+      [field]: value,
+    }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    setSubmitting(true);
+    setSubmitError("");
+
+    try {
+      const response = await fetch(
+        "https://webqenzo-backend.vercel.app/api/contact",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: form.name.trim(),
+            email: form.email.trim(),
+            mobile: form.mobile.trim(),
+            subject: form.subject.trim(),
+            message: form.message.trim(),
+          }),
+        }
+      );
+
+      let data = {};
+
+      try {
+        data = await response.json();
+      } catch {
+        data = {};
+      }
+
+      if (!response.ok || !data.success) {
+        const validationMessage =
+          data?.errors?.map((error) => error.message).join(" ") ||
+          data?.message ||
+          "Something went wrong. Please try again.";
+
+        throw new Error(validationMessage);
+      }
+
+      setSubmitted(true);
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    } catch (error) {
+      console.error("Contact form submission error:", error);
+
+      setSubmitError(
+        error.message ||
+          "Unable to send your message. Please try again."
+      );
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const resetForm = () => {
+    setSubmitted(false);
+    setSubmitError("");
+    setSubmitting(false);
+    setForm({
+      name: "",
+      email: "",
+      mobile: "",
+      subject: "",
+      message: "",
+    });
+  };
+
   useEffect(() => {
     const structuredData = {
       "@context": "https://schema.org",
@@ -278,6 +371,273 @@ function Contact() {
                 href="/get-quote"
               />
             </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            CONTACT FORM
+        ====================================================== */}
+        <section
+          aria-labelledby="contact-form-heading"
+          className="border-y border-white/[0.07] bg-[#05070B]"
+        >
+          <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
+            {!submitted ? (
+              <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr]">
+                <div className="lg:sticky lg:top-28 lg:self-start">
+                  <p className="text-xs font-bold uppercase tracking-[0.24em] text-cyan-300">
+                    Send a message
+                  </p>
+
+                  <h2
+                    id="contact-form-heading"
+                    className="mt-4 text-3xl font-black tracking-[-0.04em] sm:text-5xl"
+                  >
+                    Let's talk about your project.
+                  </h2>
+
+                  <p className="mt-6 max-w-md text-sm leading-7 text-slate-500">
+                    Have a question, a website idea or a project you want to
+                    discuss? Send us a message and we'll have the details
+                    available for the next conversation.
+                  </p>
+
+                  <div className="mt-8 space-y-3">
+                    {[
+                      "Your message is submitted securely.",
+                      "Your enquiry is stored for review.",
+                      "You can include project requirements or questions.",
+                    ].map((item) => (
+                      <div
+                        key={item}
+                        className="flex items-center gap-3 rounded-2xl border border-white/[0.07] bg-white/[0.025] px-4 py-3.5"
+                      >
+                        <CheckCircle2
+                          size={17}
+                          className="shrink-0 text-cyan-300"
+                        />
+                        <span className="text-sm text-slate-400">
+                          {item}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <form
+                  aria-label="WebQenzo contact form"
+                  onSubmit={handleSubmit}
+                  className="rounded-[30px] border border-white/[0.08] bg-white/[0.025] p-6 shadow-[0_30px_90px_rgba(0,0,0,.28)] sm:p-8"
+                >
+                  <div className="grid gap-6 sm:grid-cols-2">
+                    <div>
+                      <label
+                        htmlFor="contact-name"
+                        className="mb-2.5 block text-xs font-semibold uppercase tracking-[0.16em] text-slate-400"
+                      >
+                        Name <span className="ml-1 text-cyan-300">*</span>
+                      </label>
+
+                      <input
+                        id="contact-name"
+                        type="text"
+                        required
+                        minLength={2}
+                        maxLength={100}
+                        autoComplete="name"
+                        value={form.name}
+                        onChange={(e) =>
+                          updateField("name", e.target.value)
+                        }
+                        placeholder="Your name"
+                        className="w-full rounded-2xl border border-white/[0.08] bg-white/[0.035] px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-700 focus:border-cyan-400/40 focus:bg-white/[0.05]"
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="contact-mobile"
+                        className="mb-2.5 block text-xs font-semibold uppercase tracking-[0.16em] text-slate-400"
+                      >
+                        Mobile Number <span className="ml-1 text-cyan-300">*</span>
+                      </label>
+
+                      <input
+                        id="contact-mobile"
+                        type="tel"
+                        required
+                        inputMode="numeric"
+                        autoComplete="tel"
+                        pattern="[0-9]{10}"
+                        minLength={10}
+                        maxLength={10}
+                        value={form.mobile}
+                        onChange={(e) =>
+                          updateField("mobile", e.target.value.replace(/\\D/g, "").slice(0, 10))
+                        }
+                        placeholder="9877777777"
+                        className="w-full rounded-2xl border border-white/[0.08] bg-white/[0.035] px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-700 focus:border-cyan-400/40 focus:bg-white/[0.05]"
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="contact-email"
+                        className="mb-2.5 block text-xs font-semibold uppercase tracking-[0.16em] text-slate-400"
+                      >
+                        Email <span className="ml-1 text-cyan-300">*</span>
+                      </label>
+
+                      <input
+                        id="contact-email"
+                        type="email"
+                        required
+                        maxLength={200}
+                        autoComplete="email"
+                        value={form.email}
+                        onChange={(e) =>
+                          updateField("email", e.target.value)
+                        }
+                        placeholder="you@company.com"
+                        className="w-full rounded-2xl border border-white/[0.08] bg-white/[0.035] px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-700 focus:border-cyan-400/40 focus:bg-white/[0.05]"
+                      />
+                    </div>
+
+                    <div className="sm:col-span-2">
+                      <label
+                        htmlFor="contact-subject"
+                        className="mb-2.5 block text-xs font-semibold uppercase tracking-[0.16em] text-slate-400"
+                      >
+                        Subject <span className="ml-1 text-cyan-300">*</span>
+                      </label>
+
+                      <input
+                        id="contact-subject"
+                        type="text"
+                        required
+                        minLength={3}
+                        maxLength={200}
+                        value={form.subject}
+                        onChange={(e) =>
+                          updateField("subject", e.target.value)
+                        }
+                        placeholder="What would you like to discuss?"
+                        className="w-full rounded-2xl border border-white/[0.08] bg-white/[0.035] px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-700 focus:border-cyan-400/40 focus:bg-white/[0.05]"
+                      />
+                    </div>
+
+                    <div className="sm:col-span-2">
+                      <label
+                        htmlFor="contact-message"
+                        className="mb-2.5 block text-xs font-semibold uppercase tracking-[0.16em] text-slate-400"
+                      >
+                        Message <span className="ml-1 text-cyan-300">*</span>
+                      </label>
+
+                      <textarea
+                        id="contact-message"
+                        required
+                        minLength={10}
+                        maxLength={3000}
+                        rows={7}
+                        value={form.message}
+                        onChange={(e) =>
+                          updateField("message", e.target.value)
+                        }
+                        placeholder="Tell us about your business, project, question or what you would like to build."
+                        className="w-full resize-none rounded-2xl border border-white/[0.08] bg-white/[0.035] px-4 py-4 text-sm leading-7 text-white outline-none transition placeholder:text-slate-700 focus:border-cyan-400/40 focus:bg-white/[0.05]"
+                      />
+                    </div>
+                  </div>
+
+                  {submitError && (
+                    <div
+                      role="alert"
+                      className="mt-6 rounded-2xl border border-red-400/20 bg-red-400/[0.05] px-5 py-4 text-sm leading-6 text-red-300"
+                    >
+                      {submitError}
+                    </div>
+                  )}
+
+                  <div className="mt-7 rounded-2xl border border-cyan-400/10 bg-cyan-400/[0.025] p-5">
+                    <div className="flex gap-3">
+                      <CheckCircle2
+                        size={18}
+                        className="mt-0.5 shrink-0 text-cyan-300"
+                      />
+
+                      <p className="text-xs leading-6 text-slate-500">
+                        By submitting this form, you are starting a
+                        conversation with WebQenzo. Please share only
+                        information relevant to your enquiry.
+                      </p>
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="group mt-6 flex w-full items-center justify-center gap-3 rounded-2xl bg-white px-6 py-4 text-sm font-bold text-[#05070B] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_50px_rgba(255,255,255,.08)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+                  >
+                    {submitting ? "Sending Message..." : "Send Message"}
+
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#05070B] text-white transition group-hover:translate-x-1">
+                      {submitting ? (
+                        <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                      ) : (
+                        <Send size={14} />
+                      )}
+                    </span>
+                  </button>
+                </form>
+              </div>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mx-auto max-w-4xl"
+              >
+                <div className="relative overflow-hidden rounded-[34px] border border-cyan-400/15 bg-gradient-to-br from-[#0B1522] via-[#080D15] to-[#071015] p-8 text-center shadow-[0_40px_120px_rgba(0,0,0,.45)] sm:p-14"
+                >
+                  <div className="pointer-events-none absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-cyan-400/[0.07] blur-[100px]" />
+
+                  <div className="relative mx-auto flex h-20 w-20 items-center justify-center rounded-[26px] border border-cyan-400/20 bg-cyan-400/[0.08]">
+                    <CheckCircle2 size={35} className="text-cyan-300" />
+                  </div>
+
+                  <p className="relative mt-8 text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
+                    Message received
+                  </p>
+
+                  <h2 className="relative mt-5 text-4xl font-black tracking-[-0.05em] sm:text-6xl">
+                    Thank you, {form.name || "there"}.
+                  </h2>
+
+                  <p className="relative mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-400">
+                    Your message has been successfully submitted to WebQenzo.
+                    Your enquiry has been securely stored for review.
+                  </p>
+
+                  <div className="relative mt-10 flex flex-wrap justify-center gap-3">
+                    <button
+                      type="button"
+                      onClick={resetForm}
+                      className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.035] px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/[0.07]"
+                    >
+                      Send another message
+                    </button>
+
+                    <Link
+                      to="/get-quote"
+                      className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-[#05070B]"
+                    >
+                      Start a project
+                      <ArrowUpRight size={16} />
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
+            )}
           </div>
         </section>
 
