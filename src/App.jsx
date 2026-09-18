@@ -11,8 +11,14 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 /* =========================================================
-   LAZY LOADED PAGES
-   Pages will load only when the user needs them.
+   ADMIN COMPONENTS
+========================================================= */
+
+import ProtectedAdminRoute from "./admin/components/ProtectedAdminRoute";
+import AdminLayout from "./admin/components/AdminLayout";
+
+/* =========================================================
+   PUBLIC PAGES
 ========================================================= */
 
 const Home = lazy(() => import("./pages/Home"));
@@ -21,18 +27,9 @@ const Portfolio = lazy(() => import("./pages/Portfolio"));
 const About = lazy(() => import("./pages/About"));
 const Process = lazy(() => import("./pages/Process"));
 const GetQuote = lazy(() => import("./pages/GetQuote"));
-
-const PrivacyPolicy = lazy(() =>
-  import("./pages/PrivacyPolicy")
-);
-
-const Terms = lazy(() =>
-  import("./pages/Terms")
-);
-
-const Contact = lazy(() =>
-  import("./pages/Contact")
-);
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const Terms = lazy(() => import("./pages/Terms"));
+const Contact = lazy(() => import("./pages/Contact"));
 
 /* =========================================================
    CASE STUDIES
@@ -71,6 +68,56 @@ const NotFound = lazy(() =>
 );
 
 /* =========================================================
+   ADMIN PAGES
+========================================================= */
+
+const AdminLogin = lazy(() =>
+  import("./admin/pages/AdminLogin")
+);
+
+const AdminDashboard = lazy(() =>
+  import("./admin/pages/AdminDashboard")
+);
+
+const AdminQuotes = lazy(() =>
+  import("./admin/pages/AdminQuotes")
+);
+
+const AdminContacts = lazy(() =>
+  import("./admin/pages/AdminContacts")
+);
+
+const AdminTeam = lazy(() =>
+  import("./admin/pages/AdminTeam")
+);
+
+/* =========================================================
+   LOADING SCREEN
+========================================================= */
+
+function PageLoader() {
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-[#05070B]">
+      <div className="flex flex-col items-center">
+        <div className="relative flex h-14 w-14 items-center justify-center">
+
+          <div className="absolute inset-0 rounded-full border border-blue-400/10" />
+
+          <div className="absolute inset-0 animate-spin rounded-full border border-transparent border-t-blue-500 border-r-cyan-400" />
+
+          <div className="h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_16px_rgba(34,211,238,.8)]" />
+
+        </div>
+
+        <span className="mt-5 text-[9px] font-semibold uppercase tracking-[0.3em] text-slate-600">
+          WebQenzo
+        </span>
+      </div>
+    </div>
+  );
+}
+
+/* =========================================================
    SCROLL TO TOP
 ========================================================= */
 
@@ -89,7 +136,7 @@ function ScrollToTop() {
 }
 
 /* =========================================================
-   PAGE TRANSITION
+   PUBLIC PAGE TRANSITION
 ========================================================= */
 
 function PageTransition({ children }) {
@@ -123,38 +170,10 @@ function PageTransition({ children }) {
 }
 
 /* =========================================================
-   PREMIUM LOADING SCREEN
+   PUBLIC WEBSITE
 ========================================================= */
 
-function PageLoader() {
-  return (
-    <div className="flex min-h-[60vh] items-center justify-center bg-[#05070B]">
-      <div className="flex flex-col items-center">
-
-        <div className="relative flex h-14 w-14 items-center justify-center">
-
-          <div className="absolute inset-0 rounded-full border border-blue-400/10" />
-
-          <div className="absolute inset-0 animate-spin rounded-full border border-transparent border-t-blue-500 border-r-cyan-400" />
-
-          <div className="h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_16px_rgba(34,211,238,.8)]" />
-
-        </div>
-
-        <span className="mt-5 text-[9px] font-semibold uppercase tracking-[0.3em] text-slate-600">
-          WebQenzo
-        </span>
-
-      </div>
-    </div>
-  );
-}
-
-/* =========================================================
-   APP CONTENT
-========================================================= */
-
-function AppContent() {
+function PublicWebsite() {
   return (
     <>
       <ScrollToTop />
@@ -214,7 +233,7 @@ function AppContent() {
               element={<Contact />}
             />
 
-            {/* Portfolio Case Studies */}
+            {/* Case Studies */}
 
             <Route
               path="/portfolio/medicare"
@@ -246,7 +265,7 @@ function AppContent() {
               element={<ThreadRare />}
             />
 
-            {/* 404 */}
+            {/* Public 404 */}
 
             <Route
               path="*"
@@ -263,15 +282,106 @@ function AppContent() {
 }
 
 /* =========================================================
+   ADMIN PANEL
+========================================================= */
+
+function AdminPanel() {
+  return (
+    <Suspense fallback={<PageLoader />}>
+      <Routes>
+
+        {/* =================================================
+            ADMIN LOGIN
+        ================================================= */}
+
+        <Route
+          path="/admin/login"
+          element={<AdminLogin />}
+        />
+
+        {/* =================================================
+            PROTECTED ADMIN ROUTES
+        ================================================= */}
+
+        <Route element={<ProtectedAdminRoute />}>
+
+          <Route
+            path="/admin"
+            element={<AdminLayout />}
+          >
+            {/* Dashboard */}
+
+            <Route
+              index
+              element={<AdminDashboard />}
+            />
+
+            {/* Quotes */}
+
+            <Route
+              path="quotes"
+              element={<AdminQuotes />}
+            />
+
+            {/* Contacts */}
+
+            <Route
+              path="contacts"
+              element={<AdminContacts />}
+            />
+
+            {/* Team */}
+
+            <Route
+              path="team"
+              element={<AdminTeam />}
+            />
+
+          </Route>
+
+        </Route>
+
+      </Routes>
+    </Suspense>
+  );
+}
+
+/* =========================================================
+   APP ROUTER
+========================================================= */
+
+function AppRouter() {
+  const location = useLocation();
+
+  /*
+    Admin and public website are completely separated.
+
+    /admin/*
+       → AdminPanel
+
+    Everything else
+       → PublicWebsite
+  */
+
+  const isAdminRoute =
+    location.pathname === "/admin" ||
+    location.pathname.startsWith("/admin/");
+
+  return isAdminRoute ? (
+    <AdminPanel />
+  ) : (
+    <PublicWebsite />
+  );
+}
+
+/* =========================================================
    APP
 ========================================================= */
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-[#F7F8FA] text-[#0B1220]">
-        <AppContent />
-      </div>
+      <AppRouter />
     </BrowserRouter>
   );
 }
