@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:5000/api";
+const API_BASE_URL = "https://api.webqenzo.com/api";
 
 const getToken = () => {
   return localStorage.getItem("webqenzo_admin_token");
