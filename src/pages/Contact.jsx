@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import { motion } from "framer-motion";
 import {
   ArrowUpRight,
@@ -41,32 +42,26 @@ function Contact() {
     setSubmitError("");
 
     try {
-      const response = await fetch(
+      const response = await axios.post(
         "https://webqenzo-backend.vercel.app/api/contact",
         {
-          method: "POST",
+          name: form.name.trim(),
+          email: form.email.trim(),
+          mobile: form.mobile.trim(),
+          subject: form.subject.trim(),
+          message: form.message.trim(),
+        },
+        {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            name: form.name.trim(),
-            email: form.email.trim(),
-            mobile: form.mobile.trim(),
-            subject: form.subject.trim(),
-            message: form.message.trim(),
-          }),
+          timeout: 15000,
         }
       );
 
-      let data = {};
+      const data = response.data;
 
-      try {
-        data = await response.json();
-      } catch {
-        data = {};
-      }
-
-      if (!response.ok || !data.success) {
+      if (!data?.success) {
         const validationMessage =
           data?.errors?.map((error) => error.message).join(" ") ||
           data?.message ||
@@ -84,10 +79,17 @@ function Contact() {
     } catch (error) {
       console.error("Contact form submission error:", error);
 
-      setSubmitError(
-        error.message ||
-          "Unable to send your message. Please try again."
-      );
+      const validationMessage =
+        error?.response?.data?.errors
+          ?.map((item) => item.message)
+          .join(" ") ||
+        error?.response?.data?.message ||
+        (error.code === "ECONNABORTED"
+          ? "Request timed out. Please try again."
+          : error.message) ||
+        "Unable to send your message. Please try again.";
+
+      setSubmitError(validationMessage);
     } finally {
       setSubmitting(false);
     }
