@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
+import SEO from "../components/SEO";
 import {
   ShieldCheck,
   Lock,
@@ -42,8 +44,69 @@ const sections = [
 ];
 
 function PrivacyPolicy() {
+  useEffect(() => {
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://webqenzo.com/privacy-policy#webpage",
+          "url": "https://webqenzo.com/privacy-policy",
+          "name": "Privacy Policy | WebQenzo",
+          "description":
+            "Read the WebQenzo Privacy Policy to understand how information may be collected, used, protected, retained, and handled when you use our website or contact us about our services.",
+          "isPartOf": {
+            "@type": "WebSite",
+            "@id": "https://webqenzo.com/#website",
+            "url": "https://webqenzo.com/",
+            "name": "WebQenzo"
+          },
+          "about": {
+            "@type": "Organization",
+            "@id": "https://webqenzo.com/#organization",
+            "name": "WebQenzo",
+            "url": "https://webqenzo.com/",
+            "email": "hello@webqenzo.com"
+          },
+          "inLanguage": "en"
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://webqenzo.com/#organization",
+          "name": "WebQenzo",
+          "url": "https://webqenzo.com/",
+          "email": "hello@webqenzo.com"
+        }
+      ]
+    };
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.setAttribute("data-page-schema", "privacy-policy");
+    script.textContent = JSON.stringify(structuredData);
+
+    document.head.appendChild(script);
+
+    return () => {
+      const existingScript = document.head.querySelector(
+        'script[data-page-schema="privacy-policy"]'
+      );
+
+      if (existingScript) {
+        existingScript.remove();
+      }
+    };
+  }, []);
+
   return (
-    <main className="bg-[#05070B] text-white">
+    <>
+      <SEO
+        title="Privacy Policy"
+        description="Read the WebQenzo Privacy Policy to understand how information may be collected, used, protected, retained, and handled when you use our website or contact us about our services."
+        path="/privacy-policy"
+      />
+
+      <main className="bg-[#05070B] text-white">
       {/* =====================================================
           HERO
       ====================================================== */}
@@ -272,6 +335,7 @@ function PrivacyPolicy() {
         </div>
       </section>
     </main>
+    </>
   );
 }
 

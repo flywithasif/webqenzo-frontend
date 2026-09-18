@@ -2,76 +2,151 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ================================
-   WEBQENZO GLOBAL STYLES
-================================ */
+/* =========================================================
+   WEBQENZO — GLOBAL STYLES
+========================================================= */
 
-:root {
-  font-family:
-    Inter,
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-  color: #111827;
-  background: #f8fafc;
+  body {
+    margin: 0;
+    min-width: 320px;
+    background: #f7f8fa;
+    color: #0b1220;
+    font-family:
+      Inter,
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  ::selection {
+    background: rgba(37, 99, 235, 0.2);
+    color: #0b1220;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  img {
+    height: auto;
+  }
 }
 
-* {
-  box-sizing: border-box;
+/* =========================================================
+   PREMIUM SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+  width: 9px;
 }
 
+::-webkit-scrollbar-track {
+  background: #05070b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #263247;
+  border-radius: 999px;
+  border: 2px solid #05070b;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
+}
+
+/* Firefox */
 html {
-  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #263247 #05070b;
 }
 
-body {
-  margin: 0;
-  min-width: 320px;
-  background: #f8fafc;
-}
+/* =========================================================
+   FOCUS
+========================================================= */
 
-button,
-input,
-textarea,
-select {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-}
-
-/* Remove default focus outline and create accessible focus */
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-  outline: 2px solid #2563eb;
+:focus-visible {
+  outline: 2px solid #22d3ee;
   outline-offset: 3px;
 }
 
-/* Selection */
-::selection {
-  background: #2563eb;
-  color: #ffffff;
+/* =========================================================
+   MOBILE TAP
+========================================================= */
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* =========================================================
+   REDUCE MOTION
+   Accessibility + performance
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =========================================================
+   MOBILE TYPOGRAPHY / OVERFLOW SAFETY
+========================================================= */
+
+@media (max-width: 640px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    overflow-wrap: break-word;
+  }
 }

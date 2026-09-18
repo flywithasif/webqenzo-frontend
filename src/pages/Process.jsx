@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -23,6 +24,7 @@ import {
   Workflow,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -219,8 +221,96 @@ const faqs = [
 ];
 
 function Process() {
+  useEffect(() => {
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://webqenzo.com/process#webpage",
+          "url": "https://webqenzo.com/process",
+          "name": "Web Design & Development Process | WebQenzo",
+          "description":
+            "Explore the WebQenzo website design and development process, from discovery and strategy through design, development, testing, launch and ongoing improvements.",
+          "isPartOf": {
+            "@type": "WebSite",
+            "@id": "https://webqenzo.com/#website",
+            "url": "https://webqenzo.com/",
+            "name": "WebQenzo"
+          },
+          "about": {
+            "@type": "Organization",
+            "@id": "https://webqenzo.com/#organization",
+            "name": "WebQenzo",
+            "url": "https://webqenzo.com/",
+            "email": "hello@webqenzo.com"
+          },
+          "inLanguage": "en"
+        },
+        {
+          "@type": "HowTo",
+          "@id": "https://webqenzo.com/process#how-to",
+          "name": "WebQenzo Website Design and Development Process",
+          "description":
+            "A structured website project process covering discovery, strategy, experience design, visual design, development, validation, launch and ongoing improvements.",
+          "url": "https://webqenzo.com/process",
+          "step": processSteps.map((step) => ({
+            "@type": "HowToStep",
+            "position": Number(step.number),
+            "name": step.label,
+            "text": step.text
+          }))
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://webqenzo.com/process#faq",
+          "url": "https://webqenzo.com/process",
+          "mainEntity": faqs.map((faq) => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://webqenzo.com/#organization",
+          "name": "WebQenzo",
+          "url": "https://webqenzo.com/",
+          "email": "hello@webqenzo.com"
+        }
+      ]
+    };
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.setAttribute("data-page-schema", "process");
+    script.textContent = JSON.stringify(structuredData);
+
+    document.head.appendChild(script);
+
+    return () => {
+      const existingScript = document.head.querySelector(
+        'script[data-page-schema="process"]'
+      );
+
+      if (existingScript) {
+        existingScript.remove();
+      }
+    };
+  }, []);
+
   return (
-    <main className="overflow-hidden bg-[#05070B] text-white">
+    <>
+      <SEO
+        title="Web Design & Development Process"
+        description="Explore the WebQenzo website design and development process, from discovery and strategy through UX, visual design, development, testing, launch and ongoing improvements."
+        path="/process"
+      />
+
+      <main className="overflow-hidden bg-[#05070B] text-white">
       {/* =====================================================
           01 — HERO
       ====================================================== */}
@@ -1088,6 +1178,7 @@ function Process() {
         </div>
       </section>
     </main>
+    </>
   );
 }
 

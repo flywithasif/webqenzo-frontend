@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
+import SEO from "../components/SEO";
 import {
   FileText,
   CheckCircle2,
@@ -43,8 +45,69 @@ const sections = [
 ];
 
 function Terms() {
+  useEffect(() => {
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://webqenzo.com/terms#webpage",
+          "url": "https://webqenzo.com/terms",
+          "name": "Terms & Conditions | WebQenzo",
+          "description":
+            "Read the WebQenzo Terms & Conditions covering website design and development services, project scope, pricing, payments, delivery, client responsibilities, intellectual property, revisions and third-party services.",
+          "isPartOf": {
+            "@type": "WebSite",
+            "@id": "https://webqenzo.com/#website",
+            "url": "https://webqenzo.com/",
+            "name": "WebQenzo"
+          },
+          "about": {
+            "@type": "Organization",
+            "@id": "https://webqenzo.com/#organization",
+            "name": "WebQenzo",
+            "url": "https://webqenzo.com/",
+            "email": "hello@webqenzo.com"
+          },
+          "inLanguage": "en"
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://webqenzo.com/#organization",
+          "name": "WebQenzo",
+          "url": "https://webqenzo.com/",
+          "email": "hello@webqenzo.com"
+        }
+      ]
+    };
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.setAttribute("data-page-schema", "terms");
+    script.textContent = JSON.stringify(structuredData);
+
+    document.head.appendChild(script);
+
+    return () => {
+      const existingScript = document.head.querySelector(
+        'script[data-page-schema="terms"]'
+      );
+
+      if (existingScript) {
+        existingScript.remove();
+      }
+    };
+  }, []);
+
   return (
-    <main className="bg-[#05070B] text-white">
+    <>
+      <SEO
+        title="Terms & Conditions"
+        description="Read the WebQenzo Terms & Conditions covering website design and development services, project scope, pricing, payments, delivery, client responsibilities, intellectual property, revisions and third-party services."
+        path="/terms"
+      />
+
+      <main className="bg-[#05070B] text-white">
       {/* =====================================================
           HERO
       ====================================================== */}
@@ -333,6 +396,7 @@ function Terms() {
         </div>
       </section>
     </main>
+    </>
   );
 }
 

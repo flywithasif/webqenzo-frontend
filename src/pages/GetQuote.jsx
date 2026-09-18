@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -26,6 +26,7 @@ import {
   Zap,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -154,6 +155,65 @@ function FieldLabel({ children, required = false }) {
 }
 
 function GetQuote() {
+  useEffect(() => {
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ContactPage",
+          "@id": "https://webqenzo.com/get-quote#contact-page",
+          "url": "https://webqenzo.com/get-quote",
+          "name": "Get a Website Quote from WebQenzo",
+          "description":
+            "Start a website project with WebQenzo. Share your business, website requirements, budget and timeline to begin a project conversation.",
+          "isPartOf": {
+            "@type": "WebSite",
+            "@id": "https://webqenzo.com/#website",
+            "url": "https://webqenzo.com/",
+            "name": "WebQenzo"
+          },
+          "about": {
+            "@type": "Organization",
+            "@id": "https://webqenzo.com/#organization",
+            "name": "WebQenzo",
+            "url": "https://webqenzo.com/",
+            "email": "hello@webqenzo.com"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://webqenzo.com/get-quote#faq",
+          "url": "https://webqenzo.com/get-quote",
+          "mainEntity": faqs.map((faq) => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }
+      ]
+    };
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.setAttribute("data-page-schema", "get-quote");
+    script.textContent = JSON.stringify(structuredData);
+
+    document.head.appendChild(script);
+
+    return () => {
+      const existingScript = document.head.querySelector(
+        'script[data-page-schema="get-quote"]'
+      );
+
+      if (existingScript) {
+        existingScript.remove();
+      }
+    };
+  }, []);
+
   const [submitted, setSubmitted] = useState(false);
 
   const [form, setForm] = useState({
@@ -201,7 +261,14 @@ function GetQuote() {
   };
 
   return (
-    <main className="overflow-hidden bg-[#05070B] text-white">
+    <>
+      <SEO
+        title="Get a Website Quote — Web Design & Development"
+        description="Start your website project with WebQenzo. Share your business goals, website requirements, budget and timeline to discuss a professional web design and development project."
+        path="/get-quote"
+      />
+
+      <main className="overflow-hidden bg-[#05070B] text-white">
       {/* =====================================================
           01 — CINEMATIC HERO
       ====================================================== */}
@@ -418,7 +485,10 @@ function GetQuote() {
       {/* =====================================================
           03 — MAIN FORM
       ====================================================== */}
-      <section className="relative bg-[#05070B]">
+      <section
+        aria-labelledby="project-enquiry-heading"
+        className="relative bg-[#05070B]"
+      >
         <div className="pointer-events-none absolute left-1/2 top-[15%] h-[700px] w-[700px] -translate-x-1/2 rounded-full bg-blue-500/[0.045] blur-[130px]" />
 
         <div className="relative mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
@@ -430,7 +500,10 @@ function GetQuote() {
                   Project enquiry
                 </p>
 
-                <h2 className="mt-5 text-4xl font-black tracking-[-0.05em] sm:text-5xl">
+                <h2
+                  id="project-enquiry-heading"
+                  className="mt-5 text-4xl font-black tracking-[-0.05em] sm:text-5xl"
+                >
                   Tell us what you're building.
                 </h2>
 
@@ -486,6 +559,7 @@ function GetQuote() {
 
               {/* Actual form */}
               <form
+                aria-label="WebQenzo project enquiry form"
                 onSubmit={handleSubmit}
                 className="rounded-[36px] border border-white/[0.09] bg-gradient-to-br from-[#0B111B] to-[#070A10] p-6 shadow-[0_40px_120px_rgba(0,0,0,.38)] sm:p-9 lg:p-12"
               >
@@ -1132,6 +1206,7 @@ function GetQuote() {
         </div>
       </section>
     </main>
+    </>
   );
 }
 

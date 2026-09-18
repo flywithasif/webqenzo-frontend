@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
 
@@ -12,41 +12,86 @@ const navLinks = [
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const closeMenu = () => {
     setIsOpen(false);
   };
 
-  return (
-    <header className="sticky top-0 z-[100] border-b border-white/[0.07] bg-[#05070B]/85 backdrop-blur-2xl">
-      <nav className="mx-auto flex h-[78px] max-w-[1500px] items-center justify-between px-5 sm:px-8 lg:px-12">
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
 
-        {/* =====================================================
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  return (
+    <header
+      className={`sticky top-0 z-[100] transition-all duration-300 ${
+        isScrolled
+          ? "border-b border-white/[0.09] bg-[#05070B]/95 shadow-[0_10px_40px_rgba(0,0,0,.25)] backdrop-blur-2xl"
+          : "border-b border-white/[0.07] bg-[#05070B]/85 backdrop-blur-2xl"
+      }`}
+    >
+      <nav
+        className={`mx-auto flex max-w-[1500px] items-center justify-between px-5 transition-all duration-300 sm:px-8 lg:px-12 ${
+          isScrolled ? "h-[68px]" : "h-[78px]"
+        }`}
+      >
+
+        {/* =================================================
             LOGO
-        ====================================================== */}
+        ================================================= */}
+
         <Link
           to="/"
           onClick={closeMenu}
           className="group relative flex items-center"
+          aria-label="WebQenzo Home"
         >
-          {/* Logo glow */}
           <span className="pointer-events-none absolute -inset-3 rounded-full bg-blue-500/[0.07] opacity-0 blur-xl transition duration-500 group-hover:opacity-100" />
 
-          <span className="relative text-[25px] font-black tracking-[-0.055em] text-white">
+          <span
+            className={`relative font-black tracking-[-0.055em] text-white transition-all duration-300 ${
+              isScrolled ? "text-[23px]" : "text-[25px]"
+            }`}
+          >
             Web
             <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
               Qenzo
             </span>
           </span>
 
-          {/* Small cyan indicator */}
           <span className="ml-2 h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(34,211,238,.8)]" />
         </Link>
 
-        {/* =====================================================
-            DESKTOP NAVIGATION
-        ====================================================== */}
+        {/* =================================================
+            DESKTOP NAV
+        ================================================= */}
+
         <div className="hidden items-center gap-1 lg:flex">
+
           {navLinks.map((link) => (
             <NavLink
               key={link.path}
@@ -63,7 +108,6 @@ function Navbar() {
                 <>
                   {link.name}
 
-                  {/* Active underline glow */}
                   {isActive && (
                     <span className="absolute bottom-0.5 left-1/2 h-[2px] w-4 -translate-x-1/2 rounded-full bg-gradient-to-r from-blue-400 to-cyan-300 shadow-[0_0_10px_rgba(34,211,238,.45)]" />
                   )}
@@ -71,17 +115,20 @@ function Navbar() {
               )}
             </NavLink>
           ))}
+
         </div>
 
-        {/* =====================================================
+        {/* =================================================
             DESKTOP CTA
-        ====================================================== */}
+        ================================================= */}
+
         <div className="hidden lg:block">
+
           <Link
             to="/get-quote"
             className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full border border-white/10 bg-white/[0.055] px-4 py-2.5 text-[13px] font-semibold text-white shadow-[0_8px_30px_rgba(0,0,0,.2)] transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-400/30 hover:bg-white/[0.09] hover:shadow-[0_12px_40px_rgba(37,99,235,.14)]"
           >
-            {/* Button shine */}
+
             <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent transition-transform duration-700 group-hover:translate-x-full" />
 
             <span className="relative">
@@ -91,37 +138,47 @@ function Navbar() {
             <span className="relative flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 text-white shadow-[0_0_18px_rgba(37,99,235,.25)] transition-all duration-300 group-hover:rotate-45 group-hover:shadow-[0_0_25px_rgba(34,211,238,.3)]">
               <ArrowUpRight size={15} />
             </span>
+
           </Link>
+
         </div>
 
-        {/* =====================================================
+        {/* =================================================
             MOBILE MENU BUTTON
-        ====================================================== */}
+        ================================================= */}
+
         <button
           type="button"
-          onClick={() => setIsOpen(!isOpen)}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-200 transition duration-300 hover:border-white/20 hover:bg-white/[0.08] lg:hidden"
+          onClick={() => setIsOpen((previous) => !previous)}
+          className={`flex h-10 w-10 items-center justify-center rounded-full border text-slate-200 transition duration-300 lg:hidden ${
+            isOpen
+              ? "border-blue-400/25 bg-blue-500/10"
+              : "border-white/10 bg-white/[0.04] hover:border-white/20 hover:bg-white/[0.08]"
+          }`}
           aria-label={isOpen ? "Close menu" : "Open menu"}
           aria-expanded={isOpen}
         >
           {isOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
+
       </nav>
 
-      {/* =====================================================
+      {/* =================================================
           MOBILE MENU
-      ====================================================== */}
+      ================================================= */}
+
       <div
-        className={`overflow-hidden border-t border-white/[0.07] bg-[#05070B]/95 backdrop-blur-2xl transition-all duration-300 lg:hidden ${
+        className={`overflow-hidden border-t border-white/[0.07] bg-[#05070B]/98 backdrop-blur-2xl transition-all duration-300 lg:hidden ${
           isOpen
-            ? "max-h-[520px] opacity-100"
+            ? "max-h-[560px] opacity-100"
             : "max-h-0 opacity-0"
         }`}
       >
+
         <div className="mx-auto max-w-[1500px] px-5 py-5 sm:px-8">
 
-          {/* Mobile navigation */}
           <div className="flex flex-col gap-1">
+
             {navLinks.map((link) => (
               <NavLink
                 key={link.path}
@@ -151,9 +208,11 @@ function Navbar() {
                 )}
               </NavLink>
             ))}
+
           </div>
 
           {/* Mobile CTA */}
+
           <Link
             to="/get-quote"
             onClick={closeMenu}
@@ -166,8 +225,10 @@ function Navbar() {
             </span>
           </Link>
 
-          {/* Mobile brand line */}
+          {/* Mobile footer label */}
+
           <div className="mt-5 flex items-center justify-center gap-3">
+
             <div className="h-px flex-1 bg-white/[0.06]" />
 
             <span className="text-[9px] font-semibold uppercase tracking-[0.25em] text-slate-700">
@@ -175,8 +236,11 @@ function Navbar() {
             </span>
 
             <div className="h-px flex-1 bg-white/[0.06]" />
+
           </div>
+
         </div>
+
       </div>
     </header>
   );

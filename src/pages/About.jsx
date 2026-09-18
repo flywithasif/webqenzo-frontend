@@ -7,7 +7,6 @@ import {
   Check,
   Code2,
   Eye,
-  Globe2,
   Layers3,
   LockKeyhole,
   MessageCircle,
@@ -21,13 +20,20 @@ import {
   Zap,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: {
+    opacity: 0,
+    y: 28,
+  },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
+    transition: {
+      duration: 0.65,
+      ease: [0.22, 1, 0.36, 1],
+    },
   },
 };
 
@@ -103,17 +109,106 @@ const standards = [
   "Scalable project organization",
 ];
 
+const workflow = [
+  "Understand the business",
+  "Define the digital experience",
+  "Design the visual system",
+  "Develop the experience",
+  "Refine the details",
+  "Prepare it for growth",
+];
+
+const technologies = [
+  "React",
+  "Vite",
+  "Tailwind CSS",
+  "Node.js",
+  "Express",
+  "MongoDB",
+  "Mongoose",
+  "REST APIs",
+  "Git",
+  "Responsive UI",
+];
+
+const businessJourney = [
+  {
+    icon: Search,
+    title: "Discover",
+    text: "Understand",
+  },
+  {
+    icon: Target,
+    title: "Position",
+    text: "Differentiate",
+  },
+  {
+    icon: Palette,
+    title: "Design",
+    text: "Communicate",
+  },
+  {
+    icon: Code2,
+    title: "Build",
+    text: "Deliver",
+  },
+  {
+    icon: Rocket,
+    title: "Grow",
+    text: "Improve",
+  },
+];
+
+const expectations = [
+  {
+    icon: MessageCircle,
+    title: "Communication",
+    text: "Questions, decisions and project direction should remain clear instead of becoming confusing midway through the project.",
+  },
+  {
+    icon: BriefcaseBusiness,
+    title: "Professional Process",
+    text: "Projects are approached with structure so design, development and revisions have a clear direction.",
+  },
+  {
+    icon: Zap,
+    title: "Attention to Detail",
+    text: "Small details in spacing, responsiveness, interaction and presentation are treated as part of the final quality.",
+  },
+];
+
+const transparencyPoints = [
+  "Clear project scope",
+  "Clear deliverables",
+  "Clear communication",
+  "No unnecessary complexity",
+];
+
 function About() {
   return (
     <main className="overflow-hidden bg-[#05070B] text-white">
+      <SEO
+        title="About WebQenzo"
+        description="Learn about WebQenzo, a digital web development agency focused on premium websites, thoughtful design, clean development and business-oriented digital experiences."
+        path="/about"
+      />
+
       {/* =========================================================
           01 — HERO
       ========================================================= */}
-      <section className="relative isolate min-h-[760px] overflow-hidden">
+      <section
+        className="relative isolate min-h-[760px] overflow-hidden"
+        aria-labelledby="about-hero-title"
+      >
         {/* Ambient luxury lighting */}
-        <div className="pointer-events-none absolute inset-0">
+        <div
+          className="pointer-events-none absolute inset-0"
+          aria-hidden="true"
+        >
           <div className="absolute left-[-12%] top-[8%] h-[500px] w-[500px] rounded-full bg-blue-600/10 blur-[120px]" />
+
           <div className="absolute right-[-8%] top-[20%] h-[450px] w-[450px] rounded-full bg-cyan-400/10 blur-[120px]" />
+
           <div className="absolute bottom-[-25%] left-[35%] h-[450px] w-[450px] rounded-full bg-indigo-500/10 blur-[140px]" />
 
           <div
@@ -135,7 +230,10 @@ function About() {
               className="max-w-3xl"
             >
               <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.035] px-4 py-2 text-xs font-medium text-slate-300 backdrop-blur-xl">
-                <span className="flex h-2 w-2 rounded-full bg-cyan-400 shadow-[0_0_16px_rgba(34,211,238,.8)]" />
+                <span
+                  className="flex h-2 w-2 rounded-full bg-cyan-400 shadow-[0_0_16px_rgba(34,211,238,.8)]"
+                  aria-hidden="true"
+                />
                 Inside WebQenzo
               </div>
 
@@ -143,7 +241,10 @@ function About() {
                 Digital craftsmanship
               </p>
 
-              <h1 className="text-5xl font-black leading-[0.95] tracking-[-0.055em] text-white sm:text-6xl lg:text-8xl">
+              <h1
+                id="about-hero-title"
+                className="text-5xl font-black leading-[0.95] tracking-[-0.055em] text-white sm:text-6xl lg:text-8xl"
+              >
                 We build digital
                 <span className="block bg-gradient-to-r from-white via-blue-100 to-cyan-300 bg-clip-text text-transparent">
                   experiences with intent.
@@ -160,10 +261,11 @@ function About() {
               <div className="mt-10 flex flex-wrap gap-4">
                 <Link
                   to="/get-quote"
-                  className="group inline-flex items-center gap-3 rounded-full bg-white px-6 py-3.5 text-sm font-bold text-[#05070B] transition duration-300 hover:-translate-y-1"
+                  className="group inline-flex items-center gap-3 rounded-full bg-white px-6 py-3.5 text-sm font-bold text-[#05070B] transition duration-300 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(255,255,255,.12)]"
                 >
                   Start a Project
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#05070B] text-white">
+
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#05070B] text-white transition duration-300 group-hover:rotate-45">
                     <ArrowUpRight size={15} />
                   </span>
                 </Link>
@@ -180,22 +282,46 @@ function About() {
 
             {/* 3D identity card */}
             <motion.div
-              initial={{ opacity: 0, y: 40, rotateY: 8, rotateX: 4 }}
-              animate={{ opacity: 1, y: 0, rotateY: 0, rotateX: 0 }}
-              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              initial={{
+                opacity: 0,
+                y: 40,
+                rotateY: 8,
+                rotateX: 4,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                rotateY: 0,
+                rotateX: 0,
+              }}
+              transition={{
+                duration: 0.9,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               className="relative mx-auto w-full max-w-[600px] [perspective:1800px]"
             >
               <div className="relative aspect-square [transform-style:preserve-3d]">
-                <div className="absolute inset-[7%] rounded-[42px] border border-white/10 bg-white/[0.025] shadow-[0_50px_120px_rgba(0,0,0,.55)] backdrop-blur-2xl" />
+                <div
+                  className="absolute inset-[7%] rounded-[42px] border border-white/10 bg-white/[0.025] shadow-[0_50px_120px_rgba(0,0,0,.55)] backdrop-blur-2xl"
+                  aria-hidden="true"
+                />
 
-                <div className="absolute inset-[13%] rounded-[36px] border border-blue-400/20 bg-gradient-to-br from-blue-500/[0.12] via-transparent to-cyan-400/[0.08] [transform:translateZ(35px)]" />
+                <div
+                  className="absolute inset-[13%] rounded-[36px] border border-blue-400/20 bg-gradient-to-br from-blue-500/[0.12] via-transparent to-cyan-400/[0.08)] [transform:translateZ(35px)]"
+                  aria-hidden="true"
+                />
 
                 <div className="absolute inset-[20%] rounded-[30px] border border-white/10 bg-[#080D16]/90 p-7 shadow-[inset_0_0_80px_rgba(37,99,235,.08)] [transform:translateZ(70px)]">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold uppercase tracking-[0.25em] text-slate-500">
                       WebQenzo
                     </span>
-                    <Sparkles size={17} className="text-cyan-300" />
+
+                    <Sparkles
+                      size={17}
+                      className="text-cyan-300"
+                      aria-hidden="true"
+                    />
                   </div>
 
                   <div className="mt-16">
@@ -214,7 +340,8 @@ function About() {
 
                   <div className="absolute bottom-7 left-7 right-7">
                     <div className="h-px bg-white/10" />
-                    <div className="mt-4 flex items-center justify-between text-xs text-slate-500">
+
+                    <div className="mt-4 flex items-center justify-between gap-4 text-xs text-slate-500">
                       <span>Websites That Grow Your Business</span>
                       <span>01</span>
                     </div>
@@ -225,10 +352,12 @@ function About() {
                 <div className="absolute -left-2 top-[18%] rounded-2xl border border-white/10 bg-[#0B111C]/90 px-4 py-3 shadow-2xl backdrop-blur-xl [transform:translateZ(100px)] sm:-left-5">
                   <div className="flex items-center gap-3">
                     <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-500/10 text-blue-300">
-                      <Code2 size={17} />
+                      <Code2 size={17} aria-hidden="true" />
                     </div>
+
                     <div>
                       <p className="text-[11px] text-slate-500">Approach</p>
+
                       <p className="text-xs font-semibold text-white">
                         Design + Code
                       </p>
@@ -239,10 +368,12 @@ function About() {
                 <div className="absolute -right-2 bottom-[18%] rounded-2xl border border-white/10 bg-[#0B111C]/90 px-4 py-3 shadow-2xl backdrop-blur-xl [transform:translateZ(120px)] sm:-right-5">
                   <div className="flex items-center gap-3">
                     <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-cyan-400/10 text-cyan-300">
-                      <Rocket size={17} />
+                      <Rocket size={17} aria-hidden="true" />
                     </div>
+
                     <div>
                       <p className="text-[11px] text-slate-500">Mindset</p>
+
                       <p className="text-xs font-semibold text-white">
                         Built to evolve
                       </p>
@@ -258,7 +389,10 @@ function About() {
       {/* =========================================================
           02 — WHO WE ARE
       ========================================================= */}
-      <section className="border-y border-white/[0.07] bg-[#070A10]">
+      <section
+        className="border-y border-white/[0.07] bg-[#070A10]"
+        aria-labelledby="who-we-are-title"
+      >
         <div className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
           <div className="grid gap-16 lg:grid-cols-[.7fr_1.3fr]">
             <motion.div
@@ -271,7 +405,10 @@ function About() {
                 01 / Who we are
               </p>
 
-              <h2 className="mt-5 max-w-md text-4xl font-black tracking-[-0.045em] sm:text-5xl">
+              <h2
+                id="who-we-are-title"
+                className="mt-5 max-w-md text-4xl font-black tracking-[-0.045em] sm:text-5xl"
+              >
                 A digital partner, not just a website vendor.
               </h2>
             </motion.div>
@@ -298,8 +435,8 @@ function About() {
 
                 <p className="text-sm leading-7 text-slate-500">
                   That is why our approach combines visual quality with
-                  structure, usability, responsiveness, performance and a
-                  clear conversion journey.
+                  structure, usability, responsiveness, performance and a clear
+                  conversion journey.
                 </p>
               </div>
             </motion.div>
@@ -310,7 +447,10 @@ function About() {
       {/* =========================================================
           03 — FOUNDER / HUMAN SIDE
       ========================================================= */}
-      <section className="relative bg-[#05070B]">
+      <section
+        className="relative bg-[#05070B]"
+        aria-labelledby="philosophy-title"
+      >
         <div className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
           <div className="grid gap-14 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
             <motion.div
@@ -321,11 +461,18 @@ function About() {
               className="relative"
             >
               <div className="relative overflow-hidden rounded-[34px] border border-white/10 bg-gradient-to-br from-[#0B1220] to-[#070A10] p-8 shadow-[0_35px_100px_rgba(0,0,0,.45)] sm:p-10">
-                <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-blue-500/10 blur-[80px]" />
+                <div
+                  className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-blue-500/10 blur-[80px]"
+                  aria-hidden="true"
+                />
 
                 <div className="relative">
                   <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04]">
-                    <Users className="text-cyan-300" size={26} />
+                    <Users
+                      className="text-cyan-300"
+                      size={26}
+                      aria-hidden="true"
+                    />
                   </div>
 
                   <p className="mt-12 text-xs font-bold uppercase tracking-[0.25em] text-slate-500">
@@ -345,9 +492,11 @@ function About() {
 
                   <div className="mt-10 flex items-center gap-3">
                     <div className="h-px flex-1 bg-white/10" />
+
                     <span className="text-[10px] uppercase tracking-[0.25em] text-slate-600">
                       WebQenzo
                     </span>
+
                     <div className="h-px flex-1 bg-white/10" />
                   </div>
                 </div>
@@ -365,7 +514,10 @@ function About() {
                 02 / The philosophy
               </p>
 
-              <h2 className="mt-5 text-4xl font-black tracking-[-0.05em] sm:text-6xl">
+              <h2
+                id="philosophy-title"
+                className="mt-5 text-4xl font-black tracking-[-0.05em] sm:text-6xl"
+              >
                 Technology should make your business feel more capable.
               </h2>
 
@@ -377,21 +529,15 @@ function About() {
               </p>
 
               <div className="mt-10 space-y-4">
-                {[
-                  "Understand the business",
-                  "Define the digital experience",
-                  "Design the visual system",
-                  "Develop the experience",
-                  "Refine the details",
-                  "Prepare it for growth",
-                ].map((item, index) => (
+                {workflow.map((item, index) => (
                   <div
                     key={item}
                     className="flex items-center gap-4 border-b border-white/[0.07] pb-4"
                   >
                     <span className="text-xs font-bold text-blue-400">
-                      0{index + 1}
+                      {String(index + 1).padStart(2, "0")}
                     </span>
+
                     <span className="text-sm font-medium text-slate-200">
                       {item}
                     </span>
@@ -406,7 +552,10 @@ function About() {
       {/* =========================================================
           04 — TRUST
       ========================================================= */}
-      <section className="bg-[#080C13]">
+      <section
+        className="bg-[#080C13]"
+        aria-labelledby="trust-title"
+      >
         <div className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
           <motion.div
             initial="hidden"
@@ -419,14 +568,17 @@ function About() {
               03 / Built on trust
             </p>
 
-            <h2 className="mt-5 text-4xl font-black tracking-[-0.05em] sm:text-6xl">
+            <h2
+              id="trust-title"
+              className="mt-5 text-4xl font-black tracking-[-0.05em] sm:text-6xl"
+            >
               Trust is part of the product.
             </h2>
 
             <p className="mt-6 text-base leading-8 text-slate-400 sm:text-lg">
               A premium website is not enough if the working relationship is
-              unclear. We want clients to understand what is being built,
-              why it is being built and what happens next.
+              unclear. We want clients to understand what is being built, why
+              it is being built and what happens next.
             </p>
           </motion.div>
 
@@ -440,14 +592,19 @@ function About() {
                   initial={{ opacity: 0, y: 25 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.15 }}
-                  transition={{ duration: 0.55, delay: index * 0.07 }}
-                  className="group rounded-[28px] border border-white/[0.08] bg-white/[0.025] p-7 transition duration-500 hover:-translate-y-2 hover:border-blue-400/25 hover:bg-white/[0.045]"
+                  transition={{
+                    duration: 0.55,
+                    delay: index * 0.07,
+                  }}
+                  className="group rounded-[28px] border border-white/[0.08] bg-white/[0.025] p-7 transition duration-500 hover:-translate-y-2 hover:border-blue-400/25 hover:bg-white/[0.045] hover:shadow-[0_20px_60px_rgba(0,0,0,.25)]"
                 >
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-cyan-300 transition duration-500 group-hover:scale-110 group-hover:bg-blue-500/10">
-                    <Icon size={21} />
+                    <Icon size={21} aria-hidden="true" />
                   </div>
 
-                  <h3 className="mt-8 text-lg font-bold">{item.title}</h3>
+                  <h3 className="mt-8 text-lg font-bold">
+                    {item.title}
+                  </h3>
 
                   <p className="mt-3 text-sm leading-7 text-slate-500">
                     {item.text}
@@ -462,8 +619,14 @@ function About() {
       {/* =========================================================
           05 — CAPABILITIES
       ========================================================= */}
-      <section className="relative overflow-hidden bg-[#05070B]">
-        <div className="absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/[0.045] blur-[120px]" />
+      <section
+        className="relative overflow-hidden bg-[#05070B]"
+        aria-labelledby="capabilities-title"
+      >
+        <div
+          className="absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/[0.045] blur-[120px]"
+          aria-hidden="true"
+        />
 
         <div className="relative mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
           <div className="grid gap-16 lg:grid-cols-[.75fr_1.25fr]">
@@ -472,7 +635,10 @@ function About() {
                 04 / Capabilities
               </p>
 
-              <h2 className="mt-5 text-4xl font-black tracking-[-0.05em] sm:text-6xl">
+              <h2
+                id="capabilities-title"
+                className="mt-5 text-4xl font-black tracking-[-0.05em] sm:text-6xl"
+              >
                 From first idea to digital product.
               </h2>
 
@@ -499,6 +665,7 @@ function About() {
                   <ArrowUpRight
                     size={15}
                     className="text-slate-700 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-cyan-300"
+                    aria-hidden="true"
                   />
                 </div>
               ))}
@@ -510,7 +677,10 @@ function About() {
       {/* =========================================================
           06 — VALUES
       ========================================================= */}
-      <section className="border-y border-white/[0.07] bg-[#080C13]">
+      <section
+        className="border-y border-white/[0.07] bg-[#080C13]"
+        aria-labelledby="values-title"
+      >
         <div className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
           <div className="mb-14 flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
             <div>
@@ -518,7 +688,10 @@ function About() {
                 05 / Our principles
               </p>
 
-              <h2 className="mt-5 max-w-2xl text-4xl font-black tracking-[-0.05em] sm:text-6xl">
+              <h2
+                id="values-title"
+                className="mt-5 max-w-2xl text-4xl font-black tracking-[-0.05em] sm:text-6xl"
+              >
                 Standards that shape every project.
               </h2>
             </div>
@@ -540,7 +713,11 @@ function About() {
                     {item.number}
                   </span>
 
-                  <Sparkles size={17} className="text-slate-700" />
+                  <Sparkles
+                    size={17}
+                    className="text-slate-700"
+                    aria-hidden="true"
+                  />
                 </div>
 
                 <h3 className="mt-14 text-2xl font-black tracking-[-0.03em]">
@@ -559,12 +736,29 @@ function About() {
       {/* =========================================================
           07 — DESIGN + DEVELOPMENT
       ========================================================= */}
-      <section className="bg-[#05070B]">
+      <section
+        className="bg-[#05070B]"
+        aria-labelledby="design-development-title"
+      >
         <div className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+          <div className="mb-14">
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
+              06 / Design + development
+            </p>
+
+            <h2
+              id="design-development-title"
+              className="mt-5 max-w-3xl text-4xl font-black tracking-[-0.05em] sm:text-6xl"
+            >
+              Creative thinking backed by engineering.
+            </h2>
+          </div>
+
           <div className="grid gap-6 lg:grid-cols-2">
+            {/* Design */}
             <div className="rounded-[32px] border border-white/[0.08] bg-gradient-to-br from-[#0B1220] to-[#070A10] p-8 sm:p-10">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-500/10 text-blue-300">
-                <Palette size={22} />
+                <Palette size={22} aria-hidden="true" />
               </div>
 
               <p className="mt-10 text-xs font-bold uppercase tracking-[0.25em] text-slate-500">
@@ -588,17 +782,25 @@ function About() {
                   "Premium UI systems",
                   "Interaction design",
                 ].map((item) => (
-                  <div key={item} className="flex items-center gap-3 text-sm text-slate-300">
-                    <Check size={16} className="text-cyan-300" />
+                  <div
+                    key={item}
+                    className="flex items-center gap-3 text-sm text-slate-300"
+                  >
+                    <Check
+                      size={16}
+                      className="text-cyan-300"
+                      aria-hidden="true"
+                    />
                     {item}
                   </div>
                 ))}
               </div>
             </div>
 
+            {/* Development */}
             <div className="rounded-[32px] border border-white/[0.08] bg-gradient-to-br from-[#09121A] to-[#070A10] p-8 sm:p-10">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-400/10 text-cyan-300">
-                <Code2 size={22} />
+                <Code2 size={22} aria-hidden="true" />
               </div>
 
               <p className="mt-10 text-xs font-bold uppercase tracking-[0.25em] text-slate-500">
@@ -622,8 +824,15 @@ function About() {
                   "Clean project structure",
                   "Scalable foundations",
                 ].map((item) => (
-                  <div key={item} className="flex items-center gap-3 text-sm text-slate-300">
-                    <Check size={16} className="text-cyan-300" />
+                  <div
+                    key={item}
+                    className="flex items-center gap-3 text-sm text-slate-300"
+                  >
+                    <Check
+                      size={16}
+                      className="text-cyan-300"
+                      aria-hidden="true"
+                    />
                     {item}
                   </div>
                 ))}
@@ -636,24 +845,33 @@ function About() {
       {/* =========================================================
           08 — QUALITY STANDARD
       ========================================================= */}
-      <section className="relative overflow-hidden bg-[#080C13]">
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/40 to-transparent" />
+      <section
+        className="relative overflow-hidden bg-[#080C13]"
+        aria-labelledby="quality-title"
+      >
+        <div
+          className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/40 to-transparent"
+          aria-hidden="true"
+        />
 
         <div className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
           <div className="grid gap-16 lg:grid-cols-[.8fr_1.2fr]">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
-                06 / Quality standard
+                07 / Quality standard
               </p>
 
-              <h2 className="mt-5 text-4xl font-black tracking-[-0.05em] sm:text-6xl">
+              <h2
+                id="quality-title"
+                className="mt-5 text-4xl font-black tracking-[-0.05em] sm:text-6xl"
+              >
                 Details matter.
               </h2>
 
               <p className="mt-6 max-w-lg text-base leading-8 text-slate-500">
-                The difference between an average website and a premium
-                digital experience is often found in the details people do
-                not consciously notice.
+                The difference between an average website and a premium digital
+                experience is often found in the details people do not
+                consciously notice.
               </p>
             </div>
 
@@ -664,12 +882,16 @@ function About() {
                   className="group flex items-center gap-4 rounded-2xl border border-white/[0.07] bg-white/[0.02] p-5 transition duration-300 hover:border-blue-400/20 hover:bg-white/[0.045]"
                 >
                   <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.035]">
-                    <BadgeCheck size={17} className="text-cyan-300" />
+                    <BadgeCheck
+                      size={17}
+                      className="text-cyan-300"
+                      aria-hidden="true"
+                    />
                   </div>
 
                   <div>
                     <span className="text-[10px] font-bold text-blue-400">
-                      0{index + 1}
+                      {String(index + 1).padStart(2, "0")}
                     </span>
 
                     <p className="mt-1 text-sm font-medium text-slate-300">
@@ -684,45 +906,52 @@ function About() {
       </section>
 
       {/* =========================================================
-          09 — HOW WE THINK ABOUT YOUR BUSINESS
+          09 — BUSINESS JOURNEY
       ========================================================= */}
-      <section className="bg-[#05070B]">
+      <section
+        className="bg-[#05070B]"
+        aria-labelledby="business-perspective-title"
+      >
         <div className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
           <div className="text-center">
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
-              07 / Business perspective
+              08 / Business perspective
             </p>
 
-            <h2 className="mx-auto mt-5 max-w-4xl text-4xl font-black tracking-[-0.05em] sm:text-6xl">
+            <h2
+              id="business-perspective-title"
+              className="mx-auto mt-5 max-w-4xl text-4xl font-black tracking-[-0.05em] sm:text-6xl"
+            >
               We design around the journey, not just the homepage.
             </h2>
           </div>
 
           <div className="mx-auto mt-16 grid max-w-6xl gap-4 md:grid-cols-5">
-            {[
-              { icon: Search, title: "Discover", text: "Understand" },
-              { icon: Target, title: "Position", text: "Differentiate" },
-              { icon: Palette, title: "Design", text: "Communicate" },
-              { icon: Code2, title: "Build", text: "Deliver" },
-              { icon: Rocket, title: "Grow", text: "Improve" },
-            ].map((item, index) => {
+            {businessJourney.map((item, index) => {
               const Icon = item.icon;
 
               return (
                 <div
                   key={item.title}
-                  className="relative rounded-[26px] border border-white/[0.08] bg-white/[0.025] p-6 text-center"
+                  className="relative rounded-[26px] border border-white/[0.08] bg-white/[0.025] p-6 text-center transition duration-300 hover:-translate-y-1 hover:border-blue-400/20 hover:bg-white/[0.045]"
                 >
                   <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-500/10 text-blue-300">
-                    <Icon size={20} />
+                    <Icon size={20} aria-hidden="true" />
                   </div>
 
-                  <p className="mt-6 text-lg font-bold">{item.title}</p>
+                  <p className="mt-6 text-lg font-bold">
+                    {item.title}
+                  </p>
 
-                  <p className="mt-1 text-xs text-slate-600">{item.text}</p>
+                  <p className="mt-1 text-xs text-slate-600">
+                    {item.text}
+                  </p>
 
                   {index !== 4 && (
-                    <div className="absolute -right-3 top-1/2 hidden h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-[#080C13] text-slate-600 md:flex">
+                    <div
+                      className="absolute -right-3 top-1/2 hidden h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-[#080C13] text-slate-600 md:flex"
+                      aria-hidden="true"
+                    >
                       <ArrowRight size={12} />
                     </div>
                   )}
@@ -736,15 +965,21 @@ function About() {
       {/* =========================================================
           10 — TECH / DIGITAL FOUNDATION
       ========================================================= */}
-      <section className="border-y border-white/[0.07] bg-[#080C13]">
+      <section
+        className="border-y border-white/[0.07] bg-[#080C13]"
+        aria-labelledby="technology-title"
+      >
         <div className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
           <div className="grid items-center gap-14 lg:grid-cols-[1fr_.9fr]">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
-                08 / Digital foundation
+                09 / Digital foundation
               </p>
 
-              <h2 className="mt-5 max-w-2xl text-4xl font-black tracking-[-0.05em] sm:text-6xl">
+              <h2
+                id="technology-title"
+                className="mt-5 max-w-2xl text-4xl font-black tracking-[-0.05em] sm:text-6xl"
+              >
                 Modern technology. Practical implementation.
               </h2>
 
@@ -755,21 +990,10 @@ function About() {
               </p>
 
               <div className="mt-10 flex flex-wrap gap-2">
-                {[
-                  "React",
-                  "Vite",
-                  "Tailwind CSS",
-                  "Node.js",
-                  "Express",
-                  "MongoDB",
-                  "Mongoose",
-                  "REST APIs",
-                  "Git",
-                  "Responsive UI",
-                ].map((tech) => (
+                {technologies.map((tech) => (
                   <span
                     key={tech}
-                    className="rounded-full border border-white/[0.08] bg-white/[0.025] px-4 py-2 text-xs font-medium text-slate-400"
+                    className="rounded-full border border-white/[0.08] bg-white/[0.025] px-4 py-2 text-xs font-medium text-slate-400 transition hover:border-blue-400/20 hover:text-slate-200"
                   >
                     {tech}
                   </span>
@@ -784,7 +1008,12 @@ function About() {
                     <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-600">
                       Architecture
                     </span>
-                    <Layers3 size={18} className="text-blue-300" />
+
+                    <Layers3
+                      size={18}
+                      className="text-blue-300"
+                      aria-hidden="true"
+                    />
                   </div>
 
                   <div className="mt-8 space-y-3">
@@ -793,13 +1022,16 @@ function About() {
                       ["Frontend", "React"],
                       ["Backend", "Node + Express"],
                       ["Database", "MongoDB"],
-                      ["Delivery", "Production-ready structure"],
+                      ["Delivery", "Structured implementation"],
                     ].map(([left, right]) => (
                       <div
                         key={left}
                         className="flex items-center justify-between rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3"
                       >
-                        <span className="text-xs text-slate-500">{left}</span>
+                        <span className="text-xs text-slate-500">
+                          {left}
+                        </span>
+
                         <span className="text-xs font-semibold text-slate-200">
                           {right}
                         </span>
@@ -816,44 +1048,38 @@ function About() {
       {/* =========================================================
           11 — WHAT CLIENTS CAN EXPECT
       ========================================================= */}
-      <section className="bg-[#05070B]">
+      <section
+        className="bg-[#05070B]"
+        aria-labelledby="expectations-title"
+      >
         <div className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
           <div className="mb-14">
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
-              09 / Working relationship
+              10 / Working relationship
             </p>
 
-            <h2 className="mt-5 max-w-3xl text-4xl font-black tracking-[-0.05em] sm:text-6xl">
+            <h2
+              id="expectations-title"
+              className="mt-5 max-w-3xl text-4xl font-black tracking-[-0.05em] sm:text-6xl"
+            >
               What you should expect from us.
             </h2>
           </div>
 
           <div className="grid gap-5 md:grid-cols-3">
-            {[
-              {
-                icon: MessageCircle,
-                title: "Communication",
-                text: "Questions, decisions and project direction should remain clear instead of becoming confusing midway through the project.",
-              },
-              {
-                icon: BriefcaseBusiness,
-                title: "Professional Process",
-                text: "Projects are approached with structure so design, development and revisions have a clear direction.",
-              },
-              {
-                icon: Zap,
-                title: "Attention to Detail",
-                text: "Small details in spacing, responsiveness, interaction and presentation are treated as part of the final quality.",
-              },
-            ].map((item) => {
+            {expectations.map((item) => {
               const Icon = item.icon;
 
               return (
                 <div
                   key={item.title}
-                  className="rounded-[30px] border border-white/[0.08] bg-gradient-to-br from-white/[0.04] to-transparent p-8"
+                  className="rounded-[30px] border border-white/[0.08] bg-gradient-to-br from-white/[0.04] to-transparent p-8 transition duration-500 hover:-translate-y-1 hover:border-blue-400/20"
                 >
-                  <Icon size={24} className="text-cyan-300" />
+                  <Icon
+                    size={24}
+                    className="text-cyan-300"
+                    aria-hidden="true"
+                  />
 
                   <h3 className="mt-10 text-2xl font-black tracking-[-0.03em]">
                     {item.title}
@@ -872,18 +1098,24 @@ function About() {
       {/* =========================================================
           12 — TRANSPARENCY
       ========================================================= */}
-      <section className="bg-[#080C13]">
+      <section
+        className="bg-[#080C13]"
+        aria-labelledby="transparency-title"
+      >
         <div className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
           <div className="mx-auto max-w-5xl rounded-[36px] border border-white/[0.08] bg-gradient-to-br from-[#0B1220] via-[#080D15] to-[#071015] p-8 shadow-[0_40px_120px_rgba(0,0,0,.4)] sm:p-12 lg:p-16">
             <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-cyan-400/10 text-cyan-300">
-              <ShieldCheck size={25} />
+              <ShieldCheck size={25} aria-hidden="true" />
             </div>
 
             <p className="mt-10 text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
-              10 / Transparency
+              11 / Transparency
             </p>
 
-            <h2 className="mt-5 max-w-3xl text-4xl font-black tracking-[-0.05em] sm:text-5xl">
+            <h2
+              id="transparency-title"
+              className="mt-5 max-w-3xl text-4xl font-black tracking-[-0.05em] sm:text-5xl"
+            >
               No inflated promises. Just clear work.
             </h2>
 
@@ -895,17 +1127,16 @@ function About() {
             </p>
 
             <div className="mt-10 grid gap-3 sm:grid-cols-2">
-              {[
-                "Clear project scope",
-                "Clear deliverables",
-                "Clear communication",
-                "No unnecessary complexity",
-              ].map((item) => (
+              {transparencyPoints.map((item) => (
                 <div
                   key={item}
                   className="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.025] px-4 py-3 text-sm text-slate-300"
                 >
-                  <Check size={16} className="text-cyan-300" />
+                  <Check
+                    size={16}
+                    className="text-cyan-300"
+                    aria-hidden="true"
+                  />
                   {item}
                 </div>
               ))}
@@ -917,15 +1148,24 @@ function About() {
       {/* =========================================================
           13 — WHY WEBQENZO
       ========================================================= */}
-      <section className="relative overflow-hidden bg-[#05070B]">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(37,99,235,.10),transparent_38%)]" />
+      <section
+        className="relative overflow-hidden bg-[#05070B]"
+        aria-labelledby="why-webqenzo-title"
+      >
+        <div
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(37,99,235,.10),transparent_38%)]"
+          aria-hidden="true"
+        />
 
         <div className="relative mx-auto max-w-[1500px] px-5 py-24 text-center sm:px-8 lg:px-12 lg:py-36">
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
-            11 / Why WebQenzo
+            12 / Why WebQenzo
           </p>
 
-          <h2 className="mx-auto mt-6 max-w-5xl text-5xl font-black tracking-[-0.06em] sm:text-7xl lg:text-8xl">
+          <h2
+            id="why-webqenzo-title"
+            className="mx-auto mt-6 max-w-5xl text-5xl font-black tracking-[-0.06em] sm:text-7xl lg:text-8xl"
+          >
             Your website should feel like your business has
             <span className="block bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
               moved forward.
@@ -942,19 +1182,32 @@ function About() {
       {/* =========================================================
           14 — CTA
       ========================================================= */}
-      <section className="border-t border-white/[0.08] bg-[#070A10]">
+      <section
+        className="border-t border-white/[0.08] bg-[#070A10]"
+        aria-labelledby="about-cta-title"
+      >
         <div className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
           <div className="relative overflow-hidden rounded-[40px] border border-white/10 bg-gradient-to-br from-[#0D1726] via-[#09101B] to-[#071015] p-8 sm:p-12 lg:p-16">
-            <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-blue-500/10 blur-[100px]" />
-            <div className="pointer-events-none absolute -bottom-32 left-1/3 h-72 w-72 rounded-full bg-cyan-400/10 blur-[110px]" />
+            <div
+              className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-blue-500/10 blur-[100px]"
+              aria-hidden="true"
+            />
+
+            <div
+              className="pointer-events-none absolute -bottom-32 left-1/3 h-72 w-72 rounded-full bg-cyan-400/10 blur-[110px]"
+              aria-hidden="true"
+            />
 
             <div className="relative grid gap-12 lg:grid-cols-[1fr_auto] lg:items-end">
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
-                  12 / Let's build
+                  13 / Let's build
                 </p>
 
-                <h2 className="mt-5 max-w-4xl text-4xl font-black tracking-[-0.05em] sm:text-6xl">
+                <h2
+                  id="about-cta-title"
+                  className="mt-5 max-w-4xl text-4xl font-black tracking-[-0.05em] sm:text-6xl"
+                >
                   Have a business that deserves a better digital presence?
                 </h2>
 
@@ -966,9 +1219,10 @@ function About() {
 
               <Link
                 to="/get-quote"
-                className="group inline-flex w-fit items-center gap-3 rounded-full bg-white px-6 py-3.5 text-sm font-bold text-[#05070B] transition duration-300 hover:-translate-y-1"
+                className="group inline-flex w-fit items-center gap-3 rounded-full bg-white px-6 py-3.5 text-sm font-bold text-[#05070B] transition duration-300 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(255,255,255,.12)]"
               >
                 Start a Conversation
+
                 <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#05070B] text-white transition group-hover:rotate-45">
                   <ArrowUpRight size={15} />
                 </span>

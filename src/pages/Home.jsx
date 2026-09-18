@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import SEO from "../components/SEO";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -12,7 +13,14 @@ import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <main className="overflow-hidden">
+    <>
+      <SEO
+        title="Premium Website Design & Development"
+        description="WebQenzo creates premium, modern and high-performance websites for businesses, brands and startups."
+        path="/"
+      />
+
+      <main className="overflow-hidden">
 
       {/* =====================================================
           HERO SECTION
@@ -486,7 +494,8 @@ function Home() {
         </div>
       </section>
 
-    </main>
+      </main>
+    </>
   );
 }
 

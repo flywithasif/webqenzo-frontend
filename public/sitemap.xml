@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+>
+
+  <!-- Main Pages -->
+
+  <url>
+    <loc>https://webqenzo.com/</loc>
+  </url>
+
+  <url>
+    <loc>https://webqenzo.com/services</loc>
+  </url>
+
+  <url>
+    <loc>https://webqenzo.com/portfolio</loc>
+  </url>
+
+  <url>
+    <loc>https://webqenzo.com/about</loc>
+  </url>
+
+  <url>
+    <loc>https://webqenzo.com/process</loc>
+  </url>
+
+  <url>
+    <loc>https://webqenzo.com/get-quote</loc>
+  </url>
+
+  <url>
+    <loc>https://webqenzo.com/contact</loc>
+  </url>
+
+  <!-- Portfolio Case Studies -->
+
+  <url>
+    <loc>https://webqenzo.com/portfolio/medicare</loc>
+  </url>
+
+  <url>
+    <loc>https://webqenzo.com/portfolio/fitzone</loc>
+  </url>
+
+  <url>
+    <loc>https://webqenzo.com/portfolio/lexpro</loc>
+  </url>
+
+  <url>
+    <loc>https://webqenzo.com/portfolio/finedge</loc>
+  </url>
+
+  <url>
+    <loc>https://webqenzo.com/portfolio/beathouse</loc>
+  </url>
+
+  <url>
+    <loc>https://webqenzo.com/portfolio/threadrare</loc>
+  </url>
+
+  <!-- Legal Pages -->
+
+  <url>
+    <loc>https://webqenzo.com/privacy-policy</loc>
+  </url>
+
+  <url>
+    <loc>https://webqenzo.com/terms</loc>
+  </url>
+
+</urlset>
