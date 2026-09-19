@@ -494,6 +494,2307 @@ function Home() {
         </div>
       </section>
 
+
+
+      {/* ============================================================
+    PREMIUM SHOWCASE SECTION
+============================================================ */}
+
+<section className="relative overflow-hidden bg-[#060B21] py-20 text-white sm:py-24 lg:py-28">
+
+  {/* Background Glow */}
+  <div className="pointer-events-none absolute -left-40 top-20 h-[450px] w-[450px] rounded-full bg-blue-600/20 blur-[140px]" />
+
+  <div className="pointer-events-none absolute -bottom-40 right-[-100px] h-[500px] w-[500px] rounded-full bg-cyan-500/10 blur-[150px]" />
+
+  {/* Subtle Background Grid */}
+  <div
+    className="pointer-events-none absolute inset-0 opacity-[0.035]"
+    style={{
+      backgroundImage:
+        "linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)",
+      backgroundSize: "60px 60px",
+    }}
+  />
+
+  <div className="relative mx-auto max-w-[1500px] px-5 sm:px-8 lg:px-12 xl:px-16">
+
+    <div className="grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 xl:gap-20">
+
+      {/* ======================================================
+          LEFT CONTENT
+      ======================================================= */}
+
+      <div className="max-w-2xl">
+
+        {/* Rating */}
+        <div className="mb-6 flex flex-wrap items-center gap-x-3 gap-y-2">
+
+          <div className="flex items-center gap-0.5 text-yellow-400">
+            <span className="text-lg">★</span>
+            <span className="text-lg">★</span>
+            <span className="text-lg">★</span>
+            <span className="text-lg">★</span>
+            <span className="text-lg">★</span>
+          </div>
+
+          <span className="text-sm font-medium text-white/80 sm:text-base">
+            Trusted by Growing Businesses
+          </span>
+
+          <span className="hidden h-1 w-1 rounded-full bg-white/30 sm:block" />
+
+          <span className="text-sm font-medium text-blue-300 sm:text-base">
+            98% Client Satisfaction
+          </span>
+
+        </div>
+
+
+        {/* Main Heading */}
+        <h2 className="max-w-[720px] text-4xl font-bold leading-[1.08] tracking-[-0.04em] text-white sm:text-5xl lg:text-[52px] xl:text-[60px]">
+
+          Digital Experiences That Turn Ideas Into{" "}
+
+          <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent">
+            Growth
+          </span>
+
+        </h2>
+
+
+        {/* Description */}
+        <p className="mt-6 max-w-xl text-base leading-7 text-white/65 sm:text-lg sm:leading-8">
+
+          We design and develop premium, high-performance websites and
+          digital solutions that blend exceptional UI/UX, powerful
+          technology, and seamless functionality.
+
+        </p>
+
+
+        {/* What We Build */}
+        <div className="mt-8">
+
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-blue-400">
+            What We Build
+          </p>
+
+          <div className="grid max-w-xl grid-cols-1 gap-3 sm:grid-cols-2">
+
+            {/* Item 1 */}
+            <div className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.035] px-4 py-3 transition-all duration-300 hover:border-blue-400/30 hover:bg-blue-500/10">
+              
+              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-500/15 text-blue-400">
+                <svg
+                  className="h-4 w-4"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                >
+                  <rect x="3" y="4" width="18" height="14" rx="2" />
+                  <path d="M8 21h8" />
+                  <path d="M12 18v3" />
+                </svg>
+              </div>
+
+              <span className="text-sm font-medium text-white/85">
+                Business Websites
+              </span>
+
+            </div>
+
+
+            {/* Item 2 */}
+            <div className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.035] px-4 py-3 transition-all duration-300 hover:border-blue-400/30 hover:bg-blue-500/10">
+
+              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-500/15 text-blue-400">
+                <svg
+                  className="h-4 w-4"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                >
+                  <path d="M6 4h12l1 4H5l1-4Z" />
+                  <path d="M5 8h14l-1 12H6L5 8Z" />
+                  <path d="M9 12h6" />
+                </svg>
+              </div>
+
+              <span className="text-sm font-medium text-white/85">
+                E-commerce Experiences
+              </span>
+
+            </div>
+
+
+            {/* Item 3 */}
+            <div className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.035] px-4 py-3 transition-all duration-300 hover:border-blue-400/30 hover:bg-blue-500/10">
+
+              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-500/15 text-blue-400">
+                <svg
+                  className="h-4 w-4"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                >
+                  <rect x="3" y="4" width="18" height="16" rx="2" />
+                  <path d="M8 8h8" />
+                  <path d="M8 12h5" />
+                  <path d="M8 16h3" />
+                </svg>
+              </div>
+
+              <span className="text-sm font-medium text-white/85">
+                Web Applications
+              </span>
+
+            </div>
+
+
+            {/* Item 4 */}
+            <div className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.035] px-4 py-3 transition-all duration-300 hover:border-blue-400/30 hover:bg-blue-500/10">
+
+              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-500/15 text-blue-400">
+                <svg
+                  className="h-4 w-4"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                >
+                  <path d="M12 3v18" />
+                  <path d="M3 12h18" />
+                  <circle cx="12" cy="12" r="9" />
+                </svg>
+              </div>
+
+              <span className="text-sm font-medium text-white/85">
+                Custom Digital Solutions
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        {/* CTA */}
+        <div className="mt-9">
+
+          <a
+            href="/portfolio"
+            className="group inline-flex items-center gap-3 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-7 py-4 text-sm font-semibold text-white shadow-[0_15px_40px_rgba(37,99,235,0.25)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(37,99,235,0.4)]"
+          >
+
+            Explore Our Work
+
+            <svg
+              className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path d="M5 12h14" />
+              <path d="m13 6 6 6-6 6" />
+            </svg>
+
+          </a>
+
+        </div>
+
+
+        {/* Bottom Statement */}
+        <p className="mt-8 border-l-2 border-blue-500/50 pl-4 text-sm italic leading-6 text-white/45">
+          Built with purpose. Designed for impact. Engineered for growth.
+        </p>
+
+      </div>
+
+
+      {/* ======================================================
+          RIGHT — DESKTOP IMAGE MARQUEE
+      ======================================================= */}
+
+      <div className="relative hidden h-[680px] lg:block">
+
+        {/* Top Fade */}
+        <div className="pointer-events-none absolute left-0 right-0 top-0 z-30 h-28 bg-gradient-to-b from-[#060B21] to-transparent" />
+
+        {/* Bottom Fade */}
+        <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-30 h-28 bg-gradient-to-t from-[#060B21] to-transparent" />
+
+
+        {/* Center Glow */}
+        <div className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-600/10 blur-[120px]" />
+
+
+        {/* Two Columns */}
+        <div className="relative z-10 grid h-full grid-cols-2 gap-5 xl:gap-6">
+
+
+          {/* ================================================
+              COLUMN 1 — MOVES UP
+          ================================================= */}
+
+          <div className="showcase-column overflow-hidden">
+
+            <div className="showcase-track showcase-up">
+
+              {/* First Set */}
+              <div className="flex flex-col gap-5">
+
+                <img
+                  src="/showcase/img1.jpg"
+                  alt="WebQenzo website showcase 1"
+                  className="showcase-image"
+                />
+
+                <img
+                  src="/showcase/img2.jpg"
+                  alt="WebQenzo website showcase 2"
+                  className="showcase-image"
+                />
+
+                <img
+                  src="/showcase/img3.jpg"
+                  alt="WebQenzo website showcase 3"
+                  className="showcase-image"
+                />
+
+                <img
+                  src="/showcase/img4.jpg"
+                  alt="WebQenzo website showcase 4"
+                  className="showcase-image"
+                />
+
+                <img
+                  src="/showcase/img5.jpg"
+                  alt="WebQenzo website showcase 5"
+                  className="showcase-image"
+                />
+
+              </div>
+
+
+              {/* Duplicate Set */}
+              <div className="flex flex-col gap-5">
+
+                <img
+                  src="/showcase/img1.jpg"
+                  alt="WebQenzo website showcase 1"
+                  className="showcase-image"
+                />
+
+                <img
+                  src="/showcase/img2.jpg"
+                  alt="WebQenzo website showcase 2"
+                  className="showcase-image"
+                />
+
+                <img
+                  src="/showcase/img3.jpg"
+                  alt="WebQenzo website showcase 3"
+                  className="showcase-image"
+                />
+
+                <img
+                  src="/showcase/img4.jpg"
+                  alt="WebQenzo website showcase 4"
+                  className="showcase-image"
+                />
+
+                <img
+                  src="/showcase/img5.jpg"
+                  alt="WebQenzo website showcase 5"
+                  className="showcase-image"
+                />
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          {/* ================================================
+              COLUMN 2 — MOVES DOWN
+          ================================================= */}
+
+          <div className="showcase-column overflow-hidden">
+
+            <div className="showcase-track showcase-down">
+
+              {/* First Set */}
+              <div className="flex flex-col gap-5">
+
+                <img
+                  src="/showcase/img6.jpg"
+                  alt="WebQenzo website showcase 6"
+                  className="showcase-image"
+                />
+
+                <img
+                  src="/showcase/img7.jpg"
+                  alt="WebQenzo website showcase 7"
+                  className="showcase-image"
+                />
+
+                <img
+                  src="/showcase/img8.jpg"
+                  alt="WebQenzo website showcase 8"
+                  className="showcase-image"
+                />
+
+                <img
+                  src="/showcase/img9.jpg"
+                  alt="WebQenzo website showcase 9"
+                  className="showcase-image"
+                />
+
+                <img
+                  src="/showcase/img10.jpg"
+                  alt="WebQenzo website showcase 10"
+                  className="showcase-image"
+                />
+
+              </div>
+
+
+              {/* Duplicate Set */}
+              <div className="flex flex-col gap-5">
+
+                <img
+                  src="/showcase/img6.jpg"
+                  alt="WebQenzo website showcase 6"
+                  className="showcase-image"
+                />
+
+                <img
+                  src="/showcase/img7.jpg"
+                  alt="WebQenzo website showcase 7"
+                  className="showcase-image"
+                />
+
+                <img
+                  src="/showcase/img8.jpg"
+                  alt="WebQenzo website showcase 8"
+                  className="showcase-image"
+                />
+
+                <img
+                  src="/showcase/img9.jpg"
+                  alt="WebQenzo website showcase 9"
+                  className="showcase-image"
+                />
+
+                <img
+                  src="/showcase/img10.jpg"
+                  alt="WebQenzo website showcase 10"
+                  className="showcase-image"
+                />
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      {/* ======================================================
+          MOBILE IMAGE MARQUEE
+      ======================================================= */}
+
+      <div className="relative block w-full overflow-hidden lg:hidden">
+
+        {/* LEFT FADE */}
+        <div className="pointer-events-none absolute bottom-0 left-0 top-0 z-20 w-16 bg-gradient-to-r from-[#060B21] to-transparent" />
+
+        {/* RIGHT FADE */}
+        <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-20 w-16 bg-gradient-to-l from-[#060B21] to-transparent" />
+
+
+        {/* =======================
+            MOBILE ROW 1
+            LEFT → RIGHT
+        ======================== */}
+
+        <div className="showcase-mobile-window">
+
+          <div className="showcase-mobile-track showcase-mobile-left">
+
+            {/* Set 1 */}
+            <div className="flex gap-4">
+
+              <img
+                src="/showcase/img1.jpg"
+                alt="WebQenzo showcase 1"
+                className="showcase-mobile-image"
+              />
+
+              <img
+                src="/showcase/img2.jpg"
+                alt="WebQenzo showcase 2"
+                className="showcase-mobile-image"
+              />
+
+              <img
+                src="/showcase/img3.jpg"
+                alt="WebQenzo showcase 3"
+                className="showcase-mobile-image"
+              />
+
+              <img
+                src="/showcase/img4.jpg"
+                alt="WebQenzo showcase 4"
+                className="showcase-mobile-image"
+              />
+
+              <img
+                src="/showcase/img5.jpg"
+                alt="WebQenzo showcase 5"
+                className="showcase-mobile-image"
+              />
+
+            </div>
+
+
+            {/* Duplicate */}
+            <div className="flex gap-4">
+
+              <img
+                src="/showcase/img1.jpg"
+                alt="WebQenzo showcase 1"
+                className="showcase-mobile-image"
+              />
+
+              <img
+                src="/showcase/img2.jpg"
+                alt="WebQenzo showcase 2"
+                className="showcase-mobile-image"
+              />
+
+              <img
+                src="/showcase/img3.jpg"
+                alt="WebQenzo showcase 3"
+                className="showcase-mobile-image"
+              />
+
+              <img
+                src="/showcase/img4.jpg"
+                alt="WebQenzo showcase 4"
+                className="showcase-mobile-image"
+              />
+
+              <img
+                src="/showcase/img5.jpg"
+                alt="WebQenzo showcase 5"
+                className="showcase-mobile-image"
+              />
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        {/* =======================
+            MOBILE ROW 2
+            RIGHT → LEFT
+        ======================== */}
+
+        <div className="showcase-mobile-window mt-5">
+
+          <div className="showcase-mobile-track showcase-mobile-right">
+
+            {/* Set 1 */}
+            <div className="flex gap-4">
+
+              <img
+                src="/showcase/img6.jpg"
+                alt="WebQenzo showcase 6"
+                className="showcase-mobile-image"
+              />
+
+              <img
+                src="/showcase/img7.jpg"
+                alt="WebQenzo showcase 7"
+                className="showcase-mobile-image"
+              />
+
+              <img
+                src="/showcase/img8.jpg"
+                alt="WebQenzo showcase 8"
+                className="showcase-mobile-image"
+              />
+
+              <img
+                src="/showcase/img9.jpg"
+                alt="WebQenzo showcase 9"
+                className="showcase-mobile-image"
+              />
+
+              <img
+                src="/showcase/img10.jpg"
+                alt="WebQenzo showcase 10"
+                className="showcase-mobile-image"
+              />
+
+            </div>
+
+
+            {/* Duplicate */}
+            <div className="flex gap-4">
+
+              <img
+                src="/showcase/img6.jpg"
+                alt="WebQenzo showcase 6"
+                className="showcase-mobile-image"
+              />
+
+              <img
+                src="/showcase/img7.jpg"
+                alt="WebQenzo showcase 7"
+                className="showcase-mobile-image"
+              />
+
+              <img
+                src="/showcase/img8.jpg"
+                alt="WebQenzo showcase 8"
+                className="showcase-mobile-image"
+              />
+
+              <img
+                src="/showcase/img9.jpg"
+                alt="WebQenzo showcase 9"
+                className="showcase-mobile-image"
+              />
+
+              <img
+                src="/showcase/img10.jpg"
+                alt="WebQenzo showcase 10"
+                className="showcase-mobile-image"
+              />
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  {/* ============================================================
+      ANIMATION CSS
+  ============================================================ */}
+
+  <style>{`
+
+    /* ==========================================================
+       DESKTOP
+    ========================================================== */
+
+    .showcase-column {
+      position: relative;
+      height: 100%;
+    }
+
+    .showcase-track {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      will-change: transform;
+    }
+
+    .showcase-image {
+      width: 100%;
+      height: 220px;
+      flex-shrink: 0;
+      display: block;
+      object-fit: cover;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow:
+        0 20px 50px rgba(0,0,0,0.25);
+      transition:
+        transform 0.5s ease,
+        border-color 0.5s ease,
+        box-shadow 0.5s ease;
+    }
+
+    .showcase-image:hover {
+      transform: scale(1.025);
+      border-color: rgba(96,165,250,0.4);
+      box-shadow:
+        0 25px 60px rgba(0,0,0,0.4);
+    }
+
+
+    /* LEFT COLUMN — UP */
+
+    .showcase-up {
+      animation: showcaseUp 32s linear infinite;
+    }
+
+    @keyframes showcaseUp {
+
+      0% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(calc(-50% - 10px));
+      }
+
+    }
+
+
+    /* RIGHT COLUMN — DOWN */
+
+    .showcase-down {
+      animation: showcaseDown 36s linear infinite;
+    }
+
+    @keyframes showcaseDown {
+
+      0% {
+        transform: translateY(calc(-50% - 10px));
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+
+    }
+
+
+    /* ==========================================================
+       MOBILE
+    ========================================================== */
+
+    .showcase-mobile-window {
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .showcase-mobile-track {
+      display: flex;
+      width: max-content;
+      gap: 16px;
+      will-change: transform;
+    }
+
+    .showcase-mobile-image {
+      width: 270px;
+      height: 190px;
+      flex-shrink: 0;
+      display: block;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow:
+        0 15px 40px rgba(0,0,0,0.3);
+    }
+
+
+    /* Mobile Row 1 */
+
+    .showcase-mobile-left {
+      animation: showcaseMobileLeft 28s linear infinite;
+    }
+
+    @keyframes showcaseMobileLeft {
+
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(calc(-50% - 8px));
+      }
+
+    }
+
+
+    /* Mobile Row 2 */
+
+    .showcase-mobile-right {
+      animation: showcaseMobileRight 30s linear infinite;
+    }
+
+    @keyframes showcaseMobileRight {
+
+      0% {
+        transform: translateX(calc(-50% - 8px));
+      }
+
+      100% {
+        transform: translateX(0);
+      }
+
+    }
+
+
+    /* ==========================================================
+       HOVER PAUSE
+    ========================================================== */
+
+    .showcase-track:hover,
+    .showcase-mobile-track:hover {
+      animation-play-state: paused;
+    }
+
+
+    /* ==========================================================
+       REDUCED MOTION
+    ========================================================== */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .showcase-up,
+      .showcase-down,
+      .showcase-mobile-left,
+      .showcase-mobile-right {
+        animation: none;
+      }
+
+    }
+
+
+    /* ==========================================================
+       TABLET / SMALL LAPTOP
+    ========================================================== */
+
+    @media (min-width: 1024px) and (max-width: 1200px) {
+
+      .showcase-image {
+        height: 190px;
+      }
+
+    }
+
+
+    /* ==========================================================
+       MOBILE
+    ========================================================== */
+
+    @media (max-width: 640px) {
+
+      .showcase-mobile-image {
+        width: 250px;
+        height: 175px;
+      }
+
+    }
+
+
+    /* ==========================================================
+       SMALL PHONES
+    ========================================================== */
+
+    @media (max-width: 400px) {
+
+      .showcase-mobile-image {
+        width: 220px;
+        height: 155px;
+      }
+
+    }
+
+  `}</style>
+
+</section>
+
+
+{/* ============================================================
+    WHY CHOOSE WEBQENZO
+============================================================ */}
+
+<section className="relative overflow-hidden bg-[#060B21] py-20 text-white sm:py-24 lg:py-28">
+
+  {/* Background Glow */}
+  <div className="pointer-events-none absolute -left-40 top-10 h-[420px] w-[420px] rounded-full bg-blue-600/10 blur-[130px]" />
+
+  <div className="pointer-events-none absolute -right-40 bottom-0 h-[450px] w-[450px] rounded-full bg-cyan-500/10 blur-[140px]" />
+
+  {/* Subtle Grid */}
+  <div
+    className="pointer-events-none absolute inset-0 opacity-[0.025]"
+    style={{
+      backgroundImage:
+        "linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)",
+      backgroundSize: "60px 60px",
+    }}
+  />
+
+  <div className="relative mx-auto max-w-[1500px] px-5 sm:px-8 lg:px-12 xl:px-16">
+
+    {/* ========================================================
+        SECTION HEADER
+    ========================================================= */}
+
+    <div className="mb-12 grid gap-6 lg:mb-14 lg:grid-cols-[1fr_auto] lg:items-end">
+
+      {/* Left */}
+      <div>
+
+        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
+          Why Choose WebQenzo
+        </p>
+
+        <h2 className="max-w-3xl text-4xl font-bold leading-[1.08] tracking-[-0.04em] text-white sm:text-5xl lg:text-[56px]">
+          Built for{" "}
+          <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent">
+            Unmatched Quality
+          </span>
+        </h2>
+
+      </div>
+
+
+      {/* Right */}
+      <p className="max-w-xl text-base leading-7 text-white/55 lg:pb-2 lg:text-right">
+        Designed following the highest standards, we build digital
+        experiences that maximize your brand's impact, performance,
+        and growth.
+      </p>
+
+    </div>
+
+
+    {/* ========================================================
+        FEATURE GRID
+    ========================================================= */}
+
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+
+
+      {/* ======================================================
+          CARD 1
+      ======================================================= */}
+
+      <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.045] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-blue-400/30 hover:bg-blue-500/[0.07] hover:shadow-[0_20px_60px_rgba(0,0,0,0.25)]">
+
+        {/* Hover Glow */}
+        <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-blue-500/10 blur-3xl transition duration-500 group-hover:bg-blue-500/20" />
+
+        {/* Icon */}
+        <div className="relative mb-8 flex h-11 w-11 items-center justify-center rounded-xl border border-blue-400/15 bg-blue-500/10 text-blue-400 transition duration-300 group-hover:scale-105 group-hover:bg-blue-500/15">
+
+          <svg
+            className="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+          >
+            <rect x="3" y="4" width="18" height="14" rx="2" />
+            <path d="M8 21h8" />
+            <path d="M12 18v3" />
+          </svg>
+
+        </div>
+
+        <h3 className="relative text-lg font-semibold text-white">
+          User-Friendly Design
+        </h3>
+
+        <p className="relative mt-3 text-sm leading-6 text-white/55">
+          Beautiful interfaces built around your users, making navigation
+          intuitive while creating a smooth and engaging experience.
+        </p>
+
+      </div>
+
+
+      {/* ======================================================
+          CARD 2
+      ======================================================= */}
+
+      <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.045] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-blue-400/30 hover:bg-blue-500/[0.07] hover:shadow-[0_20px_60px_rgba(0,0,0,0.25)]">
+
+        <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-cyan-500/10 blur-3xl transition duration-500 group-hover:bg-cyan-500/20" />
+
+        <div className="relative mb-8 flex h-11 w-11 items-center justify-center rounded-xl border border-blue-400/15 bg-blue-500/10 text-blue-400 transition duration-300 group-hover:scale-105 group-hover:bg-blue-500/15">
+
+          <svg
+            className="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+          >
+            <rect x="3" y="5" width="14" height="14" rx="2" />
+            <rect x="17" y="8" width="4" height="8" rx="1" />
+            <path d="M7 9h6" />
+            <path d="M7 13h4" />
+          </svg>
+
+        </div>
+
+        <h3 className="relative text-lg font-semibold text-white">
+          Responsive & Mobile-Optimized
+        </h3>
+
+        <p className="relative mt-3 text-sm leading-6 text-white/55">
+          Seamless experiences across desktops, tablets, and smartphones,
+          built to look and perform beautifully on every screen.
+        </p>
+
+      </div>
+
+
+      {/* ======================================================
+          CARD 3
+      ======================================================= */}
+
+      <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.045] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-blue-400/30 hover:bg-blue-500/[0.07] hover:shadow-[0_20px_60px_rgba(0,0,0,0.25)]">
+
+        <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-blue-500/10 blur-3xl transition duration-500 group-hover:bg-blue-500/20" />
+
+        <div className="relative mb-8 flex h-11 w-11 items-center justify-center rounded-xl border border-blue-400/15 bg-blue-500/10 text-blue-400 transition duration-300 group-hover:scale-105 group-hover:bg-blue-500/15">
+
+          <svg
+            className="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+          >
+            <rect x="4" y="4" width="6" height="6" rx="1.5" />
+            <rect x="14" y="4" width="6" height="6" rx="1.5" />
+            <rect x="4" y="14" width="6" height="6" rx="1.5" />
+            <rect x="14" y="14" width="6" height="6" rx="1.5" />
+          </svg>
+
+        </div>
+
+        <h3 className="relative text-lg font-semibold text-white">
+          Custom Solutions
+        </h3>
+
+        <p className="relative mt-3 text-sm leading-6 text-white/55">
+          Flexible features and custom-built solutions designed around
+          your brand, business goals, and unique requirements.
+        </p>
+
+      </div>
+
+
+      {/* ======================================================
+          CARD 4
+      ======================================================= */}
+
+      <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.045] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-blue-400/30 hover:bg-blue-500/[0.07] hover:shadow-[0_20px_60px_rgba(0,0,0,0.25)]">
+
+        <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-cyan-500/10 blur-3xl transition duration-500 group-hover:bg-cyan-500/20" />
+
+        <div className="relative mb-8 flex h-11 w-11 items-center justify-center rounded-xl border border-blue-400/15 bg-blue-500/10 text-blue-400 transition duration-300 group-hover:scale-105 group-hover:bg-blue-500/15">
+
+          <svg
+            className="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+          >
+            <path d="M13 2 3 14h8l-1 8 11-14h-8l0-6Z" />
+          </svg>
+
+        </div>
+
+        <h3 className="relative text-lg font-semibold text-white">
+          Fast Loading Times
+        </h3>
+
+        <p className="relative mt-3 text-sm leading-6 text-white/55">
+          Performance-focused development keeps your website fast,
+          responsive, and ready to deliver better user experiences.
+        </p>
+
+      </div>
+
+
+      {/* ======================================================
+          CARD 5
+      ======================================================= */}
+
+      <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.045] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-blue-400/30 hover:bg-blue-500/[0.07] hover:shadow-[0_20px_60px_rgba(0,0,0,0.25)]">
+
+        <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-blue-500/10 blur-3xl transition duration-500 group-hover:bg-blue-500/20" />
+
+        <div className="relative mb-8 flex h-11 w-11 items-center justify-center rounded-xl border border-blue-400/15 bg-blue-500/10 text-blue-400 transition duration-300 group-hover:scale-105 group-hover:bg-blue-500/15">
+
+          <svg
+            className="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+          >
+            <rect x="5" y="5" width="10" height="10" rx="2" />
+            <path d="M9 15v4" />
+            <path d="M15 9h4" />
+            <path d="m15 5 4 4-4 4" />
+            <path d="m9 19-4-4 4-4" />
+          </svg>
+
+        </div>
+
+        <h3 className="relative text-lg font-semibold text-white">
+          Continuous Improvements
+        </h3>
+
+        <p className="relative mt-3 text-sm leading-6 text-white/55">
+          We continuously refine and improve your digital product to
+          keep it secure, modern, efficient, and competitive.
+        </p>
+
+      </div>
+
+
+      {/* ======================================================
+          CARD 6
+      ======================================================= */}
+
+      <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.045] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-blue-400/30 hover:bg-blue-500/[0.07] hover:shadow-[0_20px_60px_rgba(0,0,0,0.25)]">
+
+        <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-cyan-500/10 blur-3xl transition duration-500 group-hover:bg-cyan-500/20" />
+
+        <div className="relative mb-8 flex h-11 w-11 items-center justify-center rounded-xl border border-blue-400/15 bg-blue-500/10 text-blue-400 transition duration-300 group-hover:scale-105 group-hover:bg-blue-500/15">
+
+          <svg
+            className="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+          >
+            <circle cx="12" cy="12" r="8" />
+            <path d="M4 12h16" />
+            <path d="M12 4c2.2 2.2 3.3 4.9 3.3 8S14.2 17.8 12 20" />
+            <path d="M12 4c-2.2 2.2-3.3 4.9-3.3 8S9.8 17.8 12 20" />
+          </svg>
+
+        </div>
+
+        <h3 className="relative text-lg font-semibold text-white">
+          Cross-Browser Compatibility
+        </h3>
+
+        <p className="relative mt-3 text-sm leading-6 text-white/55">
+          Your website is carefully tested to provide a consistent and
+          reliable experience across modern browsers and devices.
+        </p>
+
+      </div>
+
+
+      {/* ======================================================
+          CARD 7
+      ======================================================= */}
+
+      <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.045] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-blue-400/30 hover:bg-blue-500/[0.07] hover:shadow-[0_20px_60px_rgba(0,0,0,0.25)]">
+
+        <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-blue-500/10 blur-3xl transition duration-500 group-hover:bg-blue-500/20" />
+
+        <div className="relative mb-8 flex h-11 w-11 items-center justify-center rounded-xl border border-blue-400/15 bg-blue-500/10 text-blue-400 transition duration-300 group-hover:scale-105 group-hover:bg-blue-500/15">
+
+          <svg
+            className="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+          >
+            <path d="M12 3a9 9 0 1 0 9 9" />
+            <path d="M12 7v5l3 2" />
+            <path d="M16 3h5v5" />
+            <path d="m21 3-5 5" />
+          </svg>
+
+        </div>
+
+        <h3 className="relative text-lg font-semibold text-white">
+          Easy to Scale
+        </h3>
+
+        <p className="relative mt-3 text-sm leading-6 text-white/55">
+          Our solutions are built with a scalable foundation so your
+          digital presence can grow alongside your business.
+        </p>
+
+      </div>
+
+
+      {/* ======================================================
+          CARD 8
+      ======================================================= */}
+
+      <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.045] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-blue-400/30 hover:bg-blue-500/[0.07] hover:shadow-[0_20px_60px_rgba(0,0,0,0.25)]">
+
+        <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-cyan-500/10 blur-3xl transition duration-500 group-hover:bg-cyan-500/20" />
+
+        <div className="relative mb-8 flex h-11 w-11 items-center justify-center rounded-xl border border-blue-400/15 bg-blue-500/10 text-blue-400 transition duration-300 group-hover:scale-105 group-hover:bg-blue-500/15">
+
+          <svg
+            className="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+          >
+            <path d="M20 12a8 8 0 0 1-8 8H6l-3 2 1-4a8 8 0 1 1 16-6Z" />
+            <path d="M8 12h.01" />
+            <path d="M12 12h.01" />
+            <path d="M16 12h.01" />
+          </svg>
+
+        </div>
+
+        <h3 className="relative text-lg font-semibold text-white">
+          Reliable Support
+        </h3>
+
+        <p className="relative mt-3 text-sm leading-6 text-white/55">
+          From launch to long-term growth, we're here to help with
+          guidance, improvements, questions, and technical support.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+{/* ============================================================
+    CUSTOMER STORIES
+============================================================ */}
+
+<section className="relative overflow-hidden bg-[#F7F9FC] py-20 sm:py-24 lg:py-28">
+
+  {/* Soft Background Glow */}
+  <div className="pointer-events-none absolute left-[-180px] top-20 h-[420px] w-[420px] rounded-full bg-blue-100/70 blur-[120px]" />
+
+  <div className="pointer-events-none absolute bottom-[-180px] right-[-100px] h-[420px] w-[420px] rounded-full bg-cyan-100/60 blur-[120px]" />
+
+
+  <div className="relative">
+
+    {/* ========================================================
+        SECTION HEADER
+    ========================================================= */}
+
+    <div className="mx-auto max-w-[900px] px-5 text-center sm:px-8">
+
+      <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-blue-600 sm:text-sm">
+        Customer Stories
+      </p>
+
+      <h2 className="text-4xl font-bold leading-[1.08] tracking-[-0.04em] text-[#07152F] sm:text-5xl lg:text-[58px]">
+        What{" "}
+        <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+          Clients
+        </span>{" "}
+        Are Saying.
+      </h2>
+
+      <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-[#526078] sm:text-lg sm:leading-8">
+        See how growing businesses are using WebQenzo to build better
+        digital experiences, improve their online presence, and grow
+        with confidence.
+      </p>
+
+    </div>
+
+
+    {/* ========================================================
+        MARQUEE
+    ========================================================= */}
+
+    <div className="customer-marquee-wrapper mt-14">
+
+      <div className="customer-marquee-track">
+
+        {/* ======================================================
+            SET 1
+        ======================================================= */}
+
+        <div className="customer-card-group">
+
+
+          {/* CARD 1 */}
+          <article className="customer-story-card">
+
+            <div className="customer-card-top">
+
+              <div className="customer-avatar">
+                AK
+              </div>
+
+              <div>
+                <h3 className="customer-name">
+                  Aarav Khanna
+                </h3>
+
+                <p className="customer-category">
+                  Clothing & Fashion
+                </p>
+              </div>
+
+            </div>
+
+            <div className="customer-stars">
+              ★★★★★
+            </div>
+
+            <p className="customer-review">
+              WebQenzo completely changed the way our brand looks online.
+              The website feels premium, clean and our customers are
+              finding products much more easily now.
+            </p>
+
+          </article>
+
+
+          {/* CARD 2 */}
+          <article className="customer-story-card">
+
+            <div className="customer-card-top">
+
+              <div className="customer-avatar">
+                PS
+              </div>
+
+              <div>
+                <h3 className="customer-name">
+                  Priya Sharma
+                </h3>
+
+                <p className="customer-category">
+                  Beauty & Cosmetics
+                </p>
+              </div>
+
+            </div>
+
+            <div className="customer-stars">
+              ★★★★★
+            </div>
+
+            <p className="customer-review">
+              We wanted something elegant without making the website
+              complicated. The final experience feels smooth, modern and
+              perfectly matches our brand.
+            </p>
+
+          </article>
+
+
+          {/* CARD 3 */}
+          <article className="customer-story-card">
+
+            <div className="customer-card-top">
+
+              <div className="customer-avatar">
+                RM
+              </div>
+
+              <div>
+                <h3 className="customer-name">
+                  Rohan Mehta
+                </h3>
+
+                <p className="customer-category">
+                  Home & Furniture
+                </p>
+              </div>
+
+            </div>
+
+            <div className="customer-stars">
+              ★★★★★
+            </div>
+
+            <p className="customer-review">
+              The biggest improvement for us was the overall user
+              experience. Customers can browse our collections much
+              more comfortably, especially on mobile.
+            </p>
+
+          </article>
+
+
+          {/* CARD 4 */}
+          <article className="customer-story-card">
+
+            <div className="customer-card-top">
+
+              <div className="customer-avatar">
+                NS
+              </div>
+
+              <div>
+                <h3 className="customer-name">
+                  Neha Singh
+                </h3>
+
+                <p className="customer-category">
+                  Jewellery
+                </p>
+              </div>
+
+            </div>
+
+            <div className="customer-stars">
+              ★★★★★
+            </div>
+
+            <p className="customer-review">
+              I loved how much attention was given to small details.
+              The product pages feel much more refined and the entire
+              store looks more trustworthy.
+            </p>
+
+          </article>
+
+
+          {/* CARD 5 */}
+          <article className="customer-story-card">
+
+            <div className="customer-card-top">
+
+              <div className="customer-avatar">
+                VK
+              </div>
+
+              <div>
+                <h3 className="customer-name">
+                  Vikram Kapoor
+                </h3>
+
+                <p className="customer-category">
+                  Electronics
+                </p>
+              </div>
+
+            </div>
+
+            <div className="customer-stars">
+              ★★★★★
+            </div>
+
+            <p className="customer-review">
+              Our old website felt outdated and difficult to manage.
+              The new experience is faster, cleaner and much easier
+              for our team to maintain.
+            </p>
+
+          </article>
+
+
+          {/* CARD 6 */}
+          <article className="customer-story-card">
+
+            <div className="customer-card-top">
+
+              <div className="customer-avatar">
+                AS
+              </div>
+
+              <div>
+                <h3 className="customer-name">
+                  Ananya Sharma
+                </h3>
+
+                <p className="customer-category">
+                  Lifestyle
+                </p>
+              </div>
+
+            </div>
+
+            <div className="customer-stars">
+              ★★★★★
+            </div>
+
+            <p className="customer-review">
+              The website finally feels like our brand. Everything is
+              simple, elegant and easy to navigate without losing the
+              premium look we wanted.
+            </p>
+
+          </article>
+
+
+          {/* CARD 7 */}
+          <article className="customer-story-card">
+
+            <div className="customer-card-top">
+
+              <div className="customer-avatar">
+                AK
+              </div>
+
+              <div>
+                <h3 className="customer-name">
+                  Aditya Kumar
+                </h3>
+
+                <p className="customer-category">
+                  Fitness & Wellness
+                </p>
+              </div>
+
+            </div>
+
+            <div className="customer-stars">
+              ★★★★★
+            </div>
+
+            <p className="customer-review">
+              The website gives our business a much more professional
+              presence. The mobile experience especially feels much
+              smoother than our previous website.
+            </p>
+
+          </article>
+
+
+          {/* CARD 8 */}
+          <article className="customer-story-card">
+
+            <div className="customer-card-top">
+
+              <div className="customer-avatar">
+                RG
+              </div>
+
+              <div>
+                <h3 className="customer-name">
+                  Riya Gupta
+                </h3>
+
+                <p className="customer-category">
+                  Food & Beverage
+                </p>
+              </div>
+
+            </div>
+
+            <div className="customer-stars">
+              ★★★★★
+            </div>
+
+            <p className="customer-review">
+              We wanted a website that looked premium but was still
+              practical for our customers. The final result feels
+              balanced and easy to use.
+            </p>
+
+          </article>
+
+
+          {/* CARD 9 */}
+          <article className="customer-story-card">
+
+            <div className="customer-card-top">
+
+              <div className="customer-avatar">
+                MS
+              </div>
+
+              <div>
+                <h3 className="customer-name">
+                  Manish Sharma
+                </h3>
+
+                <p className="customer-category">
+                  Real Estate
+                </p>
+              </div>
+
+            </div>
+
+            <div className="customer-stars">
+              ★★★★★
+            </div>
+
+            <p className="customer-review">
+              The new website presents our projects much better.
+              Visitors can understand what we offer quickly and the
+              overall experience feels considerably more polished.
+            </p>
+
+          </article>
+
+
+          {/* CARD 10 */}
+          <article className="customer-story-card">
+
+            <div className="customer-card-top">
+
+              <div className="customer-avatar">
+                SK
+              </div>
+
+              <div>
+                <h3 className="customer-name">
+                  Simran Kaur
+                </h3>
+
+                <p className="customer-category">
+                  Fashion & Lifestyle
+                </p>
+              </div>
+
+            </div>
+
+            <div className="customer-stars">
+              ★★★★★
+            </div>
+
+            <p className="customer-review">
+              The design feels modern without being overdone. We had
+              a few custom requirements and the final website matched
+              our vision really well.
+            </p>
+
+          </article>
+
+        </div>
+
+
+        {/* ======================================================
+            DUPLICATE SET — REQUIRED FOR INFINITE MARQUEE
+        ======================================================= */}
+
+        <div className="customer-card-group" aria-hidden="true">
+
+
+          {/* CARD 1 */}
+          <article className="customer-story-card">
+
+            <div className="customer-card-top">
+
+              <div className="customer-avatar">
+                AK
+              </div>
+
+              <div>
+                <h3 className="customer-name">
+                  Aarav Khanna
+                </h3>
+
+                <p className="customer-category">
+                  Clothing & Fashion
+                </p>
+              </div>
+
+            </div>
+
+            <div className="customer-stars">
+              ★★★★★
+            </div>
+
+            <p className="customer-review">
+              WebQenzo completely changed the way our brand looks online.
+              The website feels premium, clean and our customers are
+              finding products much more easily now.
+            </p>
+
+          </article>
+
+
+          {/* CARD 2 */}
+          <article className="customer-story-card">
+
+            <div className="customer-card-top">
+
+              <div className="customer-avatar">
+                PS
+              </div>
+
+              <div>
+                <h3 className="customer-name">
+                  Priya Sharma
+                </h3>
+
+                <p className="customer-category">
+                  Beauty & Cosmetics
+                </p>
+              </div>
+
+            </div>
+
+            <div className="customer-stars">
+              ★★★★★
+            </div>
+
+            <p className="customer-review">
+              We wanted something elegant without making the website
+              complicated. The final experience feels smooth, modern and
+              perfectly matches our brand.
+            </p>
+
+          </article>
+
+
+          {/* CARD 3 */}
+          <article className="customer-story-card">
+
+            <div className="customer-card-top">
+
+              <div className="customer-avatar">
+                RM
+              </div>
+
+              <div>
+                <h3 className="customer-name">
+                  Rohan Mehta
+                </h3>
+
+                <p className="customer-category">
+                  Home & Furniture
+                </p>
+              </div>
+
+            </div>
+
+            <div className="customer-stars">
+              ★★★★★
+            </div>
+
+            <p className="customer-review">
+              The biggest improvement for us was the overall user
+              experience. Customers can browse our collections much
+              more comfortably, especially on mobile.
+            </p>
+
+          </article>
+
+
+          {/* CARD 4 */}
+          <article className="customer-story-card">
+
+            <div className="customer-card-top">
+
+              <div className="customer-avatar">
+                NS
+              </div>
+
+              <div>
+                <h3 className="customer-name">
+                  Neha Singh
+                </h3>
+
+                <p className="customer-category">
+                  Jewellery
+                </p>
+              </div>
+
+            </div>
+
+            <div className="customer-stars">
+              ★★★★★
+            </div>
+
+            <p className="customer-review">
+              I loved how much attention was given to small details.
+              The product pages feel much more refined and the entire
+              store looks more trustworthy.
+            </p>
+
+          </article>
+
+
+          {/* CARD 5 */}
+          <article className="customer-story-card">
+
+            <div className="customer-card-top">
+
+              <div className="customer-avatar">
+                VK
+              </div>
+
+              <div>
+                <h3 className="customer-name">
+                  Vikram Kapoor
+                </h3>
+
+                <p className="customer-category">
+                  Electronics
+                </p>
+              </div>
+
+            </div>
+
+            <div className="customer-stars">
+              ★★★★★
+            </div>
+
+            <p className="customer-review">
+              Our old website felt outdated and difficult to manage.
+              The new experience is faster, cleaner and much easier
+              for our team to maintain.
+            </p>
+
+          </article>
+
+
+          {/* CARD 6 */}
+          <article className="customer-story-card">
+
+            <div className="customer-card-top">
+
+              <div className="customer-avatar">
+                AS
+              </div>
+
+              <div>
+                <h3 className="customer-name">
+                  Ananya Sharma
+                </h3>
+
+                <p className="customer-category">
+                  Lifestyle
+                </p>
+              </div>
+
+            </div>
+
+            <div className="customer-stars">
+              ★★★★★
+            </div>
+
+            <p className="customer-review">
+              The website finally feels like our brand. Everything is
+              simple, elegant and easy to navigate without losing the
+              premium look we wanted.
+            </p>
+
+          </article>
+
+
+          {/* CARD 7 */}
+          <article className="customer-story-card">
+
+            <div className="customer-card-top">
+
+              <div className="customer-avatar">
+                AK
+              </div>
+
+              <div>
+                <h3 className="customer-name">
+                  Aditya Kumar
+                </h3>
+
+                <p className="customer-category">
+                  Fitness & Wellness
+                </p>
+              </div>
+
+            </div>
+
+            <div className="customer-stars">
+              ★★★★★
+            </div>
+
+            <p className="customer-review">
+              The website gives our business a much more professional
+              presence. The mobile experience especially feels much
+              smoother than our previous website.
+            </p>
+
+          </article>
+
+
+          {/* CARD 8 */}
+          <article className="customer-story-card">
+
+            <div className="customer-card-top">
+
+              <div className="customer-avatar">
+                RG
+              </div>
+
+              <div>
+                <h3 className="customer-name">
+                  Riya Gupta
+                </h3>
+
+                <p className="customer-category">
+                  Food & Beverage
+                </p>
+              </div>
+
+            </div>
+
+            <div className="customer-stars">
+              ★★★★★
+            </div>
+
+            <p className="customer-review">
+              We wanted a website that looked premium but was still
+              practical for our customers. The final result feels
+              balanced and easy to use.
+            </p>
+
+          </article>
+
+
+          {/* CARD 9 */}
+          <article className="customer-story-card">
+
+            <div className="customer-card-top">
+
+              <div className="customer-avatar">
+                MS
+              </div>
+
+              <div>
+                <h3 className="customer-name">
+                  Manish Sharma
+                </h3>
+
+                <p className="customer-category">
+                  Real Estate
+                </p>
+              </div>
+
+            </div>
+
+            <div className="customer-stars">
+              ★★★★★
+            </div>
+
+            <p className="customer-review">
+              The new website presents our projects much better.
+              Visitors can understand what we offer quickly and the
+              overall experience feels considerably more polished.
+            </p>
+
+          </article>
+
+
+          {/* CARD 10 */}
+          <article className="customer-story-card">
+
+            <div className="customer-card-top">
+
+              <div className="customer-avatar">
+                SK
+              </div>
+
+              <div>
+                <h3 className="customer-name">
+                  Simran Kaur
+                </h3>
+
+                <p className="customer-category">
+                  Fashion & Lifestyle
+                </p>
+              </div>
+
+            </div>
+
+            <div className="customer-stars">
+              ★★★★★
+            </div>
+
+            <p className="customer-review">
+              The design feels modern without being overdone. We had
+              a few custom requirements and the final website matched
+              our vision really well.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    {/* ========================================================
+        BOTTOM TRUST LINE
+    ========================================================= */}
+
+    <div className="mx-auto mt-12 flex max-w-4xl flex-wrap items-center justify-center gap-x-6 gap-y-3 px-5 text-center text-sm text-[#68758A]">
+
+      <span className="flex items-center gap-2">
+        <span className="flex text-yellow-500">
+          ★★★★★
+        </span>
+        Rated by Growing Businesses
+      </span>
+
+      <span className="hidden h-1 w-1 rounded-full bg-slate-300 sm:block" />
+
+      <span>
+        Premium Design
+      </span>
+
+      <span className="hidden h-1 w-1 rounded-full bg-slate-300 sm:block" />
+
+      <span>
+        Reliable Development
+      </span>
+
+    </div>
+
+  </div>
+
+
+  {/* ============================================================
+      MARQUEE CSS
+  ============================================================ */}
+
+  <style>{`
+
+    /* ==========================================================
+       MARQUEE WRAPPER
+    ========================================================== */
+
+    .customer-marquee-wrapper {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      padding: 10px 0 20px;
+    }
+
+
+    /* Fade edges */
+
+    .customer-marquee-wrapper::before,
+    .customer-marquee-wrapper::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100px;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .customer-marquee-wrapper::before {
+      left: 0;
+      background: linear-gradient(
+        to right,
+        #F7F9FC,
+        rgba(247,249,252,0)
+      );
+    }
+
+    .customer-marquee-wrapper::after {
+      right: 0;
+      background: linear-gradient(
+        to left,
+        #F7F9FC,
+        rgba(247,249,252,0)
+      );
+    }
+
+
+    /* ==========================================================
+       TRACK
+    ========================================================== */
+
+    .customer-marquee-track {
+      display: flex;
+      width: max-content;
+      animation: customerStoriesScroll 65s linear infinite;
+      will-change: transform;
+    }
+
+
+    .customer-card-group {
+      display: flex;
+      flex-shrink: 0;
+      gap: 20px;
+      padding-right: 20px;
+    }
+
+
+    /* ==========================================================
+       CARD
+    ========================================================== */
+
+    .customer-story-card {
+      width: 370px;
+      min-height: 300px;
+      flex-shrink: 0;
+
+      border: 1px solid #E7EBF2;
+      border-radius: 20px;
+
+      background: #FFFFFF;
+
+      padding: 26px;
+
+      box-shadow:
+        0 10px 35px rgba(15, 23, 42, 0.055);
+
+      transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
+    }
+
+
+    .customer-story-card:hover {
+      transform: translateY(-6px);
+
+      border-color: #C8D8F7;
+
+      box-shadow:
+        0 22px 55px rgba(15, 23, 42, 0.11);
+    }
+
+
+    /* ==========================================================
+       CARD TOP
+    ========================================================== */
+
+    .customer-card-top {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+
+    /* ==========================================================
+       AVATAR
+    ========================================================== */
+
+    .customer-avatar {
+      width: 50px;
+      height: 50px;
+
+      flex-shrink: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          135deg,
+          #2563EB,
+          #06B6D4
+        );
+
+      color: white;
+
+      font-size: 14px;
+      font-weight: 700;
+
+      box-shadow:
+        0 8px 20px rgba(37, 99, 235, 0.2);
+    }
+
+
+    /* ==========================================================
+       NAME
+    ========================================================== */
+
+    .customer-name {
+      margin: 0;
+
+      color: #07152F;
+
+      font-size: 16px;
+      font-weight: 700;
+
+      line-height: 1.3;
+    }
+
+
+    /* ==========================================================
+       CATEGORY
+    ========================================================== */
+
+    .customer-category {
+      margin-top: 4px;
+
+      color: #7A879A;
+
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+
+    /* ==========================================================
+       STARS
+    ========================================================== */
+
+    .customer-stars {
+      margin-top: 22px;
+
+      color: #F59E0B;
+
+      font-size: 15px;
+      letter-spacing: 2px;
+    }
+
+
+    /* ==========================================================
+       REVIEW
+    ========================================================== */
+
+    .customer-review {
+      margin-top: 13px;
+
+      color: #536176;
+
+      font-size: 14px;
+
+      line-height: 1.75;
+    }
+
+
+    /* ==========================================================
+       ANIMATION
+    ========================================================== */
+
+    @keyframes customerStoriesScroll {
+
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+
+    }
+
+
+    /* ==========================================================
+       HOVER PAUSE
+    ========================================================== */
+
+    .customer-marquee-wrapper:hover .customer-marquee-track {
+      animation-play-state: paused;
+    }
+
+
+    /* ==========================================================
+       TABLET
+    ========================================================== */
+
+    @media (max-width: 1024px) {
+
+      .customer-story-card {
+        width: 330px;
+        min-height: 300px;
+      }
+
+      .customer-marquee-track {
+        animation-duration: 58s;
+      }
+
+    }
+
+
+    /* ==========================================================
+       MOBILE
+    ========================================================== */
+
+    @media (max-width: 640px) {
+
+      .customer-marquee-wrapper {
+        padding-top: 8px;
+      }
+
+      .customer-marquee-wrapper::before,
+      .customer-marquee-wrapper::after {
+        width: 45px;
+      }
+
+      .customer-card-group {
+        gap: 14px;
+        padding-right: 14px;
+      }
+
+      .customer-story-card {
+        width: 290px;
+        min-height: 290px;
+
+        padding: 22px;
+
+        border-radius: 18px;
+      }
+
+      .customer-avatar {
+        width: 46px;
+        height: 46px;
+      }
+
+      .customer-review {
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      .customer-marquee-track {
+        animation-duration: 48s;
+      }
+
+    }
+
+
+    /* ==========================================================
+       SMALL PHONE
+    ========================================================== */
+
+    @media (max-width: 380px) {
+
+      .customer-story-card {
+        width: 270px;
+        padding: 20px;
+      }
+
+    }
+
+
+    /* ==========================================================
+       REDUCED MOTION
+    ========================================================== */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .customer-marquee-track {
+        animation: none;
+      }
+
+    }
+
+  `}</style>
+
+</section>
+
       </main>
     </>
   );
