@@ -17,15 +17,19 @@ import {
 const PERMISSIONS = [
   {
     key: "quotes:read",
-    label: "View Quotes",
+    label: "View Assigned Leads",
+  },
+  {
+    key: "quotes:create",
+    label: "Create Leads",
   },
   {
     key: "quotes:update",
-    label: "Update Quotes",
+    label: "Update Leads",
   },
   {
     key: "quotes:delete",
-    label: "Delete Quotes",
+    label: "Delete Leads",
   },
   {
     key: "contacts:read",
@@ -45,29 +49,46 @@ const emptyForm = {
   name: "",
   email: "",
   password: "",
-  permissions: ["quotes:read", "contacts:read"],
+  permissions: [
+    "quotes:read",
+    "quotes:create",
+    "quotes:update",
+  ],
 };
 
 const AdminTeam = () => {
-  const [members, setMembers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [members, setMembers] =
+    useState([]);
 
-  const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] =
+    useState(true);
+
+  const [error, setError] =
+    useState("");
+
+  const [showModal, setShowModal] =
+    useState(false);
+
   const [editingMember, setEditingMember] =
     useState(null);
 
-  const [form, setForm] = useState(emptyForm);
-  const [saving, setSaving] = useState(false);
+  const [form, setForm] =
+    useState(emptyForm);
+
+  const [saving, setSaving] =
+    useState(false);
 
   const loadTeam = async () => {
     try {
       setLoading(true);
       setError("");
 
-      const response = await getTeamMembers();
+      const response =
+        await getTeamMembers();
 
-      setMembers(response?.data || []);
+      setMembers(
+        response?.data || []
+      );
     } catch (err) {
       setError(err.message);
     } finally {
@@ -81,7 +102,14 @@ const AdminTeam = () => {
 
   const openCreate = () => {
     setEditingMember(null);
-    setForm(emptyForm);
+    setForm({
+      ...emptyForm,
+      permissions: [
+        "quotes:read",
+        "quotes:create",
+        "quotes:update",
+      ],
+    });
     setError("");
     setShowModal(true);
   };
@@ -93,7 +121,8 @@ const AdminTeam = () => {
       name: member.name || "",
       email: member.email || "",
       password: "",
-      permissions: member.permissions || [],
+      permissions:
+        member.permissions || [],
     });
 
     setError("");
@@ -108,23 +137,33 @@ const AdminTeam = () => {
     setForm(emptyForm);
   };
 
-  const togglePermission = (permission) => {
+  const togglePermission = (
+    permission
+  ) => {
     setForm((current) => {
       const exists =
-        current.permissions.includes(permission);
+        current.permissions.includes(
+          permission
+        );
 
       return {
         ...current,
         permissions: exists
           ? current.permissions.filter(
-              (item) => item !== permission
+              (item) =>
+                item !== permission
             )
-          : [...current.permissions, permission],
+          : [
+              ...current.permissions,
+              permission,
+            ],
       };
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (
+    e
+  ) => {
     e.preventDefault();
 
     setError("");
@@ -132,16 +171,21 @@ const AdminTeam = () => {
 
     try {
       if (editingMember) {
-        await updateTeamMember(editingMember._id, {
-          name: form.name,
-          permissions: form.permissions,
-        });
+        await updateTeamMember(
+          editingMember._id,
+          {
+            name: form.name,
+            permissions:
+              form.permissions,
+          }
+        );
       } else {
         await createTeamMember({
           name: form.name,
           email: form.email,
           password: form.password,
-          permissions: form.permissions,
+          permissions:
+            form.permissions,
         });
       }
 
@@ -155,44 +199,57 @@ const AdminTeam = () => {
     }
   };
 
-  const handleToggleActive = async (member) => {
-    try {
-      await updateTeamMember(member._id, {
-        isActive: !member.isActive,
-      });
+  const handleToggleActive =
+    async (member) => {
+      try {
+        await updateTeamMember(
+          member._id,
+          {
+            isActive:
+              !member.isActive,
+          }
+        );
 
-      setMembers((current) =>
-        current.map((item) =>
-          item._id === member._id
-            ? {
-                ...item,
-                isActive: !item.isActive,
-              }
-            : item
-        )
-      );
-    } catch (err) {
-      setError(err.message);
-    }
-  };
+        setMembers((current) =>
+          current.map((item) =>
+            item._id === member._id
+              ? {
+                  ...item,
+                  isActive:
+                    !item.isActive,
+                }
+              : item
+          )
+        );
+      } catch (err) {
+        setError(err.message);
+      }
+    };
 
-  const handleDelete = async (id) => {
-    const confirmed = window.confirm(
-      "Delete this team member permanently?"
-    );
+  const handleDelete =
+    async (id) => {
+      const confirmed =
+        window.confirm(
+          "Delete this team member?"
+        );
 
-    if (!confirmed) return;
+      if (!confirmed) return;
 
-    try {
-      await deleteTeamMember(id);
+      try {
+        await deleteTeamMember(
+          id
+        );
 
-      setMembers((current) =>
-        current.filter((member) => member._id !== id)
-      );
-    } catch (err) {
-      setError(err.message);
-    }
-  };
+        setMembers((current) =>
+          current.filter(
+            (member) =>
+              member._id !== id
+          )
+        );
+      } catch (err) {
+        setError(err.message);
+      }
+    };
 
   return (
     <>
@@ -208,8 +265,8 @@ const AdminTeam = () => {
             </h2>
 
             <p className="mt-2 text-sm text-slate-500">
-              Create team accounts and control what they
-              can access.
+              Create team accounts and
+              control their permissions.
             </p>
           </div>
 
@@ -217,16 +274,18 @@ const AdminTeam = () => {
             <button
               type="button"
               onClick={loadTeam}
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50"
+              className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50"
             >
-              <RefreshCw size={16} />
+              <RefreshCw
+                size={16}
+              />
               Refresh
             </button>
 
             <button
               type="button"
               onClick={openCreate}
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-600"
+              className="inline-flex items-center gap-2 rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-600"
             >
               <Plus size={17} />
               Add Member
@@ -248,7 +307,9 @@ const AdminTeam = () => {
           ) : members.length === 0 ? (
             <div className="p-12 text-center">
               <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 text-slate-400">
-                <UserRound size={21} />
+                <UserRound
+                  size={21}
+                />
               </div>
 
               <p className="mt-4 font-semibold text-slate-800">
@@ -256,12 +317,13 @@ const AdminTeam = () => {
               </p>
 
               <p className="mt-1 text-sm text-slate-500">
-                Create your first team account.
+                Create your first team
+                account.
               </p>
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[800px] text-left">
+              <table className="w-full min-w-[950px] text-left">
                 <thead className="border-b border-slate-200 bg-slate-50">
                   <tr>
                     <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-slate-500">
@@ -283,86 +345,112 @@ const AdminTeam = () => {
                 </thead>
 
                 <tbody className="divide-y divide-slate-100">
-                  {members.map((member) => (
-                    <tr key={member._id}>
-                      <td className="px-5 py-4">
-                        <div className="flex items-center gap-3">
-                          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-sm font-semibold text-white">
-                            {member.name
-                              ?.charAt(0)
-                              ?.toUpperCase()}
+                  {members.map(
+                    (member) => (
+                      <tr
+                        key={
+                          member._id
+                        }
+                        className="hover:bg-slate-50/70"
+                      >
+                        <td className="px-5 py-4">
+                          <div className="flex items-center gap-3">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-sm font-semibold text-white">
+                              {member.name
+                                ?.charAt(
+                                  0
+                                )
+                                ?.toUpperCase()}
+                            </div>
+
+                            <div>
+                              <p className="font-semibold text-slate-900">
+                                {member.name}
+                              </p>
+
+                              <p className="text-xs text-slate-500">
+                                {member.email}
+                              </p>
+                            </div>
                           </div>
+                        </td>
 
-                          <div>
-                            <p className="font-semibold text-slate-900">
-                              {member.name}
-                            </p>
-
-                            <p className="text-xs text-slate-500">
-                              {member.email}
-                            </p>
+                        <td className="px-5 py-4">
+                          <div className="flex max-w-lg flex-wrap gap-1.5">
+                            {(
+                              member.permissions ||
+                              []
+                            ).map(
+                              (
+                                permission
+                              ) => (
+                                <span
+                                  key={
+                                    permission
+                                  }
+                                  className="rounded-full bg-blue-50 px-2.5 py-1 text-[11px] font-medium text-blue-700"
+                                >
+                                  {
+                                    permission
+                                  }
+                                </span>
+                              )
+                            )}
                           </div>
-                        </div>
-                      </td>
+                        </td>
 
-                      <td className="px-5 py-4">
-                        <div className="flex max-w-sm flex-wrap gap-1.5">
-                          {(member.permissions || []).map(
-                            (permission) => (
-                              <span
-                                key={permission}
-                                className="rounded-full bg-blue-50 px-2.5 py-1 text-[11px] font-medium text-blue-700"
-                              >
-                                {permission}
-                              </span>
-                            )
-                          )}
-                        </div>
-                      </td>
-
-                      <td className="px-5 py-4">
-                        <button
-                          type="button"
-                          onClick={() =>
-                            handleToggleActive(member)
-                          }
-                          className={`rounded-full px-3 py-1.5 text-xs font-semibold ${
-                            member.isActive
-                              ? "bg-emerald-50 text-emerald-700"
-                              : "bg-red-50 text-red-600"
-                          }`}
-                        >
-                          {member.isActive
-                            ? "Active"
-                            : "Disabled"}
-                        </button>
-                      </td>
-
-                      <td className="px-5 py-4 text-right">
-                        <div className="flex justify-end gap-1">
+                        <td className="px-5 py-4">
                           <button
                             type="button"
                             onClick={() =>
-                              openEdit(member)
+                              handleToggleActive(
+                                member
+                              )
                             }
-                            className="rounded-lg px-3 py-2 text-xs font-semibold text-blue-600 hover:bg-blue-50"
+                            className={`rounded-full px-3 py-1.5 text-xs font-semibold ${
+                              member.isActive
+                                ? "bg-emerald-50 text-emerald-700"
+                                : "bg-red-50 text-red-600"
+                            }`}
                           >
-                            Edit
+                            {member.isActive
+                              ? "Active"
+                              : "Disabled"}
                           </button>
+                        </td>
 
-                          <button
-                            type="button"
-                            onClick={() =>
-                              handleDelete(member._id)
-                            }
-                            className="rounded-lg p-2 text-slate-400 hover:bg-red-50 hover:text-red-600"
-                          >
-                            <Trash2 size={17} />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
+                        <td className="px-5 py-4 text-right">
+                          <div className="flex justify-end gap-1">
+                            <button
+                              type="button"
+                              onClick={() =>
+                                openEdit(
+                                  member
+                                )
+                              }
+                              className="rounded-lg px-3 py-2 text-xs font-semibold text-blue-600 hover:bg-blue-50"
+                            >
+                              Edit
+                            </button>
+
+                            <button
+                              type="button"
+                              onClick={() =>
+                                handleDelete(
+                                  member._id
+                                )
+                              }
+                              className="rounded-lg p-2 text-slate-400 hover:bg-red-50 hover:text-red-600"
+                            >
+                              <Trash2
+                                size={17}
+                              />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    )
+                  )}
                 </tbody>
               </table>
             </div>
@@ -382,7 +470,8 @@ const AdminTeam = () => {
                 </h3>
 
                 <p className="mt-1 text-xs text-slate-500">
-                  Configure account access.
+                  Configure account
+                  access.
                 </p>
               </div>
 
@@ -396,7 +485,9 @@ const AdminTeam = () => {
             </div>
 
             <form
-              onSubmit={handleSubmit}
+              onSubmit={
+                handleSubmit
+              }
               className="space-y-5 p-6"
             >
               {error && (
@@ -416,7 +507,8 @@ const AdminTeam = () => {
                   onChange={(e) =>
                     setForm({
                       ...form,
-                      name: e.target.value,
+                      name: e.target
+                        .value,
                     })
                   }
                   required
@@ -439,7 +531,8 @@ const AdminTeam = () => {
                       onChange={(e) =>
                         setForm({
                           ...form,
-                          email: e.target.value,
+                          email: e.target
+                            .value,
                         })
                       }
                       required
@@ -454,69 +547,75 @@ const AdminTeam = () => {
 
                     <input
                       type="password"
-                      value={form.password}
+                      value={
+                        form.password
+                      }
                       onChange={(e) =>
                         setForm({
                           ...form,
-                          password: e.target.value,
+                          password:
+                            e.target
+                              .value,
                         })
                       }
                       required
                       minLength={8}
                       className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
                     />
-
-                    <p className="mt-1 text-xs text-slate-400">
-                      Give this password securely to the team
-                      member.
-                    </p>
                   </div>
                 </>
               )}
 
               <div>
-                <div className="mb-3">
-                  <p className="text-sm font-semibold text-slate-800">
-                    Permissions
-                  </p>
+                <p className="text-sm font-semibold text-slate-800">
+                  Permissions
+                </p>
 
-                  <p className="mt-1 text-xs text-slate-500">
-                    Select exactly what this team member can
-                    manage.
-                  </p>
-                </div>
+                <p className="mt-1 text-xs text-slate-500">
+                  Choose exactly what
+                  this member can
+                  manage.
+                </p>
 
-                <div className="grid gap-2 sm:grid-cols-2">
-                  {PERMISSIONS.map((permission) => (
-                    <label
-                      key={permission.key}
-                      className="flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 p-3 hover:bg-slate-50"
-                    >
-                      <input
-                        type="checkbox"
-                        checked={form.permissions.includes(
+                <div className="mt-3 grid gap-2 sm:grid-cols-2">
+                  {PERMISSIONS.map(
+                    (permission) => (
+                      <label
+                        key={
                           permission.key
-                        )}
-                        onChange={() =>
-                          togglePermission(
-                            permission.key
-                          )
                         }
-                        className="h-4 w-4 rounded border-slate-300 text-blue-600"
-                      />
+                        className="flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 p-3 hover:bg-slate-50"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={form.permissions.includes(
+                            permission.key
+                          )}
+                          onChange={() =>
+                            togglePermission(
+                              permission.key
+                            )
+                          }
+                          className="h-4 w-4 rounded border-slate-300 text-blue-600"
+                        />
 
-                      <span className="text-sm text-slate-700">
-                        {permission.label}
-                      </span>
-                    </label>
-                  ))}
+                        <span className="text-sm text-slate-700">
+                          {
+                            permission.label
+                          }
+                        </span>
+                      </label>
+                    )
+                  )}
                 </div>
               </div>
 
               <div className="flex justify-end gap-3 border-t border-slate-100 pt-5">
                 <button
                   type="button"
-                  onClick={closeModal}
+                  onClick={
+                    closeModal
+                  }
                   className="rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50"
                 >
                   Cancel
