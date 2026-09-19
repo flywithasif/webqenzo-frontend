@@ -584,7 +584,7 @@ function Home() {
 
             {/* Item 1 */}
             <div className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.035] px-4 py-3 transition-all duration-300 hover:border-blue-400/30 hover:bg-blue-500/10">
-              
+
               <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-500/15 text-blue-400">
                 <svg
                   className="h-4 w-4"
@@ -1321,6 +1321,593 @@ function Home() {
 </section>
 
 
+
+
+{/* ============================================================
+    WEBQENZO — SIMPLE PROCESS / POWERFUL RESULTS SECTION
+    Paste this section directly inside Home.jsx
+============================================================ */}
+
+<section className="relative overflow-hidden bg-[#F3F7FC] py-20 sm:py-24 lg:py-28">
+
+  {/* ==========================================================
+      BACKGROUND DECORATION
+  =========================================================== */}
+
+  <div className="pointer-events-none absolute -left-40 top-20 h-[420px] w-[420px] rounded-full bg-blue-200/30 blur-[120px]" />
+
+  <div className="pointer-events-none absolute -right-40 bottom-0 h-[450px] w-[450px] rounded-full bg-cyan-200/20 blur-[130px]" />
+
+  {/* Main Container */}
+  <div className="relative mx-auto max-w-[1500px] px-5 sm:px-8 lg:px-10 xl:px-14">
+
+    <div className="grid items-center gap-12 lg:grid-cols-[0.88fr_1.12fr] lg:gap-16 xl:gap-20">
+
+      {/* ======================================================
+          LEFT SIDE
+      ======================================================= */}
+
+      <div className="max-w-[650px]">
+
+        {/* Small Label */}
+        <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/80 px-4 py-2 shadow-sm backdrop-blur-sm">
+
+          <span className="h-2 w-2 rounded-full bg-blue-600 shadow-[0_0_12px_rgba(37,99,235,0.6)]" />
+
+          <span className="text-xs font-bold uppercase tracking-[0.18em] text-blue-700">
+            Our Process
+          </span>
+
+        </div>
+
+
+        {/* Heading */}
+        <h2 className="max-w-[620px] text-4xl font-bold leading-[1.06] tracking-[-0.045em] text-[#081B33] sm:text-5xl lg:text-[52px] xl:text-[60px]">
+
+          Simple process.
+
+          <br />
+
+          <span className="bg-gradient-to-r from-[#0EA5E9] via-[#1683F8] to-[#2563EB] bg-clip-text text-transparent">
+            Powerful results.
+          </span>
+
+        </h2>
+
+
+        {/* Description */}
+        <p className="mt-6 max-w-[590px] text-base leading-7 text-[#52657D] sm:text-lg sm:leading-8">
+
+          From strategy to launch, we handle the complete digital
+          journey for your business. You bring the vision — we turn
+          it into a professional digital experience.
+
+        </p>
+
+
+        {/* ======================================================
+            PROCESS STEPS
+        ======================================================= */}
+
+        <div className="relative mt-9">
+
+          {/* Vertical Line */}
+          <div className="absolute left-[19px] top-7 h-[calc(100%-55px)] w-px bg-gradient-to-b from-blue-300 via-blue-200 to-transparent" />
+
+
+          {/* STEP 01 */}
+          <div className="group relative flex gap-5 pb-7">
+
+            {/* Icon */}
+            <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-emerald-500 text-white shadow-[0_8px_20px_rgba(16,185,129,0.25)] transition duration-300 group-hover:scale-110">
+
+              <svg
+                className="h-5 w-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M3 3h2l2.4 11.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.4L21 7H6" />
+                <circle cx="10" cy="20" r="1.5" />
+                <circle cx="18" cy="20" r="1.5" />
+              </svg>
+
+            </div>
+
+
+            {/* Content */}
+            <div className="pt-0.5">
+
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-blue-600">
+                Step 01
+              </p>
+
+              <h3 className="mt-1 text-lg font-bold text-[#0B1F3A] sm:text-xl">
+                Tell us about your business
+              </h3>
+
+              <p className="mt-1.5 max-w-[510px] text-sm leading-6 text-[#61738A] sm:text-base">
+                Share your goals, requirements, and vision with our team.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          {/* STEP 02 */}
+          <div className="group relative flex gap-5 pb-7">
+
+            {/* Icon */}
+            <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-[0_8px_20px_rgba(37,99,235,0.25)] transition duration-300 group-hover:scale-110">
+
+              <svg
+                className="h-5 w-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M4 5h16" />
+                <path d="M4 12h16" />
+                <path d="M4 19h16" />
+                <circle cx="8" cy="5" r="1.5" fill="currentColor" />
+                <circle cx="16" cy="12" r="1.5" fill="currentColor" />
+                <circle cx="10" cy="19" r="1.5" fill="currentColor" />
+              </svg>
+
+            </div>
+
+
+            {/* Content */}
+            <div className="pt-0.5">
+
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-blue-600">
+                Step 02
+              </p>
+
+              <h3 className="mt-1 text-lg font-bold text-[#0B1F3A] sm:text-xl">
+                We design &amp; build
+              </h3>
+
+              <p className="mt-1.5 max-w-[510px] text-sm leading-6 text-[#61738A] sm:text-base">
+                We create a modern, responsive website tailored to your brand and customers.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          {/* STEP 03 */}
+          <div className="group relative flex gap-5">
+
+            {/* Icon */}
+            <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 text-white shadow-[0_8px_20px_rgba(14,165,233,0.25)] transition duration-300 group-hover:scale-110">
+
+              <svg
+                className="h-5 w-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+
+            </div>
+
+
+            {/* Content */}
+            <div className="pt-0.5">
+
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-blue-600">
+                Step 03
+              </p>
+
+              <h3 className="mt-1 text-lg font-bold text-[#0B1F3A] sm:text-xl">
+                Launch with confidence
+              </h3>
+
+              <p className="mt-1.5 max-w-[510px] text-sm leading-6 text-[#61738A] sm:text-base">
+                We test, optimize, and deliver a polished digital experience ready for your audience.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        {/* ======================================================
+            CTA + TRUST
+        ======================================================= */}
+
+        <div className="mt-9 flex flex-col gap-6 sm:flex-row sm:items-center">
+
+          {/* CTA */}
+          <a
+            href="/get-quote"
+            className="group inline-flex w-fit items-center gap-3 rounded-xl bg-gradient-to-r from-[#1478F2] to-[#2563EB] px-6 py-3.5 text-sm font-bold text-white shadow-[0_12px_30px_rgba(37,99,235,0.25)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(37,99,235,0.35)]"
+          >
+
+            Start Your Project
+
+            <svg
+              className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path d="M5 12h14" />
+              <path d="m13 6 6 6-6 6" />
+            </svg>
+
+          </a>
+
+
+          {/* Trust */}
+          <div className="flex items-center gap-3">
+
+            {/* Avatar circles */}
+            <div className="flex -space-x-2">
+
+              <div className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#F3F7FC] bg-gradient-to-br from-slate-300 to-slate-500 text-xs font-bold text-white">
+                W
+              </div>
+
+              <div className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#F3F7FC] bg-gradient-to-br from-blue-300 to-blue-600 text-xs font-bold text-white">
+                Q
+              </div>
+
+              <div className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#F3F7FC] bg-gradient-to-br from-cyan-300 to-cyan-600 text-xs font-bold text-white">
+                Z
+              </div>
+
+            </div>
+
+
+            <div>
+
+              <p className="text-sm font-semibold text-[#40536B]">
+                Trusted by growing businesses
+              </p>
+
+              <p className="text-xs text-[#7A8A9E]">
+                Building brands. Creating digital experiences.
+
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      {/* ======================================================
+          RIGHT SIDE — FEATURE CARDS
+      ======================================================= */}
+
+      <div className="grid gap-5 sm:grid-cols-2">
+
+        {/* ====================================================
+            CARD 01 — PERFORMANCE
+        ===================================================== */}
+
+        <div className="group relative overflow-hidden rounded-[26px] border border-[#D7E1EE] bg-white/90 p-6 shadow-[0_20px_60px_rgba(30,64,175,0.10)] backdrop-blur-xl transition duration-500 hover:-translate-y-2 hover:shadow-[0_30px_80px_rgba(30,64,175,0.16)] sm:p-7">
+
+          {/* Card Glow */}
+          <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-emerald-200/30 blur-3xl transition duration-500 group-hover:bg-emerald-200/50" />
+
+
+          <div className="relative">
+
+            {/* Top */}
+            <div className="flex items-start justify-between gap-4">
+
+              {/* Icon */}
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-500 text-white shadow-[0_10px_25px_rgba(16,185,129,0.22)]">
+
+                <svg
+                  className="h-6 w-6"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="m13 2-9 12h7l-1 8 9-12h-7l1-8Z" />
+                </svg>
+
+              </div>
+
+
+              {/* Badge */}
+              <span className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-600">
+                Performance
+              </span>
+
+            </div>
+
+
+            {/* Title */}
+            <h3 className="mt-6 text-xl font-bold tracking-tight text-[#0A1D35] sm:text-[22px]">
+              Built for performance
+            </h3>
+
+
+            {/* Description */}
+            <p className="mt-3 text-sm leading-6 text-[#63758C]">
+              Fast, responsive, and carefully developed websites designed to give your customers a smooth experience.
+            </p>
+
+
+            {/* Performance Visual */}
+            <div className="mt-7 flex items-center gap-5">
+
+              {/* Circle */}
+              <div className="relative flex h-[108px] w-[108px] shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 via-cyan-400 to-blue-500 p-[5px]">
+
+                <div className="flex h-full w-full flex-col items-center justify-center rounded-full bg-white">
+
+                  <span className="text-3xl font-bold text-[#102849]">
+                    98
+                  </span>
+
+                  <span className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#8190A3]">
+                    Score
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              {/* Metrics */}
+              <div className="space-y-2">
+
+                <p className="text-sm font-bold text-emerald-500">
+                  Excellent Performance
+                </p>
+
+                <p className="text-sm font-semibold text-cyan-500">
+                  Fast Loading
+                </p>
+
+                <p className="text-sm font-semibold text-blue-500">
+                  Optimized UX
+                </p>
+
+              </div>
+
+            </div>
+
+
+            {/* Bottom */}
+            <div className="mt-7 rounded-xl border border-emerald-100 bg-emerald-50/70 px-4 py-3">
+
+              <div className="flex items-center gap-2">
+
+                <svg
+                  className="h-4 w-4 text-emerald-500"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                >
+                  <path d="m20 6-11 11-5-5" />
+                </svg>
+
+                <span className="text-xs font-semibold text-emerald-700">
+                  Built for speed &amp; scalability
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        {/* ====================================================
+            CARD 02 — EXPERIENCE
+        ===================================================== */}
+
+        <div className="group relative overflow-hidden rounded-[26px] border border-[#D7E1EE] bg-white/90 p-6 shadow-[0_20px_60px_rgba(30,64,175,0.10)] backdrop-blur-xl transition duration-500 hover:-translate-y-2 hover:shadow-[0_30px_80px_rgba(30,64,175,0.16)] sm:p-7">
+
+          {/* Card Glow */}
+          <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-violet-200/30 blur-3xl transition duration-500 group-hover:bg-violet-200/50" />
+
+
+          <div className="relative">
+
+            {/* Top */}
+            <div className="flex items-start justify-between gap-4">
+
+              {/* Icon */}
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 text-white shadow-[0_10px_25px_rgba(139,92,246,0.25)]">
+
+                <svg
+                  className="h-6 w-6"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <rect x="7" y="2" width="10" height="20" rx="2" />
+                  <path d="M11 18h2" />
+                </svg>
+
+              </div>
+
+
+              {/* Badge */}
+              <span className="rounded-full border border-violet-200 bg-violet-50 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-violet-600">
+                Experience
+              </span>
+
+            </div>
+
+
+            {/* Title */}
+            <h3 className="mt-6 text-xl font-bold tracking-tight text-[#0A1D35] sm:text-[22px]">
+              Designed for your customers
+            </h3>
+
+
+            {/* Description */}
+            <p className="mt-3 text-sm leading-6 text-[#63758C]">
+              Every WebQenzo website combines modern design with simple navigation to create an experience people enjoy using.
+            </p>
+
+
+            {/* Features */}
+            <div className="mt-7 space-y-4">
+
+              {/* Feature 1 */}
+              <div className="flex items-center gap-3">
+
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-violet-100 text-violet-600">
+
+                  <svg
+                    className="h-3.5 w-3.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                  >
+                    <path d="m5 12 4 4L19 6" />
+                  </svg>
+
+                </span>
+
+                <span className="text-sm font-medium text-[#53667E]">
+                  Mobile-first experience
+                </span>
+
+              </div>
+
+
+              {/* Feature 2 */}
+              <div className="flex items-center gap-3">
+
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-violet-100 text-violet-600">
+
+                  <svg
+                    className="h-3.5 w-3.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                  >
+                    <path d="m5 12 4 4L19 6" />
+                  </svg>
+
+                </span>
+
+                <span className="text-sm font-medium text-[#53667E]">
+                  Clear &amp; intuitive navigation
+                </span>
+
+              </div>
+
+
+              {/* Feature 3 */}
+              <div className="flex items-center gap-3">
+
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-violet-100 text-violet-600">
+
+                  <svg
+                    className="h-3.5 w-3.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                  >
+                    <path d="m5 12 4 4L19 6" />
+                  </svg>
+
+                </span>
+
+                <span className="text-sm font-medium text-[#53667E]">
+                  Conversion-focused layouts
+                </span>
+
+              </div>
+
+
+              {/* Feature 4 */}
+              <div className="flex items-center gap-3">
+
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-violet-100 text-violet-600">
+
+                  <svg
+                    className="h-3.5 w-3.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                  >
+                    <path d="m5 12 4 4L19 6" />
+                  </svg>
+
+                </span>
+
+                <span className="text-sm font-medium text-[#53667E]">
+                  Modern visual design
+                </span>
+
+              </div>
+
+            </div>
+
+
+            {/* Bottom */}
+            <div className="mt-7 rounded-xl border border-violet-100 bg-violet-50/70 px-4 py-3">
+
+              <div className="flex items-center gap-2">
+
+                <svg
+                  className="h-4 w-4 text-violet-500"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                >
+                  <path d="m20 6-11 11-5-5" />
+                </svg>
+
+                <span className="text-xs font-semibold text-violet-700">
+                  Made for modern customers
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+{/* ============================================================
+    END — WEBQENZO SIMPLE PROCESS SECTION
+============================================================ */}
+
 {/* ============================================================
     WHY CHOOSE WEBQENZO
 ============================================================ */}
@@ -1683,6 +2270,11 @@ function Home() {
   </div>
 
 </section>
+
+
+
+
+
 
 
 {/* ============================================================
@@ -2787,6 +3379,336 @@ function Home() {
 
       .customer-marquee-track {
         animation: none;
+      }
+
+    }
+
+  `}</style>
+
+</section>
+
+
+{/* =========================================================
+    WEBQENZO — GLOBAL REACH
+========================================================= */}
+
+<section className="relative overflow-hidden bg-[#0F172A] py-20 sm:py-24 lg:py-28">
+
+  {/* Background Glow */}
+  <div className="pointer-events-none absolute -top-48 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-[#2563EB]/15 blur-[140px]" />
+
+  <div className="pointer-events-none absolute -bottom-60 -right-40 h-[500px] w-[500px] rounded-full bg-[#06B6D4]/10 blur-[130px]" />
+
+  {/* Subtle Grid */}
+  <div
+    className="pointer-events-none absolute inset-0 opacity-[0.035]"
+    style={{
+      backgroundImage:
+        "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
+      backgroundSize: "60px 60px",
+    }}
+  />
+
+  <div className="relative z-10 mx-auto max-w-[1500px]">
+
+    {/* =====================================================
+        HEADER
+    ===================================================== */}
+
+    <div className="px-5 text-center">
+
+      {/* Badge */}
+      <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-white/[0.06] px-4 py-2 backdrop-blur-md">
+
+        <span className="h-2.5 w-2.5 rounded-full bg-[#06B6D4] shadow-[0_0_14px_#06B6D4]" />
+
+        <span className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-300 sm:text-sm">
+          Global Reach
+        </span>
+
+      </div>
+
+      {/* Heading */}
+      <h2 className="mx-auto max-w-6xl text-4xl font-bold leading-[1.05] tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl xl:text-[68px]">
+
+        Websites for{" "}
+
+        <span className="bg-gradient-to-r from-[#2563EB] via-[#06B6D4] to-[#2563EB] bg-clip-text text-transparent">
+          Businesses Everywhere
+        </span>
+
+      </h2>
+
+      {/* Description */}
+      <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-400 sm:text-lg sm:leading-8">
+        WebQenzo helps businesses build a powerful digital presence
+        for customers in India and across the world.
+      </p>
+
+
+      {/* =====================================================
+          STATS
+      ===================================================== */}
+
+      <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
+
+        {/* 15+ Countries */}
+        <div className="flex min-w-[190px] items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.08] px-5 py-4 text-left shadow-[0_15px_40px_rgba(0,0,0,0.12)] backdrop-blur-xl">
+
+          <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl border border-blue-400/20 bg-[#2563EB]/15 text-xl">
+            🌍
+          </div>
+
+          <div>
+            <div className="text-lg font-bold leading-tight text-white">
+              15+
+            </div>
+
+            <div className="mt-1 text-xs font-medium text-slate-400">
+              Countries Reached
+            </div>
+          </div>
+
+        </div>
+
+
+        {/* Global */}
+        <div className="flex min-w-[190px] items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.08] px-5 py-4 text-left shadow-[0_15px_40px_rgba(0,0,0,0.12)] backdrop-blur-xl">
+
+          <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl border border-cyan-400/20 bg-[#06B6D4]/10 text-xl text-cyan-300">
+            ✦
+          </div>
+
+          <div>
+            <div className="text-lg font-bold leading-tight text-white">
+              Global
+            </div>
+
+            <div className="mt-1 text-xs font-medium text-slate-400">
+              Digital Presence
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    {/* =====================================================
+        COUNTRY MARQUEE
+    ===================================================== */}
+
+    <div className="relative mt-14">
+
+      {/* Left Fade */}
+      <div className="pointer-events-none absolute left-0 top-0 z-20 h-full w-16 bg-gradient-to-r from-[#0F172A] via-[#0F172A]/80 to-transparent sm:w-36" />
+
+      {/* Right Fade */}
+      <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-16 bg-gradient-to-l from-[#0F172A] via-[#0F172A]/80 to-transparent sm:w-36" />
+
+
+      {/* Marquee */}
+      <div className="overflow-hidden">
+
+        <div
+          className="flex w-max items-center gap-4"
+          style={{
+            animation: "webqenzoGlobalCountries 35s linear infinite",
+          }}
+        >
+
+          {/* =================================================
+              SET 1
+          ================================================= */}
+
+          {[
+            ["in", "India"],
+            ["sa", "Saudi Arabia"],
+            ["ae", "Dubai"],
+            ["kw", "Kuwait"],
+            ["qa", "Qatar"],
+            ["us", "United States"],
+            ["gb", "United Kingdom"],
+            ["de", "Germany"],
+            ["gb", "London"],
+            ["ir", "Iran"],
+            ["sg", "Singapore"],
+            ["ca", "Canada"],
+            ["au", "Australia"],
+            ["fr", "France"],
+            ["it", "Italy"],
+            ["jp", "Japan"],
+          ].map(([code, name], index) => (
+
+            <div
+              key={`country-1-${index}`}
+              className="
+                flex
+                h-[58px]
+                flex-shrink-0
+                items-center
+                gap-3
+                rounded-xl
+                border
+                border-white/10
+                bg-white/[0.09]
+                px-5
+                shadow-[0_10px_35px_rgba(0,0,0,0.10)]
+                backdrop-blur-xl
+                transition-all
+                duration-300
+                hover:border-white/20
+                hover:bg-white/[0.14]
+              "
+            >
+
+              {/* REAL FLAG */}
+              <img
+                src={`https://flagcdn.com/w40/${code}.png`}
+                alt={`${name} flag`}
+                className="h-5 w-7 rounded-[3px] object-cover shadow-sm"
+                loading="lazy"
+              />
+
+              {/* Country */}
+              <span className="whitespace-nowrap text-sm font-semibold text-white/90 sm:text-[15px]">
+                {name}
+              </span>
+
+            </div>
+
+          ))}
+
+
+          {/* =================================================
+              SET 2 — SEAMLESS LOOP
+          ================================================= */}
+
+          {[
+            ["in", "India"],
+            ["sa", "Saudi Arabia"],
+            ["ae", "Dubai"],
+            ["kw", "Kuwait"],
+            ["qa", "Qatar"],
+            ["us", "United States"],
+            ["gb", "United Kingdom"],
+            ["de", "Germany"],
+            ["gb", "London"],
+            ["ir", "Iran"],
+            ["sg", "Singapore"],
+            ["ca", "Canada"],
+            ["au", "Australia"],
+            ["fr", "France"],
+            ["it", "Italy"],
+            ["jp", "Japan"],
+          ].map(([code, name], index) => (
+
+            <div
+              key={`country-2-${index}`}
+              className="
+                flex
+                h-[58px]
+                flex-shrink-0
+                items-center
+                gap-3
+                rounded-xl
+                border
+                border-white/10
+                bg-white/[0.09]
+                px-5
+                shadow-[0_10px_35px_rgba(0,0,0,0.10)]
+                backdrop-blur-xl
+                transition-all
+                duration-300
+                hover:border-white/20
+                hover:bg-white/[0.14]
+              "
+            >
+
+              {/* REAL FLAG */}
+              <img
+                src={`https://flagcdn.com/w40/${code}.png`}
+                alt={`${name} flag`}
+                className="h-5 w-7 rounded-[3px] object-cover shadow-sm"
+                loading="lazy"
+              />
+
+              {/* Country */}
+              <span className="whitespace-nowrap text-sm font-semibold text-white/90 sm:text-[15px]">
+                {name}
+              </span>
+
+            </div>
+
+          ))}
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    {/* =====================================================
+        BOTTOM TEXT
+    ===================================================== */}
+
+    <div className="mt-10 px-5 text-center">
+
+      <p className="text-sm text-slate-500">
+        From local businesses to global brands —{" "}
+
+        <span className="font-semibold text-slate-300">
+          WebQenzo builds digital experiences without borders.
+        </span>
+
+      </p>
+
+    </div>
+
+  </div>
+
+
+  {/* =====================================================
+      MARQUEE ANIMATION
+  ===================================================== */}
+
+  <style>{`
+
+    @keyframes webqenzoGlobalCountries {
+
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+
+    }
+
+    @media (max-width: 640px) {
+
+      @keyframes webqenzoGlobalCountries {
+
+        from {
+          transform: translateX(0);
+        }
+
+        to {
+          transform: translateX(-50%);
+        }
+
+      }
+
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      [style*="webqenzoGlobalCountries"] {
+        animation-play-state: paused !important;
       }
 
     }
