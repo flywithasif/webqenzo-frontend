@@ -1,4 +1,5 @@
-const API_BASE_URL = "https://api.webqenzo.com/api";
+const API_BASE_URL =
+  "https://api.webqenzo.com/api";
 
 const getToken = () => {
   return localStorage.getItem(
@@ -18,7 +19,8 @@ const request = async (
   };
 
   if (token) {
-    headers.Authorization = `Bearer ${token}`;
+    headers.Authorization =
+      `Bearer ${token}`;
   }
 
   const response = await fetch(
@@ -101,54 +103,30 @@ export const adminLogout = () => {
   );
 };
 
-export const getStoredAdmin = () => {
-  try {
-    return JSON.parse(
-      localStorage.getItem(
-        "webqenzo_admin"
-      ) || "null"
-    );
-  } catch {
-    return null;
-  }
-};
-
-export const isAdminLoggedIn = () =>
-  Boolean(
-    localStorage.getItem(
-      "webqenzo_admin_token"
-    )
-  );
-
 // ======================================================
-// QUOTES / LEADS
+// QUOTES
 // ======================================================
 
 export const getQuotes = () =>
   request("/admin/quotes");
 
+export const getColdQuotes = () =>
+  request("/admin/quotes/cold");
+
 export const getDeletedQuotes = () =>
   request("/admin/quotes/deleted");
 
-export const createQuote = (
+export const updateQuoteCRM = (
+  id,
   payload
 ) =>
-  request("/admin/quotes", {
-    method: "POST",
-    body: JSON.stringify(payload),
-  });
-
-export const updateQuoteStatus = (
-  id,
-  status
-) =>
   request(
-    `/admin/quotes/${id}/status`,
+    `/admin/quotes/${id}/crm`,
     {
       method: "PATCH",
-      body: JSON.stringify({
-        status,
-      }),
+      body: JSON.stringify(
+        payload
+      ),
     }
   );
 
@@ -166,6 +144,20 @@ export const addQuoteComment = (
     }
   );
 
+export const updateQuoteStatus = (
+  id,
+  status
+) =>
+  request(
+    `/admin/quotes/${id}/status`,
+    {
+      method: "PATCH",
+      body: JSON.stringify({
+        status,
+      }),
+    }
+  );
+
 export const assignQuote = (
   id,
   assignedTo
@@ -175,8 +167,7 @@ export const assignQuote = (
     {
       method: "PATCH",
       body: JSON.stringify({
-        assignedTo:
-          assignedTo || null,
+        assignedTo,
       }),
     }
   );
@@ -198,26 +189,29 @@ export const restoreQuote = (id) =>
   );
 
 // ======================================================
-// CONTACTS
+// CONTACT LEADS
 // ======================================================
 
 export const getContacts = () =>
   request("/admin/contacts");
 
+export const getColdContacts = () =>
+  request("/admin/contacts/cold");
+
 export const getDeletedContacts = () =>
   request("/admin/contacts/deleted");
 
-export const updateContactStatus = (
+export const updateContactCRM = (
   id,
-  status
+  payload
 ) =>
   request(
-    `/admin/contacts/${id}/status`,
+    `/admin/contacts/${id}/crm`,
     {
       method: "PATCH",
-      body: JSON.stringify({
-        status,
-      }),
+      body: JSON.stringify(
+        payload
+      ),
     }
   );
 
@@ -235,6 +229,34 @@ export const addContactComment = (
     }
   );
 
+export const updateContactStatus = (
+  id,
+  status
+) =>
+  request(
+    `/admin/contacts/${id}/status`,
+    {
+      method: "PATCH",
+      body: JSON.stringify({
+        status,
+      }),
+    }
+  );
+
+export const assignContact = (
+  id,
+  assignedTo
+) =>
+  request(
+    `/admin/contacts/${id}/assign`,
+    {
+      method: "PATCH",
+      body: JSON.stringify({
+        assignedTo,
+      }),
+    }
+  );
+
 export const deleteContact = (id) =>
   request(
     `/admin/contacts/${id}`,
@@ -243,7 +265,9 @@ export const deleteContact = (id) =>
     }
   );
 
-export const restoreContact = (id) =>
+export const restoreContact = (
+  id
+) =>
   request(
     `/admin/contacts/${id}/restore`,
     {

@@ -400,99 +400,359 @@ function Home() {
       {/* =====================================================
           INTRO SECTION
       ====================================================== */}
-      <section className="bg-[#F7F8FA] px-5 py-20 sm:px-8 sm:py-24 lg:px-10 lg:py-28">
+      {/* ============================================================
+    WHAT WE DO — PREMIUM SECOND SECTION
+============================================================ */}
 
-        <div className="mx-auto max-w-[1200px]">
+<section className="relative overflow-hidden bg-[#FBFCFE] px-5 py-20 sm:px-8 sm:py-24 lg:px-10 lg:py-32">
 
-          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+  {/* ==========================================================
+      SUBTLE BACKGROUND GLOW
+  =========================================================== */}
 
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">
-                What we do
-              </p>
+  <div className="pointer-events-none absolute -left-40 top-10 h-[420px] w-[420px] rounded-full bg-blue-100/40 blur-[130px]" />
 
-              <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-[#0B1220] sm:text-4xl lg:text-5xl">
-                Your website should work as hard as your business.
-              </h2>
-            </div>
+  <div className="pointer-events-none absolute right-[-180px] top-[35%] h-[500px] w-[500px] rounded-full bg-cyan-100/30 blur-[150px]" />
 
-            <div>
-              <p className="max-w-2xl text-base leading-7 text-slate-500 sm:text-lg">
-                From first impression to final conversion, we create
-                digital experiences that communicate trust, showcase
-                your brand and give your customers a reason to take action.
-              </p>
-
-              <Link
-                to="/services"
-                className="group mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#0B1220]"
-              >
-                Explore our services
-
-                <ArrowRight
-                  size={17}
-                  className="transition-transform duration-300 group-hover:translate-x-1"
-                />
-              </Link>
-            </div>
-
-          </div>
+  <div className="pointer-events-none absolute bottom-[-200px] left-[35%] h-[420px] w-[420px] rounded-full bg-blue-50/70 blur-[130px]" />
 
 
-          {/* Feature cards */}
-          <div className="mt-14 grid gap-4 md:grid-cols-3">
+  {/* ==========================================================
+      MAIN CONTAINER
+  =========================================================== */}
 
-            <div className="rounded-3xl border border-slate-200 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/50">
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
-                <Layers3 size={21} />
-              </div>
-
-              <h3 className="mt-6 text-lg font-semibold text-[#0B1220]">
-                Strategy First
-              </h3>
-
-              <p className="mt-3 text-sm leading-6 text-slate-500">
-                Every page has a purpose. We structure your website
-                around your business goals and customer journey.
-              </p>
-            </div>
+  <div className="relative mx-auto max-w-[1280px]">
 
 
-            <div className="rounded-3xl border border-slate-200 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/50">
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-cyan-50 text-cyan-600">
-                <Monitor size={21} />
-              </div>
+    {/* ========================================================
+        TOP INTRO
+    ========================================================= */}
 
-              <h3 className="mt-6 text-lg font-semibold text-[#0B1220]">
-                Premium Design
-              </h3>
-
-              <p className="mt-3 text-sm leading-6 text-slate-500">
-                Clean layouts, thoughtful spacing and refined interactions
-                designed to make your brand feel established.
-              </p>
-            </div>
+    <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-end lg:gap-20">
 
 
-            <div className="rounded-3xl border border-slate-200 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/50">
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
-                <Code2 size={21} />
-              </div>
+      {/* LEFT */}
+      <div>
 
-              <h3 className="mt-6 text-lg font-semibold text-[#0B1220]">
-                Built for Performance
-              </h3>
+        {/* Eyebrow */}
+        <div className="flex items-center gap-3">
 
-              <p className="mt-3 text-sm leading-6 text-slate-500">
-                Lightweight interfaces and clean code keep the experience
-                smooth without unnecessary visual or technical overhead.
-              </p>
-            </div>
+          <span className="h-px w-8 bg-blue-600" />
 
-          </div>
+          <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-blue-600">
+            What we do
+          </p>
 
         </div>
-      </section>
+
+
+        {/* Heading */}
+        <h2 className="mt-6 max-w-[760px] text-4xl font-semibold leading-[1.04] tracking-[-0.055em] text-[#09182F] sm:text-5xl lg:text-[56px] xl:text-[64px]">
+
+          Your website should
+
+          <br />
+
+          <span className="relative inline-block">
+            work as hard
+          </span>
+
+          <br className="hidden sm:block" />
+
+          <span className="bg-gradient-to-r from-[#087FF5] via-[#159BE8] to-[#2563EB] bg-clip-text text-transparent">
+            as your business.
+          </span>
+
+        </h2>
+
+      </div>
+
+
+      {/* RIGHT */}
+      <div className="lg:pb-2">
+
+        <p className="max-w-[560px] text-base leading-7 text-slate-500 sm:text-lg sm:leading-8">
+
+          From first impression to final conversion, we create
+          digital experiences that communicate trust, showcase
+          your brand and give your customers a reason to take action.
+
+        </p>
+
+
+        <Link
+          to="/services"
+          className="group mt-7 inline-flex items-center gap-3 text-sm font-semibold text-[#09182F]"
+        >
+
+          <span className="border-b border-[#09182F]/30 pb-1 transition-colors duration-300 group-hover:border-blue-600 group-hover:text-blue-600">
+            Explore our services
+          </span>
+
+          <span className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white shadow-sm transition-all duration-300 group-hover:border-blue-200 group-hover:bg-blue-50">
+
+            <ArrowRight
+              size={16}
+              className="transition-transform duration-300 group-hover:translate-x-1 group-hover:text-blue-600"
+            />
+
+          </span>
+
+        </Link>
+
+      </div>
+
+    </div>
+
+
+    {/* ========================================================
+        PREMIUM DIVIDER
+    ========================================================= */}
+
+    <div className="mt-16 h-px w-full bg-gradient-to-r from-transparent via-slate-200 to-transparent lg:mt-20" />
+
+
+    {/* ========================================================
+        FEATURE CARDS
+    ========================================================= */}
+
+    <div className="mt-10 grid gap-5 md:grid-cols-3 lg:mt-12">
+
+
+      {/* ======================================================
+          CARD 01 — STRATEGY
+      ======================================================= */}
+
+      <div className="group relative overflow-hidden rounded-[28px] border border-slate-200/80 bg-white p-7 shadow-[0_10px_40px_rgba(15,23,42,0.035)] transition-all duration-500 hover:-translate-y-2 hover:border-blue-200 hover:shadow-[0_25px_70px_rgba(37,99,235,0.10)] sm:p-8">
+
+        {/* Blue glow */}
+        <div className="pointer-events-none absolute -right-20 -top-20 h-44 w-44 rounded-full bg-blue-100/50 blur-3xl transition-all duration-500 group-hover:bg-blue-100/80" />
+
+
+        {/* Number */}
+        <div className="relative flex items-center justify-between">
+
+          <span className="text-[11px] font-bold tracking-[0.2em] text-slate-300">
+            01
+          </span>
+
+          <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+            Foundation
+          </span>
+
+        </div>
+
+
+        {/* Icon */}
+        <div className="relative mt-9 flex h-14 w-14 items-center justify-center rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white text-blue-600 shadow-[0_8px_25px_rgba(37,99,235,0.08)] transition-all duration-500 group-hover:scale-105 group-hover:border-blue-200 group-hover:shadow-[0_12px_30px_rgba(37,99,235,0.14)]">
+
+          <Layers3 size={23} strokeWidth={1.8} />
+
+        </div>
+
+
+        {/* Content */}
+        <div className="relative">
+
+          <h3 className="mt-7 text-xl font-semibold tracking-[-0.025em] text-[#0B1B33]">
+            Strategy First
+          </h3>
+
+          <p className="mt-3 text-sm leading-6 text-slate-500">
+            Every page has a purpose. We structure your website
+            around your business goals and customer journey.
+          </p>
+
+        </div>
+
+
+        {/* Bottom line */}
+        <div className="mt-8 flex items-center gap-2">
+
+          <span className="h-1 w-1 rounded-full bg-blue-600" />
+
+          <span className="text-xs font-medium text-slate-400">
+            Purpose-driven structure
+          </span>
+
+        </div>
+
+      </div>
+
+
+      {/* ======================================================
+          CARD 02 — DESIGN
+      ======================================================= */}
+
+      <div className="group relative overflow-hidden rounded-[28px] border border-slate-200/80 bg-white p-7 shadow-[0_10px_40px_rgba(15,23,42,0.035)] transition-all duration-500 hover:-translate-y-2 hover:border-cyan-200 hover:shadow-[0_25px_70px_rgba(8,145,178,0.10)] sm:p-8">
+
+        {/* Cyan glow */}
+        <div className="pointer-events-none absolute -right-20 -top-20 h-44 w-44 rounded-full bg-cyan-100/50 blur-3xl transition-all duration-500 group-hover:bg-cyan-100/80" />
+
+
+        {/* Number */}
+        <div className="relative flex items-center justify-between">
+
+          <span className="text-[11px] font-bold tracking-[0.2em] text-slate-300">
+            02
+          </span>
+
+          <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+            Experience
+          </span>
+
+        </div>
+
+
+        {/* Icon */}
+        <div className="relative mt-9 flex h-14 w-14 items-center justify-center rounded-2xl border border-cyan-100 bg-gradient-to-br from-cyan-50 to-white text-cyan-600 shadow-[0_8px_25px_rgba(8,145,178,0.08)] transition-all duration-500 group-hover:scale-105 group-hover:border-cyan-200 group-hover:shadow-[0_12px_30px_rgba(8,145,178,0.14)]">
+
+          <Monitor size={23} strokeWidth={1.8} />
+
+        </div>
+
+
+        {/* Content */}
+        <div className="relative">
+
+          <h3 className="mt-7 text-xl font-semibold tracking-[-0.025em] text-[#0B1B33]">
+            Premium Design
+          </h3>
+
+          <p className="mt-3 text-sm leading-6 text-slate-500">
+            Clean layouts, thoughtful spacing and refined interactions
+            designed to make your brand feel established.
+          </p>
+
+        </div>
+
+
+        {/* Bottom line */}
+        <div className="mt-8 flex items-center gap-2">
+
+          <span className="h-1 w-1 rounded-full bg-cyan-500" />
+
+          <span className="text-xs font-medium text-slate-400">
+            Designed to build trust
+          </span>
+
+        </div>
+
+      </div>
+
+
+      {/* ======================================================
+          CARD 03 — PERFORMANCE
+      ======================================================= */}
+
+      <div className="group relative overflow-hidden rounded-[28px] border border-slate-200/80 bg-white p-7 shadow-[0_10px_40px_rgba(15,23,42,0.035)] transition-all duration-500 hover:-translate-y-2 hover:border-blue-200 hover:shadow-[0_25px_70px_rgba(37,99,235,0.10)] sm:p-8">
+
+        {/* Blue glow */}
+        <div className="pointer-events-none absolute -right-20 -top-20 h-44 w-44 rounded-full bg-blue-100/50 blur-3xl transition-all duration-500 group-hover:bg-blue-100/80" />
+
+
+        {/* Number */}
+        <div className="relative flex items-center justify-between">
+
+          <span className="text-[11px] font-bold tracking-[0.2em] text-slate-300">
+            03
+          </span>
+
+          <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+            Technology
+          </span>
+
+        </div>
+
+
+        {/* Icon */}
+        <div className="relative mt-9 flex h-14 w-14 items-center justify-center rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white text-blue-600 shadow-[0_8px_25px_rgba(37,99,235,0.08)] transition-all duration-500 group-hover:scale-105 group-hover:border-blue-200 group-hover:shadow-[0_12px_30px_rgba(37,99,235,0.14)]">
+
+          <Code2 size={23} strokeWidth={1.8} />
+
+        </div>
+
+
+        {/* Content */}
+        <div className="relative">
+
+          <h3 className="mt-7 text-xl font-semibold tracking-[-0.025em] text-[#0B1B33]">
+            Built for Performance
+          </h3>
+
+          <p className="mt-3 text-sm leading-6 text-slate-500">
+            Lightweight interfaces and clean code keep the experience
+            smooth without unnecessary visual or technical overhead.
+          </p>
+
+        </div>
+
+
+        {/* Bottom line */}
+        <div className="mt-8 flex items-center gap-2">
+
+          <span className="h-1 w-1 rounded-full bg-blue-600" />
+
+          <span className="text-xs font-medium text-slate-400">
+            Fast, scalable &amp; reliable
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    {/* ========================================================
+        BOTTOM MICRO TRUST ROW
+    ========================================================= */}
+
+    <div className="mt-10 flex flex-col gap-4 border-t border-slate-200/80 pt-7 sm:flex-row sm:items-center sm:justify-between">
+
+      <div className="flex items-center gap-3">
+
+        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-50 text-blue-600">
+
+          <svg
+            className="h-4 w-4"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+          >
+            <path d="M12 3 4 7v5c0 5 3.5 8 8 9 4.5-1 8-4 8-9V7l-8-4Z" />
+            <path d="m9 12 2 2 4-4" />
+          </svg>
+
+        </span>
+
+        <span className="text-xs font-medium text-slate-500 sm:text-sm">
+          Thoughtful strategy. Refined design. Reliable technology.
+        </span>
+
+      </div>
+
+
+      <div className="flex items-center gap-2">
+
+        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+
+        <span className="text-xs font-medium text-slate-400">
+          Built for modern businesses
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+{/* ============================================================
+    END — WHAT WE DO SECTION
+============================================================ */}
 
 
 

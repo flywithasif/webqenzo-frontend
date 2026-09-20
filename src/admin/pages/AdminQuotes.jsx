@@ -1,1370 +1,1051 @@
-import { useEffect, useState } from "react";
-
+import { useEffect, useMemo, useState } from "react";
 import {
-  Plus,
   RefreshCw,
-  Trash2,
-  RotateCcw,
+  Search,
   X,
-  UserRound,
-  MessageSquare,
-  History,
-  UserCheck,
+  Pencil,
+  Clock3,
+  FileText,
 } from "lucide-react";
 
 import {
-  addQuoteComment,
-  assignQuote,
-  createQuote,
-  deleteQuote,
-  getDeletedQuotes,
   getQuotes,
-  getStoredAdmin,
   getTeamMembers,
-  restoreQuote,
-  updateQuoteStatus,
+  updateQuoteCRM,
+  assignQuote,
 } from "../utils/adminApi";
 
-const statusOptions = [
-  "new",
-  "contacted",
-  "in-progress",
-  "completed",
-  "closed",
-];
+const formatDateTime = (value) => {
+  if (!value) return "—";
 
-const statusClass = {
-  new: "bg-blue-50 text-blue-700",
-  contacted: "bg-amber-50 text-amber-700",
-  "in-progress":
-    "bg-purple-50 text-purple-700",
-  completed:
-    "bg-emerald-50 text-emerald-700",
-  closed:
-    "bg-slate-100 text-slate-600",
+  return new Date(value).toLocaleString("en-IN", {
+    dateStyle: "medium",
+    timeStyle: "short",
+  });
 };
 
-const emptyForm = {
-  fullName: "",
-  email: "",
-  phone: "",
-  company: "",
-  service: "",
-  budget: "",
-  timeline: "",
-  existingWebsite: "",
-  projectDescription: "",
-  assignedTo: "",
+const qualityClass = {
+  HOT: "text-red-500",
+  WARM: "text-amber-500",
+  COLD: "text-sky-500",
 };
 
 const AdminQuotes = () => {
-  const admin = getStoredAdmin();
+  const [quotes, setQuotes] = useState([]);
+  const [team, setTeam] = useState([]);
 
-  const isSuperAdmin =
-    admin?.role === "SUPER_ADMIN";
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
 
-  const canCreate =
-    isSuperAdmin ||
-    admin?.permissions?.includes(
-      "quotes:create"
-    );
+  const [error, setError] = useState("");
 
-  const canUpdate =
-    isSuperAdmin ||
-    admin?.permissions?.includes(
-      "quotes:update"
-    );
+  const [search, setSearch] = useState("");
+  const [quality, setQuality] = useState("ALL");
 
-  const canDelete =
-    isSuperAdmin ||
-    admin?.permissions?.includes(
-      "quotes:delete"
-    );
+  const [selected, setSelected] = useState(null);
+  const [historyOpen, setHistoryOpen] = useState(false);
 
-  const [quotes, setQuotes] =
-    useState([]);
+  const [crm, setCrm] = useState({
+    leadType: "",
+    leadQuality: "WARM",
+    leadStatus: "ACTIVE",
+    nextFollowUpDate: "",
+    nextFollowUpTime: "",
+    doNotFollowUp: false,
+    coldReason: "",
+    comment: "",
+  });
 
-  const [deletedQuotes, setDeletedQuotes] =
-    useState([]);
+  const admin = useMemo(() => {
+    try {
+      return JSON.parse(
+        localStorage.getItem("webqenzo_admin") || "{}"
+      );
+    } catch {
+      return {};
+    }
+  }, []);
 
-  const [team, setTeam] =
-    useState([]);
-
-  const [loading, setLoading] =
-    useState(true);
-
-  const [error, setError] =
-    useState("");
-
-  const [selectedQuote, setSelectedQuote] =
-    useState(null);
-
-  const [showDeleted, setShowDeleted] =
-    useState(false);
-
-  const [showCreate, setShowCreate] =
-    useState(false);
-
-  const [form, setForm] =
-    useState(emptyForm);
-
-  const [saving, setSaving] =
-    useState(false);
-
-  const [comment, setComment] =
-    useState("");
-
-  const [commentSaving, setCommentSaving] =
-    useState(false);
+  const isSuperAdmin = admin?.role === "SUPER_ADMIN";
 
   const loadQuotes = async () => {
     try {
       setLoading(true);
       setError("");
 
-      const response =
-        await getQuotes();
+      const response = await getQuotes();
 
-      setQuotes(
-        response?.data || []
-      );
-    } catch (err) {
-      setError(err.message);
+      setQuotes(response?.data || []);
+
+      if (isSuperAdmin) {
+        const teamResponse =
+          await getTeamMembers();
+
+        setTeam(teamResponse?.data || []);
+      }
+    } catch (error) {
+      setError(error.message);
     } finally {
       setLoading(false);
     }
   };
 
-  const loadDeletedQuotes =
-    async () => {
-      if (!isSuperAdmin) return;
-
-      try {
-        const response =
-          await getDeletedQuotes();
-
-        setDeletedQuotes(
-          response?.data || []
-        );
-      } catch (err) {
-        setError(err.message);
-      }
-    };
-
-  const loadTeam = async () => {
-    if (!isSuperAdmin) return;
-
-    try {
-      const response =
-        await getTeamMembers();
-
-      setTeam(
-        (response?.data || []).filter(
-          (member) =>
-            member.isActive
-        )
-      );
-    } catch (err) {
-      setError(err.message);
-    }
-  };
-
   useEffect(() => {
     loadQuotes();
-    loadTeam();
   }, []);
 
-  const openCreate = () => {
-    setForm(emptyForm);
-    setError("");
-    setShowCreate(true);
+  const filteredQuotes = useMemo(() => {
+    const searchValue = search.trim().toLowerCase();
+
+    return quotes.filter((quote) => {
+      const matchesSearch =
+        !searchValue ||
+        quote.fullName
+          ?.toLowerCase()
+          .includes(searchValue) ||
+        quote.phone
+          ?.toLowerCase()
+          .includes(searchValue) ||
+        quote.email
+          ?.toLowerCase()
+          .includes(searchValue) ||
+        quote.company
+          ?.toLowerCase()
+          .includes(searchValue) ||
+        quote.service
+          ?.toLowerCase()
+          .includes(searchValue);
+
+      const matchesQuality =
+        quality === "ALL" ||
+        quote.leadQuality === quality;
+
+      return matchesSearch && matchesQuality;
+    });
+  }, [quotes, search, quality]);
+
+  const openQuote = (quote) => {
+    setSelected(quote);
+
+    setCrm({
+      leadType: quote.leadType || "",
+      leadQuality: quote.leadQuality || "WARM",
+      leadStatus: quote.leadStatus || "ACTIVE",
+      nextFollowUpDate:
+        quote.nextFollowUpDate || "",
+      nextFollowUpTime:
+        quote.nextFollowUpTime || "",
+      doNotFollowUp:
+        Boolean(quote.doNotFollowUp),
+      coldReason: quote.coldReason || "",
+      comment: "",
+    });
   };
 
-  const closeCreate = () => {
-    if (saving) return;
-
-    setShowCreate(false);
-    setForm(emptyForm);
+  const updateField = (field, value) => {
+    setCrm((current) => ({
+      ...current,
+      [field]: value,
+    }));
   };
 
-  const handleCreate = async (
-    e
-  ) => {
-    e.preventDefault();
+  const saveQuote = async () => {
+    if (!selected) return;
 
-    setError("");
-    setSaving(true);
+    if (
+      crm.leadStatus === "COLD" &&
+      !crm.coldReason.trim()
+    ) {
+      setError("Cold reason is required.");
+      return;
+    }
 
     try {
-      await createQuote({
-        ...form,
-        assignedTo:
-          isSuperAdmin
-            ? form.assignedTo || undefined
-            : undefined,
-      });
+      setSaving(true);
+      setError("");
 
-      await loadQuotes();
+      const response = await updateQuoteCRM(
+        selected._id,
+        crm
+      );
 
-      closeCreate();
-    } catch (err) {
-      setError(err.message);
+      const updated = response?.data;
+
+      setQuotes((current) =>
+        current.map((item) =>
+          item._id === updated?._id
+            ? updated
+            : item
+        )
+      );
+
+      if (updated?.leadStatus === "COLD") {
+        setSelected(null);
+      } else {
+        setSelected(updated);
+      }
+    } catch (error) {
+      setError(error.message);
     } finally {
       setSaving(false);
     }
   };
 
-  const handleStatus = async (
-    id,
-    status
-  ) => {
-    if (!canUpdate) return;
-
-    try {
-      const response =
-        await updateQuoteStatus(
-          id,
-          status
-        );
-
-      setQuotes((current) =>
-        current.map((quote) =>
-          quote._id === id
-            ? response.data
-            : quote
-        )
-      );
-
-      if (
-        selectedQuote?._id === id
-      ) {
-        setSelectedQuote(
-          response.data
-        );
-      }
-    } catch (err) {
-      setError(err.message);
-    }
-  };
-
-  const handleAssign = async (
-    id,
+  const handleAssignment = async (
+    quoteId,
     assignedTo
   ) => {
-    if (!isSuperAdmin) return;
-
     try {
-      const response =
-        await assignQuote(
-          id,
-          assignedTo
-        );
+      setSaving(true);
+      setError("");
+
+      const response = await assignQuote(
+        quoteId,
+        assignedTo || undefined
+      );
+
+      const updated = response?.data;
 
       setQuotes((current) =>
-        current.map((quote) =>
-          quote._id === id
-            ? response.data
-            : quote
+        current.map((item) =>
+          item._id === updated?._id
+            ? updated
+            : item
         )
       );
 
-      if (
-        selectedQuote?._id === id
-      ) {
-        setSelectedQuote(
-          response.data
-        );
+      if (selected?._id === updated?._id) {
+        setSelected(updated);
       }
-    } catch (err) {
-      setError(err.message);
-    }
-  };
-
-  const handleDelete = async (
-    id
-  ) => {
-    if (!canDelete) return;
-
-    const confirmed =
-      window.confirm(
-        "Move this lead to Deleted Leads? It will NOT be permanently deleted."
-      );
-
-    if (!confirmed) return;
-
-    try {
-      await deleteQuote(id);
-
-      setQuotes((current) =>
-        current.filter(
-          (quote) =>
-            quote._id !== id
-        )
-      );
-
-      if (
-        selectedQuote?._id === id
-      ) {
-        setSelectedQuote(null);
-      }
-
-      if (isSuperAdmin) {
-        await loadDeletedQuotes();
-      }
-    } catch (err) {
-      setError(err.message);
-    }
-  };
-
-  const handleRestore = async (
-    id
-  ) => {
-    if (!isSuperAdmin) return;
-
-    try {
-      await restoreQuote(id);
-
-      await loadDeletedQuotes();
-      await loadQuotes();
-    } catch (err) {
-      setError(err.message);
-    }
-  };
-
-  const handleComment = async () => {
-    if (
-      !selectedQuote ||
-      !comment.trim() ||
-      !canUpdate
-    ) {
-      return;
-    }
-
-    try {
-      setCommentSaving(true);
-
-      const response =
-        await addQuoteComment(
-          selectedQuote._id,
-          comment
-        );
-
-      setSelectedQuote(
-        response.data
-      );
-
-      setQuotes((current) =>
-        current.map((quote) =>
-          quote._id ===
-          selectedQuote._id
-            ? response.data
-            : quote
-        )
-      );
-
-      setComment("");
-    } catch (err) {
-      setError(err.message);
+    } catch (error) {
+      setError(error.message);
     } finally {
-      setCommentSaving(false);
+      setSaving(false);
     }
   };
-
-  const displayQuotes =
-    showDeleted
-      ? deletedQuotes
-      : quotes;
 
   return (
-    <>
-      <div className="space-y-6">
-        {/* HEADER */}
+    <div className="space-y-6">
 
-        <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
-          <div>
-            <p className="text-sm font-semibold text-blue-600">
-              CRM
-            </p>
+      {/* HEADER */}
+      <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
 
-            <h2 className="mt-1 text-2xl font-bold text-slate-900">
-              {showDeleted
-                ? "Deleted Leads"
-                : "Leads"}
-            </h2>
+        <div>
 
-            <p className="mt-2 text-sm text-slate-500">
-              {isSuperAdmin
-                ? "Manage, assign and track every WebQenzo lead."
-                : "Manage the leads assigned to you."}
-            </p>
-          </div>
+          <p className="text-sm font-semibold text-blue-600">
+            CRM
+          </p>
 
-          <div className="flex flex-wrap gap-2">
-            <button
-              type="button"
-              onClick={() => {
-                loadQuotes();
-                if (isSuperAdmin) {
-                  loadDeletedQuotes();
-                }
-              }}
-              className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50"
-            >
-              <RefreshCw
-                size={16}
-              />
-              Refresh
-            </button>
+          <h1 className="mt-1 text-2xl font-bold text-slate-900">
+            My Quotes
+          </h1>
 
-            {isSuperAdmin && (
-              <button
-                type="button"
-                onClick={() => {
-                  setShowDeleted(
-                    (current) =>
-                      !current
-                  );
+          <p className="mt-2 text-sm text-slate-500">
+            Manage website quote requests and follow-ups.
+          </p>
 
-                  if (!showDeleted) {
-                    loadDeletedQuotes();
-                  }
-                }}
-                className="inline-flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 px-4 py-2.5 text-sm font-semibold text-red-700 hover:bg-red-100"
-              >
-                {showDeleted
-                  ? "Active Leads"
-                  : "Deleted Leads"}
-              </button>
-            )}
-
-            {canCreate &&
-              !showDeleted && (
-                <button
-                  type="button"
-                  onClick={openCreate}
-                  className="inline-flex items-center gap-2 rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-600"
-                >
-                  <Plus size={17} />
-                  Add Lead
-                </button>
-              )}
-          </div>
         </div>
 
-        {error && (
-          <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
-            {error}
-          </div>
-        )}
+        <button
+          type="button"
+          onClick={loadQuotes}
+          disabled={loading}
+          className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm hover:bg-slate-50"
+        >
 
-        {/* TABLE */}
+          <RefreshCw
+            size={16}
+            className={
+              loading
+                ? "animate-spin"
+                : ""
+            }
+          />
 
-        <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-          {loading && !showDeleted ? (
-            <div className="p-10 text-center text-sm text-slate-500">
-              Loading leads...
-            </div>
-          ) : displayQuotes.length ===
-            0 ? (
-            <div className="p-12 text-center">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 text-slate-400">
-                <UserRound
-                  size={21}
-                />
-              </div>
+          Refresh
 
-              <p className="mt-4 font-semibold text-slate-800">
-                {showDeleted
-                  ? "No deleted leads"
-                  : "No leads found"}
-              </p>
-            </div>
-          ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-[1250px] text-left">
-                <thead className="border-b border-slate-200 bg-slate-50">
-                  <tr>
-                    <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-slate-500">
-                      Client
-                    </th>
+        </button>
 
-                    <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-slate-500">
-                      Service
-                    </th>
-
-                    <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-slate-500">
-                      Budget
-                    </th>
-
-                    <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-slate-500">
-                      Assigned To
-                    </th>
-
-                    <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-slate-500">
-                      Status
-                    </th>
-
-                    <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-slate-500">
-                      Date
-                    </th>
-
-                    <th className="px-5 py-4 text-right text-xs font-semibold uppercase tracking-wide text-slate-500">
-                      Action
-                    </th>
-                  </tr>
-                </thead>
-
-                <tbody className="divide-y divide-slate-100">
-                  {displayQuotes.map(
-                    (quote) => (
-                      <tr
-                        key={
-                          quote._id
-                        }
-                        className="hover:bg-slate-50/70"
-                      >
-                        <td className="px-5 py-4">
-                          <button
-                            type="button"
-                            onClick={() =>
-                              setSelectedQuote(
-                                quote
-                              )
-                            }
-                            className="text-left"
-                          >
-                            <p className="font-semibold text-slate-900 hover:text-blue-600">
-                              {
-                                quote.fullName
-                              }
-                            </p>
-
-                            <p className="mt-0.5 text-xs text-slate-500">
-                              {
-                                quote.email
-                              }
-                            </p>
-                          </button>
-                        </td>
-
-                        <td className="px-5 py-4 text-sm text-slate-700">
-                          {
-                            quote.service
-                          }
-                        </td>
-
-                        <td className="px-5 py-4 text-sm text-slate-700">
-                          {
-                            quote.budget
-                          }
-                        </td>
-
-                        <td className="px-5 py-4">
-                          {showDeleted ? (
-                            <span className="text-sm text-slate-600">
-                              {quote.assignedToName ||
-                                "Unassigned"}
-                            </span>
-                          ) : isSuperAdmin ? (
-                            <select
-                              value={
-                                quote.assignedTo?._id ||
-                                quote.assignedTo ||
-                                ""
-                              }
-                              onChange={(
-                                e
-                              ) =>
-                                handleAssign(
-                                  quote._id,
-                                  e
-                                    .target
-                                    .value
-                                )
-                              }
-                              className="rounded-lg border border-slate-200 bg-white px-2.5 py-2 text-xs font-medium text-slate-700 outline-none focus:border-blue-500"
-                            >
-                              <option value="">
-                                Unassigned
-                              </option>
-
-                              {team.map(
-                                (
-                                  member
-                                ) => (
-                                  <option
-                                    key={
-                                      member._id
-                                    }
-                                    value={
-                                      member._id
-                                    }
-                                  >
-                                    {
-                                      member.name
-                                    }
-                                  </option>
-                                )
-                              )}
-                            </select>
-                          ) : (
-                            <span className="inline-flex items-center gap-1.5 text-sm text-slate-600">
-                              <UserCheck
-                                size={
-                                  14
-                                }
-                              />
-
-                              {quote.assignedToName ||
-                                "Unassigned"}
-                            </span>
-                          )}
-                        </td>
-
-                        <td className="px-5 py-4">
-                          {showDeleted ? (
-                            <span className="rounded-full bg-red-50 px-3 py-1.5 text-xs font-semibold text-red-600">
-                              Deleted
-                            </span>
-                          ) : (
-                            <select
-                              value={
-                                quote.status
-                              }
-                              disabled={
-                                !canUpdate
-                              }
-                              onChange={(
-                                e
-                              ) =>
-                                handleStatus(
-                                  quote._id,
-                                  e
-                                    .target
-                                    .value
-                                )
-                              }
-                              className={`rounded-full border-0 px-3 py-1.5 text-xs font-semibold outline-none ${
-                                statusClass[
-                                  quote
-                                    .status
-                                ] ||
-                                "bg-slate-100 text-slate-600"
-                              }`}
-                            >
-                              {statusOptions.map(
-                                (
-                                  status
-                                ) => (
-                                  <option
-                                    key={
-                                      status
-                                    }
-                                    value={
-                                      status
-                                    }
-                                  >
-                                    {
-                                      status
-                                    }
-                                  </option>
-                                )
-                              )}
-                            </select>
-                          )}
-                        </td>
-
-                        <td className="px-5 py-4 text-sm text-slate-500">
-                          {quote.createdAt
-                            ? new Date(
-                                quote.createdAt
-                              ).toLocaleString()
-                            : "—"}
-                        </td>
-
-                        <td className="px-5 py-4 text-right">
-                          {showDeleted ? (
-                            <button
-                              type="button"
-                              onClick={() =>
-                                handleRestore(
-                                  quote._id
-                                )
-                              }
-                              className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-50 px-3 py-2 text-xs font-semibold text-emerald-700 hover:bg-emerald-100"
-                            >
-                              <RotateCcw
-                                size={
-                                  15
-                                }
-                              />
-                              Restore
-                            </button>
-                          ) : (
-                            canDelete && (
-                              <button
-                                type="button"
-                                onClick={() =>
-                                  handleDelete(
-                                    quote._id
-                                  )
-                                }
-                                className="rounded-lg p-2 text-slate-400 hover:bg-red-50 hover:text-red-600"
-                                title="Move to deleted leads"
-                              >
-                                <Trash2
-                                  size={
-                                    17
-                                  }
-                                />
-                              </button>
-                            )
-                          )}
-                        </td>
-                      </tr>
-                    )
-                  )}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </div>
       </div>
 
-      {/* CREATE LEAD MODAL */}
-
-      {showCreate && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-slate-950/50 p-4">
-          <div className="my-8 w-full max-w-2xl rounded-2xl bg-white shadow-2xl">
-            <div className="flex items-center justify-between border-b border-slate-200 px-6 py-5">
-              <div>
-                <h3 className="font-bold text-slate-900">
-                  Add New Lead
-                </h3>
-
-                <p className="mt-1 text-xs text-slate-500">
-                  Add a lead manually
-                  to your CRM.
-                </p>
-              </div>
-
-              <button
-                type="button"
-                onClick={closeCreate}
-                className="rounded-lg p-2 text-slate-400 hover:bg-slate-100"
-              >
-                <X size={19} />
-              </button>
-            </div>
-
-            <form
-              onSubmit={handleCreate}
-              className="space-y-5 p-6"
-            >
-              <div className="grid gap-5 sm:grid-cols-2">
-                <Field
-                  label="Full Name"
-                  required
-                  value={
-                    form.fullName
-                  }
-                  onChange={(value) =>
-                    setForm({
-                      ...form,
-                      fullName:
-                        value,
-                    })
-                  }
-                />
-
-                <Field
-                  label="Email"
-                  type="email"
-                  required
-                  value={form.email}
-                  onChange={(value) =>
-                    setForm({
-                      ...form,
-                      email: value,
-                    })
-                  }
-                />
-
-                <Field
-                  label="Phone"
-                  required
-                  value={form.phone}
-                  onChange={(value) =>
-                    setForm({
-                      ...form,
-                      phone: value,
-                    })
-                  }
-                />
-
-                <Field
-                  label="Company"
-                  value={
-                    form.company
-                  }
-                  onChange={(value) =>
-                    setForm({
-                      ...form,
-                      company:
-                        value,
-                    })
-                  }
-                />
-
-                <Field
-                  label="Service"
-                  required
-                  value={
-                    form.service
-                  }
-                  onChange={(value) =>
-                    setForm({
-                      ...form,
-                      service:
-                        value,
-                    })
-                  }
-                />
-
-                <Field
-                  label="Budget"
-                  required
-                  value={
-                    form.budget
-                  }
-                  onChange={(value) =>
-                    setForm({
-                      ...form,
-                      budget:
-                        value,
-                    })
-                  }
-                />
-
-                <Field
-                  label="Timeline"
-                  required
-                  value={
-                    form.timeline
-                  }
-                  onChange={(value) =>
-                    setForm({
-                      ...form,
-                      timeline:
-                        value,
-                    })
-                  }
-                />
-
-                <Field
-                  label="Existing Website"
-                  value={
-                    form.existingWebsite
-                  }
-                  onChange={(value) =>
-                    setForm({
-                      ...form,
-                      existingWebsite:
-                        value,
-                    })
-                  }
-                />
-
-                {isSuperAdmin && (
-                  <div className="sm:col-span-2">
-                    <label className="mb-2 block text-sm font-medium text-slate-700">
-                      Assign To
-                    </label>
-
-                    <select
-                      value={
-                        form.assignedTo
-                      }
-                      onChange={(e) =>
-                        setForm({
-                          ...form,
-                          assignedTo:
-                            e
-                              .target
-                              .value,
-                        })
-                      }
-                      className="h-11 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
-                    >
-                      <option value="">
-                        Unassigned
-                      </option>
-
-                      {team.map(
-                        (member) => (
-                          <option
-                            key={
-                              member._id
-                            }
-                            value={
-                              member._id
-                            }
-                          >
-                            {
-                              member.name
-                            }
-                          </option>
-                        )
-                      )}
-                    </select>
-                  </div>
-                )}
-
-                <div className="sm:col-span-2">
-                  <label className="mb-2 block text-sm font-medium text-slate-700">
-                    Project Description
-                  </label>
-
-                  <textarea
-                    value={
-                      form.projectDescription
-                    }
-                    onChange={(e) =>
-                      setForm({
-                        ...form,
-                        projectDescription:
-                          e.target
-                            .value,
-                      })
-                    }
-                    required
-                    minLength={10}
-                    maxLength={3000}
-                    rows={5}
-                    className="w-full resize-none rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
-                  />
-                </div>
-              </div>
-
-              <div className="flex justify-end gap-3 border-t border-slate-100 pt-5">
-                <button
-                  type="button"
-                  onClick={closeCreate}
-                  className="rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50"
-                >
-                  Cancel
-                </button>
-
-                <button
-                  type="submit"
-                  disabled={saving}
-                  className="rounded-xl bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-600 disabled:opacity-60"
-                >
-                  {saving
-                    ? "Creating..."
-                    : "Create Lead"}
-                </button>
-              </div>
-            </form>
-          </div>
+      {/* ERROR */}
+      {error && (
+        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
+          {error}
         </div>
       )}
 
-      {/* DETAIL MODAL */}
+      {/* FILTER */}
+      <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
 
-      {selectedQuote && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/50 p-4">
-          <div className="max-h-[92vh] w-full max-w-3xl overflow-y-auto rounded-2xl bg-white shadow-2xl">
+        <div className="grid gap-3 lg:grid-cols-[1fr_180px]">
+
+          <div className="relative">
+
+            <Search
+              size={17}
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+            />
+
+            <input
+              value={search}
+              onChange={(e) =>
+                setSearch(e.target.value)
+              }
+              placeholder="Search name / mobile / email / company"
+              className="w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-10 pr-4 text-sm outline-none focus:border-blue-500 focus:bg-white"
+            />
+
+          </div>
+
+          <select
+            value={quality}
+            onChange={(e) =>
+              setQuality(e.target.value)
+            }
+            className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none"
+          >
+
+            <option value="ALL">
+              All Quality
+            </option>
+
+            <option value="HOT">
+              HOT
+            </option>
+
+            <option value="WARM">
+              WARM
+            </option>
+
+            <option value="COLD">
+              COLD
+            </option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+      {/* TABLE */}
+      <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+
+        {loading ? (
+
+          <div className="p-12 text-center text-sm text-slate-500">
+            Loading quotes...
+          </div>
+
+        ) : filteredQuotes.length === 0 ? (
+
+          <div className="p-14 text-center">
+
+            <FileText
+              size={25}
+              className="mx-auto text-slate-300"
+            />
+
+            <p className="mt-4 font-semibold text-slate-800">
+              No quotes found
+            </p>
+
+          </div>
+
+        ) : (
+
+          <div className="overflow-x-auto">
+
+            <table className="w-full min-w-[1250px] text-left">
+
+              <thead className="border-b border-slate-200 bg-slate-50">
+
+                <tr>
+
+                  <th className="px-5 py-4 text-xs font-semibold uppercase text-slate-500">
+                    Customer
+                  </th>
+
+                  <th className="px-5 py-4 text-xs font-semibold uppercase text-slate-500">
+                    Service
+                  </th>
+
+                  <th className="px-5 py-4 text-xs font-semibold uppercase text-slate-500">
+                    Budget
+                  </th>
+
+                  <th className="px-5 py-4 text-xs font-semibold uppercase text-slate-500">
+                    Lead Type
+                  </th>
+
+                  <th className="px-5 py-4 text-xs font-semibold uppercase text-slate-500">
+                    Latest Comment
+                  </th>
+
+                  <th className="px-5 py-4 text-xs font-semibold uppercase text-slate-500">
+                    Quality
+                  </th>
+
+                  <th className="px-5 py-4 text-xs font-semibold uppercase text-slate-500">
+                    Follow-up
+                  </th>
+
+                  {isSuperAdmin && (
+                    <th className="px-5 py-4 text-xs font-semibold uppercase text-slate-500">
+                      Assigned To
+                    </th>
+                  )}
+
+                  <th className="px-5 py-4 text-xs font-semibold uppercase text-slate-500">
+                    Action
+                  </th>
+
+                </tr>
+
+              </thead>
+
+              <tbody className="divide-y divide-slate-100">
+
+                {filteredQuotes.map((quote) => {
+
+                  const comments =
+                    quote.conversationHistory || [];
+
+                  const lastComment =
+                    comments[
+                      comments.length - 1
+                    ];
+
+                  return (
+                    <tr
+                      key={quote._id}
+                      className="hover:bg-slate-50"
+                    >
+
+                      <td className="px-5 py-4">
+
+                        <button
+                          type="button"
+                          onClick={() =>
+                            openQuote(quote)
+                          }
+                          className="text-left"
+                        >
+
+                          <p className="font-semibold text-slate-900 hover:text-blue-600">
+                            {quote.fullName}
+                          </p>
+
+                          <p className="mt-1 text-xs text-slate-500">
+                            {quote.phone}
+                          </p>
+
+                          <p className="text-xs text-slate-400">
+                            {quote.email}
+                          </p>
+
+                          {quote.company && (
+                            <p className="mt-1 text-xs font-medium text-slate-500">
+                              {quote.company}
+                            </p>
+                          )}
+
+                        </button>
+
+                      </td>
+
+                      <td className="px-5 py-4 text-sm text-slate-600">
+                        {quote.service || "—"}
+                      </td>
+
+                      <td className="px-5 py-4 text-sm font-medium text-slate-700">
+                        {quote.budget || "—"}
+                      </td>
+
+                      <td className="px-5 py-4 text-sm text-slate-600">
+                        {quote.leadType || "—"}
+                      </td>
+
+                      <td className="max-w-[260px] px-5 py-4">
+
+                        {lastComment ? (
+                          <>
+                            <p className="truncate text-sm text-slate-700">
+                              {lastComment.message}
+                            </p>
+
+                            <p className="mt-1 text-xs text-slate-400">
+                              {formatDateTime(
+                                lastComment.createdAt
+                              )}
+                            </p>
+                          </>
+                        ) : (
+                          <span className="text-sm text-slate-400">
+                            No comments
+                          </span>
+                        )}
+
+                      </td>
+
+                      <td className="px-5 py-4">
+
+                        <span
+                          className={`font-bold ${
+                            qualityClass[
+                              quote.leadQuality
+                            ] || "text-slate-500"
+                          }`}
+                        >
+                          {quote.leadQuality || "WARM"}
+                        </span>
+
+                      </td>
+
+                      <td className="px-5 py-4 text-sm text-slate-600">
+
+                        {quote.doNotFollowUp ? (
+                          "Don't follow-up"
+                        ) : quote.nextFollowUpDate ? (
+                          <>
+                            <p>
+                              {quote.nextFollowUpDate}
+                            </p>
+
+                            <p className="text-xs text-slate-400">
+                              {quote.nextFollowUpTime ||
+                                "Time not set"}
+                            </p>
+                          </>
+                        ) : (
+                          "Not scheduled"
+                        )}
+
+                      </td>
+
+                      {isSuperAdmin && (
+                        <td className="px-5 py-4">
+
+                          <select
+                            value={
+                              quote.assignedTo?._id || ""
+                            }
+                            onChange={(e) =>
+                              handleAssignment(
+                                quote._id,
+                                e.target.value
+                              )
+                            }
+                            disabled={saving}
+                            className="rounded-lg border border-slate-200 px-3 py-2 text-xs"
+                          >
+
+                            <option value="">
+                              Unassigned
+                            </option>
+
+                            {team.map((member) => (
+                              <option
+                                key={member._id}
+                                value={member._id}
+                              >
+                                {member.name}
+                              </option>
+                            ))}
+
+                          </select>
+
+                        </td>
+                      )}
+
+                      <td className="px-5 py-4">
+
+                        <button
+                          type="button"
+                          onClick={() =>
+                            openQuote(quote)
+                          }
+                          className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-sm font-medium text-slate-700 hover:border-blue-300 hover:text-blue-600"
+                        >
+
+                          <Pencil size={15} />
+
+                          Edit
+
+                        </button>
+
+                      </td>
+
+                    </tr>
+                  );
+                })}
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+        )}
+
+      </div>
+
+      {/* EDIT MODAL */}
+      {selected && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-slate-950/60 p-4">
+
+          <div className="my-8 w-full max-w-3xl rounded-2xl bg-white shadow-2xl">
+
             <div className="flex items-center justify-between border-b border-slate-200 px-6 py-5">
+
               <div>
-                <h3 className="font-bold text-slate-900">
-                  Lead Details
-                </h3>
+
+                <h2 className="text-lg font-bold text-slate-900">
+                  {selected.fullName}
+                </h2>
 
                 <p className="mt-1 text-xs text-slate-500">
-                  {selectedQuote.email}
+                  {selected.phone} ·{" "}
+                  {selected.email}
                 </p>
+
               </div>
 
               <button
                 type="button"
                 onClick={() =>
-                  setSelectedQuote(
-                    null
-                  )
+                  setSelected(null)
                 }
                 className="rounded-lg p-2 text-slate-400 hover:bg-slate-100"
               >
                 <X size={19} />
               </button>
+
             </div>
 
-            <div className="space-y-8 p-6">
-              <div className="grid gap-5 sm:grid-cols-2">
-                <Info
-                  label="Full Name"
-                  value={
-                    selectedQuote.fullName
-                  }
-                />
+            <div className="max-h-[72vh] space-y-5 overflow-y-auto p-6">
 
-                <Info
-                  label="Phone"
-                  value={
-                    selectedQuote.phone
-                  }
-                />
+              {/* ORIGINAL QUOTE DATA */}
+              <div className="grid gap-4 sm:grid-cols-2">
 
                 <Info
                   label="Company"
-                  value={
-                    selectedQuote.company ||
-                    "Not provided"
-                  }
+                  value={selected.company}
                 />
 
                 <Info
                   label="Service"
-                  value={
-                    selectedQuote.service
-                  }
+                  value={selected.service}
                 />
 
                 <Info
                   label="Budget"
-                  value={
-                    selectedQuote.budget
-                  }
+                  value={selected.budget}
                 />
 
                 <Info
                   label="Timeline"
-                  value={
-                    selectedQuote.timeline
-                  }
+                  value={selected.timeline}
                 />
 
                 <Info
-                  label="Assigned To"
-                  value={
-                    selectedQuote.assignedToName ||
-                    "Unassigned"
-                  }
+                  label="Existing Website"
+                  value={selected.existingWebsite}
                 />
 
                 <Info
-                  label="Created"
-                  value={
-                    selectedQuote.createdAt
-                      ? new Date(
-                          selectedQuote.createdAt
-                        ).toLocaleString()
-                      : "—"
-                  }
+                  label="Pipeline Status"
+                  value={selected.status}
                 />
+
               </div>
 
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+              <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+
+                <p className="text-xs font-semibold uppercase text-slate-400">
                   Project Description
                 </p>
 
-                <p className="mt-2 whitespace-pre-wrap text-sm leading-7 text-slate-700">
-                  {
-                    selectedQuote.projectDescription
-                  }
+                <p className="mt-2 whitespace-pre-wrap text-sm leading-6 text-slate-700">
+                  {selected.projectDescription ||
+                    "—"}
                 </p>
+
               </div>
 
-              {/* CONVERSATION */}
+              {/* CRM */}
+              <div className="grid gap-4 sm:grid-cols-2">
 
-              <div className="border-t border-slate-100 pt-6">
-                <div className="flex items-center gap-2">
-                  <MessageSquare
-                    size={18}
-                    className="text-blue-600"
+                <div>
+
+                  <label className="text-xs font-semibold uppercase text-slate-500">
+                    Lead Type
+                  </label>
+
+                  <input
+                    value={crm.leadType}
+                    onChange={(e) =>
+                      updateField(
+                        "leadType",
+                        e.target.value
+                      )
+                    }
+                    placeholder="e.g. Website / SEO / Ecommerce"
+                    className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-blue-500"
                   />
 
-                  <h4 className="font-bold text-slate-900">
-                    Conversation &
-                    Updates
-                  </h4>
                 </div>
 
-                <div className="mt-4 space-y-3">
-                  {(
-                    selectedQuote.conversationHistory ||
-                    []
-                  ).length === 0 ? (
-                    <p className="rounded-xl bg-slate-50 p-4 text-sm text-slate-500">
-                      No conversation
-                      updates yet.
-                    </p>
-                  ) : (
-                    (
-                      selectedQuote.conversationHistory ||
-                      []
-                    ).map(
-                      (item) => (
-                        <div
-                          key={
-                            item._id
-                          }
-                          className="rounded-xl border border-slate-200 bg-slate-50 p-4"
-                        >
-                          <div className="flex flex-col justify-between gap-2 sm:flex-row">
-                            <p className="text-sm font-semibold text-slate-900">
-                              {
-                                item.adminName
-                              }
-                            </p>
+                <div>
 
-                            <p className="text-xs text-slate-400">
-                              {new Date(
-                                item.createdAt
-                              ).toLocaleString()}
-                            </p>
-                          </div>
+                  <label className="text-xs font-semibold uppercase text-slate-500">
+                    Lead Quality
+                  </label>
 
-                          <p className="mt-2 whitespace-pre-wrap text-sm leading-6 text-slate-700">
-                            {
-                              item.message
-                            }
-                          </p>
-                        </div>
+                  <select
+                    value={crm.leadQuality}
+                    onChange={(e) =>
+                      updateField(
+                        "leadQuality",
+                        e.target.value
                       )
-                    )
-                  )}
+                    }
+                    className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm"
+                  >
+
+                    <option value="HOT">
+                      HOT
+                    </option>
+
+                    <option value="WARM">
+                      WARM
+                    </option>
+
+                    <option value="COLD">
+                      COLD
+                    </option>
+
+                  </select>
+
                 </div>
 
-                {canUpdate && (
-                  <div className="mt-4">
-                    <textarea
-                      value={
-                        comment
-                      }
-                      onChange={(
-                        e
-                      ) =>
-                        setComment(
-                          e.target
-                            .value
-                        )
-                      }
-                      placeholder="Add conversation update..."
-                      rows={3}
-                      maxLength={
-                        3000
-                      }
-                      className="w-full resize-none rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
-                    />
+                <div>
 
-                    <div className="mt-2 flex justify-end">
-                      <button
-                        type="button"
-                        onClick={
-                          handleComment
-                        }
-                        disabled={
-                          commentSaving ||
-                          !comment.trim()
-                        }
-                        className="rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-600 disabled:opacity-50"
-                      >
-                        {commentSaving
-                          ? "Adding..."
-                          : "Add Update"}
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </div>
+                  <label className="text-xs font-semibold uppercase text-slate-500">
+                    Lead Result
+                  </label>
 
-              {/* STATUS HISTORY */}
+                  <select
+                    value={crm.leadStatus}
+                    onChange={(e) =>
+                      updateField(
+                        "leadStatus",
+                        e.target.value
+                      )
+                    }
+                    className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm"
+                  >
 
-              <div className="border-t border-slate-100 pt-6">
-                <div className="flex items-center gap-2">
-                  <History
-                    size={18}
-                    className="text-purple-600"
+                    <option value="ACTIVE">
+                      ACTIVE
+                    </option>
+
+                    <option value="SUCCESSFUL">
+                      SUCCESSFUL
+                    </option>
+
+                    <option value="COLD">
+                      COLD
+                    </option>
+
+                  </select>
+
+                </div>
+
+                <div>
+
+                  <label className="text-xs font-semibold uppercase text-slate-500">
+                    Follow-up Date
+                  </label>
+
+                  <input
+                    type="date"
+                    disabled={crm.doNotFollowUp}
+                    value={crm.nextFollowUpDate}
+                    onChange={(e) =>
+                      updateField(
+                        "nextFollowUpDate",
+                        e.target.value
+                      )
+                    }
+                    className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm disabled:bg-slate-100"
                   />
 
-                  <h4 className="font-bold text-slate-900">
-                    Status History
-                  </h4>
                 </div>
 
-                <div className="mt-4 space-y-3">
-                  {(
-                    selectedQuote.statusHistory ||
-                    []
-                  ).length === 0 ? (
-                    <p className="text-sm text-slate-500">
-                      No status history
-                      available.
-                    </p>
-                  ) : (
-                    (
-                      selectedQuote.statusHistory ||
-                      []
-                    ).map(
-                      (item) => (
-                        <HistoryItem
-                          key={
-                            item._id
-                          }
-                          item={
-                            item
-                          }
-                        />
+                <div>
+
+                  <label className="text-xs font-semibold uppercase text-slate-500">
+                    Follow-up Time
+                  </label>
+
+                  <input
+                    type="time"
+                    disabled={crm.doNotFollowUp}
+                    value={crm.nextFollowUpTime}
+                    onChange={(e) =>
+                      updateField(
+                        "nextFollowUpTime",
+                        e.target.value
                       )
-                    )
-                  )}
-                </div>
-              </div>
-
-              {/* ASSIGNMENT HISTORY */}
-
-              <div className="border-t border-slate-100 pt-6">
-                <div className="flex items-center gap-2">
-                  <UserCheck
-                    size={18}
-                    className="text-emerald-600"
+                    }
+                    className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm disabled:bg-slate-100"
                   />
 
-                  <h4 className="font-bold text-slate-900">
-                    Assignment History
-                  </h4>
                 </div>
 
-                <div className="mt-4 space-y-3">
-                  {(
-                    selectedQuote.assignmentHistory ||
-                    []
-                  ).length === 0 ? (
-                    <p className="text-sm text-slate-500">
-                      No assignment
-                      history yet.
-                    </p>
-                  ) : (
-                    (
-                      selectedQuote.assignmentHistory ||
-                      []
-                    ).map(
-                      (item) => (
-                        <HistoryItem
-                          key={
-                            item._id
-                          }
-                          item={
-                            item
-                          }
-                        />
-                      )
-                    )
-                  )}
-                </div>
               </div>
 
-              {/* AUDIT */}
+              <label className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4">
 
-              {isSuperAdmin && (
-                <div className="border-t border-slate-100 pt-6">
-                  <h4 className="font-bold text-slate-900">
-                    Audit Trail
-                  </h4>
+                <input
+                  type="checkbox"
+                  checked={crm.doNotFollowUp}
+                  onChange={(e) =>
+                    updateField(
+                      "doNotFollowUp",
+                      e.target.checked
+                    )
+                  }
+                />
 
-                  <div className="mt-4 space-y-3">
-                    {(
-                      selectedQuote.auditLog ||
-                      []
-                    ).map(
-                      (item) => (
-                        <HistoryItem
-                          key={
-                            item._id
-                          }
-                          item={
-                            item
-                          }
-                        />
+                <span className="text-sm font-medium text-slate-700">
+                  Don't add follow-up
+                </span>
+
+              </label>
+
+              {crm.leadStatus === "COLD" && (
+                <div>
+
+                  <label className="text-xs font-semibold uppercase text-red-500">
+                    Cold Reason *
+                  </label>
+
+                  <textarea
+                    rows={3}
+                    value={crm.coldReason}
+                    onChange={(e) =>
+                      updateField(
+                        "coldReason",
+                        e.target.value
                       )
-                    )}
-                  </div>
+                    }
+                    placeholder="Why is this quote cold?"
+                    className="mt-2 w-full rounded-xl border border-red-200 bg-red-50/30 px-3 py-2.5 text-sm"
+                  />
+
                 </div>
               )}
+
+              <div>
+
+                <label className="text-xs font-semibold uppercase text-slate-500">
+                  New Comment
+                </label>
+
+                <textarea
+                  rows={4}
+                  value={crm.comment}
+                  onChange={(e) =>
+                    updateField(
+                      "comment",
+                      e.target.value
+                    )
+                  }
+                  placeholder="Customer conversation / follow-up note..."
+                  className="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none focus:border-blue-500"
+                />
+
+              </div>
+
+              <button
+                type="button"
+                onClick={() =>
+                  setHistoryOpen(true)
+                }
+                className="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-medium text-slate-700"
+              >
+
+                <Clock3 size={16} />
+
+                View Complete History
+
+              </button>
+
             </div>
+
+            <div className="flex justify-end gap-3 border-t border-slate-200 bg-slate-50 px-6 py-4">
+
+              <button
+                type="button"
+                onClick={() =>
+                  setSelected(null)
+                }
+                className="rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-sm"
+              >
+                Cancel
+              </button>
+
+              <button
+                type="button"
+                onClick={saveQuote}
+                disabled={saving}
+                className="rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-700 disabled:opacity-50"
+              >
+                {saving
+                  ? "Updating..."
+                  : "Update Quote"}
+              </button>
+
+            </div>
+
           </div>
+
         </div>
       )}
-    </>
+
+      {/* HISTORY */}
+      {historyOpen && selected && (
+        <HistoryModal
+          title={selected.fullName}
+          quote={selected}
+          onClose={() =>
+            setHistoryOpen(false)
+          }
+        />
+      )}
+
+    </div>
   );
 };
 
-const Field = ({
-  label,
-  value,
-  onChange,
-  type = "text",
-  required = false,
-}) => (
-  <div>
-    <label className="mb-2 block text-sm font-medium text-slate-700">
-      {label}
-    </label>
+const HistoryModal = ({
+  title,
+  quote,
+  onClose,
+}) => {
+  const history = [
+    ...(quote.conversationHistory || []),
+    ...(quote.statusHistory || []),
+    ...(quote.assignmentHistory || []),
+  ].sort(
+    (a, b) =>
+      new Date(b.createdAt) -
+      new Date(a.createdAt)
+  );
 
-    <input
-      type={type}
-      value={value}
-      onChange={(e) =>
-        onChange(e.target.value)
-      }
-      required={required}
-      className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
-    />
-  </div>
-);
+  return (
+    <div className="fixed inset-0 z-[120] flex items-center justify-center bg-slate-950/70 p-4">
 
-const Info = ({
-  label,
-  value,
-}) => (
+      <div className="w-full max-w-xl rounded-2xl bg-white shadow-2xl">
+
+        <div className="flex items-center justify-between border-b border-slate-200 px-6 py-5">
+
+          <div>
+
+            <p className="text-xs font-semibold uppercase text-blue-600">
+              Complete History
+            </p>
+
+            <h3 className="mt-1 text-lg font-bold text-slate-900">
+              {title}
+            </h3>
+
+          </div>
+
+          <button
+            type="button"
+            onClick={onClose}
+            className="rounded-lg p-2 text-slate-400 hover:bg-slate-100"
+          >
+            <X size={19} />
+          </button>
+
+        </div>
+
+        <div className="max-h-[65vh] overflow-y-auto p-6">
+
+          {history.length === 0 ? (
+
+            <p className="py-8 text-center text-sm text-slate-400">
+              No history yet.
+            </p>
+
+          ) : (
+
+            <div className="space-y-5">
+
+              {history.map((item) => (
+
+                <div
+                  key={
+                    item._id ||
+                    `${item.createdAt}-${item.message}`
+                  }
+                  className="relative border-l border-slate-200 pl-5"
+                >
+
+                  <span className="absolute -left-[5px] top-1 h-2.5 w-2.5 rounded-full bg-blue-500" />
+
+                  <p className="text-xs text-slate-400">
+                    {formatDateTime(
+                      item.createdAt
+                    )}
+                  </p>
+
+                  <p className="mt-1 text-sm font-semibold capitalize">
+                    {item.action?.replaceAll(
+                      "_",
+                      " "
+                    )}
+                  </p>
+
+                  <p className="mt-1 whitespace-pre-wrap text-sm leading-6 text-slate-600">
+                    {item.message}
+                  </p>
+
+                  <p className="mt-1 text-xs text-slate-400">
+                    By {item.adminName || "System"}
+                  </p>
+
+                </div>
+
+              ))}
+
+            </div>
+
+          )}
+
+        </div>
+
+      </div>
+
+    </div>
+  );
+};
+
+const Info = ({ label, value }) => (
   <div>
-    <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+
+    <p className="text-xs font-semibold uppercase text-slate-400">
       {label}
     </p>
 
     <p className="mt-1 break-words text-sm font-medium text-slate-800">
       {value || "—"}
     </p>
-  </div>
-);
 
-const HistoryItem = ({
-  item,
-}) => (
-  <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-    <div className="flex flex-col justify-between gap-2 sm:flex-row">
-      <p className="text-sm font-semibold text-slate-900">
-        {item.adminName}
-      </p>
-
-      <p className="text-xs text-slate-400">
-        {item.createdAt
-          ? new Date(
-              item.createdAt
-            ).toLocaleString()
-          : "—"}
-      </p>
-    </div>
-
-    <p className="mt-1 text-xs font-medium uppercase tracking-wide text-slate-400">
-      {item.action}
-    </p>
-
-    <p className="mt-2 text-sm leading-6 text-slate-700">
-      {item.message}
-    </p>
   </div>
 );
 
