@@ -6,6 +6,13 @@ import {
   Pencil,
   Clock3,
   FileText,
+  UserRound,
+  Building2,
+  Phone,
+  Mail,
+  CalendarClock,
+  MessageSquare,
+  ChevronRight,
 } from "lucide-react";
 
 import {
@@ -28,6 +35,30 @@ const qualityClass = {
   HOT: "text-red-500",
   WARM: "text-amber-500",
   COLD: "text-sky-500",
+};
+
+const qualityConfig = {
+  HOT: {
+    label: "HOT",
+    dot: "bg-red-500",
+    text: "text-red-600",
+    bg: "bg-red-50",
+    border: "border-red-100",
+  },
+  WARM: {
+    label: "WARM",
+    dot: "bg-amber-500",
+    text: "text-amber-600",
+    bg: "bg-amber-50",
+    border: "border-amber-100",
+  },
+  COLD: {
+    label: "COLD",
+    dot: "bg-sky-500",
+    text: "text-sky-600",
+    bg: "bg-sky-50",
+    border: "border-sky-100",
+  },
 };
 
 const AdminQuotes = () => {
@@ -78,8 +109,7 @@ const AdminQuotes = () => {
       setQuotes(response?.data || []);
 
       if (isSuperAdmin) {
-        const teamResponse =
-          await getTeamMembers();
+        const teamResponse = await getTeamMembers();
 
         setTeam(teamResponse?.data || []);
       }
@@ -225,66 +255,91 @@ const AdminQuotes = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 pb-10">
+      {/* =========================================================
+          PAGE HEADER
+      ========================================================== */}
+      <section className="relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-[0_8px_30px_rgba(15,23,42,0.04)]">
+        <div className="pointer-events-none absolute -right-24 -top-32 h-72 w-72 rounded-full bg-blue-50/80 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-32 left-1/3 h-56 w-56 rounded-full bg-slate-100/70 blur-3xl" />
 
-      {/* HEADER */}
-      <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
+        <div className="relative flex flex-col gap-5 p-5 sm:p-6 lg:flex-row lg:items-center lg:justify-between lg:p-7">
+          <div>
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-blue-600">
+              <span className="h-1.5 w-1.5 rounded-full bg-blue-600" />
+              CRM · Quote Pipeline
+            </div>
 
-        <div>
+            <h1 className="text-2xl font-bold tracking-[-0.035em] text-slate-950 sm:text-3xl">
+              My Quotes
+            </h1>
 
-          <p className="text-sm font-semibold text-blue-600">
-            CRM
-          </p>
+            <p className="mt-2 max-w-xl text-sm leading-6 text-slate-500">
+              Manage website quote requests, lead quality,
+              assignments and customer follow-ups from one
+              workspace.
+            </p>
+          </div>
 
-          <h1 className="mt-1 text-2xl font-bold text-slate-900">
-            My Quotes
-          </h1>
-
-          <p className="mt-2 text-sm text-slate-500">
-            Manage website quote requests and follow-ups.
-          </p>
-
+          <button
+            type="button"
+            onClick={loadQuotes}
+            disabled={loading}
+            className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-200 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            <RefreshCw
+              size={16}
+              strokeWidth={1.9}
+              className={loading ? "animate-spin" : ""}
+            />
+            Refresh Quotes
+          </button>
         </div>
+      </section>
 
-        <button
-          type="button"
-          onClick={loadQuotes}
-          disabled={loading}
-          className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm hover:bg-slate-50"
-        >
-
-          <RefreshCw
-            size={16}
-            className={
-              loading
-                ? "animate-spin"
-                : ""
-            }
-          />
-
-          Refresh
-
-        </button>
-
-      </div>
-
-      {/* ERROR */}
+      {/* =========================================================
+          ERROR
+      ========================================================== */}
       {error && (
-        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
-          {error}
+        <div className="flex items-start gap-3 rounded-2xl border border-red-200 bg-red-50 px-4 py-3.5 text-sm text-red-600 shadow-sm">
+          <span className="mt-0.5 h-2 w-2 shrink-0 rounded-full bg-red-500" />
+
+          <span className="font-medium">
+            {error}
+          </span>
+
+          <button
+            type="button"
+            onClick={() => setError("")}
+            className="ml-auto rounded-lg p-1 text-red-400 transition hover:bg-red-100 hover:text-red-600"
+          >
+            <X size={15} />
+          </button>
         </div>
       )}
 
-      {/* FILTER */}
-      <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      {/* =========================================================
+          FILTER / SEARCH BAR
+      ========================================================== */}
+      <section className="overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-[0_6px_25px_rgba(15,23,42,0.04)]">
+        <div className="border-b border-slate-100 px-5 py-4 sm:px-6">
+          <div className="flex flex-col gap-1">
+            <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">
+              Pipeline Controls
+            </p>
 
-        <div className="grid gap-3 lg:grid-cols-[1fr_180px]">
+            <h2 className="text-sm font-bold text-slate-900">
+              Find and filter quotes
+            </h2>
+          </div>
+        </div>
 
+        <div className="grid gap-3 p-4 sm:p-5 lg:grid-cols-[1fr_190px]">
           <div className="relative">
-
             <Search
               size={17}
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+              strokeWidth={1.8}
+              className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"
             />
 
             <input
@@ -292,10 +347,9 @@ const AdminQuotes = () => {
               onChange={(e) =>
                 setSearch(e.target.value)
               }
-              placeholder="Search name / mobile / email / company"
-              className="w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-10 pr-4 text-sm outline-none focus:border-blue-500 focus:bg-white"
+              placeholder="Search name, mobile, email, company or service"
+              className="h-11 w-full rounded-xl border border-slate-200 bg-slate-50/70 pl-10 pr-4 text-sm text-slate-800 outline-none transition-all placeholder:text-slate-400 focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-50"
             />
-
           </div>
 
           <select
@@ -303,9 +357,8 @@ const AdminQuotes = () => {
             onChange={(e) =>
               setQuality(e.target.value)
             }
-            className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none"
+            className="h-11 rounded-xl border border-slate-200 bg-slate-50/70 px-4 text-sm font-medium text-slate-700 outline-none transition-all focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-50"
           >
-
             <option value="ALL">
               All Quality
             </option>
@@ -321,93 +374,115 @@ const AdminQuotes = () => {
             <option value="COLD">
               COLD
             </option>
-
           </select>
-
         </div>
 
-      </div>
+        <div className="flex flex-wrap items-center gap-2 border-t border-slate-100 px-5 py-3 sm:px-6">
+          <span className="text-xs font-medium text-slate-400">
+            Showing
+          </span>
 
-      {/* TABLE */}
-      <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-bold text-slate-700">
+            {filteredQuotes.length}
+          </span>
 
+          <span className="text-xs text-slate-400">
+            of {quotes.length} quotes
+          </span>
+
+          {quality !== "ALL" && (
+            <span className="ml-auto rounded-full border border-blue-100 bg-blue-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-blue-600">
+              {quality} filter
+            </span>
+          )}
+        </div>
+      </section>
+
+      {/* =========================================================
+          QUOTES TABLE
+      ========================================================== */}
+      <section className="overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-[0_6px_25px_rgba(15,23,42,0.04)]">
         {loading ? (
+          <div className="p-12">
+            <div className="mx-auto max-w-sm text-center">
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
+                <RefreshCw
+                  size={21}
+                  className="animate-spin"
+                />
+              </div>
 
-          <div className="p-12 text-center text-sm text-slate-500">
-            Loading quotes...
+              <p className="mt-4 text-sm font-semibold text-slate-800">
+                Loading quotes
+              </p>
+
+              <p className="mt-1 text-xs text-slate-400">
+                Fetching your latest CRM enquiries...
+              </p>
+            </div>
           </div>
-
         ) : filteredQuotes.length === 0 ? (
+          <div className="p-14 text-center sm:p-20">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-100 text-slate-400">
+              <FileText size={25} />
+            </div>
 
-          <div className="p-14 text-center">
-
-            <FileText
-              size={25}
-              className="mx-auto text-slate-300"
-            />
-
-            <p className="mt-4 font-semibold text-slate-800">
+            <p className="mt-5 font-bold text-slate-900">
               No quotes found
             </p>
 
+            <p className="mx-auto mt-1 max-w-sm text-sm leading-6 text-slate-400">
+              Try changing your search term or quality
+              filter to find another quote.
+            </p>
           </div>
-
         ) : (
-
           <div className="overflow-x-auto">
-
-            <table className="w-full min-w-[1250px] text-left">
-
-              <thead className="border-b border-slate-200 bg-slate-50">
-
+            <table className="w-full min-w-[1400px] text-left">
+              <thead className="border-b border-slate-200 bg-slate-50/80">
                 <tr>
-
-                  <th className="px-5 py-4 text-xs font-semibold uppercase text-slate-500">
+                  <th className="px-5 py-4 text-[10px] font-bold uppercase tracking-[0.1em] text-slate-400">
                     Customer
                   </th>
 
-                  <th className="px-5 py-4 text-xs font-semibold uppercase text-slate-500">
+                  <th className="px-5 py-4 text-[10px] font-bold uppercase tracking-[0.1em] text-slate-400">
                     Service
                   </th>
 
-                  <th className="px-5 py-4 text-xs font-semibold uppercase text-slate-500">
+                  <th className="px-5 py-4 text-[10px] font-bold uppercase tracking-[0.1em] text-slate-400">
                     Budget
                   </th>
 
-                  <th className="px-5 py-4 text-xs font-semibold uppercase text-slate-500">
+                  <th className="px-5 py-4 text-[10px] font-bold uppercase tracking-[0.1em] text-slate-400">
                     Lead Type
                   </th>
 
-                  <th className="px-5 py-4 text-xs font-semibold uppercase text-slate-500">
+                  <th className="px-5 py-4 text-[10px] font-bold uppercase tracking-[0.1em] text-slate-400">
                     Latest Comment
                   </th>
 
-                  <th className="px-5 py-4 text-xs font-semibold uppercase text-slate-500">
+                  <th className="px-5 py-4 text-[10px] font-bold uppercase tracking-[0.1em] text-slate-400">
                     Quality
                   </th>
 
-                  <th className="px-5 py-4 text-xs font-semibold uppercase text-slate-500">
+                  <th className="px-5 py-4 text-[10px] font-bold uppercase tracking-[0.1em] text-slate-400">
                     Follow-up
                   </th>
 
                   {isSuperAdmin && (
-                    <th className="px-5 py-4 text-xs font-semibold uppercase text-slate-500">
+                    <th className="px-5 py-4 text-[10px] font-bold uppercase tracking-[0.1em] text-slate-400">
                       Assigned To
                     </th>
                   )}
 
-                  <th className="px-5 py-4 text-xs font-semibold uppercase text-slate-500">
+                  <th className="px-5 py-4 text-[10px] font-bold uppercase tracking-[0.1em] text-slate-400">
                     Action
                   </th>
-
                 </tr>
-
               </thead>
 
               <tbody className="divide-y divide-slate-100">
-
                 {filteredQuotes.map((quote) => {
-
                   const comments =
                     quote.conversationHistory || [];
 
@@ -416,14 +491,25 @@ const AdminQuotes = () => {
                       comments.length - 1
                     ];
 
+                  const currentQuality =
+                    qualityConfig[
+                      quote.leadQuality
+                    ] || {
+                      label:
+                        quote.leadQuality || "WARM",
+                      dot: "bg-slate-400",
+                      text: "text-slate-600",
+                      bg: "bg-slate-50",
+                      border: "border-slate-200",
+                    };
+
                   return (
                     <tr
                       key={quote._id}
-                      className="hover:bg-slate-50"
+                      className="group transition-colors duration-150 hover:bg-slate-50/70"
                     >
-
+                      {/* CUSTOMER */}
                       <td className="px-5 py-4">
-
                         <button
                           type="button"
                           onClick={() =>
@@ -431,104 +517,133 @@ const AdminQuotes = () => {
                           }
                           className="text-left"
                         >
+                          <div className="flex items-start gap-3">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500 transition-colors group-hover:bg-blue-50 group-hover:text-blue-600">
+                              <UserRound size={17} />
+                            </div>
 
-                          <p className="font-semibold text-slate-900 hover:text-blue-600">
-                            {quote.fullName}
-                          </p>
+                            <div className="min-w-0">
+                              <p className="max-w-[190px] truncate text-sm font-bold text-slate-900 transition-colors group-hover:text-blue-600">
+                                {quote.fullName}
+                              </p>
 
-                          <p className="mt-1 text-xs text-slate-500">
-                            {quote.phone}
-                          </p>
+                              <p className="mt-1 flex items-center gap-1 text-xs text-slate-500">
+                                <Phone size={11} />
+                                {quote.phone}
+                              </p>
 
-                          <p className="text-xs text-slate-400">
-                            {quote.email}
-                          </p>
+                              <p className="mt-0.5 flex max-w-[190px] items-center gap-1 truncate text-xs text-slate-400">
+                                <Mail size={11} />
+                                {quote.email}
+                              </p>
 
-                          {quote.company && (
-                            <p className="mt-1 text-xs font-medium text-slate-500">
-                              {quote.company}
-                            </p>
-                          )}
-
+                              {quote.company && (
+                                <p className="mt-1.5 flex max-w-[190px] items-center gap-1 truncate text-[11px] font-semibold text-slate-500">
+                                  <Building2 size={11} />
+                                  {quote.company}
+                                </p>
+                              )}
+                            </div>
+                          </div>
                         </button>
-
                       </td>
 
-                      <td className="px-5 py-4 text-sm text-slate-600">
-                        {quote.service || "—"}
+                      {/* SERVICE */}
+                      <td className="px-5 py-4">
+                        <span className="inline-flex max-w-[150px] rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-xs font-semibold text-slate-700">
+                          {quote.service || "—"}
+                        </span>
                       </td>
 
-                      <td className="px-5 py-4 text-sm font-medium text-slate-700">
-                        {quote.budget || "—"}
+                      {/* BUDGET */}
+                      <td className="px-5 py-4">
+                        <p className="text-sm font-bold text-slate-800">
+                          {quote.budget || "—"}
+                        </p>
                       </td>
 
-                      <td className="px-5 py-4 text-sm text-slate-600">
-                        {quote.leadType || "—"}
+                      {/* LEAD TYPE */}
+                      <td className="px-5 py-4">
+                        <p className="max-w-[130px] text-sm font-medium text-slate-600">
+                          {quote.leadType || "—"}
+                        </p>
                       </td>
 
-                      <td className="max-w-[260px] px-5 py-4">
-
+                      {/* LATEST COMMENT */}
+                      <td className="max-w-[280px] px-5 py-4">
                         {lastComment ? (
-                          <>
-                            <p className="truncate text-sm text-slate-700">
-                              {lastComment.message}
-                            </p>
+                          <div className="max-w-[260px]">
+                            <div className="flex items-start gap-2">
+                              <MessageSquare
+                                size={14}
+                                className="mt-0.5 shrink-0 text-slate-400"
+                              />
 
-                            <p className="mt-1 text-xs text-slate-400">
+                              <p className="truncate text-sm font-medium text-slate-700">
+                                {lastComment.message}
+                              </p>
+                            </div>
+
+                            <p className="mt-1.5 pl-5 text-[11px] text-slate-400">
                               {formatDateTime(
                                 lastComment.createdAt
                               )}
                             </p>
-                          </>
+                          </div>
                         ) : (
-                          <span className="text-sm text-slate-400">
-                            No comments
+                          <span className="text-xs font-medium text-slate-400">
+                            No comments yet
                           </span>
                         )}
-
                       </td>
 
+                      {/* QUALITY */}
                       <td className="px-5 py-4">
-
                         <span
-                          className={`font-bold ${
-                            qualityClass[
-                              quote.leadQuality
-                            ] || "text-slate-500"
-                          }`}
+                          className={`inline-flex items-center gap-2 rounded-full border px-2.5 py-1.5 text-[10px] font-bold tracking-wide ${currentQuality.bg} ${currentQuality.border} ${currentQuality.text}`}
                         >
-                          {quote.leadQuality || "WARM"}
+                          <span
+                            className={`h-1.5 w-1.5 rounded-full ${currentQuality.dot}`}
+                          />
+                          {currentQuality.label}
                         </span>
-
                       </td>
 
-                      <td className="px-5 py-4 text-sm text-slate-600">
-
+                      {/* FOLLOW-UP */}
+                      <td className="px-5 py-4">
                         {quote.doNotFollowUp ? (
-                          "Don't follow-up"
+                          <span className="inline-flex rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs font-semibold text-slate-500">
+                            Don't follow-up
+                          </span>
                         ) : quote.nextFollowUpDate ? (
-                          <>
-                            <p>
+                          <div>
+                            <div className="flex items-center gap-1.5 text-sm font-semibold text-slate-700">
+                              <CalendarClock
+                                size={14}
+                                className="text-blue-500"
+                              />
                               {quote.nextFollowUpDate}
-                            </p>
+                            </div>
 
-                            <p className="text-xs text-slate-400">
+                            <p className="mt-1 pl-5 text-[11px] text-slate-400">
                               {quote.nextFollowUpTime ||
                                 "Time not set"}
                             </p>
-                          </>
+                          </div>
                         ) : (
-                          "Not scheduled"
+                          <span className="text-xs font-medium text-slate-400">
+                            Not scheduled
+                          </span>
                         )}
-
                       </td>
 
+                      {/* ASSIGNED TO */}
                       {isSuperAdmin && (
                         <td className="px-5 py-4">
-
                           <select
                             value={
-                              quote.assignedTo?._id || ""
+                              quote.assignedTo?._id ||
+                              ""
                             }
                             onChange={(e) =>
                               handleAssignment(
@@ -537,9 +652,8 @@ const AdminQuotes = () => {
                               )
                             }
                             disabled={saving}
-                            className="rounded-lg border border-slate-200 px-3 py-2 text-xs"
+                            className="h-9 min-w-[145px] rounded-lg border border-slate-200 bg-white px-3 text-xs font-medium text-slate-700 outline-none transition focus:border-blue-400 focus:ring-4 focus:ring-blue-50 disabled:cursor-not-allowed disabled:opacity-60"
                           >
-
                             <option value="">
                               Unassigned
                             </option>
@@ -552,283 +666,357 @@ const AdminQuotes = () => {
                                 {member.name}
                               </option>
                             ))}
-
                           </select>
-
                         </td>
                       )}
 
+                      {/* ACTION */}
                       <td className="px-5 py-4">
-
                         <button
                           type="button"
                           onClick={() =>
                             openQuote(quote)
                           }
-                          className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-sm font-medium text-slate-700 hover:border-blue-300 hover:text-blue-600"
+                          className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-700 shadow-sm transition-all duration-200 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-600 active:scale-[0.98]"
                         >
-
-                          <Pencil size={15} />
-
+                          <Pencil size={14} />
                           Edit
-
+                          <ChevronRight size={13} />
                         </button>
-
                       </td>
-
                     </tr>
                   );
                 })}
-
               </tbody>
-
             </table>
-
           </div>
-
         )}
+      </section>
 
-      </div>
-
-      {/* EDIT MODAL */}
+      {/* =========================================================
+          EDIT MODAL
+      ========================================================== */}
       {selected && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-slate-950/60 p-4">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-slate-950/70 p-3 backdrop-blur-sm sm:p-5">
+          <div className="my-5 w-full max-w-4xl overflow-hidden rounded-3xl border border-white/10 bg-white shadow-[0_30px_100px_rgba(15,23,42,0.28)]">
+            {/* MODAL HEADER */}
+            <div className="relative overflow-hidden border-b border-slate-100 bg-white px-5 py-5 sm:px-7">
+              <div className="pointer-events-none absolute -right-16 -top-20 h-40 w-40 rounded-full bg-blue-50 blur-3xl" />
 
-          <div className="my-8 w-full max-w-3xl rounded-2xl bg-white shadow-2xl">
+              <div className="relative flex items-start justify-between gap-4">
+                <div className="flex min-w-0 items-start gap-3">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                    <UserRound size={19} />
+                  </div>
 
-            <div className="flex items-center justify-between border-b border-slate-200 px-6 py-5">
+                  <div className="min-w-0">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h2 className="truncate text-lg font-bold text-slate-950 sm:text-xl">
+                        {selected.fullName}
+                      </h2>
 
-              <div>
+                      <span
+                        className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[9px] font-bold uppercase tracking-wide ${
+                          (
+                            qualityConfig[
+                              crm.leadQuality
+                            ] || qualityConfig.WARM
+                          ).bg
+                        } ${
+                          (
+                            qualityConfig[
+                              crm.leadQuality
+                            ] || qualityConfig.WARM
+                          ).border
+                        } ${
+                          (
+                            qualityConfig[
+                              crm.leadQuality
+                            ] || qualityConfig.WARM
+                          ).text
+                        }`}
+                      >
+                        <span
+                          className={`h-1.5 w-1.5 rounded-full ${
+                            (
+                              qualityConfig[
+                                crm.leadQuality
+                              ] || qualityConfig.WARM
+                            ).dot
+                          }`}
+                        />
+                        {crm.leadQuality}
+                      </span>
+                    </div>
 
-                <h2 className="text-lg font-bold text-slate-900">
-                  {selected.fullName}
-                </h2>
+                    <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-400">
+                      <span className="flex items-center gap-1">
+                        <Phone size={11} />
+                        {selected.phone}
+                      </span>
 
-                <p className="mt-1 text-xs text-slate-500">
-                  {selected.phone} ·{" "}
-                  {selected.email}
-                </p>
+                      <span className="hidden text-slate-200 sm:inline">
+                        •
+                      </span>
 
+                      <span className="flex items-center gap-1">
+                        <Mail size={11} />
+                        {selected.email}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    setSelected(null)
+                  }
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
+                >
+                  <X size={19} />
+                </button>
               </div>
-
-              <button
-                type="button"
-                onClick={() =>
-                  setSelected(null)
-                }
-                className="rounded-lg p-2 text-slate-400 hover:bg-slate-100"
-              >
-                <X size={19} />
-              </button>
-
             </div>
 
-            <div className="max-h-[72vh] space-y-5 overflow-y-auto p-6">
-
+            {/* MODAL BODY */}
+            <div className="max-h-[72vh] space-y-6 overflow-y-auto bg-slate-50/60 p-4 sm:p-6">
               {/* ORIGINAL QUOTE DATA */}
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div>
+                <div className="mb-3 flex items-center gap-2">
+                  <div className="h-1.5 w-1.5 rounded-full bg-blue-500" />
 
-                <Info
-                  label="Company"
-                  value={selected.company}
-                />
+                  <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">
+                    Quote Information
+                  </p>
+                </div>
 
-                <Info
-                  label="Service"
-                  value={selected.service}
-                />
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                  <Info
+                    label="Company"
+                    value={selected.company}
+                  />
 
-                <Info
-                  label="Budget"
-                  value={selected.budget}
-                />
+                  <Info
+                    label="Service"
+                    value={selected.service}
+                  />
 
-                <Info
-                  label="Timeline"
-                  value={selected.timeline}
-                />
+                  <Info
+                    label="Budget"
+                    value={selected.budget}
+                  />
 
-                <Info
-                  label="Existing Website"
-                  value={selected.existingWebsite}
-                />
+                  <Info
+                    label="Timeline"
+                    value={selected.timeline}
+                  />
 
-                <Info
-                  label="Pipeline Status"
-                  value={selected.status}
-                />
+                  <Info
+                    label="Existing Website"
+                    value={
+                      selected.existingWebsite
+                    }
+                  />
 
+                  <Info
+                    label="Pipeline Status"
+                    value={selected.status}
+                  />
+                </div>
               </div>
 
-              <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+              {/* PROJECT DESCRIPTION */}
+              <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                <div className="border-b border-slate-100 px-4 py-3">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-slate-400">
+                    Project Description
+                  </p>
+                </div>
 
-                <p className="text-xs font-semibold uppercase text-slate-400">
-                  Project Description
-                </p>
-
-                <p className="mt-2 whitespace-pre-wrap text-sm leading-6 text-slate-700">
-                  {selected.projectDescription ||
-                    "—"}
-                </p>
-
+                <div className="p-4">
+                  <p className="whitespace-pre-wrap text-sm leading-7 text-slate-600">
+                    {selected.projectDescription ||
+                      "—"}
+                  </p>
+                </div>
               </div>
 
               {/* CRM */}
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                <div className="border-b border-slate-100 px-4 py-4">
+                  <div className="flex items-center gap-2">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
+                      <FileText size={15} />
+                    </div>
 
-                <div>
+                    <div>
+                      <p className="text-sm font-bold text-slate-900">
+                        CRM Management
+                      </p>
 
-                  <label className="text-xs font-semibold uppercase text-slate-500">
-                    Lead Type
-                  </label>
-
-                  <input
-                    value={crm.leadType}
-                    onChange={(e) =>
-                      updateField(
-                        "leadType",
-                        e.target.value
-                      )
-                    }
-                    placeholder="e.g. Website / SEO / Ecommerce"
-                    className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-blue-500"
-                  />
-
+                      <p className="text-[11px] text-slate-400">
+                        Update lead status and follow-up
+                        information.
+                      </p>
+                    </div>
+                  </div>
                 </div>
 
-                <div>
+                <div className="grid gap-4 p-4 sm:grid-cols-2">
+                  {/* LEAD TYPE */}
+                  <div>
+                    <label className="text-[10px] font-bold uppercase tracking-[0.1em] text-slate-500">
+                      Lead Type
+                    </label>
 
-                  <label className="text-xs font-semibold uppercase text-slate-500">
-                    Lead Quality
-                  </label>
+                    <input
+                      value={crm.leadType}
+                      onChange={(e) =>
+                        updateField(
+                          "leadType",
+                          e.target.value
+                        )
+                      }
+                      placeholder="e.g. Website / SEO / Ecommerce"
+                      className="mt-2 h-11 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 text-sm text-slate-800 outline-none transition focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-50"
+                    />
+                  </div>
 
-                  <select
-                    value={crm.leadQuality}
-                    onChange={(e) =>
-                      updateField(
-                        "leadQuality",
-                        e.target.value
-                      )
-                    }
-                    className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm"
-                  >
+                  {/* LEAD QUALITY */}
+                  <div>
+                    <label className="text-[10px] font-bold uppercase tracking-[0.1em] text-slate-500">
+                      Lead Quality
+                    </label>
 
-                    <option value="HOT">
-                      HOT
-                    </option>
+                    <select
+                      value={crm.leadQuality}
+                      onChange={(e) =>
+                        updateField(
+                          "leadQuality",
+                          e.target.value
+                        )
+                      }
+                      className="mt-2 h-11 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 text-sm font-medium text-slate-700 outline-none transition focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-50"
+                    >
+                      <option value="HOT">
+                        HOT
+                      </option>
 
-                    <option value="WARM">
-                      WARM
-                    </option>
+                      <option value="WARM">
+                        WARM
+                      </option>
 
-                    <option value="COLD">
-                      COLD
-                    </option>
+                      <option value="COLD">
+                        COLD
+                      </option>
+                    </select>
+                  </div>
 
-                  </select>
+                  {/* LEAD RESULT */}
+                  <div>
+                    <label className="text-[10px] font-bold uppercase tracking-[0.1em] text-slate-500">
+                      Lead Result
+                    </label>
 
+                    <select
+                      value={crm.leadStatus}
+                      onChange={(e) =>
+                        updateField(
+                          "leadStatus",
+                          e.target.value
+                        )
+                      }
+                      className="mt-2 h-11 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 text-sm font-medium text-slate-700 outline-none transition focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-50"
+                    >
+                      <option value="ACTIVE">
+                        ACTIVE
+                      </option>
+
+                      <option value="SUCCESSFUL">
+                        SUCCESSFUL
+                      </option>
+
+                      <option value="COLD">
+                        COLD
+                      </option>
+                    </select>
+                  </div>
+
+                  {/* FOLLOW-UP DATE */}
+                  <div>
+                    <label className="text-[10px] font-bold uppercase tracking-[0.1em] text-slate-500">
+                      Follow-up Date
+                    </label>
+
+                    <input
+                      type="date"
+                      disabled={crm.doNotFollowUp}
+                      value={crm.nextFollowUpDate}
+                      onChange={(e) =>
+                        updateField(
+                          "nextFollowUpDate",
+                          e.target.value
+                        )
+                      }
+                      className="mt-2 h-11 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-50 disabled:bg-slate-100 disabled:text-slate-400"
+                    />
+                  </div>
+
+                  {/* FOLLOW-UP TIME */}
+                  <div>
+                    <label className="text-[10px] font-bold uppercase tracking-[0.1em] text-slate-500">
+                      Follow-up Time
+                    </label>
+
+                    <input
+                      type="time"
+                      disabled={crm.doNotFollowUp}
+                      value={crm.nextFollowUpTime}
+                      onChange={(e) =>
+                        updateField(
+                          "nextFollowUpTime",
+                          e.target.value
+                        )
+                      }
+                      className="mt-2 h-11 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-50 disabled:bg-slate-100 disabled:text-slate-400"
+                    />
+                  </div>
                 </div>
 
-                <div>
+                {/* DO NOT FOLLOW UP */}
+                <div className="px-4 pb-4">
+                  <label className="flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 bg-slate-50/70 p-4 transition hover:border-slate-300 hover:bg-slate-50">
+                    <input
+                      type="checkbox"
+                      checked={crm.doNotFollowUp}
+                      onChange={(e) =>
+                        updateField(
+                          "doNotFollowUp",
+                          e.target.checked
+                        )
+                      }
+                      className="h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                    />
 
-                  <label className="text-xs font-semibold uppercase text-slate-500">
-                    Lead Result
+                    <div>
+                      <span className="block text-sm font-semibold text-slate-700">
+                        Don't add follow-up
+                      </span>
+
+                      <span className="mt-0.5 block text-[11px] text-slate-400">
+                        Disable scheduled follow-up for
+                        this lead.
+                      </span>
+                    </div>
                   </label>
-
-                  <select
-                    value={crm.leadStatus}
-                    onChange={(e) =>
-                      updateField(
-                        "leadStatus",
-                        e.target.value
-                      )
-                    }
-                    className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm"
-                  >
-
-                    <option value="ACTIVE">
-                      ACTIVE
-                    </option>
-
-                    <option value="SUCCESSFUL">
-                      SUCCESSFUL
-                    </option>
-
-                    <option value="COLD">
-                      COLD
-                    </option>
-
-                  </select>
-
                 </div>
-
-                <div>
-
-                  <label className="text-xs font-semibold uppercase text-slate-500">
-                    Follow-up Date
-                  </label>
-
-                  <input
-                    type="date"
-                    disabled={crm.doNotFollowUp}
-                    value={crm.nextFollowUpDate}
-                    onChange={(e) =>
-                      updateField(
-                        "nextFollowUpDate",
-                        e.target.value
-                      )
-                    }
-                    className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm disabled:bg-slate-100"
-                  />
-
-                </div>
-
-                <div>
-
-                  <label className="text-xs font-semibold uppercase text-slate-500">
-                    Follow-up Time
-                  </label>
-
-                  <input
-                    type="time"
-                    disabled={crm.doNotFollowUp}
-                    value={crm.nextFollowUpTime}
-                    onChange={(e) =>
-                      updateField(
-                        "nextFollowUpTime",
-                        e.target.value
-                      )
-                    }
-                    className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm disabled:bg-slate-100"
-                  />
-
-                </div>
-
               </div>
 
-              <label className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4">
-
-                <input
-                  type="checkbox"
-                  checked={crm.doNotFollowUp}
-                  onChange={(e) =>
-                    updateField(
-                      "doNotFollowUp",
-                      e.target.checked
-                    )
-                  }
-                />
-
-                <span className="text-sm font-medium text-slate-700">
-                  Don't add follow-up
-                </span>
-
-              </label>
-
+              {/* COLD REASON */}
               {crm.leadStatus === "COLD" && (
-                <div>
-
-                  <label className="text-xs font-semibold uppercase text-red-500">
+                <div className="rounded-2xl border border-red-100 bg-red-50/50 p-4">
+                  <label className="text-[10px] font-bold uppercase tracking-[0.1em] text-red-500">
                     Cold Reason *
                   </label>
 
@@ -842,57 +1030,64 @@ const AdminQuotes = () => {
                       )
                     }
                     placeholder="Why is this quote cold?"
-                    className="mt-2 w-full rounded-xl border border-red-200 bg-red-50/30 px-3 py-2.5 text-sm"
+                    className="mt-2 w-full rounded-xl border border-red-200 bg-white px-3.5 py-3 text-sm text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-red-400 focus:ring-4 focus:ring-red-50"
                   />
-
                 </div>
               )}
 
-              <div>
+              {/* NEW COMMENT */}
+              <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                <div className="border-b border-slate-100 px-4 py-3">
+                  <div className="flex items-center gap-2">
+                    <MessageSquare
+                      size={15}
+                      className="text-blue-500"
+                    />
 
-                <label className="text-xs font-semibold uppercase text-slate-500">
-                  New Comment
-                </label>
+                    <label className="text-[10px] font-bold uppercase tracking-[0.1em] text-slate-500">
+                      New Comment
+                    </label>
+                  </div>
+                </div>
 
-                <textarea
-                  rows={4}
-                  value={crm.comment}
-                  onChange={(e) =>
-                    updateField(
-                      "comment",
-                      e.target.value
-                    )
-                  }
-                  placeholder="Customer conversation / follow-up note..."
-                  className="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none focus:border-blue-500"
-                />
-
+                <div className="p-4">
+                  <textarea
+                    rows={4}
+                    value={crm.comment}
+                    onChange={(e) =>
+                      updateField(
+                        "comment",
+                        e.target.value
+                      )
+                    }
+                    placeholder="Customer conversation / follow-up note..."
+                    className="w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-3 text-sm leading-6 text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-50"
+                  />
+                </div>
               </div>
 
+              {/* HISTORY BUTTON */}
               <button
                 type="button"
                 onClick={() =>
                   setHistoryOpen(true)
                 }
-                className="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-medium text-slate-700"
+                className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-200 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-600 active:scale-[0.98]"
               >
-
                 <Clock3 size={16} />
-
                 View Complete History
-
+                <ChevronRight size={14} />
               </button>
-
             </div>
 
-            <div className="flex justify-end gap-3 border-t border-slate-200 bg-slate-50 px-6 py-4">
-
+            {/* MODAL FOOTER */}
+            <div className="flex flex-col-reverse gap-2 border-t border-slate-100 bg-white px-4 py-4 sm:flex-row sm:justify-end sm:gap-3 sm:px-6">
               <button
                 type="button"
                 onClick={() =>
                   setSelected(null)
                 }
-                className="rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-sm"
+                className="h-11 rounded-xl border border-slate-200 bg-white px-5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
               >
                 Cancel
               </button>
@@ -901,21 +1096,27 @@ const AdminQuotes = () => {
                 type="button"
                 onClick={saveQuote}
                 disabled={saving}
-                className="rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-700 disabled:opacity-50"
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 text-sm font-bold text-white shadow-sm transition-all duration-200 hover:bg-blue-700 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
               >
+                {saving && (
+                  <RefreshCw
+                    size={15}
+                    className="animate-spin"
+                  />
+                )}
+
                 {saving
                   ? "Updating..."
                   : "Update Quote"}
               </button>
-
             </div>
-
           </div>
-
         </div>
       )}
 
-      {/* HISTORY */}
+      {/* =========================================================
+          HISTORY
+      ========================================================== */}
       {historyOpen && selected && (
         <HistoryModal
           title={selected.fullName}
@@ -925,10 +1126,13 @@ const AdminQuotes = () => {
           }
         />
       )}
-
     </div>
   );
 };
+
+/* ===============================================================
+   HISTORY MODAL
+=============================================================== */
 
 const HistoryModal = ({
   title,
@@ -946,106 +1150,119 @@ const HistoryModal = ({
   );
 
   return (
-    <div className="fixed inset-0 z-[120] flex items-center justify-center bg-slate-950/70 p-4">
+    <div className="fixed inset-0 z-[120] flex items-center justify-center bg-slate-950/75 p-3 backdrop-blur-sm sm:p-5">
+      <div className="w-full max-w-2xl overflow-hidden rounded-3xl border border-white/10 bg-white shadow-[0_30px_100px_rgba(15,23,42,0.3)]">
+        {/* HEADER */}
+        <div className="relative overflow-hidden border-b border-slate-100 px-5 py-5 sm:px-6">
+          <div className="pointer-events-none absolute -right-16 -top-20 h-40 w-40 rounded-full bg-blue-50 blur-3xl" />
 
-      <div className="w-full max-w-xl rounded-2xl bg-white shadow-2xl">
+          <div className="relative flex items-center justify-between gap-4">
+            <div className="flex min-w-0 items-center gap-3">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                <Clock3 size={18} />
+              </div>
 
-        <div className="flex items-center justify-between border-b border-slate-200 px-6 py-5">
+              <div className="min-w-0">
+                <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-blue-600">
+                  Complete History
+                </p>
 
-          <div>
+                <h3 className="mt-1 truncate text-lg font-bold text-slate-950">
+                  {title}
+                </h3>
+              </div>
+            </div>
 
-            <p className="text-xs font-semibold uppercase text-blue-600">
-              Complete History
-            </p>
-
-            <h3 className="mt-1 text-lg font-bold text-slate-900">
-              {title}
-            </h3>
-
+            <button
+              type="button"
+              onClick={onClose}
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
+            >
+              <X size={19} />
+            </button>
           </div>
-
-          <button
-            type="button"
-            onClick={onClose}
-            className="rounded-lg p-2 text-slate-400 hover:bg-slate-100"
-          >
-            <X size={19} />
-          </button>
-
         </div>
 
-        <div className="max-h-[65vh] overflow-y-auto p-6">
-
+        {/* HISTORY */}
+        <div className="max-h-[65vh] overflow-y-auto bg-slate-50/50 p-5 sm:p-6">
           {history.length === 0 ? (
+            <div className="py-10 text-center">
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-slate-400">
+                <Clock3 size={20} />
+              </div>
 
-            <p className="py-8 text-center text-sm text-slate-400">
-              No history yet.
-            </p>
+              <p className="mt-4 text-sm font-semibold text-slate-700">
+                No history yet.
+              </p>
 
+              <p className="mt-1 text-xs text-slate-400">
+                Activity will appear here as the quote
+                is updated.
+              </p>
+            </div>
           ) : (
-
-            <div className="space-y-5">
+            <div className="relative space-y-5">
+              <div className="absolute bottom-4 left-[7px] top-4 w-px bg-slate-200" />
 
               {history.map((item) => (
-
                 <div
                   key={
                     item._id ||
                     `${item.createdAt}-${item.message}`
                   }
-                  className="relative border-l border-slate-200 pl-5"
+                  className="relative pl-7"
                 >
+                  <span className="absolute left-0 top-1.5 flex h-4 w-4 items-center justify-center rounded-full border-4 border-slate-50 bg-blue-500" />
 
-                  <span className="absolute -left-[5px] top-1 h-2.5 w-2.5 rounded-full bg-blue-500" />
+                  <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                    <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                      <div>
+                        <p className="text-sm font-bold capitalize text-slate-800">
+                          {item.action?.replaceAll(
+                            "_",
+                            " "
+                          )}
+                        </p>
 
-                  <p className="text-xs text-slate-400">
-                    {formatDateTime(
-                      item.createdAt
-                    )}
-                  </p>
+                        <p className="mt-0.5 text-[11px] text-slate-400">
+                          By {item.adminName || "System"}
+                        </p>
+                      </div>
 
-                  <p className="mt-1 text-sm font-semibold capitalize">
-                    {item.action?.replaceAll(
-                      "_",
-                      " "
-                    )}
-                  </p>
+                      <span className="shrink-0 rounded-lg bg-slate-50 px-2.5 py-1 text-[10px] font-medium text-slate-400">
+                        {formatDateTime(
+                          item.createdAt
+                        )}
+                      </span>
+                    </div>
 
-                  <p className="mt-1 whitespace-pre-wrap text-sm leading-6 text-slate-600">
-                    {item.message}
-                  </p>
-
-                  <p className="mt-1 text-xs text-slate-400">
-                    By {item.adminName || "System"}
-                  </p>
-
+                    <p className="mt-3 whitespace-pre-wrap text-sm leading-6 text-slate-600">
+                      {item.message}
+                    </p>
+                  </div>
                 </div>
-
               ))}
-
             </div>
-
           )}
-
         </div>
-
       </div>
-
     </div>
   );
 };
 
-const Info = ({ label, value }) => (
-  <div>
+/* ===============================================================
+   INFO ITEM
+=============================================================== */
 
-    <p className="text-xs font-semibold uppercase text-slate-400">
+const Info = ({ label, value }) => (
+  <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5">
+    <p className="text-[9px] font-bold uppercase tracking-[0.1em] text-slate-400">
       {label}
     </p>
 
-    <p className="mt-1 break-words text-sm font-medium text-slate-800">
+    <p className="mt-1.5 break-words text-sm font-semibold text-slate-800">
       {value || "—"}
     </p>
-
   </div>
 );
 

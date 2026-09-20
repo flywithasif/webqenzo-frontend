@@ -5,6 +5,14 @@ import {
   Trash2,
   UserRound,
   X,
+  Phone,
+  Mail,
+  LockKeyhole,
+  Eye,
+  EyeOff,
+  ShieldCheck,
+  CheckCircle2,
+  UserCog,
 } from "lucide-react";
 
 import {
@@ -48,6 +56,7 @@ const PERMISSIONS = [
 const emptyForm = {
   name: "",
   email: "",
+  mobile: "",
   password: "",
   permissions: [
     "quotes:read",
@@ -57,25 +66,20 @@ const emptyForm = {
 };
 
 const AdminTeam = () => {
-  const [members, setMembers] =
-    useState([]);
+  const [members, setMembers] = useState([]);
 
-  const [loading, setLoading] =
-    useState(true);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  const [error, setError] =
-    useState("");
-
-  const [showModal, setShowModal] =
-    useState(false);
-
+  const [showModal, setShowModal] = useState(false);
   const [editingMember, setEditingMember] =
     useState(null);
 
-  const [form, setForm] =
-    useState(emptyForm);
+  const [form, setForm] = useState(emptyForm);
 
-  const [saving, setSaving] =
+  const [saving, setSaving] = useState(false);
+
+  const [showPassword, setShowPassword] =
     useState(false);
 
   const loadTeam = async () => {
@@ -102,6 +106,7 @@ const AdminTeam = () => {
 
   const openCreate = () => {
     setEditingMember(null);
+
     setForm({
       ...emptyForm,
       permissions: [
@@ -110,6 +115,8 @@ const AdminTeam = () => {
         "quotes:update",
       ],
     });
+
+    setShowPassword(false);
     setError("");
     setShowModal(true);
   };
@@ -120,11 +127,13 @@ const AdminTeam = () => {
     setForm({
       name: member.name || "",
       email: member.email || "",
+      mobile: member.mobile || "",
       password: "",
       permissions:
         member.permissions || [],
     });
 
+    setShowPassword(false);
     setError("");
     setShowModal(true);
   };
@@ -135,6 +144,7 @@ const AdminTeam = () => {
     setShowModal(false);
     setEditingMember(null);
     setForm(emptyForm);
+    setShowPassword(false);
   };
 
   const togglePermission = (
@@ -161,9 +171,7 @@ const AdminTeam = () => {
     });
   };
 
-  const handleSubmit = async (
-    e
-  ) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     setError("");
@@ -175,6 +183,8 @@ const AdminTeam = () => {
           editingMember._id,
           {
             name: form.name,
+            mobile: form.mobile,
+            password: form.password,
             permissions:
               form.permissions,
           }
@@ -183,6 +193,7 @@ const AdminTeam = () => {
         await createTeamMember({
           name: form.name,
           email: form.email,
+          mobile: form.mobile,
           password: form.password,
           permissions:
             form.permissions,
@@ -236,9 +247,7 @@ const AdminTeam = () => {
       if (!confirmed) return;
 
       try {
-        await deleteTeamMember(
-          id
-        );
+        await deleteTeamMember(id);
 
         setMembers((current) =>
           current.filter(
@@ -253,92 +262,140 @@ const AdminTeam = () => {
 
   return (
     <>
-      <div className="space-y-6">
-        <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
-          <div>
-            <p className="text-sm font-semibold text-blue-600">
-              Access Control
-            </p>
+      <div className="space-y-6 pb-10">
+        {/* =====================================================
+            PAGE HEADER
+        ====================================================== */}
+        <section className="relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-[0_8px_30px_rgba(15,23,42,0.04)]">
+          <div className="pointer-events-none absolute -right-24 -top-32 h-72 w-72 rounded-full bg-blue-50/80 blur-3xl" />
 
-            <h2 className="mt-1 text-2xl font-bold text-slate-900">
-              Team Members
-            </h2>
+          <div className="relative flex flex-col gap-5 p-5 sm:p-6 lg:flex-row lg:items-center lg:justify-between lg:p-7">
+            <div>
+              <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-blue-600">
+                <span className="h-1.5 w-1.5 rounded-full bg-blue-600" />
+                Access Control
+              </div>
 
-            <p className="mt-2 text-sm text-slate-500">
-              Create team accounts and
-              control their permissions.
-            </p>
+              <h1 className="text-2xl font-bold tracking-[-0.035em] text-slate-950 sm:text-3xl">
+                Team Members
+              </h1>
+
+              <p className="mt-2 max-w-xl text-sm leading-6 text-slate-500">
+                Manage team accounts, access permissions,
+                contact details and account security.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-2 sm:flex-row">
+              <button
+                type="button"
+                onClick={loadTeam}
+                disabled={loading}
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-700 shadow-sm transition-all hover:border-slate-300 hover:bg-slate-50 disabled:opacity-60"
+              >
+                <RefreshCw
+                  size={16}
+                  className={
+                    loading
+                      ? "animate-spin"
+                      : ""
+                  }
+                />
+                Refresh
+              </button>
+
+              <button
+                type="button"
+                onClick={openCreate}
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-bold text-white shadow-sm transition-all hover:bg-blue-600 active:scale-[0.98]"
+              >
+                <Plus size={17} />
+                Add Member
+              </button>
+            </div>
           </div>
+        </section>
 
-          <div className="flex gap-2">
-            <button
-              type="button"
-              onClick={loadTeam}
-              className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50"
-            >
-              <RefreshCw
-                size={16}
-              />
-              Refresh
-            </button>
-
-            <button
-              type="button"
-              onClick={openCreate}
-              className="inline-flex items-center gap-2 rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-600"
-            >
-              <Plus size={17} />
-              Add Member
-            </button>
-          </div>
-        </div>
-
+        {/* =====================================================
+            ERROR
+        ====================================================== */}
         {error && !showModal && (
-          <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
-            {error}
+          <div className="flex items-start gap-3 rounded-2xl border border-red-200 bg-red-50 px-4 py-3.5 text-sm text-red-600">
+            <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-red-500" />
+
+            <span className="font-medium">
+              {error}
+            </span>
           </div>
         )}
 
-        <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+        {/* =====================================================
+            TEAM TABLE
+        ====================================================== */}
+        <section className="overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-[0_6px_25px_rgba(15,23,42,0.04)]">
           {loading ? (
-            <div className="p-10 text-center text-sm text-slate-500">
-              Loading team...
-            </div>
-          ) : members.length === 0 ? (
             <div className="p-12 text-center">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 text-slate-400">
-                <UserRound
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
+                <RefreshCw
                   size={21}
+                  className="animate-spin"
                 />
               </div>
 
-              <p className="mt-4 font-semibold text-slate-800">
+              <p className="mt-4 text-sm font-semibold text-slate-800">
+                Loading team
+              </p>
+
+              <p className="mt-1 text-xs text-slate-400">
+                Fetching team accounts...
+              </p>
+            </div>
+          ) : members.length === 0 ? (
+            <div className="p-14 text-center">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-100 text-slate-400">
+                <UserRound size={24} />
+              </div>
+
+              <p className="mt-5 font-bold text-slate-900">
                 No team members
               </p>
 
-              <p className="mt-1 text-sm text-slate-500">
-                Create your first team
-                account.
+              <p className="mx-auto mt-1 max-w-sm text-sm leading-6 text-slate-400">
+                Create your first team account to
+                start managing CRM access.
               </p>
+
+              <button
+                type="button"
+                onClick={openCreate}
+                className="mt-5 inline-flex items-center gap-2 rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-blue-600"
+              >
+                <Plus size={16} />
+                Add Member
+              </button>
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[950px] text-left">
-                <thead className="border-b border-slate-200 bg-slate-50">
+              <table className="w-full min-w-[1050px] text-left">
+                <thead className="border-b border-slate-200 bg-slate-50/80">
                   <tr>
-                    <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-slate-500">
+                    <th className="px-5 py-4 text-[10px] font-bold uppercase tracking-[0.1em] text-slate-400">
                       Member
                     </th>
 
-                    <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-slate-500">
+                    <th className="px-5 py-4 text-[10px] font-bold uppercase tracking-[0.1em] text-slate-400">
+                      Contact
+                    </th>
+
+                    <th className="px-5 py-4 text-[10px] font-bold uppercase tracking-[0.1em] text-slate-400">
                       Permissions
                     </th>
 
-                    <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-slate-500">
+                    <th className="px-5 py-4 text-[10px] font-bold uppercase tracking-[0.1em] text-slate-400">
                       Status
                     </th>
 
-                    <th className="px-5 py-4 text-right text-xs font-semibold uppercase tracking-wide text-slate-500">
+                    <th className="px-5 py-4 text-right text-[10px] font-bold uppercase tracking-[0.1em] text-slate-400">
                       Actions
                     </th>
                   </tr>
@@ -348,33 +405,49 @@ const AdminTeam = () => {
                   {members.map(
                     (member) => (
                       <tr
-                        key={
-                          member._id
-                        }
-                        className="hover:bg-slate-50/70"
+                        key={member._id}
+                        className="group transition-colors hover:bg-slate-50/70"
                       >
+                        {/* MEMBER */}
                         <td className="px-5 py-4">
                           <div className="flex items-center gap-3">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-sm font-semibold text-white">
+                            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-slate-950 text-sm font-bold text-white shadow-sm">
                               {member.name
-                                ?.charAt(
-                                  0
-                                )
+                                ?.charAt(0)
                                 ?.toUpperCase()}
                             </div>
 
-                            <div>
-                              <p className="font-semibold text-slate-900">
+                            <div className="min-w-0">
+                              <p className="truncate text-sm font-bold text-slate-900">
                                 {member.name}
                               </p>
 
-                              <p className="text-xs text-slate-500">
+                              <p className="mt-1 flex items-center gap-1 text-xs text-slate-400">
+                                <Mail size={11} />
                                 {member.email}
                               </p>
                             </div>
                           </div>
                         </td>
 
+                        {/* CONTACT */}
+                        <td className="px-5 py-4">
+                          {member.mobile ? (
+                            <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 text-slate-500">
+                                <Phone size={14} />
+                              </span>
+
+                              {member.mobile}
+                            </div>
+                          ) : (
+                            <span className="text-xs text-slate-400">
+                              No mobile added
+                            </span>
+                          )}
+                        </td>
+
+                        {/* PERMISSIONS */}
                         <td className="px-5 py-4">
                           <div className="flex max-w-lg flex-wrap gap-1.5">
                             {(
@@ -388,17 +461,16 @@ const AdminTeam = () => {
                                   key={
                                     permission
                                   }
-                                  className="rounded-full bg-blue-50 px-2.5 py-1 text-[11px] font-medium text-blue-700"
+                                  className="rounded-full border border-blue-100 bg-blue-50 px-2.5 py-1 text-[10px] font-bold text-blue-700"
                                 >
-                                  {
-                                    permission
-                                  }
+                                  {permission}
                                 </span>
                               )
                             )}
                           </div>
                         </td>
 
+                        {/* STATUS */}
                         <td className="px-5 py-4">
                           <button
                             type="button"
@@ -407,20 +479,29 @@ const AdminTeam = () => {
                                 member
                               )
                             }
-                            className={`rounded-full px-3 py-1.5 text-xs font-semibold ${
+                            className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[10px] font-bold uppercase tracking-wide transition ${
                               member.isActive
-                                ? "bg-emerald-50 text-emerald-700"
-                                : "bg-red-50 text-red-600"
+                                ? "border-emerald-100 bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
+                                : "border-red-100 bg-red-50 text-red-600 hover:bg-red-100"
                             }`}
                           >
+                            <span
+                              className={`h-1.5 w-1.5 rounded-full ${
+                                member.isActive
+                                  ? "bg-emerald-500"
+                                  : "bg-red-500"
+                              }`}
+                            />
+
                             {member.isActive
                               ? "Active"
                               : "Disabled"}
                           </button>
                         </td>
 
+                        {/* ACTIONS */}
                         <td className="px-5 py-4 text-right">
-                          <div className="flex justify-end gap-1">
+                          <div className="flex justify-end gap-1.5">
                             <button
                               type="button"
                               onClick={() =>
@@ -428,9 +509,12 @@ const AdminTeam = () => {
                                   member
                                 )
                               }
-                              className="rounded-lg px-3 py-2 text-xs font-semibold text-blue-600 hover:bg-blue-50"
+                              className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-700 shadow-sm transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-600"
                             >
-                              Edit
+                              <UserCog
+                                size={14}
+                              />
+                              Manage
                             </button>
 
                             <button
@@ -440,10 +524,10 @@ const AdminTeam = () => {
                                   member._id
                                 )
                               }
-                              className="rounded-lg p-2 text-slate-400 hover:bg-red-50 hover:text-red-600"
+                              className="flex h-9 w-9 items-center justify-center rounded-xl text-slate-400 transition hover:bg-red-50 hover:text-red-600"
                             >
                               <Trash2
-                                size={17}
+                                size={16}
                               />
                             </button>
                           </div>
@@ -455,168 +539,364 @@ const AdminTeam = () => {
               </table>
             </div>
           )}
-        </div>
+        </section>
       </div>
 
+      {/* =====================================================
+          CREATE / EDIT MODAL
+      ====================================================== */}
       {showModal && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-slate-950/50 p-4">
-          <div className="my-8 w-full max-w-xl rounded-2xl bg-white shadow-2xl">
-            <div className="flex items-center justify-between border-b border-slate-200 px-6 py-5">
-              <div>
-                <h3 className="font-bold text-slate-900">
-                  {editingMember
-                    ? "Edit Team Member"
-                    : "Create Team Member"}
-                </h3>
+        <div className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-slate-950/70 p-3 backdrop-blur-sm sm:p-5">
+          <div className="my-5 w-full max-w-2xl overflow-hidden rounded-3xl border border-white/10 bg-white shadow-[0_30px_100px_rgba(15,23,42,0.3)]">
+            {/* MODAL HEADER */}
+            <div className="relative overflow-hidden border-b border-slate-100 px-5 py-5 sm:px-7">
+              <div className="pointer-events-none absolute -right-20 -top-24 h-48 w-48 rounded-full bg-blue-50 blur-3xl" />
 
-                <p className="mt-1 text-xs text-slate-500">
-                  Configure account
-                  access.
-                </p>
-              </div>
-
-              <button
-                type="button"
-                onClick={closeModal}
-                className="rounded-lg p-2 text-slate-400 hover:bg-slate-100"
-              >
-                <X size={19} />
-              </button>
-            </div>
-
-            <form
-              onSubmit={
-                handleSubmit
-              }
-              className="space-y-5 p-6"
-            >
-              {error && (
-                <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
-                  {error}
-                </div>
-              )}
-
-              <div>
-                <label className="mb-2 block text-sm font-medium text-slate-700">
-                  Name
-                </label>
-
-                <input
-                  type="text"
-                  value={form.name}
-                  onChange={(e) =>
-                    setForm({
-                      ...form,
-                      name: e.target
-                        .value,
-                    })
-                  }
-                  required
-                  minLength={2}
-                  maxLength={100}
-                  className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
-                />
-              </div>
-
-              {!editingMember && (
-                <>
-                  <div>
-                    <label className="mb-2 block text-sm font-medium text-slate-700">
-                      Email
-                    </label>
-
-                    <input
-                      type="email"
-                      value={form.email}
-                      onChange={(e) =>
-                        setForm({
-                          ...form,
-                          email: e.target
-                            .value,
-                        })
-                      }
-                      required
-                      className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
-                    />
+              <div className="relative flex items-start justify-between gap-4">
+                <div className="flex items-start gap-3">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                    {editingMember ? (
+                      <UserCog size={19} />
+                    ) : (
+                      <Plus size={19} />
+                    )}
                   </div>
 
                   <div>
-                    <label className="mb-2 block text-sm font-medium text-slate-700">
-                      Temporary Password
+                    <h3 className="text-lg font-bold text-slate-950">
+                      {editingMember
+                        ? "Manage Team Member"
+                        : "Create Team Member"}
+                    </h3>
+
+                    <p className="mt-1 text-xs leading-5 text-slate-400">
+                      {editingMember
+                        ? "Update profile, mobile number, password and access."
+                        : "Create a secure CRM account with controlled access."}
+                    </p>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={closeModal}
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
+                >
+                  <X size={19} />
+                </button>
+              </div>
+            </div>
+
+            <form
+              onSubmit={handleSubmit}
+              className="max-h-[75vh] space-y-6 overflow-y-auto bg-slate-50/60 p-4 sm:p-6"
+            >
+              {error && (
+                <div className="flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
+                  <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-red-500" />
+
+                  <span className="font-medium">
+                    {error}
+                  </span>
+                </div>
+              )}
+
+              {/* =================================================
+                  BASIC PROFILE
+              ================================================== */}
+              <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                <div className="border-b border-slate-100 px-4 py-4">
+                  <div className="flex items-center gap-2">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
+                      <UserRound size={15} />
+                    </div>
+
+                    <div>
+                      <p className="text-sm font-bold text-slate-900">
+                        Profile Details
+                      </p>
+
+                      <p className="text-[11px] text-slate-400">
+                        Basic team member information.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid gap-4 p-4 sm:grid-cols-2">
+                  {/* NAME */}
+                  <div className="sm:col-span-2">
+                    <label className="text-[10px] font-bold uppercase tracking-[0.1em] text-slate-500">
+                      Full Name
                     </label>
 
+                    <div className="relative mt-2">
+                      <UserRound
+                        size={15}
+                        className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"
+                      />
+
+                      <input
+                        type="text"
+                        value={form.name}
+                        onChange={(e) =>
+                          setForm({
+                            ...form,
+                            name: e.target.value,
+                          })
+                        }
+                        required
+                        minLength={2}
+                        maxLength={100}
+                        placeholder="Enter team member name"
+                        className="h-11 w-full rounded-xl border border-slate-200 bg-slate-50/70 pl-10 pr-4 text-sm text-slate-800 outline-none transition focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-50"
+                      />
+                    </div>
+                  </div>
+
+                  {/* EMAIL */}
+                  <div>
+                    <label className="text-[10px] font-bold uppercase tracking-[0.1em] text-slate-500">
+                      Email Address
+                    </label>
+
+                    <div className="relative mt-2">
+                      <Mail
+                        size={15}
+                        className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"
+                      />
+
+                      <input
+                        type="email"
+                        value={form.email}
+                        onChange={(e) =>
+                          setForm({
+                            ...form,
+                            email: e.target.value,
+                          })
+                        }
+                        required={!editingMember}
+                        disabled={Boolean(
+                          editingMember
+                        )}
+                        placeholder="name@company.com"
+                        className="h-11 w-full rounded-xl border border-slate-200 bg-slate-50/70 pl-10 pr-4 text-sm text-slate-800 outline-none transition focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-50 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400"
+                      />
+                    </div>
+
+                    {editingMember && (
+                      <p className="mt-1.5 text-[10px] text-slate-400">
+                        Email is kept unchanged for this account.
+                      </p>
+                    )}
+                  </div>
+
+                  {/* MOBILE */}
+                  <div>
+                    <label className="text-[10px] font-bold uppercase tracking-[0.1em] text-slate-500">
+                      Mobile Number
+                    </label>
+
+                    <div className="relative mt-2">
+                      <Phone
+                        size={15}
+                        className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"
+                      />
+
+                      <input
+                        type="tel"
+                        value={form.mobile}
+                        onChange={(e) =>
+                          setForm({
+                            ...form,
+                            mobile:
+                              e.target.value,
+                          })
+                        }
+                        placeholder="+91 98765 43210"
+                        maxLength={20}
+                        className="h-11 w-full rounded-xl border border-slate-200 bg-slate-50/70 pl-10 pr-4 text-sm text-slate-800 outline-none transition focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-50"
+                      />
+                    </div>
+
+                    <p className="mt-1.5 text-[10px] text-slate-400">
+                      Can be updated later from this panel.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              {/* =================================================
+                  SECURITY
+              ================================================== */}
+              <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                <div className="border-b border-slate-100 px-4 py-4">
+                  <div className="flex items-center gap-2">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-50 text-amber-600">
+                      <LockKeyhole size={15} />
+                    </div>
+
+                    <div>
+                      <p className="text-sm font-bold text-slate-900">
+                        Account Security
+                      </p>
+
+                      <p className="text-[11px] text-slate-400">
+                        Set or update the account password.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-4">
+                  <label className="text-[10px] font-bold uppercase tracking-[0.1em] text-slate-500">
+                    {editingMember
+                      ? "New Password"
+                      : "Password"}
+                  </label>
+
+                  <div className="relative mt-2">
+                    <LockKeyhole
+                      size={15}
+                      className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"
+                    />
+
                     <input
-                      type="password"
-                      value={
-                        form.password
+                      type={
+                        showPassword
+                          ? "text"
+                          : "password"
                       }
+                      value={form.password}
                       onChange={(e) =>
                         setForm({
                           ...form,
                           password:
-                            e.target
-                              .value,
+                            e.target.value,
                         })
                       }
-                      required
+                      required={!editingMember}
                       minLength={8}
-                      className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
+                      placeholder={
+                        editingMember
+                          ? "Leave blank to keep current password"
+                          : "Minimum 8 characters"
+                      }
+                      className="h-11 w-full rounded-xl border border-slate-200 bg-slate-50/70 pl-10 pr-11 text-sm text-slate-800 outline-none transition focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-50"
                     />
+
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setShowPassword(
+                          (current) =>
+                            !current
+                        )
+                      }
+                      className="absolute right-2 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-lg text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
+                    >
+                      {showPassword ? (
+                        <EyeOff size={16} />
+                      ) : (
+                        <Eye size={16} />
+                      )}
+                    </button>
                   </div>
-                </>
-              )}
 
-              <div>
-                <p className="text-sm font-semibold text-slate-800">
-                  Permissions
-                </p>
+                  <div className="mt-3 flex items-start gap-2 rounded-xl border border-amber-100 bg-amber-50/60 p-3">
+                    <ShieldCheck
+                      size={15}
+                      className="mt-0.5 shrink-0 text-amber-600"
+                    />
 
-                <p className="mt-1 text-xs text-slate-500">
-                  Choose exactly what
-                  this member can
-                  manage.
-                </p>
+                    <p className="text-[11px] leading-5 text-amber-700">
+                      {editingMember
+                        ? "Enter a password only when you want to change the member's current password."
+                        : "Use a strong password with at least 8 characters."}
+                    </p>
+                  </div>
+                </div>
+              </section>
 
-                <div className="mt-3 grid gap-2 sm:grid-cols-2">
+              {/* =================================================
+                  PERMISSIONS
+              ================================================== */}
+              <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                <div className="border-b border-slate-100 px-4 py-4">
+                  <div className="flex items-center gap-2">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
+                      <ShieldCheck size={15} />
+                    </div>
+
+                    <div>
+                      <p className="text-sm font-bold text-slate-900">
+                        Permissions
+                      </p>
+
+                      <p className="text-[11px] text-slate-400">
+                        Choose exactly what this member can manage.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid gap-2 p-4 sm:grid-cols-2">
                   {PERMISSIONS.map(
-                    (permission) => (
-                      <label
-                        key={
+                    (permission) => {
+                      const checked =
+                        form.permissions.includes(
                           permission.key
-                        }
-                        className="flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 p-3 hover:bg-slate-50"
-                      >
-                        <input
-                          type="checkbox"
-                          checked={form.permissions.includes(
-                            permission.key
-                          )}
-                          onChange={() =>
-                            togglePermission(
-                              permission.key
-                            )
-                          }
-                          className="h-4 w-4 rounded border-slate-300 text-blue-600"
-                        />
+                        );
 
-                        <span className="text-sm text-slate-700">
-                          {
-                            permission.label
+                      return (
+                        <label
+                          key={
+                            permission.key
                           }
-                        </span>
-                      </label>
-                    )
+                          className={`flex cursor-pointer items-center gap-3 rounded-xl border p-3.5 transition ${
+                            checked
+                              ? "border-blue-200 bg-blue-50/50"
+                              : "border-slate-200 bg-white hover:bg-slate-50"
+                          }`}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={checked}
+                            onChange={() =>
+                              togglePermission(
+                                permission.key
+                              )
+                            }
+                            className="h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                          />
+
+                          <span className="flex-1 text-sm font-medium text-slate-700">
+                            {
+                              permission.label
+                            }
+                          </span>
+
+                          {checked && (
+                            <CheckCircle2
+                              size={15}
+                              className="text-blue-600"
+                            />
+                          )}
+                        </label>
+                      );
+                    }
                   )}
                 </div>
-              </div>
+              </section>
 
-              <div className="flex justify-end gap-3 border-t border-slate-100 pt-5">
+              {/* =================================================
+                  FOOTER
+              ================================================== */}
+              <div className="flex flex-col-reverse gap-2 border-t border-slate-200 pt-5 sm:flex-row sm:justify-end sm:gap-3">
                 <button
                   type="button"
-                  onClick={
-                    closeModal
-                  }
-                  className="rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+                  onClick={closeModal}
+                  className="h-11 rounded-xl border border-slate-200 bg-white px-5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
                 >
                   Cancel
                 </button>
@@ -624,8 +904,15 @@ const AdminTeam = () => {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="rounded-xl bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-600 disabled:opacity-60"
+                  className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-slate-950 px-5 text-sm font-bold text-white shadow-sm transition hover:bg-blue-600 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
                 >
+                  {saving && (
+                    <RefreshCw
+                      size={15}
+                      className="animate-spin"
+                    />
+                  )}
+
                   {saving
                     ? "Saving..."
                     : editingMember
