@@ -1,4 +1,9 @@
-import { ArrowUpRight, Mail, MapPin } from "lucide-react";
+import {
+  ArrowUpRight,
+  Mail,
+  MapPin,
+  Phone,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 
 const footerLinks = {
@@ -23,6 +28,43 @@ const footerLinks = {
   ],
 };
 
+const instagramUrl =
+  "https://www.instagram.com/webqenzo?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==";
+
+const InstagramIcon = ({ size = 16 }) => (
+  <svg
+    viewBox="0 0 24 24"
+    width={size}
+    height={size}
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    aria-hidden="true"
+  >
+    <rect
+      x="3"
+      y="3"
+      width="18"
+      height="18"
+      rx="5"
+    />
+
+    <circle
+      cx="12"
+      cy="12"
+      r="4"
+    />
+
+    <circle
+      cx="17.5"
+      cy="6.5"
+      r="0.8"
+      fill="currentColor"
+      stroke="none"
+    />
+  </svg>
+);
+
 function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -32,86 +74,64 @@ function Footer() {
       aria-label="WebQenzo website footer"
     >
       {/* =====================================================
-          BACKGROUND ATMOSPHERE
+          BACKGROUND GLOW
       ====================================================== */}
 
       <div
-        className="pointer-events-none absolute inset-0"
+        className="pointer-events-none absolute inset-0 overflow-hidden"
         aria-hidden="true"
       >
-        <div className="absolute -left-32 top-20 h-80 w-80 rounded-full bg-blue-600/[0.07] blur-[120px]" />
+        <div className="absolute -left-40 top-20 h-80 w-80 rounded-full bg-blue-600/[0.045] blur-[130px]" />
 
-        <div className="absolute right-[-120px] top-[-80px] h-96 w-96 rounded-full bg-cyan-400/[0.05] blur-[140px]" />
+        <div className="absolute right-[-160px] top-[-100px] h-[400px] w-[400px] rounded-full bg-cyan-400/[0.03] blur-[150px]" />
 
-        <div className="absolute bottom-[-180px] left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-blue-500/[0.04] blur-[140px]" />
-
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.035),transparent_38%)]" />
+        <div className="absolute bottom-[-120px] left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-blue-500/[0.025] blur-[130px]" />
       </div>
 
-      {/* =====================================================
-          TOP BORDER
-      ====================================================== */}
+      {/* TOP LINE */}
 
       <div
-        className="relative h-px w-full bg-gradient-to-r from-transparent via-blue-500/30 to-transparent"
+        className="relative h-px bg-gradient-to-r from-transparent via-blue-500/25 to-transparent"
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto max-w-[1500px] px-5 sm:px-8 lg:px-12">
-
+      <div className="relative mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-10 xl:px-12">
         {/* ===================================================
-            CTA SECTION
+            CTA
         ==================================================== */}
 
-        <section
-          className="relative py-20 sm:py-24 lg:py-28"
-          aria-labelledby="footer-cta-heading"
-        >
-          <div className="relative overflow-hidden rounded-[32px] border border-white/[0.08] bg-white/[0.025] px-6 py-12 shadow-[0_30px_100px_rgba(0,0,0,.3)] sm:px-10 lg:px-16 lg:py-16">
-
-            {/* CTA glow */}
+        <section className="py-10 sm:py-12 lg:py-14">
+          <div className="relative overflow-hidden rounded-[28px] border border-white/[0.075] bg-[#0A0D12]">
+            {/* GRID */}
 
             <div
-              className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-blue-500/[0.09] blur-[100px]"
-              aria-hidden="true"
-            />
-
-            <div
-              className="pointer-events-none absolute -bottom-24 left-1/3 h-60 w-60 rounded-full bg-cyan-400/[0.06] blur-[100px]"
-              aria-hidden="true"
-            />
-
-            {/* Subtle grid */}
-
-            <div
-              className="pointer-events-none absolute inset-0 opacity-[0.035]"
+              className="pointer-events-none absolute inset-0 opacity-[0.022]"
               aria-hidden="true"
               style={{
                 backgroundImage:
-                  "linear-gradient(rgba(255,255,255,.7) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.7) 1px, transparent 1px)",
-                backgroundSize: "40px 40px",
+                  "linear-gradient(rgba(255,255,255,.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.8) 1px, transparent 1px)",
+                backgroundSize: "42px 42px",
               }}
             />
 
-            <div className="relative grid items-center gap-10 lg:grid-cols-[1fr_auto]">
+            {/* GLOW */}
 
+            <div
+              className="pointer-events-none absolute right-[-100px] top-[-120px] h-80 w-80 rounded-full bg-blue-500/[0.06] blur-[110px]"
+              aria-hidden="true"
+            />
+
+            <div className="relative flex flex-col gap-7 px-6 py-8 sm:px-9 sm:py-9 lg:flex-row lg:items-center lg:justify-between lg:px-11 lg:py-10">
               <div className="max-w-3xl">
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-400/15 bg-blue-500/[0.06] px-3 py-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_10px_rgba(34,211,238,.7)]" />
 
-                <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-400/15 bg-blue-500/[0.07] px-3 py-1.5">
-                  <span
-                    className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(34,211,238,.8)]"
-                    aria-hidden="true"
-                  />
-
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-blue-200/80">
+                  <span className="text-[9px] font-bold uppercase tracking-[0.24em] text-blue-200/80">
                     Start Something Great
                   </span>
                 </div>
 
-                <h2
-                  id="footer-cta-heading"
-                  className="max-w-3xl text-3xl font-black leading-[1.05] tracking-[-0.045em] text-white sm:text-4xl lg:text-5xl xl:text-6xl"
-                >
+                <h2 className="text-3xl font-black leading-[1.02] tracking-[-0.045em] text-white sm:text-4xl lg:text-[44px]">
                   Have a project in mind?
                   <br />
 
@@ -120,35 +140,22 @@ function Footer() {
                   </span>
                 </h2>
 
-                <p className="mt-6 max-w-2xl text-sm leading-7 text-slate-400 sm:text-base">
+                <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-500">
                   Tell us what you are building, what you want to improve,
                   or where your current website is falling short.
-                  We will turn the idea into a clear digital direction.
                 </p>
               </div>
 
               <Link
                 to="/get-quote"
-                aria-label="Start a project with WebQenzo"
-                className="group relative inline-flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 px-6 py-4 text-sm font-bold text-white shadow-[0_15px_45px_rgba(37,99,235,.22)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_55px_rgba(37,99,235,.3)] sm:w-auto"
+                className="group inline-flex shrink-0 items-center justify-center gap-3 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 px-5 py-3.5 text-sm font-bold text-white shadow-[0_12px_35px_rgba(37,99,235,.18)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_rgba(37,99,235,.25)]"
               >
-                <span
-                  className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full"
-                  aria-hidden="true"
-                />
+                <span>Start a Project</span>
 
-                <span className="relative">
-                  Start a Project
-                </span>
-
-                <span
-                  className="relative flex h-8 w-8 items-center justify-center rounded-full bg-white/15 transition duration-300 group-hover:rotate-45"
-                  aria-hidden="true"
-                >
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 transition duration-300 group-hover:rotate-45">
                   <ArrowUpRight size={16} />
                 </span>
               </Link>
-
             </div>
           </div>
         </section>
@@ -157,78 +164,37 @@ function Footer() {
             MAIN FOOTER
         ==================================================== */}
 
-        <section
-          className="border-t border-white/[0.07] py-16 lg:py-20"
-          aria-label="Footer navigation"
-        >
-          <div className="grid gap-14 lg:grid-cols-[1.25fr_1fr_1fr_1fr]">
-
+        <section className="border-t border-white/[0.065] py-10 lg:py-12">
+          <div className="grid gap-10 lg:grid-cols-[1.5fr_0.8fr_0.9fr_0.9fr] lg:gap-12">
             {/* =================================================
                 BRAND
             ================================================== */}
 
-            <div className="max-w-sm">
-
+            <div className="max-w-[400px]">
               <Link
                 to="/"
-                aria-label="WebQenzo home"
                 className="group inline-flex items-center"
+                aria-label="WebQenzo Home"
               >
-                <span className="text-3xl font-black tracking-[-0.06em] text-white">
+                <span className="text-[30px] font-black tracking-[-0.065em] text-white">
                   Web
                   <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
                     Qenzo
                   </span>
                 </span>
 
-                <span
-                  className="ml-2 h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(34,211,238,.8)]"
-                  aria-hidden="true"
-                />
+                <span className="ml-2 h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_10px_rgba(34,211,238,.8)]" />
               </Link>
 
-              <p className="mt-5 text-sm font-medium text-slate-400">
+              <p className="mt-4 text-sm font-semibold text-slate-300">
                 Websites That Grow Your Business.
               </p>
 
-              <p className="mt-4 text-sm leading-7 text-slate-500">
+              <p className="mt-3 max-w-[390px] text-[13px] leading-6 text-slate-500">
                 A digital agency focused on thoughtful design,
                 modern development, strong performance, and
                 websites built around real business goals.
               </p>
-
-              {/* Contact mini cards */}
-
-              <div className="mt-7 space-y-3">
-
-                <a
-                  href="mailto:hello@webqenzo.com"
-                  aria-label="Email WebQenzo at hello@webqenzo.com"
-                  className="group flex items-center gap-3 text-sm text-slate-500 transition hover:text-white"
-                >
-                  <span
-                    className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.025] transition group-hover:border-blue-400/20 group-hover:bg-blue-500/[0.07]"
-                    aria-hidden="true"
-                  >
-                    <Mail size={15} />
-                  </span>
-
-                  hello@webqenzo.com
-                </a>
-
-                <div className="flex items-center gap-3 text-sm text-slate-500">
-                  <span
-                    className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.025]"
-                    aria-hidden="true"
-                  >
-                    <MapPin size={15} />
-                  </span>
-
-                  India
-                </div>
-
-              </div>
-
             </div>
 
             {/* =================================================
@@ -253,48 +219,145 @@ function Footer() {
                 EXPLORE
             ================================================== */}
 
-            <FooterColumn
-              title="Explore"
-              links={footerLinks.Explore}
-            />
+            <div>
+              <FooterColumn
+                title="Explore"
+                links={footerLinks.Explore}
+              />
 
+              <a
+                href={instagramUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="group mt-6 inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.02] px-3.5 py-2 text-[10px] font-bold uppercase tracking-[0.08em] text-slate-500 transition duration-300 hover:border-blue-400/20 hover:bg-blue-500/[0.05] hover:text-white"
+              >
+                <InstagramIcon size={13} />
+
+                Instagram
+
+                <ArrowUpRight
+                  size={12}
+                  className="transition group-hover:translate-x-0.5"
+                />
+              </a>
+            </div>
           </div>
         </section>
 
         {/* ===================================================
-            FOOTER LOWER AREA
+            CONTACT BAR
         ==================================================== */}
 
-        <section className="border-t border-white/[0.07] py-7">
+        <section className="border-t border-white/[0.065] py-5">
+          <div className="flex flex-wrap items-center gap-x-7 gap-y-3">
+            {/* PHONE */}
 
-          <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+            <a
+              href="tel:+917042266256"
+              className="group inline-flex items-center gap-2 text-xs font-medium text-slate-500 transition hover:text-white"
+              aria-label="Call WebQenzo"
+            >
+              <Phone
+                size={14}
+                className="text-slate-600 transition group-hover:text-blue-400"
+              />
 
-            {/* Copyright */}
+              <span>7042266256</span>
+            </a>
 
-            <p className="text-xs text-slate-600">
+            <span
+              className="hidden h-3 w-px bg-white/[0.08] sm:block"
+              aria-hidden="true"
+            />
+
+            {/* EMAIL */}
+
+            <a
+              href="mailto:hello@webqenzo.com"
+              className="group inline-flex items-center gap-2 text-xs font-medium text-slate-500 transition hover:text-white"
+              aria-label="Email WebQenzo"
+            >
+              <Mail
+                size={14}
+                className="text-slate-600 transition group-hover:text-blue-400"
+              />
+
+              <span>hello@webqenzo.com</span>
+            </a>
+
+            <span
+              className="hidden h-3 w-px bg-white/[0.08] sm:block"
+              aria-hidden="true"
+            />
+
+            {/* INSTAGRAM */}
+
+            <a
+              href={instagramUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="group inline-flex items-center gap-2 text-xs font-medium text-slate-500 transition hover:text-white"
+              aria-label="WebQenzo Instagram"
+            >
+              <span className="text-slate-600 transition group-hover:text-blue-400">
+                <InstagramIcon size={14} />
+              </span>
+
+              <span>@webqenzo</span>
+
+              <ArrowUpRight
+                size={11}
+                className="text-slate-700 transition group-hover:text-blue-400"
+              />
+            </a>
+
+            <span
+              className="hidden h-3 w-px bg-white/[0.08] sm:block"
+              aria-hidden="true"
+            />
+
+            {/* LOCATION */}
+
+            <div className="inline-flex items-center gap-2 text-xs font-medium text-slate-500">
+              <MapPin
+                size={14}
+                className="text-slate-600"
+              />
+
+              <span>India</span>
+            </div>
+          </div>
+        </section>
+
+        {/* ===================================================
+            BOTTOM BAR
+        ==================================================== */}
+
+        <section className="border-t border-white/[0.065]">
+          <div className="flex flex-col gap-4 py-5 sm:flex-row sm:items-center sm:justify-between">
+            {/* COPYRIGHT */}
+
+            <p className="text-[11px] text-slate-600">
               © {currentYear} WebQenzo. All rights reserved.
             </p>
 
-            {/* Center statement */}
+            {/* CENTER */}
 
-            <div
-              className="hidden items-center gap-3 md:flex"
-              aria-hidden="true"
-            >
-              <span className="h-px w-8 bg-white/[0.08]" />
+            <div className="hidden items-center gap-3 md:flex">
+              <span className="h-px w-6 bg-white/[0.08]" />
 
-              <span className="text-[9px] font-semibold uppercase tracking-[0.25em] text-slate-700">
+              <span className="text-[9px] font-bold uppercase tracking-[0.22em] text-slate-700">
                 Digital Experiences
               </span>
 
-              <span className="h-px w-8 bg-white/[0.08]" />
+              <span className="h-px w-6 bg-white/[0.08]" />
             </div>
 
-            {/* Legal */}
+            {/* LEGAL */}
 
             <nav
+              className="flex items-center gap-5 text-[11px] text-slate-600"
               aria-label="Legal navigation"
-              className="flex items-center gap-5 text-xs text-slate-600"
             >
               <Link
                 to="/privacy-policy"
@@ -317,60 +380,50 @@ function Footer() {
                 Contact
               </Link>
             </nav>
-
           </div>
         </section>
 
         {/* ===================================================
-            BRAND SIGNATURE
+            SIGNATURE
         ==================================================== */}
 
-        <section
-          className="border-t border-white/[0.05] py-8"
-          aria-hidden="true"
-        >
-          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+        <div className="flex items-center justify-between border-t border-white/[0.035] py-3.5">
+          <span className="text-[8px] font-bold uppercase tracking-[0.3em] text-slate-800">
+            WebQenzo
+          </span>
 
-            <span className="text-[9px] font-semibold uppercase tracking-[0.3em] text-slate-800">
-              WebQenzo
-            </span>
-
-            <span className="text-[9px] font-medium uppercase tracking-[0.22em] text-slate-800">
-              Websites That Grow Your Business
-            </span>
-
-          </div>
-        </section>
-
+          <span className="text-[8px] font-medium uppercase tracking-[0.22em] text-slate-800">
+            Websites That Grow Your Business
+          </span>
+        </div>
       </div>
     </footer>
   );
 }
 
 /* =========================================================
-   REUSABLE FOOTER COLUMN
+   FOOTER COLUMN
 ========================================================= */
 
 function FooterColumn({ title, links }) {
   return (
     <nav aria-label={`${title} navigation`}>
-      <h3 className="text-[11px] font-bold uppercase tracking-[0.22em] text-slate-300">
+      <h3 className="text-[10px] font-bold uppercase tracking-[0.22em] text-slate-300">
         {title}
       </h3>
 
-      <div className="mt-5 flex flex-col gap-3.5">
+      <div className="mt-5 flex flex-col gap-3">
         {links.map((link) => (
           <Link
             key={`${link.path}-${link.name}`}
             to={link.path}
-            className="group inline-flex w-fit items-center gap-2 text-sm text-slate-500 transition duration-300 hover:translate-x-1 hover:text-white"
+            className="group inline-flex w-fit items-center gap-2 text-[13px] text-slate-500 transition duration-300 hover:translate-x-0.5 hover:text-white"
           >
             <span>{link.name}</span>
 
             <ArrowUpRight
-              size={13}
+              size={12}
               className="opacity-0 transition duration-300 group-hover:opacity-100"
-              aria-hidden="true"
             />
           </Link>
         ))}
