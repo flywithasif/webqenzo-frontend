@@ -283,9 +283,225 @@ function Services() {
         </div>
       </section>
 
+
+      {/* =========================================================
+    WEBSITE SHOWCASE — INFINITE MARQUEE
+========================================================= */}
+
+{/* =========================================================
+    WEBSITE SHOWCASE — INFINITE RIGHT TO LEFT MARQUEE
+========================================================= */}
+
+<section
+  className="relative overflow-hidden bg-white py-16 sm:py-20 lg:py-24"
+  aria-label="Website showcase"
+>
+  {/* =======================================================
+      SECTION HEADER
+  ======================================================== */}
+
+  <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-10">
+    <div className="max-w-3xl">
+      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
+        On the screen
+      </p>
+
+      <h2 className="mt-3 text-3xl font-bold leading-[1.08] tracking-[-0.045em] text-slate-950 sm:text-4xl lg:text-5xl">
+        Where your customers
+        <span className="block bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 bg-clip-text text-transparent">
+          actually are.
+        </span>
+      </h2>
+
+      <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-500 sm:text-base">
+        Your website should look exceptional on every screen.
+        We design digital experiences that feel smooth, modern,
+        and built around the way your customers actually browse.
+      </p>
+    </div>
+  </div>
+
+  {/* =======================================================
+      MARQUEE AREA
+  ======================================================== */}
+
+  <div className="relative mt-12 overflow-hidden sm:mt-14 lg:mt-16">
+    {/* LEFT FADE */}
+
+    <div
+      className="pointer-events-none absolute left-0 top-0 z-20 h-full w-16 bg-gradient-to-r from-white via-white/90 to-transparent sm:w-24 lg:w-40"
+      aria-hidden="true"
+    />
+
+    {/* RIGHT FADE */}
+
+    <div
+      className="pointer-events-none absolute right-0 top-0 z-20 h-full w-16 bg-gradient-to-l from-white via-white/90 to-transparent sm:w-24 lg:w-40"
+      aria-hidden="true"
+    />
+
+    {/* =====================================================
+        MARQUEE TRACK
+    ====================================================== */}
+
+    <div className="website-showcase-marquee flex w-max items-start gap-5 pl-5 sm:gap-6 sm:pl-8 lg:gap-7 lg:pl-10">
+
+      {/* ===================================================
+          FIRST SET — 20 IMAGES
+      ==================================================== */}
+
+      {[
+        "01.webp",
+        "02.webp",
+        "03.webp",
+        "04.webp",
+        "05.webp",
+        "06.webp",
+        "07.webp",
+        "08.webp",
+        "09.webp",
+        "10.webp",
+        "11.webp",
+        "12.webp",
+        "13.webp",
+        "14.webp",
+        "15.webp",
+        "16.webp",
+        "17.webp",
+        "18.webp",
+        "19.webp",
+        "20.webp",
+      ].map((image, index) => (
+        <div
+          key={`showcase-first-${image}`}
+          className="group relative w-[205px] shrink-0 sm:w-[240px] md:w-[265px] lg:w-[285px]"
+        >
+          <div className="relative aspect-[9/16] overflow-hidden rounded-[24px] border border-slate-200 bg-slate-100 shadow-[0_12px_35px_rgba(15,23,42,0.10)] transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-[0_25px_55px_rgba(15,23,42,0.16)]">
+
+            <img
+              src={`/showcase/${image}`}
+              alt={`WebQenzo website showcase ${index + 1}`}
+              loading={index < 6 ? "eager" : "lazy"}
+              decoding="async"
+              draggable="false"
+              className="h-full w-full select-none object-cover object-top transition-transform duration-700 group-hover:scale-[1.015]"
+            />
+
+            <div
+              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/[0.08] via-transparent to-white/[0.04] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+              aria-hidden="true"
+            />
+          </div>
+        </div>
+      ))}
+
+      {/* ===================================================
+          SECOND SET — SAME 20 IMAGES
+          Required for seamless infinite loop
+      ==================================================== */}
+
+      {[
+        "01.webp",
+        "02.webp",
+        "03.webp",
+        "04.webp",
+        "05.webp",
+        "06.webp",
+        "07.webp",
+        "08.webp",
+        "09.webp",
+        "10.webp",
+        "11.webp",
+        "12.webp",
+        "13.webp",
+        "14.webp",
+        "15.webp",
+        "16.webp",
+        "17.webp",
+        "18.webp",
+        "19.webp",
+        "20.webp",
+      ].map((image, index) => (
+        <div
+          key={`showcase-second-${image}`}
+          className="group relative w-[205px] shrink-0 sm:w-[240px] md:w-[265px] lg:w-[285px]"
+        >
+          <div className="relative aspect-[9/16] overflow-hidden rounded-[24px] border border-slate-200 bg-slate-100 shadow-[0_12px_35px_rgba(15,23,42,0.10)] transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-[0_25px_55px_rgba(15,23,42,0.16)]">
+
+            <img
+              src={`/showcase/${image}`}
+              alt={`WebQenzo website showcase ${index + 1}`}
+              loading="lazy"
+              decoding="async"
+              draggable="false"
+              className="h-full w-full select-none object-cover object-top transition-transform duration-700 group-hover:scale-[1.015]"
+            />
+
+            <div
+              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/[0.08] via-transparent to-white/[0.04] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+              aria-hidden="true"
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  {/* =======================================================
+      BOTTOM LABEL
+  ======================================================== */}
+
+  <div className="mx-auto mt-9 flex max-w-[1400px] items-center justify-between px-5 sm:px-8 lg:px-10">
+    <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-slate-400">
+      WebQenzo Showcase
+    </span>
+
+    <span className="text-[10px] font-semibold text-slate-400">
+      20+ Digital Experiences
+    </span>
+  </div>
+
+  {/* =======================================================
+      MARQUEE ANIMATION
+  ======================================================== */}
+
+  <style>{`
+    .website-showcase-marquee {
+      animation: webqenzoShowcaseMove 70s linear infinite;
+      will-change: transform;
+    }
+
+    .website-showcase-marquee:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes webqenzoShowcaseMove {
+      from {
+        transform: translate3d(0, 0, 0);
+      }
+
+      to {
+        transform: translate3d(-50%, 0, 0);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .website-showcase-marquee {
+        animation-duration: 50s;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .website-showcase-marquee {
+        animation-play-state: paused;
+      }
+    }
+  `}</style>
+</section>
       {/* =====================================================
           02 — INDUSTRIES
       ====================================================== */}
+
 
       <section className="border-b border-slate-200 bg-white">
         <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
