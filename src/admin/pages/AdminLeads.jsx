@@ -35,7 +35,7 @@ import {
    SUPER ADMIN ONLY
 
    IMPORTANT:
-   These leads are completely separate from Contacts.
+   Leads are completely separate from Contacts.
 ========================================================= */
 
 const emptyForm = {
@@ -64,13 +64,17 @@ const getInitials = (name = "") => {
       .trim()
       .split(/\s+/)
       .slice(0, 2)
-      .map((item) => item.charAt(0).toUpperCase())
+      .map((part) =>
+        part.charAt(0).toUpperCase()
+      )
       .join("") || "L"
   );
 };
 
 const getAssignedId = (lead) => {
-  if (!lead?.assignedTo) return "";
+  if (!lead?.assignedTo) {
+    return "";
+  }
 
   if (typeof lead.assignedTo === "string") {
     return lead.assignedTo;
@@ -102,6 +106,7 @@ const getAssignedName = (lead) => {
 const normalizeLead = (lead) => {
   return {
     ...lead,
+
     name:
       lead?.name ||
       lead?.fullName ||
@@ -154,7 +159,11 @@ const parseCSVLine = (line) => {
     const char = line[i];
     const next = line[i + 1];
 
-    if (char === '"' && insideQuotes && next === '"') {
+    if (
+      char === '"' &&
+      insideQuotes &&
+      next === '"'
+    ) {
       current += '"';
       i += 1;
       continue;
@@ -165,7 +174,10 @@ const parseCSVLine = (line) => {
       continue;
     }
 
-    if (char === "," && !insideQuotes) {
+    if (
+      (char === "," || char === "\t") &&
+      !insideQuotes
+    ) {
       result.push(current.trim());
       current = "";
       continue;
@@ -180,7 +192,7 @@ const parseCSVLine = (line) => {
 };
 
 const parseLeadText = (text) => {
-  const cleanText = text
+  const cleanText = String(text || "")
     .replace(/\r/g, "")
     .trim();
 
@@ -202,22 +214,22 @@ const parseLeadText = (text) => {
     : ",";
 
   const headers =
-    delimiter === "\t"
-      ? lines[0]
-          .split("\t")
-          .map((item) =>
-            item.trim().toLowerCase()
-          )
-      : parseCSVLine(lines[0]).map((item) =>
-          item.trim().toLowerCase()
-        );
+    parseCSVLine(lines[0]).map((header) =>
+      header
+        .trim()
+        .toLowerCase()
+    );
 
   const findHeader = (...names) => {
     return names
       .map((name) =>
-        headers.indexOf(name)
+        headers.indexOf(
+          name.toLowerCase()
+        )
       )
-      .find((index) => index !== -1);
+      .find(
+        (index) => index !== -1
+      );
   };
 
   const nameIndex = findHeader(
@@ -229,7 +241,8 @@ const parseLeadText = (text) => {
   const mobileIndex = findHeader(
     "mobile",
     "phone",
-    "phone_number"
+    "phone_number",
+    "number"
   );
 
   const emailIndex = findHeader(
@@ -254,9 +267,11 @@ const parseLeadText = (text) => {
     .map((line) => {
       const values =
         delimiter === "\t"
-          ? line.split("\t").map((item) =>
-              item.trim()
-            )
+          ? line
+              .split("\t")
+              .map((item) =>
+                item.trim()
+              )
           : parseCSVLine(line);
 
       return {
@@ -301,13 +316,20 @@ const AdminLeads = () => {
   const [leads, setLeads] = useState([]);
   const [team, setTeam] = useState([]);
 
-  const [loading, setLoading] = useState(true);
-  const [refreshing, setRefreshing] = useState(false);
+  const [loading, setLoading] =
+    useState(true);
 
-  const [saving, setSaving] = useState(false);
-  const [bulkSaving, setBulkSaving] = useState(false);
+  const [refreshing, setRefreshing] =
+    useState(false);
 
-  const [error, setError] = useState("");
+  const [saving, setSaving] =
+    useState(false);
+
+  const [bulkSaving, setBulkSaving] =
+    useState(false);
+
+  const [error, setError] =
+    useState("");
 
   const [toast, setToast] =
     useState(initialToast);
@@ -327,17 +349,20 @@ const AdminLeads = () => {
   const [search, setSearch] =
     useState("");
 
-  const [assignmentFilter, setAssignmentFilter] =
-    useState("ALL");
+  const [
+    assignmentFilter,
+    setAssignmentFilter,
+  ] = useState("ALL");
 
-  const [qualityFilter, setQualityFilter] =
-    useState("ALL");
+  const [
+    qualityFilter,
+    setQualityFilter,
+  ] = useState("ALL");
 
-  const [statusFilter, setStatusFilter] =
-    useState("ALL");
-
-  const [selectedFile, setSelectedFile] =
-    useState(null);
+  const [
+    statusFilter,
+    setStatusFilter,
+  ] = useState("ALL");
 
   /* =======================================================
      TOAST
@@ -448,7 +473,7 @@ const AdminLeads = () => {
   }, []);
 
   /* =======================================================
-     SINGLE LEAD
+     SINGLE LEAD FORM
   ======================================================= */
 
   const updateForm = (
@@ -470,7 +495,9 @@ const AdminLeads = () => {
   ) => {
     event.preventDefault();
 
-    if (saving) return;
+    if (saving) {
+      return;
+    }
 
     if (!form.name.trim()) {
       showToast(
@@ -492,14 +519,15 @@ const AdminLeads = () => {
 
     try {
       setSaving(true);
-      setError("");
 
       const payload = {
         name: form.name.trim(),
         mobile: form.mobile.trim(),
         email: form.email.trim(),
-        leadType: form.leadType.trim(),
-        source: form.source.trim(),
+        leadType:
+          form.leadType.trim(),
+        source:
+          form.source.trim(),
         assignedTo:
           form.assignedTo || null,
       };
@@ -516,8 +544,8 @@ const AdminLeads = () => {
         "success",
         "Lead created successfully",
         form.assignedTo
-          ? "Lead has been created and assigned to the selected team member."
-          : "Lead has been added to the unassigned lead pool."
+          ? "Lead created and assigned successfully."
+          : "Lead added to the unassigned lead pool."
       );
     } catch (err) {
       showToast(
@@ -532,7 +560,7 @@ const AdminLeads = () => {
   };
 
   /* =======================================================
-     BULK IMPORT
+     FILE UPLOAD
   ======================================================= */
 
   const handleFileChange = (
@@ -541,29 +569,39 @@ const AdminLeads = () => {
     const file =
       event.target.files?.[0];
 
-    if (!file) return;
+    if (!file) {
+      return;
+    }
 
-    setSelectedFile(file);
     setBulkFileName(file.name);
 
     const reader =
       new FileReader();
 
-    reader.onload = (loadEvent) => {
-      const text =
-        loadEvent.target?.result || "";
-
-      setBulkText(String(text));
+    reader.onload = (
+      loadEvent
+    ) => {
+      setBulkText(
+        String(
+          loadEvent.target?.result ||
+            ""
+        )
+      );
     };
 
     reader.readAsText(file);
   };
 
-  const previewRows = useMemo(() => {
-    return parseLeadText(
-      bulkText
-    );
-  }, [bulkText]);
+  /* =======================================================
+     BULK PREVIEW
+  ======================================================= */
+
+  const previewRows =
+    useMemo(() => {
+      return parseLeadText(
+        bulkText
+      );
+    }, [bulkText]);
 
   const validPreviewRows =
     useMemo(() => {
@@ -581,14 +619,29 @@ const AdminLeads = () => {
       0
     );
 
+  /* =======================================================
+     BULK IMPORT
+  ======================================================= */
+
   const handleBulkImport = async () => {
-    if (bulkSaving) return;
+    if (bulkSaving) {
+      return;
+    }
 
     if (!bulkText.trim()) {
       showToast(
         "error",
         "No data found",
-        "Paste your Google Sheets data or select a CSV file first."
+        "Please select a CSV file or paste Google Sheets data."
+      );
+      return;
+    }
+
+    if (!validPreviewRows.length) {
+      showToast(
+        "error",
+        "No valid leads",
+        "Each lead must have a name and mobile number."
       );
       return;
     }
@@ -596,64 +649,74 @@ const AdminLeads = () => {
     const rows =
       validPreviewRows.map(
         (lead) => ({
-          name: lead.name.trim(),
-          mobile: lead.mobile.trim(),
+          name:
+            lead.name.trim(),
+
+          mobile:
+            lead.mobile.trim(),
+
           email:
             lead.email.trim(),
+
           leadType:
             lead.leadType.trim(),
+
           source:
             lead.source.trim(),
         })
       );
 
-    if (!rows.length) {
-      showToast(
-        "error",
-        "No valid leads",
-        "Every lead must have at least a name and mobile number."
-      );
-      return;
-    }
-
     try {
       setBulkSaving(true);
-      setError("");
-
-      /*
-        Backend expects:
-        {
-          leads: [...]
-        }
-      */
 
       const response =
         await bulkCreateManualLeads({
           leads: rows,
         });
 
-      const importedCount =
-        response?.data?.createdCount ??
-        response?.data?.count ??
-        response?.createdCount ??
-        response?.count ??
+      /*
+        Backend response:
+
+        data: {
+          created,
+          failed,
+          leads,
+          errors
+        }
+      */
+
+      const created =
+        response?.data?.created ??
+        response?.created ??
         rows.length;
+
+      const failed =
+        response?.data?.failed ??
+        response?.failed ??
+        0;
 
       setBulkText("");
       setBulkFileName("");
-      setSelectedFile(null);
 
       await loadLeads(false);
 
-      showToast(
-        "success",
-        "Leads imported successfully",
-        `${importedCount} lead${
-          Number(importedCount) === 1
-            ? ""
-            : "s"
-        } added to your lead pool.`
-      );
+      if (failed > 0) {
+        showToast(
+          "success",
+          "Import completed",
+          `${created} leads imported successfully. ${failed} rows were skipped.`
+        );
+      } else {
+        showToast(
+          "success",
+          "Leads uploaded successfully",
+          `${created} lead${
+            created === 1
+              ? ""
+              : "s"
+          } added to your lead pool.`
+        );
+      }
     } catch (err) {
       showToast(
         "error",
@@ -690,6 +753,7 @@ const AdminLeads = () => {
       document.createElement("a");
 
     link.href = url;
+
     link.download =
       "webqenzo-leads-template.csv";
 
@@ -703,14 +767,16 @@ const AdminLeads = () => {
   };
 
   /* =======================================================
-     ASSIGN / REASSIGN
+     ASSIGN LEAD
   ======================================================= */
 
   const handleAssignment = async (
     lead,
     assignedTo
   ) => {
-    if (!lead?._id) return;
+    if (!lead?._id) {
+      return;
+    }
 
     try {
       const selectedMember =
@@ -719,10 +785,6 @@ const AdminLeads = () => {
             member._id ===
             assignedTo
         );
-
-      /*
-        Empty string = unassign.
-      */
 
       await assignLead(
         lead._id,
@@ -740,12 +802,15 @@ const AdminLeads = () => {
 
           return {
             ...item,
+
             assignedToId:
               selectedMember?._id ||
               "",
+
             assignedToName:
               selectedMember?.name ||
               "",
+
             assignedTo:
               selectedMember || null,
           };
@@ -758,7 +823,10 @@ const AdminLeads = () => {
           ? "Lead assigned"
           : "Lead unassigned",
         assignedTo
-          ? `${lead.name} assigned to ${selectedMember?.name || "team member"}.`
+          ? `${lead.name} assigned to ${
+              selectedMember?.name ||
+              "team member"
+            }.`
           : `${lead.name} is now unassigned.`
       );
     } catch (err) {
@@ -772,7 +840,7 @@ const AdminLeads = () => {
   };
 
   /* =======================================================
-     FILTER
+     FILTERED LEADS
   ======================================================= */
 
   const filteredLeads =
@@ -871,38 +939,31 @@ const AdminLeads = () => {
   return (
     <div className="space-y-6 pb-12">
 
-      {/* ===================================================
+      {/* =================================================
           TOAST
-      ================================================== */}
+      ================================================= */}
 
       {toast.visible && (
         <div
           className={`fixed right-5 top-5 z-[100] w-[min(420px,calc(100vw-40px))] overflow-hidden border bg-white shadow-[0_20px_60px_rgba(15,23,42,0.16)] ${
-            toast.type ===
-            "success"
+            toast.type === "success"
               ? "border-emerald-200"
               : "border-red-200"
-          `}
+          }`}
         >
           <div className="flex items-start gap-3 p-4">
 
             <div
               className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${
-                toast.type ===
-                "success"
+                toast.type === "success"
                   ? "bg-emerald-50 text-emerald-600"
                   : "bg-red-50 text-red-600"
               }`}
             >
-              {toast.type ===
-              "success" ? (
-                <CheckCircle2
-                  size={18}
-                />
+              {toast.type === "success" ? (
+                <CheckCircle2 size={18} />
               ) : (
-                <AlertCircle
-                  size={18}
-                />
+                <AlertCircle size={18} />
               )}
             </div>
 
@@ -933,19 +994,19 @@ const AdminLeads = () => {
           </div>
 
           <div
-            className={`h-0.5 ${
+            className={
               toast.type ===
               "success"
-                ? "bg-emerald-500"
-                : "bg-red-500"
-            }`}
+                ? "h-0.5 bg-emerald-500"
+                : "h-0.5 bg-red-500"
+            }
           />
         </div>
       )}
 
-      {/* ===================================================
+      {/* =================================================
           HERO
-      ================================================== */}
+      ================================================= */}
 
       <section className="relative overflow-hidden border border-slate-200 bg-white shadow-[0_10px_40px_rgba(15,23,42,0.045)]">
 
@@ -968,8 +1029,8 @@ const AdminLeads = () => {
 
             <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-500 sm:text-base">
               Create new leads manually or
-              import hundreds of leads from
-              CSV / Google Sheets. These leads
+              import multiple leads from CSV
+              or Google Sheets. These leads
               remain completely separate from
               Contacts.
             </p>
@@ -978,12 +1039,12 @@ const AdminLeads = () => {
 
           <button
             type="button"
-            onClick={downloadTemplate}
+            onClick={
+              downloadTemplate
+            }
             className="inline-flex min-h-[76px] shrink-0 items-center justify-center gap-3 border border-slate-200 bg-white px-7 text-sm font-bold text-slate-700 shadow-sm transition hover:border-cyan-200 hover:bg-cyan-50 hover:text-cyan-700"
           >
-            <Download
-              size={18}
-            />
+            <Download size={18} />
 
             <span>
               Download
@@ -995,9 +1056,9 @@ const AdminLeads = () => {
         </div>
       </section>
 
-      {/* ===================================================
+      {/* =================================================
           STATS
-      ================================================== */}
+      ================================================= */}
 
       <section className="grid grid-cols-2 gap-4 lg:grid-cols-4">
 
@@ -1043,9 +1104,9 @@ const AdminLeads = () => {
 
       </section>
 
-      {/* ===================================================
-          MODE SWITCH
-      ================================================== */}
+      {/* =================================================
+          TABS
+      ================================================= */}
 
       <section className="border border-slate-200 bg-white p-1.5 shadow-[0_8px_30px_rgba(15,23,42,0.035)]">
 
@@ -1057,16 +1118,12 @@ const AdminLeads = () => {
               setActiveTab("single")
             }
             className={`flex min-h-12 items-center justify-center gap-2 text-sm font-bold transition ${
-              activeTab ===
-              "single"
+              activeTab === "single"
                 ? "bg-slate-950 text-white shadow-sm"
                 : "text-slate-500 hover:bg-slate-50"
             }`}
           >
-            <UserPlus
-              size={17}
-            />
-
+            <UserPlus size={17} />
             Add Single Lead
           </button>
 
@@ -1076,8 +1133,7 @@ const AdminLeads = () => {
               setActiveTab("bulk")
             }
             className={`flex min-h-12 items-center justify-center gap-2 text-sm font-bold transition ${
-              activeTab ===
-              "bulk"
+              activeTab === "bulk"
                 ? "bg-slate-950 text-white shadow-sm"
                 : "text-slate-500 hover:bg-slate-50"
             }`}
@@ -1085,19 +1141,17 @@ const AdminLeads = () => {
             <FileSpreadsheet
               size={17}
             />
-
             Bulk Import
           </button>
 
         </div>
       </section>
 
-      {/* ===================================================
-          SINGLE LEAD FORM
-      ================================================== */}
+      {/* =================================================
+          SINGLE LEAD
+      ================================================= */}
 
-      {activeTab ===
-        "single" && (
+      {activeTab === "single" && (
         <section className="border border-slate-200 bg-white shadow-[0_8px_30px_rgba(15,23,42,0.035)]">
 
           <div className="border-b border-slate-100 px-5 py-5 sm:px-7">
@@ -1105,9 +1159,7 @@ const AdminLeads = () => {
             <div className="flex items-center gap-3">
 
               <div className="flex h-10 w-10 items-center justify-center bg-cyan-50 text-cyan-600">
-                <UserPlus
-                  size={19}
-                />
+                <UserPlus size={19} />
               </div>
 
               <div>
@@ -1195,7 +1247,7 @@ const AdminLeads = () => {
                 />
               </div>
 
-              {/* LEAD TYPE */}
+              {/* TYPE */}
 
               <div>
                 <label className="mb-2 block text-[10px] font-bold uppercase tracking-[0.14em] text-slate-500">
@@ -1332,12 +1384,11 @@ const AdminLeads = () => {
         </section>
       )}
 
-      {/* ===================================================
+      {/* =================================================
           BULK IMPORT
-      ================================================== */}
+      ================================================= */}
 
-      {activeTab ===
-        "bulk" && (
+      {activeTab === "bulk" && (
         <section className="border border-slate-200 bg-white shadow-[0_8px_30px_rgba(15,23,42,0.035)]">
 
           <div className="border-b border-slate-100 px-5 py-5 sm:px-7">
@@ -1362,12 +1413,11 @@ const AdminLeads = () => {
               </div>
 
             </div>
-
           </div>
 
           <div className="p-5 sm:p-7">
 
-            {/* FILE UPLOAD */}
+            {/* FILE / TEMPLATE */}
 
             <div className="grid gap-4 md:grid-cols-2">
 
@@ -1422,7 +1472,7 @@ const AdminLeads = () => {
 
             </div>
 
-            {/* TEXT AREA */}
+            {/* TEXTAREA */}
 
             <div className="mt-5">
 
@@ -1438,11 +1488,8 @@ const AdminLeads = () => {
                     onClick={() => {
                       setBulkText("");
                       setBulkFileName("");
-                      setSelectedFile(
-                        null
-                      );
                     }}
-                    className="text-xs font-bold text-slate-400 hover:text-red-500"
+                    className="text-xs font-bold text-slate-400 transition hover:text-red-500"
                   >
                     Clear
                   </button>
@@ -1481,7 +1528,7 @@ Rekha,8956874367,rekha@gmail.com,Website,Instagram`}
                     </p>
 
                     <p className="mt-0.5 text-xs text-slate-400">
-                      Review data before importing.
+                      Review your data before importing.
                     </p>
                   </div>
 
@@ -1491,7 +1538,11 @@ Rekha,8956874367,rekha@gmail.com,Website,Instagram`}
                       <CheckCircle2
                         size={12}
                       />
-                      {validPreviewRows.length} valid
+
+                      {
+                        validPreviewRows.length
+                      }{" "}
+                      valid
                     </span>
 
                     {invalidPreviewCount >
@@ -1500,12 +1551,15 @@ Rekha,8956874367,rekha@gmail.com,Website,Instagram`}
                         <AlertCircle
                           size={12}
                         />
-                        {invalidPreviewCount} invalid
+
+                        {
+                          invalidPreviewCount
+                        }{" "}
+                        invalid
                       </span>
                     )}
 
                   </div>
-
                 </div>
 
                 <div className="max-h-[300px] overflow-auto">
@@ -1546,81 +1600,68 @@ Rekha,8956874367,rekha@gmail.com,Website,Instagram`}
                           (
                             lead,
                             index
-                          ) => {
+                          ) => (
+                            <tr
+                              key={`${lead.mobile}-${index}`}
+                              className="bg-white"
+                            >
 
-                            const valid =
-                              lead.name.trim() &&
-                              lead.mobile.trim();
+                              <td className="px-4 py-3 text-xs font-semibold text-slate-700">
+                                {lead.name ||
+                                  "—"}
+                              </td>
 
-                            return (
-                              <tr
-                                key={`${lead.mobile}-${index}`}
-                                className="bg-white"
-                              >
+                              <td className="px-4 py-3 text-xs text-slate-600">
+                                {lead.mobile ||
+                                  "—"}
+                              </td>
 
-                                <td className="px-4 py-3 text-xs font-semibold text-slate-700">
-                                  {lead.name ||
-                                    "—"}
-                                </td>
+                              <td className="px-4 py-3 text-xs text-slate-500">
+                                {lead.email ||
+                                  "—"}
+                              </td>
 
-                                <td className="px-4 py-3 text-xs text-slate-600">
-                                  {lead.mobile ||
-                                    "—"}
-                                </td>
+                              <td className="px-4 py-3 text-xs text-slate-500">
+                                {lead.leadType ||
+                                  "—"}
+                              </td>
 
-                                <td className="px-4 py-3 text-xs text-slate-500">
-                                  {lead.email ||
-                                    "—"}
-                                </td>
+                              <td className="px-4 py-3 text-xs text-slate-500">
+                                {lead.source ||
+                                  "—"}
+                              </td>
 
-                                <td className="px-4 py-3 text-xs text-slate-500">
-                                  {lead.leadType ||
-                                    "—"}
-                                </td>
-
-                                <td className="px-4 py-3 text-xs text-slate-500">
-                                  {lead.source ||
-                                    "—"}
-                                </td>
-
-                              </tr>
-                            );
-                          }
+                            </tr>
+                          )
                         )}
 
                     </tbody>
-
                   </table>
-
                 </div>
 
                 {previewRows.length >
                   100 && (
                   <p className="border-t border-slate-200 px-4 py-3 text-xs text-slate-400">
-                    Showing first 100 rows
-                    in preview. All valid
-                    rows will be imported.
+                    Showing first 100 rows in
+                    preview. All valid rows will
+                    be imported.
                   </p>
                 )}
 
               </div>
             )}
 
-            {/* IMPORT BUTTON */}
+            {/* IMPORT */}
 
             <div className="mt-6 flex flex-col gap-3 border-t border-slate-100 pt-6 sm:flex-row sm:items-center sm:justify-between">
 
               <div className="flex items-center gap-2 text-xs text-slate-400">
-
-                <AlertCircle
-                  size={14}
-                />
+                <AlertCircle size={14} />
 
                 <span>
-                  Imported leads remain
-                  separate from Contacts.
+                  Imported leads remain separate
+                  from Contacts.
                 </span>
-
               </div>
 
               <button
@@ -1641,16 +1682,17 @@ Rekha,8956874367,rekha@gmail.com,Website,Instagram`}
                       size={17}
                       className="animate-spin"
                     />
+
                     Importing...
                   </>
                 ) : (
                   <>
-                    <Upload
-                      size={17}
-                    />
+                    <Upload size={17} />
+
                     Import{" "}
-                    {validPreviewRows.length ||
-                      ""}{" "}
+                    {
+                      validPreviewRows.length
+                    }{" "}
                     Leads
                   </>
                 )}
@@ -1662,9 +1704,9 @@ Rekha,8956874367,rekha@gmail.com,Website,Instagram`}
         </section>
       )}
 
-      {/* ===================================================
+      {/* =================================================
           LEAD POOL
-      ================================================== */}
+      ================================================= */}
 
       <section className="overflow-hidden border border-slate-200 bg-white shadow-[0_8px_30px_rgba(15,23,42,0.035)]">
 
@@ -1679,9 +1721,7 @@ Rekha,8956874367,rekha@gmail.com,Website,Instagram`}
               <div className="flex items-center gap-3">
 
                 <div className="flex h-10 w-10 items-center justify-center bg-slate-950 text-white">
-                  <Users
-                    size={18}
-                  />
+                  <Users size={18} />
                 </div>
 
                 <div>
@@ -1690,8 +1730,8 @@ Rekha,8956874367,rekha@gmail.com,Website,Instagram`}
                   </h2>
 
                   <p className="mt-0.5 text-xs text-slate-400">
-                    Manage imported and manually
-                    created leads.
+                    All manually created and
+                    imported leads.
                   </p>
                 </div>
 
@@ -1873,6 +1913,8 @@ Rekha,8956874367,rekha@gmail.com,Website,Instagram`}
 
           </div>
 
+          {/* COUNT */}
+
           <div className="mt-4 flex flex-col gap-2 border-t border-slate-100 pt-4 sm:flex-row sm:items-center sm:justify-between">
 
             <p className="text-xs font-medium text-slate-400">
@@ -1910,7 +1952,7 @@ Rekha,8956874367,rekha@gmail.com,Website,Instagram`}
                     "ALL"
                   );
                 }}
-                className="text-left text-xs font-bold text-cyan-600 hover:text-cyan-700 sm:text-right"
+                className="text-xs font-bold text-cyan-600 hover:text-cyan-700"
               >
                 Clear filters
               </button>
@@ -1921,17 +1963,22 @@ Rekha,8956874367,rekha@gmail.com,Website,Instagram`}
         </div>
 
         {/* =================================================
-            TABLE
+            LOADING
         ================================================= */}
 
         {loading ? (
           <div className="p-12">
 
             <div className="space-y-4">
+
               <div className="h-4 w-32 animate-pulse bg-slate-100" />
+
               <div className="h-16 animate-pulse bg-slate-100" />
+
               <div className="h-16 animate-pulse bg-slate-100" />
+
               <div className="h-16 animate-pulse bg-slate-100" />
+
             </div>
 
             <p className="mt-5 text-center text-xs font-medium text-slate-400">
@@ -1944,9 +1991,7 @@ Rekha,8956874367,rekha@gmail.com,Website,Instagram`}
           <div className="flex min-h-[300px] flex-col items-center justify-center px-6 text-center">
 
             <div className="flex h-14 w-14 items-center justify-center bg-red-50 text-red-500">
-              <AlertCircle
-                size={23}
-              />
+              <AlertCircle size={23} />
             </div>
 
             <p className="mt-5 text-base font-bold text-slate-800">
@@ -1964,9 +2009,7 @@ Rekha,8956874367,rekha@gmail.com,Website,Instagram`}
               }
               className="mt-5 inline-flex h-10 items-center gap-2 bg-slate-950 px-5 text-xs font-bold text-white"
             >
-              <RefreshCw
-                size={14}
-              />
+              <RefreshCw size={14} />
               Try Again
             </button>
 
@@ -1976,9 +2019,7 @@ Rekha,8956874367,rekha@gmail.com,Website,Instagram`}
           <div className="flex min-h-[330px] flex-col items-center justify-center px-6 text-center">
 
             <div className="flex h-14 w-14 items-center justify-center bg-cyan-50 text-cyan-600">
-              <UserRoundX
-                size={23}
-              />
+              <UserRoundX size={23} />
             </div>
 
             <p className="mt-5 text-base font-bold text-slate-800">
@@ -1993,6 +2034,10 @@ Rekha,8956874367,rekha@gmail.com,Website,Instagram`}
 
           </div>
         ) : (
+          /* =================================================
+             TABLE
+          ================================================= */
+
           <div className="overflow-x-auto">
 
             <table className="w-full min-w-[1200px] text-left">
@@ -2049,6 +2094,7 @@ Rekha,8956874367,rekha@gmail.com,Website,Instagram`}
                         <div className="flex items-center gap-3">
 
                           <div className="relative flex h-11 w-11 shrink-0 items-center justify-center bg-slate-950 text-xs font-bold text-white transition group-hover:bg-cyan-600">
+
                             {getInitials(
                               lead.name
                             )}
@@ -2060,6 +2106,7 @@ Rekha,8956874367,rekha@gmail.com,Website,Instagram`}
                                   : "bg-amber-400"
                               }`}
                             />
+
                           </div>
 
                           <div className="min-w-0">
@@ -2069,24 +2116,25 @@ Rekha,8956874367,rekha@gmail.com,Website,Instagram`}
                             </p>
 
                             <div className="mt-1.5 flex items-center gap-1.5 text-[11px] text-slate-400">
-                              <Phone
-                                size={11}
-                              />
+
+                              <Phone size={11} />
+
                               <span>
                                 {lead.mobile ||
                                   "No mobile"}
                               </span>
+
                             </div>
 
                             {lead.email && (
                               <div className="mt-0.5 flex max-w-[240px] items-center gap-1.5 text-[11px] text-slate-400">
-                                <Mail
-                                  size={11}
-                                />
+
+                                <Mail size={11} />
 
                                 <span className="truncate">
                                   {lead.email}
                                 </span>
+
                               </div>
                             )}
 
@@ -2102,15 +2150,15 @@ Rekha,8956874367,rekha@gmail.com,Website,Instagram`}
 
                         {lead.leadType ? (
                           <span className="inline-flex max-w-[160px] items-center gap-1.5 border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs font-semibold text-slate-600">
-                            <Tag
-                              size={11}
-                            />
+
+                            <Tag size={11} />
 
                             <span className="truncate">
                               {
                                 lead.leadType
                               }
                             </span>
+
                           </span>
                         ) : (
                           <span className="text-xs text-slate-300">
@@ -2126,14 +2174,14 @@ Rekha,8956874367,rekha@gmail.com,Website,Instagram`}
 
                         {lead.source ? (
                           <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600">
+
                             <Globe2
                               size={12}
                               className="text-slate-400"
                             />
 
-                            {
-                              lead.source
-                            }
+                            {lead.source}
+
                           </span>
                         ) : (
                           <span className="text-xs text-slate-300">
@@ -2187,7 +2235,7 @@ Rekha,8956874367,rekha@gmail.com,Website,Instagram`}
 
                       </td>
 
-                      {/* ASSIGNMENT */}
+                      {/* ASSIGNED TO */}
 
                       <td className="px-5 py-5">
 
@@ -2203,8 +2251,7 @@ Rekha,8956874367,rekha@gmail.com,Website,Instagram`}
                             ) =>
                               handleAssignment(
                                 lead,
-                                event
-                                  .target
+                                event.target
                                   .value
                               )
                             }
@@ -2214,6 +2261,7 @@ Rekha,8956874367,rekha@gmail.com,Website,Instagram`}
                                 : "border-amber-200 bg-amber-50 text-amber-700"
                             }`}
                           >
+
                             <option value="">
                               Unassigned
                             </option>
@@ -2230,10 +2278,13 @@ Rekha,8956874367,rekha@gmail.com,Website,Instagram`}
                                     member._id
                                   }
                                 >
-                                  {member.name}
+                                  {
+                                    member.name
+                                  }
                                 </option>
                               )
                             )}
+
                           </select>
 
                           <ChevronDown
@@ -2273,9 +2324,7 @@ Rekha,8956874367,rekha@gmail.com,Website,Instagram`}
 
                         <div className="inline-flex items-center gap-1.5 text-[10px] font-medium text-slate-400">
 
-                          <Clock3
-                            size={11}
-                          />
+                          <Clock3 size={11} />
 
                           {lead.createdAt
                             ? new Date(
