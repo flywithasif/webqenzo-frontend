@@ -4,6 +4,8 @@ import {
   FileText,
   MessageSquare,
   Users,
+  UserPlus,
+  UserRoundCheck,
   LogOut,
   ExternalLink,
   X,
@@ -14,9 +16,15 @@ import { adminLogout } from "../utils/adminApi";
 const AdminSidebar = ({ mobileOpen, onClose }) => {
   const navigate = useNavigate();
 
-  const admin = JSON.parse(
-    localStorage.getItem("webqenzo_admin") || "null"
-  );
+  const admin = (() => {
+    try {
+      return JSON.parse(
+        localStorage.getItem("webqenzo_admin") || "null"
+      );
+    } catch {
+      return null;
+    }
+  })();
 
   const isSuperAdmin = admin?.role === "SUPER_ADMIN";
 
@@ -38,22 +46,51 @@ const AdminSidebar = ({ mobileOpen, onClose }) => {
     },
   ];
 
+  // ============================================
+  // SUPER ADMIN ONLY
+  // ============================================
+
   if (isSuperAdmin) {
+    navigation.push(
+      {
+        name: "Add Leads",
+        path: "/admin/leads",
+        icon: UserPlus,
+      },
+      {
+        name: "Team",
+        path: "/admin/team",
+        icon: Users,
+      }
+    );
+  }
+
+  // ============================================
+  // TEAM ADMIN ONLY
+  // ============================================
+
+  if (!isSuperAdmin) {
     navigation.push({
-      name: "Team",
-      path: "/admin/team",
-      icon: Users,
+      name: "My Leads",
+      path: "/admin/my-leads",
+      icon: UserRoundCheck,
     });
   }
 
   const handleLogout = () => {
     adminLogout();
-    navigate("/admin/login", { replace: true });
+
+    navigate("/admin/login", {
+      replace: true,
+    });
   };
 
   return (
     <>
-      {/* Mobile Overlay */}
+      {/* =========================================
+          MOBILE OVERLAY
+      ========================================= */}
+
       {mobileOpen && (
         <button
           type="button"
@@ -63,25 +100,29 @@ const AdminSidebar = ({ mobileOpen, onClose }) => {
         />
       )}
 
-      {/* Sidebar */}
+      {/* =========================================
+          SIDEBAR
+      ========================================= */}
+
       <aside
         className={`fixed inset-y-0 left-0 z-50 flex w-[280px] flex-col overflow-hidden border-r border-slate-800/80 bg-[#07101f] text-white shadow-2xl shadow-slate-950/20 transition-transform duration-300 ease-out lg:translate-x-0 ${
-          mobileOpen ? "translate-x-0" : "-translate-x-full"
+          mobileOpen
+            ? "translate-x-0"
+            : "-translate-x-full"
         }`}
       >
-        {/* ================================
-            Brand Header
-        ================================= */}
+        {/* =======================================
+            BRAND HEADER
+        ======================================= */}
+
         <div className="flex h-[76px] shrink-0 items-center justify-between border-b border-white/[0.07] px-5">
           <div className="flex items-center gap-3">
-            {/* Brand Mark */}
             <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[13px] font-extrabold tracking-tight text-slate-950 shadow-lg shadow-black/20">
               WQ
 
               <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-cyan-400 ring-2 ring-[#07101f]" />
             </div>
 
-            {/* Brand Name */}
             <div>
               <div className="text-[18px] font-bold tracking-[-0.03em]">
                 Web<span className="text-cyan-400">Qenzo</span>
@@ -93,7 +134,6 @@ const AdminSidebar = ({ mobileOpen, onClose }) => {
             </div>
           </div>
 
-          {/* Mobile Close */}
           <button
             type="button"
             onClick={onClose}
@@ -104,20 +144,20 @@ const AdminSidebar = ({ mobileOpen, onClose }) => {
           </button>
         </div>
 
-        {/* ================================
-            Admin Profile
-        ================================= */}
+        {/* =======================================
+            ADMIN PROFILE
+        ======================================= */}
+
         <div className="shrink-0 border-b border-white/[0.07] px-5 py-5">
           <div className="rounded-2xl border border-white/[0.06] bg-white/[0.035] p-3.5">
             <div className="flex items-center gap-3">
-              {/* Avatar */}
               <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 text-sm font-bold text-white shadow-lg shadow-blue-900/20">
-                {admin?.name?.charAt(0)?.toUpperCase() || "A"}
+                {admin?.name?.charAt(0)?.toUpperCase() ||
+                  "A"}
 
                 <span className="absolute bottom-0.5 right-0.5 h-2.5 w-2.5 rounded-full bg-emerald-400 ring-2 ring-[#101a2b]" />
               </div>
 
-              {/* Details */}
               <div className="min-w-0 flex-1">
                 <p className="truncate text-[13px] font-semibold text-white">
                   {admin?.name || "Admin"}
@@ -129,7 +169,6 @@ const AdminSidebar = ({ mobileOpen, onClose }) => {
               </div>
             </div>
 
-            {/* Role */}
             <div className="mt-3">
               <span className="inline-flex items-center rounded-full border border-cyan-400/10 bg-cyan-400/[0.07] px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.14em] text-cyan-300">
                 {admin?.role || "ADMIN"}
@@ -138,10 +177,11 @@ const AdminSidebar = ({ mobileOpen, onClose }) => {
           </div>
         </div>
 
-        {/* ================================
-            Navigation
-        ================================= */}
-        <nav className="flex-1 overflow-y-auto px-3 py-5 [scrollbar-width:thin] [scrollbar-color:#334155_transparent]">
+        {/* =======================================
+            NAVIGATION
+        ======================================= */}
+
+        <nav className="flex-1 overflow-y-auto px-3 py-5 [scrollbar-color:#334155_transparent] [scrollbar-width:thin]">
           <p className="mb-3 px-3 text-[9px] font-bold uppercase tracking-[0.22em] text-slate-600">
             Management
           </p>
@@ -166,12 +206,10 @@ const AdminSidebar = ({ mobileOpen, onClose }) => {
                 >
                   {({ isActive }) => (
                     <>
-                      {/* Active Indicator */}
                       {isActive && (
                         <span className="absolute left-0 top-1/2 h-6 w-[3px] -translate-y-1/2 rounded-r-full bg-cyan-400" />
                       )}
 
-                      {/* Icon */}
                       <span
                         className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-all duration-200 ${
                           isActive
@@ -181,14 +219,16 @@ const AdminSidebar = ({ mobileOpen, onClose }) => {
                       >
                         <Icon
                           size={17}
-                          strokeWidth={isActive ? 2.2 : 1.8}
+                          strokeWidth={
+                            isActive ? 2.2 : 1.8
+                          }
                         />
                       </span>
 
-                      {/* Label */}
-                      <span className="truncate">{item.name}</span>
+                      <span className="truncate">
+                        {item.name}
+                      </span>
 
-                      {/* Active Dot */}
                       {isActive && (
                         <span className="ml-auto h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.5)]" />
                       )}
@@ -200,11 +240,11 @@ const AdminSidebar = ({ mobileOpen, onClose }) => {
           </div>
         </nav>
 
-        {/* ================================
-            Bottom Actions
-        ================================= */}
+        {/* =======================================
+            BOTTOM ACTIONS
+        ======================================= */}
+
         <div className="shrink-0 border-t border-white/[0.07] bg-[#060e1b] p-3">
-          {/* View Website */}
           <a
             href="/"
             target="_blank"
@@ -212,26 +252,30 @@ const AdminSidebar = ({ mobileOpen, onClose }) => {
             className="group flex items-center gap-3 rounded-xl px-3.5 py-3 text-[13px] font-medium text-slate-500 transition-all duration-200 hover:bg-white/[0.045] hover:text-slate-200"
           >
             <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/[0.025] text-slate-500 transition-colors group-hover:bg-white/[0.06] group-hover:text-slate-300">
-              <ExternalLink size={16} strokeWidth={1.8} />
+              <ExternalLink
+                size={16}
+                strokeWidth={1.8}
+              />
             </span>
 
             <span>View Website</span>
           </a>
 
-          {/* Logout */}
           <button
             type="button"
             onClick={handleLogout}
             className="group mt-1 flex w-full items-center gap-3 rounded-xl px-3.5 py-3 text-[13px] font-medium text-slate-500 transition-all duration-200 hover:bg-red-500/[0.07] hover:text-red-300"
           >
             <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/[0.025] text-slate-500 transition-colors group-hover:bg-red-500/10 group-hover:text-red-300">
-              <LogOut size={16} strokeWidth={1.8} />
+              <LogOut
+                size={16}
+                strokeWidth={1.8}
+              />
             </span>
 
             <span>Logout</span>
           </button>
 
-          {/* Footer */}
           <div className="px-3.5 pb-1 pt-3">
             <p className="text-[9px] font-medium tracking-wide text-slate-700">
               WebQenzo Admin

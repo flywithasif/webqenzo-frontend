@@ -92,6 +92,26 @@ const AdminTeam = lazy(() =>
 );
 
 /* =========================================================
+   ADMIN LEADS
+========================================================= */
+
+/*
+  Super Admin:
+  /admin/leads
+
+  Team Admin:
+  /admin/my-leads
+*/
+
+const AdminLeads = lazy(() =>
+  import("./admin/pages/AdminLeads")
+);
+
+const AdminMyLeads = lazy(() =>
+  import("./admin/pages/AdminMyLeads")
+);
+
+/* =========================================================
    LOADING SCREEN
 ========================================================= */
 
@@ -99,6 +119,7 @@ function PageLoader() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-[#05070B]">
       <div className="flex flex-col items-center">
+
         <div className="relative flex h-14 w-14 items-center justify-center">
 
           <div className="absolute inset-0 rounded-full border border-blue-400/10" />
@@ -112,6 +133,7 @@ function PageLoader() {
         <span className="mt-5 text-[9px] font-semibold uppercase tracking-[0.3em] text-slate-600">
           WebQenzo
         </span>
+
       </div>
     </div>
   );
@@ -144,6 +166,7 @@ function PageTransition({ children }) {
 
   return (
     <AnimatePresence mode="wait">
+
       <motion.div
         key={location.pathname}
         initial={{
@@ -165,6 +188,7 @@ function PageTransition({ children }) {
       >
         {children}
       </motion.div>
+
     </AnimatePresence>
   );
 }
@@ -181,10 +205,14 @@ function PublicWebsite() {
       <Navbar />
 
       <PageTransition>
+
         <Suspense fallback={<PageLoader />}>
+
           <Routes>
 
-            {/* Main Pages */}
+            {/* =================================================
+                MAIN PAGES
+            ================================================= */}
 
             <Route
               path="/"
@@ -216,7 +244,9 @@ function PublicWebsite() {
               element={<GetQuote />}
             />
 
-            {/* Legal / Contact */}
+            {/* =================================================
+                LEGAL / CONTACT
+            ================================================= */}
 
             <Route
               path="/privacy-policy"
@@ -233,7 +263,9 @@ function PublicWebsite() {
               element={<Contact />}
             />
 
-            {/* Case Studies */}
+            {/* =================================================
+                CASE STUDIES
+            ================================================= */}
 
             <Route
               path="/portfolio/medicare"
@@ -265,7 +297,9 @@ function PublicWebsite() {
               element={<ThreadRare />}
             />
 
-            {/* Public 404 */}
+            {/* =================================================
+                PUBLIC 404
+            ================================================= */}
 
             <Route
               path="*"
@@ -273,7 +307,9 @@ function PublicWebsite() {
             />
 
           </Routes>
+
         </Suspense>
+
       </PageTransition>
 
       <Footer />
@@ -288,6 +324,7 @@ function PublicWebsite() {
 function AdminPanel() {
   return (
     <Suspense fallback={<PageLoader />}>
+
       <Routes>
 
         {/* =================================================
@@ -309,28 +346,58 @@ function AdminPanel() {
             path="/admin"
             element={<AdminLayout />}
           >
-            {/* Dashboard */}
+
+            {/* =================================================
+                DASHBOARD
+            ================================================= */}
 
             <Route
               index
               element={<AdminDashboard />}
             />
 
-            {/* Quotes */}
+            {/* =================================================
+                QUOTES
+            ================================================= */}
 
             <Route
               path="quotes"
               element={<AdminQuotes />}
             />
 
-            {/* Contacts */}
+            {/* =================================================
+                CONTACTS
+            ================================================= */}
 
             <Route
               path="contacts"
               element={<AdminContacts />}
             />
 
-            {/* Team */}
+            {/* =================================================
+                ADD LEADS
+                SUPER ADMIN
+            ================================================= */}
+
+            <Route
+              path="leads"
+              element={<AdminLeads />}
+            />
+
+            {/* =================================================
+                MY LEADS
+                TEAM ADMIN
+            ================================================= */}
+
+            <Route
+              path="my-leads"
+              element={<AdminMyLeads />}
+            />
+
+            {/* =================================================
+                TEAM
+                SUPER ADMIN
+            ================================================= */}
 
             <Route
               path="team"
@@ -342,6 +409,7 @@ function AdminPanel() {
         </Route>
 
       </Routes>
+
     </Suspense>
   );
 }
@@ -381,7 +449,9 @@ function AppRouter() {
 function App() {
   return (
     <BrowserRouter>
+
       <AppRouter />
+
     </BrowserRouter>
   );
 }

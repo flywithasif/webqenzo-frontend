@@ -189,7 +189,9 @@ export const restoreQuote = (id) =>
   );
 
 // ======================================================
-// CONTACT LEADS
+// CONTACTS
+// IMPORTANT:
+// Contacts remain completely separate from Leads.
 // ======================================================
 
 export const getContacts = () =>
@@ -315,3 +317,116 @@ export const deleteTeamMember = (
       method: "DELETE",
     }
   );
+
+// ======================================================
+// SEPARATE LEADS SYSTEM
+// IMPORTANT:
+// These APIs NEVER use /contacts.
+// ======================================================
+
+// Create one manual lead
+export const createManualLead = (
+  payload
+) =>
+  request("/admin/leads", {
+    method: "POST",
+    body: JSON.stringify(
+      payload
+    ),
+  });
+
+// Bulk create/import leads
+export const bulkCreateManualLeads = (
+  payload
+) =>
+  request("/admin/leads/bulk", {
+    method: "POST",
+    body: JSON.stringify(
+      payload
+    ),
+  });
+
+// Super Admin - all uploaded/manual leads
+export const getAllLeads = () =>
+  request("/admin/leads");
+
+// Team Admin - only assigned leads
+export const getMyLeads = () =>
+  request("/admin/leads/my");
+
+// Super Admin - assign lead
+export const assignLead = (
+  id,
+  assignedTo
+) =>
+  request(
+    `/admin/leads/${id}/assign`,
+    {
+      method: "PATCH",
+      body: JSON.stringify({
+        assignedTo,
+      }),
+    }
+  );
+
+// Lead CRM update
+export const updateLeadCRM = (
+  id,
+  payload
+) =>
+  request(
+    `/admin/leads/${id}/crm`,
+    {
+      method: "PATCH",
+      body: JSON.stringify(
+        payload
+      ),
+    }
+  );
+
+// Lead comment
+export const addLeadComment = (
+  id,
+  message
+) =>
+  request(
+    `/admin/leads/${id}/comments`,
+    {
+      method: "POST",
+      body: JSON.stringify({
+        message,
+      }),
+    }
+  );
+
+// Delete lead
+export const deleteLead = (id) =>
+  request(
+    `/admin/leads/${id}`,
+    {
+      method: "DELETE",
+    }
+  );
+
+// Restore lead
+export const restoreLead = (
+  id
+) =>
+  request(
+    `/admin/leads/${id}/restore`,
+    {
+      method: "PATCH",
+    }
+  );
+
+// ======================================================
+// LOGIN CHECK
+// ======================================================
+
+export const isAdminLoggedIn = () => {
+  return Boolean(
+    localStorage.getItem(
+      "webqenzo_admin_token"
+    )
+  );
+};
