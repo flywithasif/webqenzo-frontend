@@ -7,6 +7,8 @@ import {
 } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
+import Presentation from "./pages/Presentation";
+
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
@@ -304,7 +306,11 @@ function PublicWebsite() {
             <Route
               path="*"
               element={<NotFound />}
+
             />
+
+
+            <Route path="/presentation" element={<Presentation />} />
 
           </Routes>
 

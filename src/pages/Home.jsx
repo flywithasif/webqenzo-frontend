@@ -20,381 +20,526 @@ function Home() {
         path="/"
       />
 
-      <main className="overflow-hidden">
+      <main className="home-page overflow-x-clip">
 
       {/* =====================================================
           HERO SECTION
       ====================================================== */}
-      <section className="relative bg-[#060B14] text-white">
+      <section className="relative isolate overflow-hidden bg-[#070B14] text-white">
+  {/* Background */}
+  <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+    <div className="absolute -left-40 top-10 h-[420px] w-[420px] rounded-full bg-blue-600/20 blur-[120px]" />
+    <div className="absolute -right-24 top-20 h-[460px] w-[460px] rounded-full bg-cyan-500/15 blur-[130px]" />
+    <div
+      className="absolute inset-0 opacity-[0.045]"
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(255,255,255,.7) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.7) 1px, transparent 1px)",
+        backgroundSize: "48px 48px",
+      }}
+    />
+    <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#070B14] to-transparent" />
+  </div>
 
-        {/* Background glow */}
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute -left-32 top-20 h-96 w-96 rounded-full bg-blue-600/10 blur-3xl" />
-          <div className="absolute right-[-120px] top-[-100px] h-[500px] w-[500px] rounded-full bg-cyan-500/10 blur-3xl" />
+  <div className="relative mx-auto max-w-[1440px] px-5 pb-16 pt-16 sm:px-8 sm:pb-20 sm:pt-20 lg:px-12 lg:pb-24 lg:pt-24">
+    <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-12 xl:gap-16">
 
-          {/* Grid */}
-          <div
-            className="absolute inset-0 opacity-[0.035]"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)",
-              backgroundSize: "64px 64px",
-            }}
+      {/* LEFT: Hero content */}
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.65, ease: "easeOut" }}
+        className="mx-auto w-full max-w-2xl lg:mx-0"
+      >
+        <div className="mb-6 inline-flex max-w-full items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.045] px-3.5 py-2">
+          <span className="relative flex h-2 w-2 shrink-0">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-60" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-400" />
+          </span>
+          <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-300 sm:text-xs sm:tracking-[0.2em]">
+            WebQenzo · Digital Experiences
+          </span>
+        </div>
+
+        <h1 className="max-w-[760px] text-[clamp(2.8rem,6.1vw,5.65rem)] font-semibold leading-[1.04] tracking-[-0.065em]">
+          Websites that
+          <br />
+          make your brand
+          <br />
+          <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500 bg-clip-text text-transparent">
+            impossible to ignore.
+          </span>
+        </h1>
+
+        <p className="mt-6 max-w-xl text-base leading-7 text-slate-400 sm:mt-7 sm:text-lg sm:leading-8">
+          We design and develop high-performance websites that turn first
+          impressions into lasting trust — and visitors into customers.
+        </p>
+
+        {/* CTA */}
+        <div className="mt-8 flex flex-col gap-3 min-[420px]:flex-row sm:mt-9">
+          <Link
+            to="/get-quote"
+            className="group inline-flex min-h-14 items-center justify-center gap-3 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-[#07101E] shadow-[0_8px_35px_rgba(255,255,255,0.08)] transition duration-300 hover:-translate-y-1 hover:bg-cyan-50 hover:shadow-[0_12px_40px_rgba(34,211,238,0.15)]"
+          >
+            Let's Build Your Website
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#0B1220] text-white transition-transform duration-300 group-hover:translate-x-1">
+              <ArrowUpRight size={17} />
+            </span>
+          </Link>
+
+          <Link
+            to="/portfolio"
+            className="group inline-flex min-h-14 items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.035] px-6 py-3.5 text-sm font-medium text-white transition duration-300 hover:-translate-y-1 hover:border-cyan-400/40 hover:bg-white/[0.07]"
+          >
+            Explore Our Work
+            <ArrowRight
+              size={17}
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            />
+          </Link>
+        </div>
+
+        {/* Trust points */}
+        <div className="mt-8 flex flex-wrap gap-x-5 gap-y-3 text-xs font-medium text-slate-400 sm:gap-x-6 sm:text-sm">
+          {[
+            "Responsive by design",
+            "Performance focused",
+            "Built for growth",
+          ].map((item) => (
+            <span key={item} className="inline-flex items-center gap-2">
+              <Check size={15} className="shrink-0 text-cyan-400" />
+              {item}
+            </span>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* RIGHT: Premium website showcase */}
+      <motion.div
+        initial={{ opacity: 0, y: 28, scale: 0.97 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ delay: 0.15, duration: 0.8, ease: "easeOut" }}
+        className="relative mx-auto w-full max-w-[650px] min-w-0 lg:ml-auto"
+      >
+        {/* Decorative glow */}
+        <div className="pointer-events-none absolute inset-8 rounded-full bg-blue-500/20 blur-[80px]" />
+
+        {/* Top floating badge */}
+        <motion.div
+          animate={{ y: [0, -5, 0] }}
+          transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -right-1 -top-5 z-20 hidden items-center gap-3 rounded-2xl border border-white/10 bg-[#111827]/95 p-3 shadow-2xl backdrop-blur-xl sm:flex md:-right-3"
+        >
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-400/10 text-cyan-300">
+            <Code2 size={19} />
+          </div>
+          <div>
+            <p className="text-[10px] font-medium uppercase tracking-widest text-slate-500">
+              Development
+            </p>
+            <p className="mt-1 text-xs font-semibold text-white">
+              Clean. Modern. Scalable.
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Main browser frame */}
+        <div className="relative rounded-[22px] border border-white/[0.13] bg-[#111722] p-2 shadow-[0_30px_100px_rgba(0,0,0,0.48)] sm:rounded-[28px] sm:p-3">
+          {/* Browser toolbar */}
+          <div className="flex h-10 items-center gap-2 px-2 sm:h-12 sm:px-3">
+            <span className="h-2.5 w-2.5 rounded-full bg-[#FF6B6B]" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#F6C85F]" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#51CF93]" />
+
+            <div className="ml-2 flex h-7 min-w-0 flex-1 items-center justify-center rounded-lg border border-white/[0.06] bg-white/[0.035] px-2 sm:ml-4">
+              <span className="truncate text-[9px] text-slate-500 sm:text-[11px]">
+                webqenzo.com / your-next-project
+              </span>
+            </div>
+
+            <span className="ml-1 hidden text-[10px] text-slate-600 sm:block">
+              ↗
+            </span>
+          </div>
+
+          {/* Website preview */}
+          <div className="overflow-hidden rounded-[15px] bg-[#F5F7FC]">
+            {/* Preview navbar */}
+            <div className="flex h-12 items-center justify-between border-b border-slate-200/80 bg-white px-3 sm:h-14 sm:px-6">
+              <div className="flex items-center gap-2">
+                <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#101C39] text-xs font-bold text-white">
+                  N
+                </div>
+                <span className="text-[11px] font-bold tracking-tight text-[#101C39] sm:text-sm">
+                  NEXORA
+                </span>
+              </div>
+
+              <div className="hidden items-center gap-4 text-[9px] font-medium text-slate-500 sm:flex lg:gap-5">
+                <span>Solutions</span>
+                <span>Our Work</span>
+                <span>About Us</span>
+              </div>
+
+              <div className="rounded-full bg-[#101C39] px-3 py-2 text-[8px] font-semibold text-white sm:px-4 sm:text-[9px]">
+                Get Started ↗
+              </div>
+            </div>
+
+            {/* Preview hero */}
+            <div className="relative overflow-hidden bg-gradient-to-br from-white via-[#F2F6FF] to-[#E5F0FF] px-4 py-7 sm:px-7 sm:py-10 md:px-9 md:py-12">
+              <div className="pointer-events-none absolute -right-12 -top-12 h-48 w-48 rounded-full border border-blue-200/70 sm:h-64 sm:w-64" />
+              <div className="pointer-events-none absolute -right-5 top-4 h-36 w-36 rounded-full border border-blue-200/50 sm:h-48 sm:w-48" />
+
+              <div className="relative grid grid-cols-[1.05fr_0.95fr] items-center gap-2 sm:gap-5">
+                <div className="min-w-0">
+                  <div className="mb-3 inline-flex rounded-full border border-blue-100 bg-white/80 px-2.5 py-1.5 text-[7px] font-bold uppercase tracking-widest text-blue-600 sm:mb-4 sm:text-[9px]">
+                    Built for what's next
+                  </div>
+
+                  <h2 className="text-[clamp(1.2rem,3.2vw,2.65rem)] font-bold leading-[1.08] tracking-[-0.06em] text-[#101C39]">
+                    Think bigger.
+                    <br />
+                    <span className="text-blue-600">Grow faster.</span>
+                  </h2>
+
+                  <p className="mt-3 max-w-[230px] text-[8px] leading-4 text-slate-500 sm:mt-4 sm:text-[10px] sm:leading-5">
+                    A digital experience designed to move your business
+                    forward.
+                  </p>
+
+                  <div className="mt-4 inline-flex items-center gap-2 rounded-lg bg-[#101C39] px-3 py-2 text-[8px] font-semibold text-white sm:mt-6 sm:px-4 sm:py-2.5 sm:text-[10px]">
+                    Discover More <ArrowRight size={11} />
+                  </div>
+
+                  <div className="mt-5 flex items-center gap-2 sm:mt-7">
+                    <div className="flex -space-x-1.5">
+                      <span className="h-5 w-5 rounded-full border-2 border-white bg-blue-300" />
+                      <span className="h-5 w-5 rounded-full border-2 border-white bg-cyan-300" />
+                      <span className="h-5 w-5 rounded-full border-2 border-white bg-violet-300" />
+                    </div>
+                    <span className="text-[7px] text-slate-500 sm:text-[9px]">
+                      Made for real businesses
+                    </span>
+                  </div>
+                </div>
+
+                {/* Abstract product dashboard */}
+                <div className="relative min-w-0">
+                  <div className="absolute inset-1 rounded-2xl bg-blue-400/20 blur-xl" />
+
+                  <div className="relative rotate-2 rounded-xl border border-white bg-white p-2 shadow-xl sm:rounded-2xl sm:p-3">
+                    <div className="flex items-center justify-between border-b border-slate-100 pb-2">
+                      <div>
+                        <div className="h-1.5 w-12 rounded-full bg-slate-200 sm:w-16" />
+                        <div className="mt-1.5 h-2 w-16 rounded-full bg-[#101C39] sm:w-20" />
+                      </div>
+                      <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-blue-50 text-blue-600 sm:h-8 sm:w-8">
+                        <Monitor size={15} />
+                      </div>
+                    </div>
+
+                    <div className="mt-3 grid grid-cols-2 gap-2">
+                      <div className="rounded-lg bg-blue-50 p-2 sm:p-3">
+                        <div className="h-1 w-8 rounded bg-blue-200" />
+                        <div className="mt-2 h-3 w-10 rounded bg-blue-600 sm:w-12" />
+                        <div className="mt-2 h-1 w-7 rounded bg-blue-200" />
+                      </div>
+                      <div className="rounded-lg bg-cyan-50 p-2 sm:p-3">
+                        <div className="h-1 w-8 rounded bg-cyan-200" />
+                        <div className="mt-2 h-3 w-8 rounded bg-cyan-500 sm:w-10" />
+                        <div className="mt-2 h-1 w-6 rounded bg-cyan-200" />
+                      </div>
+                    </div>
+
+                    {/* Decorative chart */}
+                    <div className="mt-2 rounded-lg border border-slate-100 p-2 sm:mt-3 sm:p-3">
+                      <div className="mb-2 flex items-center justify-between">
+                        <div className="h-1.5 w-12 rounded-full bg-slate-200" />
+                        <div className="h-1.5 w-6 rounded-full bg-blue-100" />
+                      </div>
+                      <div className="flex h-14 items-end gap-1.5 sm:h-20 sm:gap-2">
+                        {[32, 48, 38, 66, 52, 80, 63, 100].map(
+                          (height, index) => (
+                            <div
+                              key={index}
+                              className={`flex-1 rounded-t-sm ${
+                                index === 7 ? "bg-cyan-500" : "bg-blue-500/75"
+                              }`}
+                              style={{ height: `${height}%` }}
+                            />
+                          )
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Small floating stat */}
+                  <motion.div
+                    animate={{ y: [0, -4, 0] }}
+                    transition={{
+                      duration: 3.8,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                    className="absolute -bottom-3 -left-3 rounded-xl border border-slate-100 bg-white p-2.5 shadow-lg sm:-bottom-4 sm:-left-5 sm:p-3"
+                  >
+                    <div className="text-[7px] font-medium text-slate-400 sm:text-[9px]">
+                      User experience
+                    </div>
+                    <div className="mt-1 flex items-center gap-2">
+                      <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                      <span className="text-[10px] font-bold text-[#101C39] sm:text-xs">
+                        Made to impress
+                      </span>
+                    </div>
+                  </motion.div>
+                </div>
+              </div>
+            </div>
+
+            {/* Preview footer */}
+            <div className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-200 bg-white px-4 py-3 sm:px-6 sm:py-4">
+              <span className="text-[8px] font-semibold uppercase tracking-widest text-slate-400 sm:text-[9px]">
+                Designed with purpose
+              </span>
+              <div className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+                <span className="text-[8px] font-medium text-slate-500 sm:text-[9px]">
+                  Responsive on every screen
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom floating card */}
+        <motion.div
+          animate={{ y: [0, 5, 0] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -bottom-5 right-2 z-20 hidden items-center gap-3 rounded-2xl border border-white/10 bg-[#111827]/95 p-3 shadow-2xl backdrop-blur-xl sm:flex md:right-5"
+        >
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/15 text-blue-300">
+            <Sparkles size={18} />
+          </div>
+          <div>
+            <p className="text-[10px] uppercase tracking-widest text-slate-500">
+              Design approach
+            </p>
+            <p className="mt-1 text-xs font-semibold text-white">
+              Every pixel has a purpose.
+            </p>
+          </div>
+        </motion.div>
+      </motion.div>
+    </div>
+
+    {/* Bottom industry strip */}
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.45, duration: 0.6 }}
+      className="mt-16 border-t border-white/10 pt-6 sm:mt-20 sm:pt-8"
+    >
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 sm:text-xs">
+          Digital solutions for ambitious brands
+        </p>
+
+        <div className="flex flex-wrap gap-x-5 gap-y-3 text-xs font-medium text-slate-400 sm:gap-x-7 sm:text-sm">
+          {[
+            "Healthcare",
+            "Fitness",
+            "Legal",
+            "Finance",
+            "Events",
+            "E-commerce",
+          ].map((industry) => (
+            <span
+              key={industry}
+              className="transition-colors hover:text-cyan-300"
+            >
+              {industry}
+            </span>
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  </div>
+</section>
+
+
+
+<section className="relative overflow-hidden bg-white py-16 text-slate-900 sm:py-20 lg:py-24">
+  <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:gap-16 lg:px-10">
+
+    {/* LEFT: Images */}
+    <div className="relative mx-auto w-full max-w-xl pb-12 sm:pb-16">
+      <div className="grid grid-cols-[0.78fr_1fr] items-start gap-3 sm:gap-5">
+        <div className="mt-8 overflow-hidden rounded-2xl sm:mt-10">
+          <img
+            src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=85"
+            alt="Modern professional office"
+            className="h-56 w-full object-cover sm:h-72 lg:h-80"
+            loading="lazy"
           />
         </div>
 
-        <div className="relative mx-auto max-w-[1400px] px-5 pb-20 pt-16 sm:px-8 sm:pb-24 sm:pt-20 lg:px-10 lg:pb-28 lg:pt-24">
+        <div className="relative overflow-hidden rounded-2xl">
+          <img
+            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1000&q=85"
+            alt="Digital design and website development workspace"
+            className="h-[340px] w-full object-cover sm:h-[440px] lg:h-[500px]"
+            loading="lazy"
+          />
 
-          <div className="grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+          {/* Experience badge */}
+          <div className="absolute right-0 top-0 rounded-bl-2xl bg-indigo-600 px-4 py-4 text-white shadow-xl sm:px-5 sm:py-5">
+            <p className="text-2xl font-extrabold sm:text-3xl">05+</p>
+            <p className="mt-1 text-xs font-medium leading-4 sm:text-sm">
+              Years of Work
+              <br />
+              Experience
+            </p>
+          </div>
+        </div>
+      </div>
 
-            {/* =================================================
-                LEFT CONTENT
-            ================================================== */}
-            <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
-              className="max-w-2xl"
+      {/* Customer card */}
+      <div className="absolute bottom-0 left-2 flex max-w-[95%] items-center gap-3 rounded-2xl border border-slate-100 bg-white p-3 shadow-[0_12px_45px_rgba(15,23,42,0.12)] sm:left-8 sm:gap-4 sm:p-4">
+        <div>
+          <p className="text-2xl font-extrabold tracking-tight sm:text-3xl">
+            30K
+          </p>
+          <p className="mt-1 text-[10px] text-slate-500 sm:text-xs">
+            Happy customers worldwide
+          </p>
+        </div>
+
+        <div className="flex shrink-0 -space-x-2">
+          {[
+            { name: "A", color: "bg-indigo-500" },
+            { name: "S", color: "bg-violet-500" },
+            { name: "R", color: "bg-slate-700" },
+          ].map((person) => (
+            <div
+              key={person.name}
+              className={`flex h-8 w-8 items-center justify-center rounded-full border-2 border-white text-xs font-bold text-white sm:h-10 sm:w-10 ${person.color}`}
             >
+              {person.name}
+            </div>
+          ))}
+          <div className="flex h-8 items-center justify-center rounded-full border-2 border-white bg-slate-950 px-2 text-[10px] font-bold text-white sm:h-10 sm:px-2.5 sm:text-xs">
+            62+
+          </div>
+        </div>
+      </div>
+    </div>
 
-              {/* Eyebrow */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.15, duration: 0.5 }}
-                className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-2 text-xs font-medium tracking-wide text-slate-300"
-              >
-                <Sparkles size={14} className="text-cyan-400" />
+    {/* RIGHT: Content */}
+    <div className="w-full min-w-0">
 
-                PREMIUM WEB DEVELOPMENT STUDIO
+      <h2 className="max-w-xl text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-[42px]">
+        We Build Websites That{" "}
+        <span className="text-indigo-600">Grow Businesses.</span>
+      </h2>
 
-                <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
-              </motion.div>
+      <p className="mt-4 max-w-xl text-sm leading-6 text-slate-500 sm:text-base sm:leading-7">
+        WebQenzo helps businesses build a powerful online presence through
+        custom web development, strategic digital experiences, and creative
+        design that supports real business growth.
+      </p>
 
-              {/* Main Heading */}
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.7 }}
-                className="text-[clamp(3.2rem,6vw,5.7rem)] font-semibold leading-[0.94] tracking-[-0.055em]"
-              >
-                Digital
-                <br />
-
-                <span className="bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-400 bg-clip-text text-transparent">
-                  experiences
-                </span>
-
-                <br />
-
-                that move
-                <br />
-
-                businesses.
-              </motion.h1>
-
-              {/* Description */}
-              <motion.p
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.35, duration: 0.6 }}
-                className="mt-7 max-w-xl text-base leading-7 text-slate-400 sm:text-lg"
-              >
-                We design and build premium, high-performance websites
-                that make businesses look credible, professional and
-                ready to grow.
-              </motion.p>
-
-              {/* Buttons */}
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.45, duration: 0.6 }}
-                className="mt-9 flex flex-col gap-3 sm:flex-row"
-              >
-
-                <Link
-                  to="/get-quote"
-                  className="group inline-flex items-center justify-center gap-3 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-[#0B1220] transition-all duration-300 hover:-translate-y-0.5 hover:bg-slate-100 hover:shadow-xl"
-                >
-                  Start Your Project
-
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#0B1220] text-white transition-transform duration-300 group-hover:translate-x-0.5">
-                    <ArrowUpRight size={15} />
-                  </span>
-                </Link>
-
-                <Link
-                  to="/portfolio"
-                  className="group inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/[0.07]"
-                >
-                  Explore Our Work
-
-                  <ArrowRight
-                    size={17}
-                    className="transition-transform duration-300 group-hover:translate-x-1"
-                  />
-                </Link>
-
-              </motion.div>
-
-              {/* Small trust points */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.65, duration: 0.7 }}
-                className="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-xs text-slate-500"
-              >
-                <span className="flex items-center gap-2">
-                  <Check size={14} className="text-cyan-400" />
-                  Mobile-first
-                </span>
-
-                <span className="flex items-center gap-2">
-                  <Check size={14} className="text-cyan-400" />
-                  Performance focused
-                </span>
-
-                <span className="flex items-center gap-2">
-                  <Check size={14} className="text-cyan-400" />
-                  Built for growth
-                </span>
-              </motion.div>
-
-            </motion.div>
-
-
-            {/* =================================================
-                RIGHT — WEBSITE BROWSER MOCKUP
-            ================================================== */}
-            <motion.div
-              initial={{ opacity: 0, x: 50, scale: 0.96 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{
-                delay: 0.25,
-                duration: 0.9,
-                ease: "easeOut",
-              }}
-              className="relative"
+      {/* Mission card */}
+      <div className="mt-7 flex items-center justify-between gap-3 rounded-2xl border border-slate-100 bg-slate-50 p-3 shadow-sm sm:mt-8 sm:p-4">
+        <div className="flex min-w-0 items-center gap-3">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-indigo-600 text-white shadow-lg shadow-indigo-200 sm:h-14 sm:w-14">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.7"
+              className="h-7 w-7"
+              aria-hidden="true"
             >
-
-              {/* Floating card — top */}
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute -right-2 -top-7 z-20 hidden rounded-2xl border border-white/10 bg-[#111827]/90 p-3 shadow-2xl backdrop-blur-xl sm:block lg:-right-5"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-500/15">
-                    <Code2 size={17} className="text-blue-400" />
-                  </div>
-
-                  <div>
-                    <p className="text-[10px] font-medium uppercase tracking-wider text-slate-500">
-                      Development
-                    </p>
-                    <p className="text-xs font-semibold text-white">
-                      Clean & scalable
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-
-
-              {/* Browser */}
-              <div className="relative rounded-[24px] border border-white/10 bg-[#101722] p-2 shadow-2xl shadow-black/40 sm:p-3">
-
-                {/* Browser bar */}
-                <div className="flex h-10 items-center gap-2 px-2 sm:h-11">
-
-                  <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
-
-                  <div className="ml-3 flex h-7 flex-1 items-center rounded-lg border border-white/5 bg-white/[0.03] px-3">
-                    <span className="truncate text-[9px] text-slate-600 sm:text-[10px]">
-                      webqenzo.com / selected-work
-                    </span>
-                  </div>
-
-                </div>
-
-
-                {/* Fake Website */}
-                <div className="overflow-hidden rounded-[17px] bg-[#F7F8FA]">
-
-                  {/* Fake website navbar */}
-                  <div className="flex h-12 items-center justify-between border-b border-slate-200 bg-white px-4 sm:h-14 sm:px-6">
-
-                    <div className="text-sm font-black tracking-tight text-[#0B1220]">
-                      NEXORA
-                    </div>
-
-                    <div className="hidden gap-4 text-[8px] font-medium text-slate-400 sm:flex">
-                      <span>Solutions</span>
-                      <span>Work</span>
-                      <span>About</span>
-                    </div>
-
-                    <div className="h-6 w-16 rounded-full bg-[#0B1220]" />
-
-                  </div>
-
-
-                  {/* Fake website hero */}
-                  <div className="grid min-h-[320px] grid-cols-2 gap-3 p-5 sm:min-h-[390px] sm:p-8">
-
-                    <div className="flex flex-col justify-center">
-
-                      <div className="mb-3 h-2 w-20 rounded-full bg-blue-100" />
-
-                      <div className="space-y-2">
-                        <div className="h-5 w-full rounded-md bg-[#0B1220] sm:h-7" />
-                        <div className="h-5 w-[82%] rounded-md bg-[#0B1220] sm:h-7" />
-                        <div className="h-5 w-[62%] rounded-md bg-blue-600 sm:h-7" />
-                      </div>
-
-                      <div className="mt-5 space-y-1.5">
-                        <div className="h-1.5 w-full rounded-full bg-slate-200" />
-                        <div className="h-1.5 w-[82%] rounded-full bg-slate-200" />
-                        <div className="h-1.5 w-[70%] rounded-full bg-slate-200" />
-                      </div>
-
-                      <div className="mt-6 h-8 w-24 rounded-full bg-[#0B1220]" />
-
-                    </div>
-
-
-                    {/* Visual */}
-                    <div className="relative flex items-center justify-center">
-
-                      <div className="absolute h-40 w-40 rounded-full bg-blue-500/10 blur-2xl sm:h-56 sm:w-56" />
-
-                      <div className="relative h-40 w-32 rotate-3 rounded-2xl border border-slate-200 bg-white p-2 shadow-xl sm:h-52 sm:w-40">
-
-                        <div className="h-full rounded-xl bg-gradient-to-br from-slate-100 via-white to-blue-50 p-3">
-
-                          <div className="flex items-center justify-between">
-                            <div className="h-3 w-10 rounded bg-[#0B1220]" />
-                            <div className="h-3 w-3 rounded-full bg-blue-500" />
-                          </div>
-
-                          <div className="mt-8">
-                            <div className="h-3 w-16 rounded bg-[#0B1220]" />
-                            <div className="mt-2 h-2 w-12 rounded bg-slate-200" />
-                          </div>
-
-                          <div className="mt-6 flex gap-1.5">
-                            <div className="h-10 flex-1 rounded-lg bg-blue-500/10" />
-                            <div className="h-10 flex-1 rounded-lg bg-cyan-500/10" />
-                          </div>
-
-                          <div className="mt-2 h-8 rounded-lg bg-slate-100" />
-
-                        </div>
-
-                      </div>
-
-                    </div>
-
-                  </div>
-
-
-                  {/* Fake bottom section */}
-                  <div className="border-t border-slate-200 bg-white px-5 py-4 sm:px-8">
-
-                    <div className="flex items-center justify-between">
-
-                      <div className="flex gap-2">
-                        <div className="h-6 w-16 rounded-md bg-slate-100" />
-                        <div className="h-6 w-16 rounded-md bg-slate-100" />
-                        <div className="h-6 w-16 rounded-md bg-slate-100" />
-                      </div>
-
-                      <div className="hidden items-center gap-1 text-[9px] font-semibold text-blue-600 sm:flex">
-                        Explore
-                        <ArrowRight size={10} />
-                      </div>
-
-                    </div>
-
-                  </div>
-
-                </div>
-              </div>
-
-
-              {/* Floating card — bottom */}
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute -bottom-6 -left-3 z-20 hidden rounded-2xl border border-white/10 bg-[#111827]/90 p-3 shadow-2xl backdrop-blur-xl sm:block lg:-left-6"
-              >
-                <div className="flex items-center gap-3">
-
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-cyan-500/10">
-                    <Monitor size={17} className="text-cyan-400" />
-                  </div>
-
-                  <div>
-                    <p className="text-[10px] font-medium uppercase tracking-wider text-slate-500">
-                      Experience
-                    </p>
-
-                    <p className="text-xs font-semibold text-white">
-                      Designed to convert
-                    </p>
-                  </div>
-
-                </div>
-              </motion.div>
-
-            </motion.div>
-
+              <circle cx="12" cy="12" r="9" />
+              <circle cx="12" cy="12" r="5.5" />
+              <circle cx="12" cy="12" r="2" />
+              <path d="M13.5 10.5 21 3m-4 0h4v4" />
+            </svg>
           </div>
 
-
-          {/* =================================================
-              BOTTOM LABELS
-          ================================================== */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.6 }}
-            className="mt-20 border-t border-white/10 pt-7"
-          >
-
-            <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-600">
-                Built for ambitious businesses
-              </p>
-
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-xs font-medium text-slate-500">
-
-                <span>Healthcare</span>
-                <span>Fitness</span>
-                <span>Legal</span>
-                <span>Finance</span>
-                <span>Events</span>
-                <span>E-commerce</span>
-
-              </div>
-
-            </div>
-
-          </motion.div>
-
+          <div>
+            <p className="text-xs text-slate-500">What drives us</p>
+            <p className="text-base font-bold sm:text-lg">Our Mission</p>
+          </div>
         </div>
-      </section>
+
+        <div className="flex shrink-0 gap-2">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-950 text-white sm:h-12 sm:w-12">
+            <ArrowUpRight size={21} />
+          </div>
+          <div className="hidden h-10 w-10 items-center justify-center rounded-xl bg-slate-900 text-white sm:flex sm:h-12 sm:w-12">
+            <Sparkles size={20} />
+          </div>
+        </div>
+      </div>
+
+      {/* Mission description */}
+      <div className="mt-6 border-l-4 border-fuchsia-500 pl-3 sm:mt-7">
+        <h3 className="text-lg font-bold tracking-tight sm:text-xl">
+          Building Digital Success From Day One
+        </h3>
+      </div>
+
+      <p className="mt-3 text-sm leading-6 text-slate-500 sm:text-base sm:leading-7">
+        Our mission is to empower businesses with modern websites, thoughtful
+        branding, and digital experiences that improve visibility, attract
+        customers, and support sustainable growth.
+      </p>
+
+      {/* Services */}
+      <div className="mt-5 space-y-3">
+        {[
+          "Custom Website Design & Development",
+          "Responsive Design for Every Screen",
+          "Performance-Focused Digital Experiences",
+        ].map((service) => (
+          <div key={service} className="flex items-start gap-2.5">
+            <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-indigo-200 text-indigo-600">
+              <Check size={13} strokeWidth={2.5} />
+            </span>
+            <span className="text-sm leading-6 text-slate-600 sm:text-base">
+              {service}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      {/* CTA buttons */}
+      <div className="mt-7 flex flex-col gap-3 min-[420px]:flex-row sm:mt-8">
+        <Link
+          to="/about"
+          className="inline-flex min-h-12 items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-fuchsia-600 to-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-200/60 transition duration-300 hover:-translate-y-0.5 hover:shadow-xl"
+        >
+          About Us
+          <ArrowUpRight size={17} />
+        </Link>
+
+        <Link
+          to="/get-quote"
+          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-800 transition hover:border-indigo-300 hover:bg-indigo-50"
+        >
+          Get In Touch
+          <ArrowUpRight size={17} className="text-indigo-600" />
+        </Link>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 
 
       {/* =====================================================
@@ -3976,6 +4121,106 @@ function Home() {
   `}</style>
 
 </section>
+
+      <style>{`
+        .home-page,
+        .home-page * {
+          box-sizing: border-box;
+        }
+
+        .home-page {
+          width: 100%;
+          max-width: 100%;
+          overflow-x: clip;
+        }
+
+        .home-page img,
+        .home-page video,
+        .home-page svg {
+          max-width: 100%;
+        }
+
+        .home-page h1,
+        .home-page h2,
+        .home-page h3,
+        .home-page p,
+        .home-page a,
+        .home-page span {
+          overflow-wrap: anywhere;
+        }
+
+        @media (max-width: 767px) {
+          .home-page section {
+            max-width: 100%;
+          }
+
+          .home-page section > div {
+            min-width: 0;
+          }
+
+          .home-page [class*="grid-cols-"] {
+            min-width: 0;
+          }
+
+          .home-page [class*="text-[clamp("] {
+            font-size: clamp(2.25rem, 11vw, 3.6rem);
+          }
+
+          .home-page [class*="rounded-[28px]"],
+          .home-page [class*="rounded-[24px]"] {
+            border-radius: 1.25rem;
+          }
+
+          .home-page .showcase-image {
+            max-width: 100%;
+          }
+
+          .home-page .showcase-mobile-image {
+            width: min(250px, 72vw);
+            height: auto;
+            aspect-ratio: 10 / 7;
+          }
+
+          .home-page [class*="px-5"] {
+            padding-left: max(1rem, env(safe-area-inset-left));
+            padding-right: max(1rem, env(safe-area-inset-right));
+          }
+
+          .home-page [class*="gap-14"],
+          .home-page [class*="gap-16"],
+          .home-page [class*="gap-20"] {
+            gap: 2rem;
+          }
+        }
+
+        @media (max-width: 400px) {
+          .home-page .showcase-mobile-image {
+            width: min(220px, 68vw);
+          }
+
+          .home-page a,
+          .home-page button {
+            max-width: 100%;
+          }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+          .home-page section > div {
+            max-width: 100%;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .home-page *,
+          .home-page *::before,
+          .home-page *::after {
+            scroll-behavior: auto !important;
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+          }
+        }
+      `}</style>
 
       </main>
     </>

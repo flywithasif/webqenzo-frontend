@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -23,17 +24,11 @@ import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 
 const fadeUp = {
-  hidden: {
-    opacity: 0,
-    y: 28,
-  },
+  hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.65,
-      ease: [0.22, 1, 0.36, 1],
-    },
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
@@ -41,22 +36,22 @@ const trustPoints = [
   {
     icon: ShieldCheck,
     title: "Transparent Communication",
-    text: "Clear scope, clear communication and clear expectations throughout the project.",
+    text: "Clear scope, honest communication and defined expectations throughout your project.",
   },
   {
     icon: Eye,
     title: "Design With Purpose",
-    text: "Every section is designed to support usability, clarity and the business objective.",
+    text: "Every section supports usability, clarity and your business objectives.",
   },
   {
     icon: Code2,
     title: "Clean Development",
-    text: "Structured, maintainable and responsive code is treated as part of the product quality.",
+    text: "Maintainable, scalable and responsive code built with care.",
   },
   {
     icon: LockKeyhole,
     title: "Respect for Your Business",
-    text: "Your brand, content, requirements and project information are handled professionally.",
+    text: "Your brand, content and project requirements receive professional attention.",
   },
 ];
 
@@ -64,22 +59,22 @@ const values = [
   {
     number: "01",
     title: "Clarity Before Code",
-    text: "We first understand what the business needs from the website. Development comes after direction.",
+    text: "We understand your business goals before choosing the right design and technology.",
   },
   {
     number: "02",
     title: "Premium Without Noise",
-    text: "Luxury does not mean unnecessary effects. We focus on hierarchy, spacing, typography and meaningful interactions.",
+    text: "Thoughtful spacing, refined typography and purposeful interactions create lasting impressions.",
   },
   {
     number: "03",
     title: "Business First",
-    text: "A website should not only look impressive. It should communicate the offer and make the next action obvious.",
+    text: "Your website should communicate your offer clearly and make the next action obvious.",
   },
   {
     number: "04",
     title: "Built for Growth",
-    text: "The foundation should make it easier to expand the website, add features and evolve the digital experience.",
+    text: "Flexible foundations make it easier to expand features and evolve your digital experience.",
   },
 ];
 
@@ -99,13 +94,13 @@ const capabilities = [
 ];
 
 const standards = [
-  "Responsive across modern screen sizes",
+  "Responsive across screen sizes",
   "Semantic and structured frontend",
   "Reusable component architecture",
-  "Accessible interaction patterns",
-  "Performance-conscious implementation",
+  "Accessible interactions",
+  "Performance-conscious development",
   "Clean visual hierarchy",
-  "Conversion-focused page structure",
+  "Conversion-focused structure",
   "Scalable project organization",
 ];
 
@@ -132,48 +127,28 @@ const technologies = [
 ];
 
 const businessJourney = [
-  {
-    icon: Search,
-    title: "Discover",
-    text: "Understand",
-  },
-  {
-    icon: Target,
-    title: "Position",
-    text: "Differentiate",
-  },
-  {
-    icon: Palette,
-    title: "Design",
-    text: "Communicate",
-  },
-  {
-    icon: Code2,
-    title: "Build",
-    text: "Deliver",
-  },
-  {
-    icon: Rocket,
-    title: "Grow",
-    text: "Improve",
-  },
+  { icon: Search, title: "Discover", text: "Understand" },
+  { icon: Target, title: "Position", text: "Differentiate" },
+  { icon: Palette, title: "Design", text: "Communicate" },
+  { icon: Code2, title: "Build", text: "Deliver" },
+  { icon: Rocket, title: "Grow", text: "Improve" },
 ];
 
 const expectations = [
   {
     icon: MessageCircle,
     title: "Communication",
-    text: "Questions, decisions and project direction should remain clear instead of becoming confusing midway through the project.",
+    text: "Clear questions, decisions and project direction from beginning to end.",
   },
   {
     icon: BriefcaseBusiness,
     title: "Professional Process",
-    text: "Projects are approached with structure so design, development and revisions have a clear direction.",
+    text: "A structured approach keeps design, development and revisions aligned.",
   },
   {
     icon: Zap,
     title: "Attention to Detail",
-    text: "Small details in spacing, responsiveness, interaction and presentation are treated as part of the final quality.",
+    text: "Spacing, responsiveness, interactions and presentation all matter.",
   },
 ];
 
@@ -184,1051 +159,844 @@ const transparencyPoints = [
   "No unnecessary complexity",
 ];
 
+const SectionLabel = ({ children }) => (
+  <p className="mb-5 text-xs font-bold uppercase tracking-[0.24em] text-blue-700 sm:text-sm">
+    {children}
+  </p>
+);
+
+const SectionTitle = ({ children, className = "" }) => (
+  <h2
+    className={`text-3xl font-bold leading-tight tracking-[-0.045em] text-slate-950 sm:text-4xl md:text-5xl lg:text-6xl ${className}`}
+  >
+    {children}
+  </h2>
+);
+
+const Reveal = ({ children, className = "" }) => (
+  <motion.div
+    variants={fadeUp}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.12 }}
+    className={className}
+  >
+    {children}
+  </motion.div>
+);
+
+const Surface = ({ children, className = "" }) => (
+  <div
+    className={`rounded-3xl border border-blue-100 bg-white shadow-[0_12px_45px_rgba(15,45,100,0.055)] transition duration-300 hover:border-blue-200 hover:shadow-[0_22px_60px_rgba(15,45,100,0.10)] ${className}`}
+  >
+    {children}
+  </div>
+);
+
 function About() {
   return (
-    <main className="overflow-hidden bg-[#05070B] text-white">
+    <main className="overflow-x-clip bg-white text-slate-900">
       <SEO
         title="About WebQenzo"
-        description="Learn about WebQenzo, a digital web development agency focused on premium websites, thoughtful design, clean development and business-oriented digital experiences."
+        description="Discover WebQenzo, a digital web development agency focused on premium websites, thoughtful design, clean development and business-oriented digital experiences."
         path="/about"
       />
 
-      {/* =========================================================
-          01 — HERO
-      ========================================================= */}
+      {/* HERO */}
       <section
-        className="relative isolate min-h-[760px] overflow-hidden"
         aria-labelledby="about-hero-title"
+        className="relative isolate overflow-hidden bg-gradient-to-b from-blue-50 via-white to-white"
       >
-        {/* Ambient luxury lighting */}
         <div
-          className="pointer-events-none absolute inset-0"
+          className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
           aria-hidden="true"
         >
-          <div className="absolute left-[-12%] top-[8%] h-[500px] w-[500px] rounded-full bg-blue-600/10 blur-[120px]" />
-
-          <div className="absolute right-[-8%] top-[20%] h-[450px] w-[450px] rounded-full bg-cyan-400/10 blur-[120px]" />
-
-          <div className="absolute bottom-[-25%] left-[35%] h-[450px] w-[450px] rounded-full bg-indigo-500/10 blur-[140px]" />
-
+          <div className="absolute -left-32 top-10 h-72 w-72 rounded-full bg-blue-200/50 blur-[100px] sm:h-96 sm:w-96" />
+          <div className="absolute -right-32 top-20 h-80 w-80 rounded-full bg-sky-200/40 blur-[110px] sm:h-[500px] sm:w-[500px]" />
           <div
-            className="absolute inset-0 opacity-[0.035]"
+            className="absolute inset-0 opacity-[0.045]"
             style={{
               backgroundImage:
-                "linear-gradient(rgba(255,255,255,.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.8) 1px, transparent 1px)",
-              backgroundSize: "72px 72px",
+                "linear-gradient(#2563eb 1px, transparent 1px), linear-gradient(90deg, #2563eb 1px, transparent 1px)",
+              backgroundSize: "54px 54px",
+              maskImage:
+                "linear-gradient(to bottom, black, transparent 80%)",
             }}
           />
         </div>
 
-        <div className="relative mx-auto max-w-[1500px] px-5 pb-24 pt-24 sm:px-8 lg:px-12 lg:pt-32">
-          <div className="grid items-center gap-16 lg:grid-cols-[1.05fr_.95fr]">
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={fadeUp}
-              className="max-w-3xl"
-            >
-              <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.035] px-4 py-2 text-xs font-medium text-slate-300 backdrop-blur-xl">
-                <span
-                  className="flex h-2 w-2 rounded-full bg-cyan-400 shadow-[0_0_16px_rgba(34,211,238,.8)]"
-                  aria-hidden="true"
-                />
+        <div className="mx-auto max-w-[1440px] px-5 pb-16 pt-16 sm:px-8 sm:pb-24 sm:pt-24 lg:px-12 lg:pb-32 lg:pt-28">
+          <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_.95fr] lg:gap-16">
+            <Reveal className="min-w-0">
+              <div className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-blue-200 bg-white/80 px-4 py-2 text-xs font-semibold text-blue-800 shadow-sm backdrop-blur">
+                <span className="h-2 w-2 rounded-full bg-blue-600" />
                 Inside WebQenzo
+                <ArrowUpRight size={14} />
               </div>
 
-              <p className="mb-5 text-sm font-semibold uppercase tracking-[0.28em] text-cyan-300">
-                Digital craftsmanship
-              </p>
+              <SectionLabel>Digital craftsmanship</SectionLabel>
 
               <h1
                 id="about-hero-title"
-                className="text-5xl font-black leading-[0.95] tracking-[-0.055em] text-white sm:text-6xl lg:text-8xl"
+                className="max-w-4xl text-4xl font-black leading-[1.05] tracking-[-0.06em] text-slate-950 sm:text-6xl lg:text-7xl xl:text-[88px]"
               >
                 We build digital
-                <span className="block bg-gradient-to-r from-white via-blue-100 to-cyan-300 bg-clip-text text-transparent">
+                <span className="mt-2 block bg-gradient-to-r from-blue-700 via-blue-600 to-sky-500 bg-clip-text pb-2 text-transparent">
                   experiences with intent.
                 </span>
               </h1>
 
-              <p className="mt-8 max-w-2xl text-base leading-8 text-slate-400 sm:text-lg">
+              <p className="mt-7 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg sm:leading-9">
                 WebQenzo is a digital web development agency focused on
                 creating modern, premium and business-oriented digital
                 experiences — from strategy and design to development and
                 continuous improvement.
               </p>
 
-              <div className="mt-10 flex flex-wrap gap-4">
+              <div className="mt-9 flex flex-col gap-3 min-[420px]:flex-row sm:mt-10">
                 <Link
                   to="/get-quote"
-                  className="group inline-flex items-center gap-3 rounded-full bg-white px-6 py-3.5 text-sm font-bold text-[#05070B] transition duration-300 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(255,255,255,.12)]"
+                  className="group inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-blue-700 px-6 py-3.5 text-sm font-bold text-white shadow-[0_10px_30px_rgba(29,78,216,0.20)] transition duration-300 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-[0_15px_40px_rgba(29,78,216,0.28)]"
                 >
                   Start a Project
-
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#05070B] text-white transition duration-300 group-hover:rotate-45">
-                    <ArrowUpRight size={15} />
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/15 transition group-hover:rotate-45">
+                    <ArrowUpRight size={16} />
                   </span>
                 </Link>
 
                 <Link
                   to="/portfolio"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.035] px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-xl transition duration-300 hover:border-white/20 hover:bg-white/[0.07]"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3.5 text-sm font-bold text-slate-800 transition hover:border-blue-300 hover:bg-blue-50"
                 >
                   Explore Our Work
-                  <ArrowRight size={16} />
+                  <ArrowRight size={16} className="text-blue-700" />
                 </Link>
               </div>
-            </motion.div>
 
-            {/* 3D identity card */}
-            <motion.div
-              initial={{
-                opacity: 0,
-                y: 40,
-                rotateY: 8,
-                rotateX: 4,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-                rotateY: 0,
-                rotateX: 0,
-              }}
-              transition={{
-                duration: 0.9,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className="relative mx-auto w-full max-w-[600px] [perspective:1800px]"
-            >
-              <div className="relative aspect-square [transform-style:preserve-3d]">
+              <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-blue-100 pt-6 text-xs font-medium text-slate-500 sm:gap-x-7">
+                <span className="flex items-center gap-2">
+                  <BadgeCheck size={16} className="text-blue-700" />
+                  Purposeful design
+                </span>
+                <span className="flex items-center gap-2">
+                  <BadgeCheck size={16} className="text-blue-700" />
+                  Responsive development
+                </span>
+              </div>
+            </Reveal>
+
+            {/* Premium identity visual */}
+            <Reveal className="mx-auto w-full max-w-[540px] min-w-0">
+              <div className="relative px-3 py-8 sm:px-7 sm:py-10">
                 <div
-                  className="absolute inset-[7%] rounded-[42px] border border-white/10 bg-white/[0.025] shadow-[0_50px_120px_rgba(0,0,0,.55)] backdrop-blur-2xl"
+                  className="absolute inset-6 rounded-[36px] bg-blue-200/60 blur-2xl sm:inset-10"
                   aria-hidden="true"
                 />
 
-                <div
-                  className="absolute inset-[13%] rounded-[36px] border border-blue-400/20 bg-gradient-to-br from-blue-500/[0.12] via-transparent to-cyan-400/[0.08)] [transform:translateZ(35px)]"
-                  aria-hidden="true"
-                />
+                <div className="relative rounded-[28px] border border-white bg-white/80 p-3 shadow-[0_35px_100px_rgba(30,64,175,0.15)] backdrop-blur-xl sm:rounded-[36px] sm:p-5">
+                  <div className="overflow-hidden rounded-[22px] border border-blue-100 bg-gradient-to-br from-white via-blue-50 to-sky-50 p-5 sm:rounded-[28px] sm:p-8">
+                    <div className="flex items-center justify-between gap-3 border-b border-blue-100 pb-5">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-700 text-white shadow-lg shadow-blue-700/20">
+                          <Layers3 size={20} />
+                        </div>
+                        <div>
+                          <p className="text-sm font-black tracking-tight text-slate-900">
+                            WEBQENZO
+                          </p>
+                          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-blue-700">
+                            Digital Studio
+                          </p>
+                        </div>
+                      </div>
+                      <Sparkles size={20} className="text-blue-600" />
+                    </div>
 
-                <div className="absolute inset-[20%] rounded-[30px] border border-white/10 bg-[#080D16]/90 p-7 shadow-[inset_0_0_80px_rgba(37,99,235,.08)] [transform:translateZ(70px)]">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold uppercase tracking-[0.25em] text-slate-500">
-                      WebQenzo
-                    </span>
+                    <div className="py-10 sm:py-14">
+                      <p className="text-xs font-bold uppercase tracking-[0.24em] text-blue-700">
+                        Our approach
+                      </p>
+                      <h2 className="mt-4 text-4xl font-black leading-[1.04] tracking-[-0.055em] text-slate-950 sm:text-6xl">
+                        Build.
+                        <br />
+                        Refine.
+                        <br />
+                        <span className="text-blue-700">Grow.</span>
+                      </h2>
+                      <p className="mt-5 max-w-xs text-sm leading-7 text-slate-600">
+                        Digital experiences designed around people and
+                        business goals.
+                      </p>
+                    </div>
 
-                    <Sparkles
-                      size={17}
-                      className="text-cyan-300"
-                      aria-hidden="true"
-                    />
-                  </div>
-
-                  <div className="mt-16">
-                    <p className="text-xs uppercase tracking-[0.2em] text-blue-300">
-                      Digital Agency
-                    </p>
-
-                    <h2 className="mt-4 text-4xl font-black tracking-[-0.05em] sm:text-5xl">
-                      Build.
-                      <br />
-                      Refine.
-                      <br />
-                      Grow.
-                    </h2>
-                  </div>
-
-                  <div className="absolute bottom-7 left-7 right-7">
-                    <div className="h-px bg-white/10" />
-
-                    <div className="mt-4 flex items-center justify-between gap-4 text-xs text-slate-500">
-                      <span>Websites That Grow Your Business</span>
-                      <span>01</span>
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="rounded-2xl border border-blue-100 bg-white p-4">
+                        <Code2 size={20} className="text-blue-700" />
+                        <p className="mt-4 text-xs font-bold text-slate-900">
+                          Design + Code
+                        </p>
+                        <p className="mt-1 text-[11px] text-slate-500">
+                          Thoughtfully integrated
+                        </p>
+                      </div>
+                      <div className="rounded-2xl border border-blue-100 bg-blue-700 p-4 text-white">
+                        <Rocket size={20} />
+                        <p className="mt-4 text-xs font-bold">
+                          Built to evolve
+                        </p>
+                        <p className="mt-1 text-[11px] text-blue-100">
+                          Ready for what's next
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Floating specification cards */}
-                <div className="absolute -left-2 top-[18%] rounded-2xl border border-white/10 bg-[#0B111C]/90 px-4 py-3 shadow-2xl backdrop-blur-xl [transform:translateZ(100px)] sm:-left-5">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-500/10 text-blue-300">
-                      <Code2 size={17} aria-hidden="true" />
-                    </div>
-
-                    <div>
-                      <p className="text-[11px] text-slate-500">Approach</p>
-
-                      <p className="text-xs font-semibold text-white">
-                        Design + Code
-                      </p>
-                    </div>
-                  </div>
+                <div className="absolute -left-1 top-[17%] hidden rounded-2xl border border-blue-100 bg-white px-4 py-3 shadow-xl shadow-blue-900/5 sm:block">
+                  <p className="text-[10px] font-semibold text-slate-500">
+                    Our focus
+                  </p>
+                  <p className="mt-1 text-xs font-bold text-blue-800">
+                    Quality in every detail
+                  </p>
                 </div>
 
-                <div className="absolute -right-2 bottom-[18%] rounded-2xl border border-white/10 bg-[#0B111C]/90 px-4 py-3 shadow-2xl backdrop-blur-xl [transform:translateZ(120px)] sm:-right-5">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-cyan-400/10 text-cyan-300">
-                      <Rocket size={17} aria-hidden="true" />
-                    </div>
-
-                    <div>
-                      <p className="text-[11px] text-slate-500">Mindset</p>
-
-                      <p className="text-xs font-semibold text-white">
-                        Built to evolve
-                      </p>
-                    </div>
-                  </div>
+                <div className="absolute -right-1 bottom-[12%] hidden rounded-2xl border border-blue-100 bg-white px-4 py-3 shadow-xl shadow-blue-900/5 sm:block">
+                  <p className="text-[10px] font-semibold text-slate-500">
+                    Our mindset
+                  </p>
+                  <p className="mt-1 text-xs font-bold text-blue-800">
+                    Business first
+                  </p>
                 </div>
               </div>
-            </motion.div>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* =========================================================
-          02 — WHO WE ARE
-      ========================================================= */}
+      {/* WHO WE ARE */}
       <section
-        className="border-y border-white/[0.07] bg-[#070A10]"
-        aria-labelledby="who-we-are-title"
+        aria-labelledby="who-title"
+        className="border-y border-blue-100 bg-white"
       >
-        <div className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
-          <div className="grid gap-16 lg:grid-cols-[.7fr_1.3fr]">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              variants={fadeUp}
+        <div className="mx-auto grid max-w-[1440px] gap-10 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-[.75fr_1.25fr] lg:gap-20 lg:px-12 lg:py-28">
+          <Reveal>
+            <SectionLabel>01 / Who we are</SectionLabel>
+            <SectionTitle className="max-w-md">
+              A digital partner, not just a website vendor.
+            </SectionTitle>
+          </Reveal>
+
+          <Reveal>
+            <p
+              id="who-title"
+              className="text-xl leading-9 text-slate-700 sm:text-2xl sm:leading-10"
             >
-              <p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
-                01 / Who we are
+              WebQenzo helps businesses build a stronger digital presence
+              through thoughtful design, reliable development and technology
+              that serves a real business purpose.
+            </p>
+            <div className="mt-8 grid gap-6 sm:grid-cols-2">
+              <p className="text-sm leading-8 text-slate-600">
+                A website is often the first serious interaction a customer
+                has with a business. That first impression deserves care.
               </p>
-
-              <h2
-                id="who-we-are-title"
-                className="mt-5 max-w-md text-4xl font-black tracking-[-0.045em] sm:text-5xl"
-              >
-                A digital partner, not just a website vendor.
-              </h2>
-            </motion.div>
-
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              variants={fadeUp}
-              className="max-w-4xl"
-            >
-              <p className="text-xl leading-9 text-slate-300 sm:text-2xl">
-                WebQenzo exists to help businesses build a stronger digital
-                presence through thoughtful design, reliable development and
-                technology that serves a real business purpose.
+              <p className="text-sm leading-8 text-slate-600">
+                We combine visual quality with usability, responsiveness,
+                performance and a clear customer journey.
               </p>
-
-              <div className="mt-8 grid gap-6 sm:grid-cols-2">
-                <p className="text-sm leading-7 text-slate-500">
-                  We look at a website as more than a collection of pages. It
-                  is often the first serious interaction a customer has with a
-                  business.
-                </p>
-
-                <p className="text-sm leading-7 text-slate-500">
-                  That is why our approach combines visual quality with
-                  structure, usability, responsiveness, performance and a clear
-                  conversion journey.
-                </p>
-              </div>
-            </motion.div>
-          </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* =========================================================
-          03 — FOUNDER / HUMAN SIDE
-      ========================================================= */}
+      {/* PHILOSOPHY */}
       <section
-        className="relative bg-[#05070B]"
         aria-labelledby="philosophy-title"
+        className="bg-gradient-to-b from-blue-50/70 to-white"
       >
-        <div className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
-          <div className="grid gap-14 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.7 }}
-              className="relative"
-            >
-              <div className="relative overflow-hidden rounded-[34px] border border-white/10 bg-gradient-to-br from-[#0B1220] to-[#070A10] p-8 shadow-[0_35px_100px_rgba(0,0,0,.45)] sm:p-10">
-                <div
-                  className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-blue-500/10 blur-[80px]"
-                  aria-hidden="true"
-                />
-
-                <div className="relative">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04]">
-                    <Users
-                      className="text-cyan-300"
-                      size={26}
-                      aria-hidden="true"
-                    />
-                  </div>
-
-                  <p className="mt-12 text-xs font-bold uppercase tracking-[0.25em] text-slate-500">
-                    Founder perspective
-                  </p>
-
-                  <h3 className="mt-4 text-3xl font-black tracking-[-0.04em] sm:text-4xl">
-                    Build something you would trust yourself.
-                  </h3>
-
-                  <p className="mt-6 text-sm leading-7 text-slate-400">
-                    WebQenzo is built around a simple idea: businesses deserve
-                    digital work that feels considered, transparent and
-                    professional — not rushed, generic or unnecessarily
-                    complicated.
-                  </p>
-
-                  <div className="mt-10 flex items-center gap-3">
-                    <div className="h-px flex-1 bg-white/10" />
-
-                    <span className="text-[10px] uppercase tracking-[0.25em] text-slate-600">
-                      WebQenzo
-                    </span>
-
-                    <div className="h-px flex-1 bg-white/10" />
-                  </div>
+        <div className="mx-auto grid max-w-[1440px] items-center gap-12 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-[.85fr_1.15fr] lg:gap-20 lg:px-12 lg:py-28">
+          <Reveal>
+            <Surface className="overflow-hidden p-6 sm:p-9">
+              <div className="rounded-2xl bg-gradient-to-br from-blue-700 to-blue-900 p-6 text-white sm:p-9">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/20 bg-white/10">
+                  <Users size={26} />
+                </div>
+                <p className="mt-10 text-xs font-bold uppercase tracking-[0.2em] text-blue-200">
+                  Our philosophy
+                </p>
+                <h3 className="mt-4 text-3xl font-black leading-tight tracking-tight sm:text-4xl">
+                  Build something you would trust yourself.
+                </h3>
+                <p className="mt-5 text-sm leading-7 text-blue-100">
+                  Digital work should feel considered, transparent and
+                  professional — never rushed or unnecessarily complicated.
+                </p>
+                <div className="mt-8 flex items-center justify-between border-t border-white/20 pt-5 text-xs text-blue-200">
+                  <span>Thoughtful by design</span>
+                  <Sparkles size={17} />
                 </div>
               </div>
-            </motion.div>
+            </Surface>
+          </Reveal>
 
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.7 }}
-              className="max-w-3xl"
-            >
-              <p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
-                02 / The philosophy
-              </p>
+          <Reveal>
+            <SectionLabel>02 / The philosophy</SectionLabel>
+            <SectionTitle id="philosophy-title">
+              Technology should make your business more capable.
+            </SectionTitle>
+            <p className="mt-6 text-base leading-8 text-slate-600">
+              Our work sits at the intersection of design, development and
+              business thinking. The goal is not to add technology for its own
+              sake, but to create better experiences using the right tools.
+            </p>
 
-              <h2
-                id="philosophy-title"
-                className="mt-5 text-4xl font-black tracking-[-0.05em] sm:text-6xl"
-              >
-                Technology should make your business feel more capable.
-              </h2>
-
-              <p className="mt-7 text-base leading-8 text-slate-400 sm:text-lg">
-                Our work sits at the intersection of design, development and
-                business thinking. The goal is not to add technology for the
-                sake of technology. The goal is to use the right technology to
-                create a better experience.
-              </p>
-
-              <div className="mt-10 space-y-4">
-                {workflow.map((item, index) => (
-                  <div
-                    key={item}
-                    className="flex items-center gap-4 border-b border-white/[0.07] pb-4"
-                  >
-                    <span className="text-xs font-bold text-blue-400">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-
-                    <span className="text-sm font-medium text-slate-200">
-                      {item}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
+            <div className="mt-9 space-y-0">
+              {workflow.map((item, index) => (
+                <div
+                  key={item}
+                  className="flex items-center gap-4 border-b border-blue-100 py-4"
+                >
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-xs font-bold text-blue-800">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-sm font-semibold text-slate-800">
+                    {item}
+                  </span>
+                  <Check size={16} className="ml-auto text-blue-700" />
+                </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* =========================================================
-          04 — TRUST
-      ========================================================= */}
+      {/* TRUST */}
       <section
-        className="bg-[#080C13]"
         aria-labelledby="trust-title"
+        className="bg-white"
       >
-        <div className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={fadeUp}
-            className="max-w-3xl"
-          >
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
-              03 / Built on trust
-            </p>
-
-            <h2
-              id="trust-title"
-              className="mt-5 text-4xl font-black tracking-[-0.05em] sm:text-6xl"
-            >
+        <div className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-28">
+          <Reveal className="max-w-3xl">
+            <SectionLabel>03 / Built on trust</SectionLabel>
+            <SectionTitle id="trust-title">
               Trust is part of the product.
-            </h2>
-
-            <p className="mt-6 text-base leading-8 text-slate-400 sm:text-lg">
-              A premium website is not enough if the working relationship is
-              unclear. We want clients to understand what is being built, why
-              it is being built and what happens next.
+            </SectionTitle>
+            <p className="mt-6 text-base leading-8 text-slate-600 sm:text-lg">
+              We want clients to understand what is being built, why it
+              matters and what happens next.
             </p>
-          </motion.div>
+          </Reveal>
 
-          <div className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
             {trustPoints.map((item, index) => {
               const Icon = item.icon;
 
               return (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, y: 25 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.15 }}
-                  transition={{
-                    duration: 0.55,
-                    delay: index * 0.07,
-                  }}
-                  className="group rounded-[28px] border border-white/[0.08] bg-white/[0.025] p-7 transition duration-500 hover:-translate-y-2 hover:border-blue-400/25 hover:bg-white/[0.045] hover:shadow-[0_20px_60px_rgba(0,0,0,.25)]"
-                >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-cyan-300 transition duration-500 group-hover:scale-110 group-hover:bg-blue-500/10">
-                    <Icon size={21} aria-hidden="true" />
-                  </div>
-
-                  <h3 className="mt-8 text-lg font-bold">
-                    {item.title}
-                  </h3>
-
-                  <p className="mt-3 text-sm leading-7 text-slate-500">
-                    {item.text}
-                  </p>
-                </motion.div>
+                <Reveal key={item.title}>
+                  <Surface className="group h-full p-6 sm:p-7">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 transition duration-300 group-hover:bg-blue-700 group-hover:text-white">
+                      <Icon size={22} />
+                    </div>
+                    <p className="mt-6 text-xs font-bold text-blue-700">
+                      0{index + 1}
+                    </p>
+                    <h3 className="mt-2 text-lg font-bold text-slate-900">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">
+                      {item.text}
+                    </p>
+                  </Surface>
+                </Reveal>
               );
             })}
           </div>
         </div>
       </section>
 
-      {/* =========================================================
-          05 — CAPABILITIES
-      ========================================================= */}
+      {/* CAPABILITIES */}
       <section
-        className="relative overflow-hidden bg-[#05070B]"
         aria-labelledby="capabilities-title"
+        className="border-y border-blue-100 bg-blue-50/60"
       >
-        <div
-          className="absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/[0.045] blur-[120px]"
-          aria-hidden="true"
-        />
+        <div className="mx-auto grid max-w-[1440px] gap-10 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-[.8fr_1.2fr] lg:gap-16 lg:px-12 lg:py-28">
+          <Reveal>
+            <SectionLabel>04 / Capabilities</SectionLabel>
+            <SectionTitle id="capabilities-title">
+              From first idea to digital product.
+            </SectionTitle>
+            <p className="mt-6 max-w-lg text-base leading-8 text-slate-600">
+              Our capabilities cover the essential layers required to create
+              a modern and professional web presence.
+            </p>
 
-        <div className="relative mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
-          <div className="grid gap-16 lg:grid-cols-[.75fr_1.25fr]">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
-                04 / Capabilities
-              </p>
+            <Link
+              to="/get-quote"
+              className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-blue-800 hover:text-blue-950"
+            >
+              Discuss your project <ArrowRight size={16} />
+            </Link>
+          </Reveal>
 
-              <h2
-                id="capabilities-title"
-                className="mt-5 text-4xl font-black tracking-[-0.05em] sm:text-6xl"
-              >
-                From first idea to digital product.
-              </h2>
-
-              <p className="mt-6 max-w-lg text-base leading-8 text-slate-500">
-                Our capabilities cover the major layers required to create a
-                serious modern web presence.
-              </p>
-            </div>
-
-            <div className="grid gap-x-10 gap-y-0 sm:grid-cols-2">
+          <Reveal>
+            <div className="grid gap-x-8 sm:grid-cols-2">
               {capabilities.map((item, index) => (
                 <div
                   key={item}
-                  className="group flex items-center gap-4 border-b border-white/[0.07] py-5"
+                  className="group flex min-w-0 items-center gap-3 border-b border-blue-200/70 py-4"
                 >
-                  <span className="text-[11px] font-bold text-blue-400">
+                  <span className="text-[11px] font-bold text-blue-700">
                     {String(index + 1).padStart(2, "0")}
                   </span>
-
-                  <span className="flex-1 text-sm font-medium text-slate-300 transition group-hover:text-white">
+                  <span className="flex-1 text-sm font-medium text-slate-700 transition group-hover:text-blue-800">
                     {item}
                   </span>
-
                   <ArrowUpRight
                     size={15}
-                    className="text-slate-700 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-cyan-300"
-                    aria-hidden="true"
+                    className="shrink-0 text-blue-300 transition group-hover:text-blue-700"
                   />
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* =========================================================
-          06 — VALUES
-      ========================================================= */}
+      {/* VALUES */}
       <section
-        className="border-y border-white/[0.07] bg-[#080C13]"
         aria-labelledby="values-title"
+        className="bg-white"
       >
-        <div className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
-          <div className="mb-14 flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+        <div className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-28">
+          <Reveal className="mb-12 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
-                05 / Our principles
-              </p>
-
-              <h2
-                id="values-title"
-                className="mt-5 max-w-2xl text-4xl font-black tracking-[-0.05em] sm:text-6xl"
-              >
+              <SectionLabel>05 / Our principles</SectionLabel>
+              <SectionTitle id="values-title" className="max-w-3xl">
                 Standards that shape every project.
-              </h2>
+              </SectionTitle>
             </div>
-
-            <p className="max-w-md text-sm leading-7 text-slate-500">
-              These principles help keep the work focused, professional and
-              aligned with the business instead of chasing unnecessary trends.
+            <p className="max-w-md text-sm leading-7 text-slate-600">
+              A considered approach keeps the work focused, professional and
+              aligned with the business.
             </p>
-          </div>
+          </Reveal>
 
-          <div className="grid gap-px overflow-hidden rounded-[32px] border border-white/[0.08] bg-white/[0.08] md:grid-cols-2">
+          <div className="grid gap-4 sm:grid-cols-2">
             {values.map((item) => (
-              <div
-                key={item.number}
-                className="bg-[#080C13] p-8 transition duration-500 hover:bg-[#0B111B] sm:p-10"
-              >
-                <div className="flex items-start justify-between">
-                  <span className="text-sm font-bold text-blue-400">
-                    {item.number}
-                  </span>
-
-                  <Sparkles
-                    size={17}
-                    className="text-slate-700"
-                    aria-hidden="true"
-                  />
-                </div>
-
-                <h3 className="mt-14 text-2xl font-black tracking-[-0.03em]">
-                  {item.title}
-                </h3>
-
-                <p className="mt-4 max-w-xl text-sm leading-7 text-slate-500">
-                  {item.text}
-                </p>
-              </div>
+              <Reveal key={item.number}>
+                <Surface className="h-full p-7 sm:p-9">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-bold text-blue-700">
+                      {item.number}
+                    </span>
+                    <Sparkles size={19} className="text-blue-300" />
+                  </div>
+                  <h3 className="mt-9 text-2xl font-bold tracking-tight text-slate-950">
+                    {item.title}
+                  </h3>
+                  <p className="mt-4 max-w-xl text-sm leading-7 text-slate-600">
+                    {item.text}
+                  </p>
+                </Surface>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* =========================================================
-          07 — DESIGN + DEVELOPMENT
-      ========================================================= */}
+      {/* DESIGN + DEVELOPMENT */}
       <section
-        className="bg-[#05070B]"
-        aria-labelledby="design-development-title"
+        aria-labelledby="design-title"
+        className="bg-gradient-to-b from-white to-blue-50/70"
       >
-        <div className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
-          <div className="mb-14">
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
-              06 / Design + development
-            </p>
-
-            <h2
-              id="design-development-title"
-              className="mt-5 max-w-3xl text-4xl font-black tracking-[-0.05em] sm:text-6xl"
-            >
+        <div className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-28">
+          <Reveal>
+            <SectionLabel>06 / Design + development</SectionLabel>
+            <SectionTitle id="design-title" className="max-w-4xl">
               Creative thinking backed by engineering.
-            </h2>
-          </div>
+            </SectionTitle>
+          </Reveal>
 
-          <div className="grid gap-6 lg:grid-cols-2">
-            {/* Design */}
-            <div className="rounded-[32px] border border-white/[0.08] bg-gradient-to-br from-[#0B1220] to-[#070A10] p-8 sm:p-10">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-500/10 text-blue-300">
-                <Palette size={22} aria-hidden="true" />
-              </div>
-
-              <p className="mt-10 text-xs font-bold uppercase tracking-[0.25em] text-slate-500">
-                Creative direction
-              </p>
-
-              <h3 className="mt-4 text-3xl font-black tracking-[-0.04em]">
-                Design that communicates value.
-              </h3>
-
-              <p className="mt-5 text-sm leading-7 text-slate-500">
-                Visual systems are created around your positioning, audience,
-                content and business objective. Typography, spacing, imagery,
-                components and interaction all work together.
-              </p>
-
-              <div className="mt-8 space-y-3">
-                {[
-                  "Visual hierarchy",
-                  "Responsive layouts",
-                  "Premium UI systems",
-                  "Interaction design",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="flex items-center gap-3 text-sm text-slate-300"
-                  >
-                    <Check
-                      size={16}
-                      className="text-cyan-300"
-                      aria-hidden="true"
-                    />
-                    {item}
+          <div className="mt-12 grid gap-5 lg:grid-cols-2">
+            <Reveal>
+              <Surface className="h-full overflow-hidden">
+                <div className="h-1.5 bg-gradient-to-r from-blue-700 to-sky-400" />
+                <div className="p-7 sm:p-10">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-700">
+                    <Palette size={23} />
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Development */}
-            <div className="rounded-[32px] border border-white/[0.08] bg-gradient-to-br from-[#09121A] to-[#070A10] p-8 sm:p-10">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-400/10 text-cyan-300">
-                <Code2 size={22} aria-hidden="true" />
-              </div>
-
-              <p className="mt-10 text-xs font-bold uppercase tracking-[0.25em] text-slate-500">
-                Engineering mindset
-              </p>
-
-              <h3 className="mt-4 text-3xl font-black tracking-[-0.04em]">
-                Code that supports the experience.
-              </h3>
-
-              <p className="mt-5 text-sm leading-7 text-slate-500">
-                Development is structured around reusable components,
-                maintainability, responsiveness and performance-conscious
-                implementation.
-              </p>
-
-              <div className="mt-8 space-y-3">
-                {[
-                  "Component-based development",
-                  "Responsive implementation",
-                  "Clean project structure",
-                  "Scalable foundations",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="flex items-center gap-3 text-sm text-slate-300"
-                  >
-                    <Check
-                      size={16}
-                      className="text-cyan-300"
-                      aria-hidden="true"
-                    />
-                    {item}
+                  <p className="mt-8 text-xs font-bold uppercase tracking-[0.2em] text-blue-700">
+                    Creative direction
+                  </p>
+                  <h3 className="mt-3 text-2xl font-bold tracking-tight text-slate-950 sm:text-3xl">
+                    Design that communicates value.
+                  </h3>
+                  <p className="mt-4 text-sm leading-7 text-slate-600">
+                    Visual systems shaped around your positioning, audience,
+                    content and business objectives.
+                  </p>
+                  <div className="mt-7 space-y-3">
+                    {[
+                      "Visual hierarchy",
+                      "Responsive layouts",
+                      "Premium UI systems",
+                      "Interaction design",
+                    ].map((item) => (
+                      <p key={item} className="flex items-center gap-3 text-sm text-slate-700">
+                        <Check size={16} className="shrink-0 text-blue-700" />
+                        {item}
+                      </p>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </div>
+                </div>
+              </Surface>
+            </Reveal>
+
+            <Reveal>
+              <Surface className="h-full overflow-hidden">
+                <div className="h-1.5 bg-gradient-to-r from-sky-400 to-blue-700" />
+                <div className="p-7 sm:p-10">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-50 text-blue-700">
+                    <Code2 size={23} />
+                  </div>
+                  <p className="mt-8 text-xs font-bold uppercase tracking-[0.2em] text-blue-700">
+                    Engineering mindset
+                  </p>
+                  <h3 className="mt-3 text-2xl font-bold tracking-tight text-slate-950 sm:text-3xl">
+                    Code that supports the experience.
+                  </h3>
+                  <p className="mt-4 text-sm leading-7 text-slate-600">
+                    Development focused on reusable components,
+                    maintainability, responsiveness and performance.
+                  </p>
+                  <div className="mt-7 space-y-3">
+                    {[
+                      "Component-based development",
+                      "Responsive implementation",
+                      "Clean project structure",
+                      "Scalable foundations",
+                    ].map((item) => (
+                      <p key={item} className="flex items-center gap-3 text-sm text-slate-700">
+                        <Check size={16} className="shrink-0 text-blue-700" />
+                        {item}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              </Surface>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* =========================================================
-          08 — QUALITY STANDARD
-      ========================================================= */}
+      {/* QUALITY */}
       <section
-        className="relative overflow-hidden bg-[#080C13]"
         aria-labelledby="quality-title"
+        className="bg-white"
       >
-        <div
-          className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/40 to-transparent"
-          aria-hidden="true"
-        />
-
-        <div className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
-          <div className="grid gap-16 lg:grid-cols-[.8fr_1.2fr]">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
-                07 / Quality standard
+        <div className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-28">
+          <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:gap-16">
+            <Reveal>
+              <SectionLabel>07 / Quality standard</SectionLabel>
+              <SectionTitle id="quality-title">
+                Details make the difference.
+              </SectionTitle>
+              <p className="mt-6 text-base leading-8 text-slate-600">
+                The difference between an average website and a premium
+                experience is often found in the details people notice without
+                consciously thinking about them.
               </p>
-
-              <h2
-                id="quality-title"
-                className="mt-5 text-4xl font-black tracking-[-0.05em] sm:text-6xl"
-              >
-                Details matter.
-              </h2>
-
-              <p className="mt-6 max-w-lg text-base leading-8 text-slate-500">
-                The difference between an average website and a premium digital
-                experience is often found in the details people do not
-                consciously notice.
-              </p>
-            </div>
+            </Reveal>
 
             <div className="grid gap-3 sm:grid-cols-2">
               {standards.map((item, index) => (
-                <div
-                  key={item}
-                  className="group flex items-center gap-4 rounded-2xl border border-white/[0.07] bg-white/[0.02] p-5 transition duration-300 hover:border-blue-400/20 hover:bg-white/[0.045]"
-                >
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.035]">
-                    <BadgeCheck
-                      size={17}
-                      className="text-cyan-300"
-                      aria-hidden="true"
-                    />
+                <Reveal key={item}>
+                  <div className="flex h-full items-center gap-4 rounded-2xl border border-blue-100 bg-white p-4 shadow-sm transition hover:border-blue-300 hover:shadow-md sm:p-5">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
+                      <BadgeCheck size={20} />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-bold text-blue-700">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <p className="mt-1 text-sm font-semibold leading-6 text-slate-800">
+                        {item}
+                      </p>
+                    </div>
                   </div>
-
-                  <div>
-                    <span className="text-[10px] font-bold text-blue-400">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-
-                    <p className="mt-1 text-sm font-medium text-slate-300">
-                      {item}
-                    </p>
-                  </div>
-                </div>
+                </Reveal>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* =========================================================
-          09 — BUSINESS JOURNEY
-      ========================================================= */}
+      {/* BUSINESS JOURNEY */}
       <section
-        className="bg-[#05070B]"
-        aria-labelledby="business-perspective-title"
+        aria-labelledby="journey-title"
+        className="border-y border-blue-100 bg-blue-50/60"
       >
-        <div className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
-          <div className="text-center">
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
-              08 / Business perspective
-            </p>
-
-            <h2
-              id="business-perspective-title"
-              className="mx-auto mt-5 max-w-4xl text-4xl font-black tracking-[-0.05em] sm:text-6xl"
-            >
+        <div className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-28">
+          <Reveal className="mx-auto max-w-4xl text-center">
+            <SectionLabel>08 / Business perspective</SectionLabel>
+            <SectionTitle id="journey-title">
               We design around the journey, not just the homepage.
-            </h2>
-          </div>
+            </SectionTitle>
+          </Reveal>
 
-          <div className="mx-auto mt-16 grid max-w-6xl gap-4 md:grid-cols-5">
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {businessJourney.map((item, index) => {
               const Icon = item.icon;
 
               return (
-                <div
-                  key={item.title}
-                  className="relative rounded-[26px] border border-white/[0.08] bg-white/[0.025] p-6 text-center transition duration-300 hover:-translate-y-1 hover:border-blue-400/20 hover:bg-white/[0.045]"
-                >
-                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-500/10 text-blue-300">
-                    <Icon size={20} aria-hidden="true" />
-                  </div>
-
-                  <p className="mt-6 text-lg font-bold">
-                    {item.title}
-                  </p>
-
-                  <p className="mt-1 text-xs text-slate-600">
-                    {item.text}
-                  </p>
-
-                  {index !== 4 && (
-                    <div
-                      className="absolute -right-3 top-1/2 hidden h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-[#080C13] text-slate-600 md:flex"
-                      aria-hidden="true"
-                    >
-                      <ArrowRight size={12} />
+                <Reveal key={item.title}>
+                  <Surface className="relative h-full p-6 text-center">
+                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-700">
+                      <Icon size={22} />
                     </div>
-                  )}
-                </div>
+                    <p className="mt-5 text-lg font-bold text-slate-950">
+                      {item.title}
+                    </p>
+                    <p className="mt-1 text-xs text-slate-500">{item.text}</p>
+                    {index < businessJourney.length - 1 && (
+                      <ArrowRight
+                        size={15}
+                        className="absolute -right-2.5 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-blue-50 text-blue-700 lg:block"
+                      />
+                    )}
+                  </Surface>
+                </Reveal>
               );
             })}
           </div>
         </div>
       </section>
 
-      {/* =========================================================
-          10 — TECH / DIGITAL FOUNDATION
-      ========================================================= */}
+      {/* TECHNOLOGY */}
       <section
-        className="border-y border-white/[0.07] bg-[#080C13]"
         aria-labelledby="technology-title"
+        className="bg-white"
       >
-        <div className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
-          <div className="grid items-center gap-14 lg:grid-cols-[1fr_.9fr]">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
-                09 / Digital foundation
-              </p>
+        <div className="mx-auto grid max-w-[1440px] items-center gap-12 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-[1fr_.9fr] lg:gap-16 lg:px-12 lg:py-28">
+          <Reveal>
+            <SectionLabel>09 / Digital foundation</SectionLabel>
+            <SectionTitle id="technology-title">
+              Modern technology. Practical implementation.
+            </SectionTitle>
+            <p className="mt-6 max-w-2xl text-base leading-8 text-slate-600">
+              Technology is selected according to the project's needs rather
+              than forcing every business into the same solution.
+            </p>
 
-              <h2
-                id="technology-title"
-                className="mt-5 max-w-2xl text-4xl font-black tracking-[-0.05em] sm:text-6xl"
-              >
-                Modern technology. Practical implementation.
-              </h2>
-
-              <p className="mt-6 max-w-2xl text-base leading-8 text-slate-500">
-                The technology stack is selected according to the project's
-                requirements instead of forcing every business into the same
-                solution.
-              </p>
-
-              <div className="mt-10 flex flex-wrap gap-2">
-                {technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="rounded-full border border-white/[0.08] bg-white/[0.025] px-4 py-2 text-xs font-medium text-slate-400 transition hover:border-blue-400/20 hover:text-slate-200"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
+            <div className="mt-8 flex flex-wrap gap-2">
+              {technologies.map((tech) => (
+                <span
+                  key={tech}
+                  className="rounded-full border border-blue-100 bg-blue-50/70 px-3.5 py-2 text-xs font-semibold text-blue-900 transition hover:border-blue-300 hover:bg-blue-100"
+                >
+                  {tech}
+                </span>
+              ))}
             </div>
+          </Reveal>
 
-            <div className="relative">
-              <div className="rounded-[32px] border border-white/[0.08] bg-[#05070B] p-6 shadow-[0_30px_100px_rgba(0,0,0,.4)]">
-                <div className="rounded-[24px] border border-white/[0.07] bg-[#080D15] p-6">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-600">
-                      Architecture
-                    </span>
-
-                    <Layers3
-                      size={18}
-                      className="text-blue-300"
-                      aria-hidden="true"
-                    />
+          <Reveal>
+            <Surface className="overflow-hidden p-4 sm:p-6">
+              <div className="rounded-2xl bg-gradient-to-br from-blue-700 to-blue-950 p-5 text-white sm:p-7">
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-200">
+                      Digital architecture
+                    </p>
+                    <h3 className="mt-2 text-2xl font-bold">The foundation</h3>
                   </div>
+                  <Layers3 size={25} />
+                </div>
 
-                  <div className="mt-8 space-y-3">
-                    {[
-                      ["Experience", "UI / UX"],
-                      ["Frontend", "React"],
-                      ["Backend", "Node + Express"],
-                      ["Database", "MongoDB"],
-                      ["Delivery", "Structured implementation"],
-                    ].map(([left, right]) => (
-                      <div
-                        key={left}
-                        className="flex items-center justify-between rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3"
-                      >
-                        <span className="text-xs text-slate-500">
-                          {left}
-                        </span>
-
-                        <span className="text-xs font-semibold text-slate-200">
-                          {right}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
+                <div className="mt-7 space-y-3">
+                  {[
+                    ["Experience", "UI / UX"],
+                    ["Frontend", "React"],
+                    ["Backend", "Node + Express"],
+                    ["Database", "MongoDB"],
+                    ["Delivery", "Structured implementation"],
+                  ].map(([left, right]) => (
+                    <div
+                      key={left}
+                      className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-white/15 bg-white/[0.08] px-4 py-3"
+                    >
+                      <span className="text-xs text-blue-100">{left}</span>
+                      <span className="text-xs font-semibold text-white">
+                        {right}
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </div>
-          </div>
+            </Surface>
+          </Reveal>
         </div>
       </section>
 
-      {/* =========================================================
-          11 — WHAT CLIENTS CAN EXPECT
-      ========================================================= */}
+      {/* EXPECTATIONS */}
       <section
-        className="bg-[#05070B]"
         aria-labelledby="expectations-title"
+        className="bg-gradient-to-b from-white to-blue-50/60"
       >
-        <div className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
-          <div className="mb-14">
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
-              10 / Working relationship
-            </p>
-
-            <h2
-              id="expectations-title"
-              className="mt-5 max-w-3xl text-4xl font-black tracking-[-0.05em] sm:text-6xl"
-            >
+        <div className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-28">
+          <Reveal>
+            <SectionLabel>10 / Working relationship</SectionLabel>
+            <SectionTitle id="expectations-title" className="max-w-4xl">
               What you should expect from us.
-            </h2>
-          </div>
+            </SectionTitle>
+          </Reveal>
 
-          <div className="grid gap-5 md:grid-cols-3">
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
             {expectations.map((item) => {
               const Icon = item.icon;
 
               return (
-                <div
-                  key={item.title}
-                  className="rounded-[30px] border border-white/[0.08] bg-gradient-to-br from-white/[0.04] to-transparent p-8 transition duration-500 hover:-translate-y-1 hover:border-blue-400/20"
-                >
-                  <Icon
-                    size={24}
-                    className="text-cyan-300"
-                    aria-hidden="true"
-                  />
-
-                  <h3 className="mt-10 text-2xl font-black tracking-[-0.03em]">
-                    {item.title}
-                  </h3>
-
-                  <p className="mt-4 text-sm leading-7 text-slate-500">
-                    {item.text}
-                  </p>
-                </div>
+                <Reveal key={item.title}>
+                  <Surface className="h-full p-7 sm:p-8">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-700">
+                      <Icon size={23} />
+                    </div>
+                    <h3 className="mt-7 text-xl font-bold text-slate-950">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">
+                      {item.text}
+                    </p>
+                  </Surface>
+                </Reveal>
               );
             })}
           </div>
         </div>
       </section>
 
-      {/* =========================================================
-          12 — TRANSPARENCY
-      ========================================================= */}
+      {/* TRANSPARENCY */}
       <section
-        className="bg-[#080C13]"
         aria-labelledby="transparency-title"
+        className="bg-white"
       >
-        <div className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
-          <div className="mx-auto max-w-5xl rounded-[36px] border border-white/[0.08] bg-gradient-to-br from-[#0B1220] via-[#080D15] to-[#071015] p-8 shadow-[0_40px_120px_rgba(0,0,0,.4)] sm:p-12 lg:p-16">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-cyan-400/10 text-cyan-300">
-              <ShieldCheck size={25} aria-hidden="true" />
-            </div>
-
-            <p className="mt-10 text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
-              11 / Transparency
-            </p>
-
-            <h2
-              id="transparency-title"
-              className="mt-5 max-w-3xl text-4xl font-black tracking-[-0.05em] sm:text-5xl"
-            >
-              No inflated promises. Just clear work.
-            </h2>
-
-            <p className="mt-6 max-w-3xl text-base leading-8 text-slate-400">
-              We believe trust grows when expectations are realistic. Project
-              scope, requirements, timelines and deliverables should be
-              discussed clearly rather than hidden behind complicated language
-              or unrealistic promises.
-            </p>
-
-            <div className="mt-10 grid gap-3 sm:grid-cols-2">
-              {transparencyPoints.map((item) => (
-                <div
-                  key={item}
-                  className="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.025] px-4 py-3 text-sm text-slate-300"
-                >
-                  <Check
-                    size={16}
-                    className="text-cyan-300"
-                    aria-hidden="true"
-                  />
-                  {item}
+        <div className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-28">
+          <Reveal>
+            <div className="overflow-hidden rounded-[28px] border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-sky-50 p-6 sm:rounded-[36px] sm:p-10 lg:p-14">
+              <div className="grid items-start gap-10 lg:grid-cols-[1fr_.8fr] lg:gap-14">
+                <div>
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-700 text-white shadow-lg shadow-blue-700/15">
+                    <ShieldCheck size={26} />
+                  </div>
+                  <SectionLabel>11 / Transparency</SectionLabel>
+                  <SectionTitle id="transparency-title">
+                    No inflated promises. Just clear work.
+                  </SectionTitle>
+                  <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600">
+                    Trust grows when expectations are realistic. Project
+                    scope, timelines, requirements and deliverables should be
+                    discussed clearly from the start.
+                  </p>
                 </div>
-              ))}
+
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+                  {transparencyPoints.map((item) => (
+                    <div
+                      key={item}
+                      className="flex items-center gap-3 rounded-xl border border-blue-100 bg-white px-4 py-4 text-sm font-semibold text-slate-800 shadow-sm"
+                    >
+                      <Check size={17} className="shrink-0 text-blue-700" />
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* =========================================================
-          13 — WHY WEBQENZO
-      ========================================================= */}
+      {/* BRAND STATEMENT */}
       <section
-        className="relative overflow-hidden bg-[#05070B]"
-        aria-labelledby="why-webqenzo-title"
+        aria-labelledby="brand-statement-title"
+        className="relative overflow-hidden bg-blue-50/70"
       >
         <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(37,99,235,.10),transparent_38%)]"
+          className="pointer-events-none absolute inset-0"
           aria-hidden="true"
-        />
+        >
+          <div className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-200/50 blur-[100px] sm:h-[500px] sm:w-[500px]" />
+        </div>
 
-        <div className="relative mx-auto max-w-[1500px] px-5 py-24 text-center sm:px-8 lg:px-12 lg:py-36">
-          <p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
-            12 / Why WebQenzo
-          </p>
-
-          <h2
-            id="why-webqenzo-title"
-            className="mx-auto mt-6 max-w-5xl text-5xl font-black tracking-[-0.06em] sm:text-7xl lg:text-8xl"
-          >
-            Your website should feel like your business has
-            <span className="block bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
-              moved forward.
-            </span>
-          </h2>
-
-          <p className="mx-auto mt-8 max-w-2xl text-base leading-8 text-slate-500 sm:text-lg">
-            Better positioning. Better experience. Better digital presence.
-            Built with intention from the first screen to the smallest detail.
-          </p>
+        <div className="relative mx-auto max-w-[1440px] px-5 py-24 text-center sm:px-8 sm:py-28 lg:px-12 lg:py-36">
+          <Reveal>
+            <SectionLabel>12 / Why WebQenzo</SectionLabel>
+            <h2
+              id="brand-statement-title"
+              className="mx-auto max-w-5xl text-4xl font-black leading-[1.06] tracking-[-0.06em] text-slate-950 sm:text-6xl lg:text-8xl"
+            >
+              Your website should feel like your business has
+              <span className="mt-2 block bg-gradient-to-r from-blue-800 via-blue-600 to-sky-500 bg-clip-text pb-2 text-transparent">
+                moved forward.
+              </span>
+            </h2>
+            <p className="mx-auto mt-7 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
+              Better positioning. Better experience. A stronger digital
+              presence — built with intention from the first screen to the
+              smallest detail.
+            </p>
+          </Reveal>
         </div>
       </section>
 
-      {/* =========================================================
-          14 — CTA
-      ========================================================= */}
+      {/* FINAL CTA */}
       <section
-        className="border-t border-white/[0.08] bg-[#070A10]"
         aria-labelledby="about-cta-title"
+        className="bg-white"
       >
-        <div className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
-          <div className="relative overflow-hidden rounded-[40px] border border-white/10 bg-gradient-to-br from-[#0D1726] via-[#09101B] to-[#071015] p-8 sm:p-12 lg:p-16">
-            <div
-              className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-blue-500/10 blur-[100px]"
-              aria-hidden="true"
-            />
+        <div className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-28">
+          <Reveal>
+            <div className="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-blue-800 via-blue-700 to-blue-950 p-7 text-white shadow-[0_30px_80px_rgba(30,64,175,0.20)] sm:rounded-[36px] sm:p-10 lg:p-16">
+              <div
+                className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full border-[45px] border-white/[0.06]"
+                aria-hidden="true"
+              />
+              <div
+                className="pointer-events-none absolute -bottom-32 left-1/3 h-72 w-72 rounded-full bg-sky-400/15 blur-[100px]"
+                aria-hidden="true"
+              />
 
-            <div
-              className="pointer-events-none absolute -bottom-32 left-1/3 h-72 w-72 rounded-full bg-cyan-400/10 blur-[110px]"
-              aria-hidden="true"
-            />
+              <div className="relative grid gap-9 lg:grid-cols-[1fr_auto] lg:items-end">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.24em] text-blue-200">
+                    13 / Let's build
+                  </p>
+                  <h2
+                    id="about-cta-title"
+                    className="mt-5 max-w-4xl text-3xl font-black leading-tight tracking-[-0.045em] sm:text-5xl lg:text-6xl"
+                  >
+                    Have a business that deserves a better digital presence?
+                  </h2>
+                  <p className="mt-5 max-w-2xl text-sm leading-7 text-blue-100 sm:text-base sm:leading-8">
+                    Tell us what you are building, what you want to improve
+                    and where you want to go next. We can start from there.
+                  </p>
+                </div>
 
-            <div className="relative grid gap-12 lg:grid-cols-[1fr_auto] lg:items-end">
-              <div>
-                <p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
-                  13 / Let's build
-                </p>
-
-                <h2
-                  id="about-cta-title"
-                  className="mt-5 max-w-4xl text-4xl font-black tracking-[-0.05em] sm:text-6xl"
+                <Link
+                  to="/get-quote"
+                  className="group inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-white px-6 py-3.5 text-sm font-bold text-blue-900 transition duration-300 hover:-translate-y-1 hover:bg-blue-50"
                 >
-                  Have a business that deserves a better digital presence?
-                </h2>
-
-                <p className="mt-6 max-w-2xl text-base leading-8 text-slate-500">
-                  Tell us what you are building, what you want to improve and
-                  where you want to go next. We can start from there.
-                </p>
+                  Start a Conversation
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-blue-700 text-white transition group-hover:rotate-45">
+                    <ArrowUpRight size={15} />
+                  </span>
+                </Link>
               </div>
-
-              <Link
-                to="/get-quote"
-                className="group inline-flex w-fit items-center gap-3 rounded-full bg-white px-6 py-3.5 text-sm font-bold text-[#05070B] transition duration-300 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(255,255,255,.12)]"
-              >
-                Start a Conversation
-
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#05070B] text-white transition group-hover:rotate-45">
-                  <ArrowUpRight size={15} />
-                </span>
-              </Link>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
     </main>

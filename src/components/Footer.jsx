@@ -11,6 +11,7 @@ const footerLinks = {
     { name: "About", path: "/about" },
     { name: "Process", path: "/process" },
     { name: "Portfolio", path: "/portfolio" },
+    { name: "Presentation Deck", path: "/presentation" }, // <-- Yaha Presentation link add kar diya gaya hai
     { name: "Contact", path: "/contact" },
   ],
 
@@ -338,7 +339,7 @@ function Footer() {
             {/* COPYRIGHT */}
 
             <p className="text-[11px] text-slate-600">
-              © {currentYear} WebQenzo. All rights reserved.
+              © {currentYear} WebQenzo. All rights reserved[cite: 8].
             </p>
 
             {/* CENTER */}
