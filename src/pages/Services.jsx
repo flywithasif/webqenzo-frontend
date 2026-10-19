@@ -167,122 +167,164 @@ function Services() {
       {/* =====================================================
           01 — HERO
       ====================================================== */}
+<section className="relative overflow-hidden bg-[#070c14] text-white selection:bg-cyan-500/30 selection:text-cyan-200">
+  {/* Ultra Luxury Synced Ambient Glows */}
+  <div className="pointer-events-none absolute inset-0">
+    {/* Left Halo Blue Sync */}
+    <div className="absolute -left-36 top-10 h-[600px] w-[600px] rounded-full bg-gradient-to-tr from-blue-600/20 via-cyan-500/10 to-transparent blur-[140px]" />
 
-      <section className="relative overflow-hidden bg-[#060B14] text-white">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -left-40 top-20 h-[500px] w-[500px] rounded-full bg-blue-600/10 blur-[120px]" />
+    {/* Right Halo Cyan Sync */}
+    <div className="absolute right-[-100px] top-1/4 h-[650px] w-[650px] rounded-full bg-gradient-to-bl from-cyan-400/15 via-blue-700/10 to-transparent blur-[150px]" />
 
-          <div className="absolute right-[-180px] top-[-100px] h-[600px] w-[600px] rounded-full bg-cyan-500/10 blur-[130px]" />
+    {/* Grid Overlay for Tech Depth */}
+    <div
+      className="absolute inset-0 opacity-[0.03] mix-blend-overlay"
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)",
+        backgroundSize: "64px 64px",
+      }}
+    />
+  </div>
 
-          <div
-            className="absolute inset-0 opacity-[0.035]"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)",
-              backgroundSize: "64px 64px",
-            }}
-          />
+  {/* Main Container with py-10 */}
+  <div className="relative mx-auto max-w-[1400px] px-5 py-10 sm:px-8 lg:px-10">
+    <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+      
+      {/* Left Content Column */}
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={reveal}
+        className="z-10"
+      >
+        {/* Luxury Badge */}
+        <div className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-cyan-500/20 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-transparent px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300 backdrop-blur-md shadow-[0_0_20px_rgba(6,182,212,0.15)]">
+          <Sparkles size={14} className="animate-pulse text-cyan-400" />
+          <span>Our Core Services</span>
         </div>
 
-        <div className="relative mx-auto max-w-[1400px] px-5 pb-24 pt-20 sm:px-8 lg:px-10 lg:pb-32 lg:pt-28">
-          <div className="grid items-end gap-16 lg:grid-cols-[1fr_0.75fr]">
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={reveal}
-            >
-              <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-                <Sparkles size={14} className="text-cyan-400" />
-                What we build
+        {/* Dynamic Heading */}
+        <h1 className="max-w-4xl text-[clamp(2.8rem,5.5vw,5.5rem)] font-bold leading-[0.98] tracking-[-0.04em] text-slate-100">
+          Digital{" "}
+          <span className="bg-gradient-to-r from-cyan-300 via-blue-400 to-indigo-300 bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(56,189,248,0.3)]">
+            solutions
+          </span>
+          <br />
+          built to matter<span className="text-cyan-400">.</span>
+        </h1>
+
+        <p className="mt-6 max-w-xl text-base leading-relaxed text-slate-300/80 sm:text-lg">
+          From strategy and interface design to development, performance, and launch,{" "}
+          <span className="font-medium text-slate-100">WebQenzo</span> builds high-impact digital experiences around the way your business actually works.
+        </p>
+
+        {/* Visual Highlights Grid / Image Cards Banner */}
+        <div className="mt-8 grid grid-cols-2 gap-4 max-w-lg">
+          <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-4 backdrop-blur-xl transition-all duration-300 hover:border-cyan-500/30">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                <Sparkles size={18} />
               </div>
-
-              <h1 className="max-w-5xl text-[clamp(3.5rem,7vw,7rem)] font-semibold leading-[0.9] tracking-[-0.06em]">
-                Digital
-                <br />
-
-                <span className="bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-400 bg-clip-text text-transparent">
-                  solutions
-                </span>
-
-                <br />
-
-                built to matter.
-              </h1>
-
-              <p className="mt-8 max-w-2xl text-base leading-7 text-slate-400 sm:text-lg">
-                From strategy and interface design to development,
-                performance and launch, WebQenzo builds digital
-                experiences around the way your business actually works.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{
-                opacity: 0,
-                x: 30,
-              }}
-              animate={{
-                opacity: 1,
-                x: 0,
-              }}
-              transition={{
-                delay: 0.25,
-                duration: 0.7,
-              }}
-              className="lg:pb-2"
-            >
-              <div className="rounded-[28px] border border-white/10 bg-white/[0.035] p-6 backdrop-blur-xl sm:p-8">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                    Capabilities
-                  </span>
-
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-slate-400">
-                    <ArrowDownRight size={17} />
-                  </span>
-                </div>
-
-                <div className="mt-8 space-y-4">
-                  {[
-                    "Strategy",
-                    "UI / UX Design",
-                    "Web Development",
-                    "E-commerce",
-                    "Performance",
-                    "Support",
-                  ].map((item, index) => (
-                    <div
-                      key={item}
-                      className="flex items-center justify-between border-b border-white/10 pb-4 last:border-0"
-                    >
-                      <div className="flex items-center gap-4">
-                        <span className="font-mono text-[10px] text-slate-600">
-                          0{index + 1}
-                        </span>
-
-                        <span className="text-sm font-medium text-slate-300">
-                          {item}
-                        </span>
-                      </div>
-
-                      <ArrowUpRight
-                        size={15}
-                        className="text-slate-600"
-                      />
-                    </div>
-                  ))}
-                </div>
+              <div>
+                <p className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Quality</p>
+                <p className="text-sm font-semibold text-white">World-Class UI</p>
               </div>
-            </motion.div>
+            </div>
           </div>
 
-          <div className="mt-20 flex items-center gap-3 text-xs uppercase tracking-[0.18em] text-slate-600">
-            <span className="h-px w-10 bg-slate-700" />
-            Scroll to explore
+          <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-4 backdrop-blur-xl transition-all duration-300 hover:border-blue-500/30">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                <ArrowUpRight size={18} />
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Speed</p>
+                <p className="text-sm font-semibold text-white">High Performing</p>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
+      </motion.div>
 
+      {/* Right Column: High-End Visual Image Showcase + Capability Glass Overlay */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="relative z-10"
+      >
+        <div className="relative rounded-[32px] border border-white/15 bg-slate-900/40 p-3 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+          
+          {/* Main Visual Image Showcase */}
+          <div className="relative h-[220px] sm:h-[260px] w-full overflow-hidden rounded-[24px]">
+            <img
+              src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop"
+              alt="Digital Solution Visual"
+              className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#070c14] via-[#070c14]/40 to-transparent" />
+            
+            {/* Floating Metric Badge */}
+            <div className="absolute left-4 top-4 rounded-full border border-white/20 bg-slate-950/60 px-3.5 py-1.5 backdrop-blur-md">
+              <span className="flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-200">
+                <span className="h-2 w-2 rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]" />
+                Premium Execution
+              </span>
+            </div>
+          </div>
+
+          {/* Capabilities Section Integrated inside Card */}
+          <div className="px-3 pb-3 pt-5">
+            <div className="flex items-center justify-between border-b border-white/10 pb-4">
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+                Capabilities
+              </span>
+              <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-cyan-400">
+                <ArrowDownRight size={16} />
+              </span>
+            </div>
+
+            <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3">
+              {[
+                "Strategy",
+                "UI/UX Design",
+                "Web Dev",
+                "E-commerce",
+                "Performance",
+                "Support",
+              ].map((item, index) => (
+                <div
+                  key={item}
+                  className="group flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.02] p-3 transition-all duration-300 hover:border-cyan-500/40 hover:bg-cyan-500/5"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="font-mono text-[10px] font-semibold text-cyan-400/70">
+                      0{index + 1}
+                    </span>
+                    <span className="text-xs font-medium text-slate-300 group-hover:text-white">
+                      {item}
+                    </span>
+                  </div>
+                  <ArrowUpRight
+                    size={13}
+                    className="text-slate-500 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-cyan-400"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+
+    {/* Scroll Indicator */}
+    <div className="mt-8 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500">
+      <span className="h-px w-10 bg-gradient-to-r from-cyan-500/50 to-transparent" />
+      <span>Scroll to explore services</span>
+    </div>
+  </div>
+</section>
 
       {/* =========================================================
     WEBSITE SHOWCASE — INFINITE MARQUEE
@@ -503,635 +545,759 @@ function Services() {
       ====================================================== */}
 
 
-      <section className="border-b border-slate-200 bg-white">
-        <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
-          <div className="mb-10 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">
-                Built for business
-              </p>
+      <section className="relative overflow-hidden bg-gradient-to-b from-blue-700 via-blue-600 to-indigo-700 py-10 text-white selection:bg-cyan-300 selection:text-slate-900">
+  {/* Soft Light Blue Synced Ambient Lighting */}
+  <div className="pointer-events-none absolute inset-0">
+    <div className="absolute -left-32 top-10 h-[550px] w-[550px] rounded-full bg-cyan-400/20 blur-[120px]" />
+    <div className="absolute right-[-100px] top-1/3 h-[550px] w-[550px] rounded-full bg-blue-400/15 blur-[130px]" />
 
-              <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
-                Different industries.
-                <br />
-                One standard of quality.
-              </h2>
-            </div>
+    {/* Subtle Pattern Grid */}
+    <div
+      className="absolute inset-0 opacity-[0.05] mix-blend-overlay"
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)",
+        backgroundSize: "64px 64px",
+      }}
+    />
+  </div>
 
-            <p className="max-w-md text-sm leading-6 text-slate-500">
-              Every business has different customers, goals and challenges.
-              The website should reflect that.
+  <div className="relative mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-10">
+    {/* Section Header */}
+    <div className="mb-10 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200">
+          Built for business
+        </p>
+        <h2 className="mt-2 text-3xl font-bold tracking-[-0.03em] text-white sm:text-4xl lg:text-5xl">
+          Different industries<span className="text-cyan-300">.</span>
+          <br />
+          One standard of quality.
+        </h2>
+      </div>
+
+      <p className="max-w-md text-sm leading-6 text-blue-100/90">
+        Every business has different customers, goals and challenges.
+        The website should reflect that.
+      </p>
+    </div>
+
+    {/* Cards Grid with Flat Design & Dark Blue Borders */}
+    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      {[
+        ...industries,
+        {
+          name: "Sales CRM",
+          text: "Streamline sales pipelines, customer interactions, and lead management in real-time.",
+          icon: <Sparkles size={20} />,
+        },
+        {
+          name: "Admin Panel",
+          text: "Powerful, intuitive control centers to manage operations, users, and platform data seamlessly.",
+          icon: <ArrowUpRight size={20} />,
+        },
+      ].map((industry) => (
+        <div
+          key={industry.name}
+          className="group relative flex h-full flex-col justify-between rounded-2xl border-2 border-blue-900/80 bg-white p-6 transition-colors duration-300 hover:border-blue-950"
+        >
+          {/* Top Row: Icon & Arrow */}
+          <div className="flex items-start justify-between">
+            <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
+              {industry.icon}
+            </span>
+
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition-colors duration-300 group-hover:bg-blue-900 group-hover:text-white">
+              <ArrowUpRight
+                size={18}
+                className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              />
+            </span>
+          </div>
+
+          {/* Bottom Content Area */}
+          <div className="mt-6">
+            <h3 className="text-xl font-bold tracking-tight text-slate-900">
+              {industry.name}
+            </h3>
+
+            <p className="mt-2.5 text-xs leading-relaxed text-slate-600">
+              {industry.text}
             </p>
           </div>
-
-          <div className="grid border-l border-t border-slate-200 sm:grid-cols-2 lg:grid-cols-3">
-            {industries.map((industry) => (
-              <div
-                key={industry.name}
-                className="group border-b border-r border-slate-200 p-7 transition-all duration-300 hover:bg-[#F7F8FA] sm:p-8"
-              >
-                <div className="flex items-start justify-between">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#0B1220] text-sm text-white shadow-lg transition duration-300 group-hover:-translate-y-1 group-hover:shadow-blue-900/20">
-                    {industry.icon}
-                  </span>
-
-                  <ArrowUpRight
-                    size={18}
-                    className="text-slate-300 transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-blue-600"
-                  />
-                </div>
-
-                <h3 className="mt-8 text-xl font-semibold">
-                  {industry.name}
-                </h3>
-
-                <p className="mt-3 max-w-sm text-sm leading-6 text-slate-500">
-                  {industry.text}
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* =====================================================
           03 — CORE SERVICES
       ====================================================== */}
 
-      <section className="bg-[#F7F8FA] px-5 py-24 sm:px-8 lg:px-10 lg:py-32">
-        <div className="mx-auto max-w-[1400px]">
-          <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">
-              Core services
-            </p>
+      <section className="relative overflow-hidden bg-white py-12 text-slate-900 selection:bg-blue-600 selection:text-white">
+  {/* Subtle Ambient Background Accents */}
+  <div className="pointer-events-none absolute inset-0">
+    <div className="absolute -left-40 top-10 h-[500px] w-[500px] rounded-full bg-blue-50/60 blur-[120px]" />
+    <div className="absolute right-[-100px] bottom-10 h-[500px] w-[500px] rounded-full bg-cyan-50/50 blur-[130px]" />
+  </div>
 
-            <h2 className="mt-4 text-4xl font-semibold leading-tight tracking-[-0.05em] sm:text-5xl lg:text-6xl">
-              Everything you need to build a serious digital presence.
-            </h2>
-          </div>
-
-          <div className="mt-16 grid gap-4 lg:grid-cols-2">
-            {coreServices.map((service) => {
-              const Icon = service.icon;
-
-              return (
-                <motion.div
-                  key={service.number}
-                  whileHover={{
-                    y: -6,
-                  }}
-                  transition={{
-                    duration: 0.25,
-                    ease: "easeOut",
-                  }}
-                  className="group relative overflow-hidden rounded-[28px] border border-slate-200 bg-white p-7 shadow-sm transition-shadow duration-300 hover:border-blue-200 hover:shadow-[0_20px_60px_rgba(15,23,42,0.08)] sm:p-9"
-                >
-                  <div className="pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full bg-blue-500/[0.06] opacity-0 blur-3xl transition duration-500 group-hover:opacity-100" />
-
-                  <div className="relative">
-                    <div className="flex items-start justify-between">
-                      <span className="font-mono text-xs text-slate-400">
-                        {service.number}
-                      </span>
-
-                      <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-100 text-slate-700 transition-all duration-300 group-hover:scale-105 group-hover:bg-blue-600 group-hover:text-white group-hover:shadow-lg group-hover:shadow-blue-600/20">
-                        <Icon size={20} />
-                      </div>
-                    </div>
-
-                    <h3 className="mt-12 text-2xl font-semibold tracking-[-0.03em]">
-                      {service.title}
-                    </h3>
-
-                    <p className="mt-3 max-w-xl text-sm leading-6 text-slate-500">
-                      {service.description}
-                    </p>
-
-                    <Link
-                      to="/get-quote"
-                      className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-[#0B1220] transition-colors hover:text-blue-600"
-                    >
-                      Discuss this service
-
-                      <ArrowRight
-                        size={16}
-                        className="transition-transform duration-300 group-hover:translate-x-1"
-                      />
-                    </Link>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
+  <div className="relative mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-10">
+    {/* Section Header */}
+    <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+      <div className="max-w-3xl">
+        <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50/80 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-blue-700 backdrop-blur-sm">
+          <Sparkles size={14} className="text-blue-600" />
+          <span>Core Capabilities</span>
         </div>
-      </section>
+
+        <h2 className="mt-4 text-3xl font-extrabold tracking-[-0.04em] text-slate-900 sm:text-4xl lg:text-5xl">
+          Everything you need to build a{" "}
+          <span className="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-600 bg-clip-text text-transparent">
+            serious digital presence.
+          </span>
+        </h2>
+      </div>
+
+      <p className="max-w-md text-sm leading-relaxed text-slate-600 lg:text-base">
+        High-impact engineering, intuitive interfaces, and scalable systems custom-built to elevate your business operations and drive real growth.
+      </p>
+    </div>
+
+    {/* Luxury Services Grid */}
+    <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {[
+        ...coreServices,
+        {
+          number: "05",
+          title: "Sales CRM & Admin Panel",
+          description:
+            "Custom enterprise-grade control centers, automated sales pipelines, and real-time operational analytics built for complete control.",
+          icon: Sparkles,
+        },
+        {
+          number: "06",
+          title: "Meta Ads & Performance Marketing",
+          description:
+            "Data-driven Facebook & Instagram ad campaigns engineered to maximize ROI, target precise audiences, and scale customer acquisition.",
+          icon: ArrowUpRight,
+        },
+        {
+          number: "07",
+          title: "Business Mail & System Integrations",
+          description:
+            "Professional GSuite/Microsoft 365 domain setup, automated workflow integrations, and secure email infrastructure for seamless operations.",
+          icon: Sparkles,
+        },
+      ].map((service) => {
+        const Icon = service.icon;
+
+        return (
+          <motion.div
+            key={service.number || service.title}
+            whileHover={{ y: -6 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className="group relative flex flex-col justify-between rounded-3xl border-2 border-blue-900/80 bg-[#f0f5ff] p-7 transition-all duration-300 hover:border-blue-950 hover:bg-[#e6efff] sm:p-8"
+          >
+            <div>
+              {/* Card Top Meta Bar */}
+              <div className="flex items-center justify-between border-b border-blue-200/60 pb-5">
+                <span className="font-mono text-xs font-bold tracking-wider text-blue-800/80">
+                  [{service.number}]
+                </span>
+
+                <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-blue-200 bg-white text-blue-700 shadow-sm transition-all duration-300 group-hover:bg-blue-900 group-hover:text-white">
+                  <Icon size={20} />
+                </div>
+              </div>
+
+              {/* Service Title & Description */}
+              <h3 className="mt-6 text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+                {service.title}
+              </h3>
+
+              <p className="mt-3 text-xs sm:text-sm leading-relaxed text-slate-600">
+                {service.description}
+              </p>
+            </div>
+
+            {/* Bottom Link CTA */}
+            <div className="mt-8 pt-4">
+              <Link
+                to="/get-quote"
+                className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-wider text-blue-900 transition-colors group-hover:text-blue-700"
+              >
+                <span>Discuss this service</span>
+                <ArrowRight
+                  size={16}
+                  className="transition-transform duration-300 group-hover:translate-x-1.5"
+                />
+              </Link>
+            </div>
+          </motion.div>
+        );
+      })}
+    </div>
+  </div>
+</section>
 
       {/* =====================================================
           04 — BUSINESS WEBSITE
       ====================================================== */}
 
-      <section className="bg-white px-5 py-24 sm:px-8 lg:px-10 lg:py-32">
-        <div className="mx-auto grid max-w-[1400px] items-center gap-16 lg:grid-cols-2">
-          <div>
-            <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">
-              <span>01</span>
-              Business websites
+      <section className="relative overflow-hidden bg-[#fafcff] py-12 text-slate-900 selection:bg-blue-600 selection:text-white">
+  {/* International Ambient Blue Texture & Subtle Grid Layer */}
+  <div className="pointer-events-none absolute inset-0">
+    <div className="absolute -left-32 top-1/4 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-[130px]" />
+    <div className="absolute right-[-100px] top-10 h-[500px] w-[500px] rounded-full bg-cyan-400/10 blur-[140px]" />
+
+    {/* Modern Micro Grid Overlay */}
+    <div
+      className="absolute inset-0 opacity-[0.035] mix-blend-multiply"
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(15,23,42,1) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,1) 1px, transparent 1px)",
+        backgroundSize: "64px 64px",
+      }}
+    />
+  </div>
+
+  <div className="relative mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-10">
+    <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      
+      {/* Left Column: High-End Visual Showcase Card */}
+      <motion.div
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="relative z-10"
+      >
+        <div className="group relative rounded-[32px] border border-blue-900/15 bg-white p-3 shadow-[0_20px_50px_rgba(15,23,42,0.08)] transition-all duration-500 hover:shadow-[0_25px_60px_rgba(37,99,235,0.15)] sm:p-4">
+          
+          {/* Main Visual Image Showcase */}
+          <div className="relative h-[360px] sm:h-[420px] w-full overflow-hidden rounded-[24px] bg-slate-900">
+            <img
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop"
+              alt="High Performance Business Website Interface"
+              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            {/* Dark Gradient Overlay for Readability */}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
+
+            {/* Top Floating Badge */}
+            <div className="absolute left-4 top-4 rounded-full border border-white/20 bg-slate-950/60 px-4 py-1.5 backdrop-blur-md">
+              <span className="flex items-center gap-2 text-xs font-semibold tracking-wider text-white">
+                <span className="h-2 w-2 rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]" />
+                Interactive UI Prototype
+              </span>
             </div>
 
-            <h2 className="mt-5 text-4xl font-semibold tracking-[-0.05em] sm:text-5xl">
-              Your business deserves more than a digital brochure.
-            </h2>
-
-            <p className="mt-6 max-w-xl text-base leading-7 text-slate-500">
-              We create professional business websites that explain what
-              you do, establish credibility and make it easy for customers
-              to contact you.
-            </p>
-
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              {websiteFeatures.map((feature) => (
-                <div
-                  key={feature}
-                  className="flex items-center gap-3 text-sm text-slate-600"
-                >
-                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-50 text-blue-600">
-                    <Check size={12} />
-                  </span>
-
-                  {feature}
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-9">
-              <Link
-                to="/get-quote"
-                className="group inline-flex items-center gap-2 rounded-full bg-[#0B1220] px-6 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-blue-600"
-              >
-                Start a business website
-
-                <ArrowUpRight
-                  size={16}
-                  className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                />
-              </Link>
-            </div>
-          </div>
-
-          <div className="rounded-[30px] bg-[#060B14] p-3 shadow-2xl shadow-slate-300/30 sm:p-4">
-            <div className="overflow-hidden rounded-[22px] bg-white">
-              <div className="flex h-12 items-center gap-2 border-b border-slate-100 px-5">
-                <span className="h-2.5 w-2.5 rounded-full bg-slate-200" />
-                <span className="h-2.5 w-2.5 rounded-full bg-slate-200" />
-                <span className="h-2.5 w-2.5 rounded-full bg-slate-200" />
-
-                <div className="ml-4 h-6 flex-1 rounded-md bg-slate-50" />
+            {/* Bottom Floating Metric Glass Card */}
+            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-2xl border border-white/20 bg-white/10 p-4 backdrop-blur-xl sm:bottom-6 sm:left-6 sm:right-6 sm:p-5">
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-300">
+                  Performance Guaranteed
+                </p>
+                <p className="mt-1 text-sm font-bold text-white sm:text-base">
+                  Fast, Secure & Conversion Focused
+                </p>
               </div>
 
-              <div className="p-7 sm:p-10">
-                <div className="flex items-center justify-between">
-                  <div className="text-sm font-black">
-                    STUDIO.
-                  </div>
-
-                  <div className="hidden gap-4 text-[9px] text-slate-400 sm:flex">
-                    <span>Work</span>
-                    <span>Services</span>
-                    <span>About</span>
-                  </div>
-
-                  <div className="h-6 w-16 rounded-full bg-[#0B1220]" />
-                </div>
-
-                <div className="mt-14 max-w-md">
-                  <div className="h-2 w-20 rounded-full bg-blue-100" />
-
-                  <div className="mt-5 space-y-2">
-                    <div className="h-8 w-full rounded-md bg-[#0B1220]" />
-                    <div className="h-8 w-[75%] rounded-md bg-[#0B1220]" />
-                  </div>
-
-                  <div className="mt-5 space-y-2">
-                    <div className="h-2 w-full rounded-full bg-slate-100" />
-                    <div className="h-2 w-[80%] rounded-full bg-slate-100" />
-                  </div>
-
-                  <div className="mt-7 h-9 w-28 rounded-full bg-blue-600" />
-                </div>
-
-                <div className="mt-14 grid grid-cols-3 gap-3">
-                  <div className="h-20 rounded-2xl bg-slate-50" />
-                  <div className="h-20 rounded-2xl bg-blue-50" />
-                  <div className="h-20 rounded-2xl bg-slate-50" />
-                </div>
-              </div>
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/20 text-white backdrop-blur-md">
+                <Sparkles size={18} />
+              </span>
             </div>
           </div>
         </div>
-      </section>
+      </motion.div>
 
+      {/* Right Column: High Impact Content Pitch */}
+      <motion.div
+        initial={{ opacity: 0, x: 30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="z-10"
+      >
+        {/* Luxury Badge Tag */}
+        <div className="inline-flex items-center gap-2.5 rounded-full border border-blue-200 bg-blue-50/80 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-blue-700 backdrop-blur-sm">
+          <span className="font-mono font-bold text-blue-900">01</span>
+          <span className="h-3 w-px bg-blue-300" />
+          <span>Business Websites</span>
+        </div>
+
+        {/* Headline */}
+        <h2 className="mt-5 text-3xl font-extrabold tracking-[-0.04em] text-slate-900 sm:text-4xl lg:text-5xl lg:leading-[1.1]">
+          Your business deserves more than a{" "}
+          <span className="bg-gradient-to-r from-blue-700 via-blue-600 to-cyan-600 bg-clip-text text-transparent">
+            digital brochure.
+          </span>
+        </h2>
+
+        {/* Lead Paragraph */}
+        <p className="mt-6 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg">
+          We engineer bespoke business websites that clearly articulate your value proposition, build unquestionable credibility, and convert visitors into high-value leads.
+        </p>
+
+        {/* Features Checklist Grid */}
+        <div className="mt-8 grid gap-3.5 sm:grid-cols-2">
+          {websiteFeatures.map((feature) => (
+            <div
+              key={feature}
+              className="group flex items-center gap-3 rounded-xl border border-blue-100/80 bg-white p-3 shadow-sm transition-all duration-300 hover:border-blue-300 hover:bg-blue-50/50"
+            >
+              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-600 text-white shadow-md shadow-blue-600/20">
+                <Check size={14} />
+              </span>
+
+              <span className="text-xs font-semibold text-slate-800 sm:text-sm">
+                {feature}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* Primary CTA */}
+        <div className="mt-10">
+          <Link
+            to="/get-quote"
+            className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-blue-900 px-7 py-4 text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-blue-950/20 transition-all duration-300 hover:bg-blue-800 hover:shadow-xl hover:shadow-blue-900/30"
+          >
+            <span>Start a business website</span>
+
+            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/20 text-white transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5">
+              <ArrowUpRight size={16} />
+            </span>
+          </Link>
+        </div>
+      </motion.div>
+
+    </div>
+  </div>
+</section>
       {/* =====================================================
           05 — ECOMMERCE
       ====================================================== */}
 
-      <section className="bg-[#0B1220] px-5 py-24 text-white sm:px-8 lg:px-10 lg:py-32">
-        <div className="mx-auto max-w-[1400px]">
-          <div className="grid gap-16 lg:grid-cols-[0.8fr_1.2fr]">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400">
-                02 / E-commerce
-              </p>
+      <section className="relative overflow-hidden bg-gradient-to-b from-blue-700 via-blue-600 to-indigo-700 py-12 text-white selection:bg-cyan-300 selection:text-slate-900">
+  {/* Ambient Halo Lighting & Subtle Texture Grid */}
+  <div className="pointer-events-none absolute inset-0">
+    <div className="absolute -left-32 top-10 h-[550px] w-[550px] rounded-full bg-cyan-400/25 blur-[130px]" />
+    <div className="absolute right-[-100px] top-1/3 h-[550px] w-[550px] rounded-full bg-blue-400/20 blur-[140px]" />
 
-              <h2 className="mt-5 text-4xl font-semibold tracking-[-0.05em] sm:text-5xl">
-                Turn your products into an experience.
-              </h2>
+    {/* Micro Pattern Grid Overlay */}
+    <div
+      className="absolute inset-0 opacity-[0.05] mix-blend-overlay"
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)",
+        backgroundSize: "64px 64px",
+      }}
+    />
+  </div>
 
-              <p className="mt-6 text-base leading-7 text-slate-400">
-                Your store should do more than display products. It should
-                make discovery simple, build confidence and make checkout
-                feel effortless.
-              </p>
+  <div className="relative mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-10">
+    <div className="grid items-center gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+      
+      {/* Left Column: Copy & Feature List */}
+      <motion.div
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="z-10"
+      >
+        {/* Luxury Section Tag */}
+        <div className="inline-flex items-center gap-2.5 rounded-full border border-cyan-300/30 bg-cyan-400/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200 backdrop-blur-md">
+          <span className="font-mono font-bold text-cyan-300">02</span>
+          <span className="h-3 w-px bg-cyan-300/40" />
+          <span>E-commerce Solutions</span>
+        </div>
 
-              <div className="mt-9 space-y-3">
-                {ecommerceFeatures.map((feature) => (
-                  <div
-                    key={feature}
-                    className="flex items-center gap-3 text-sm text-slate-300"
-                  >
-                    <Check size={15} className="text-cyan-400" />
-                    {feature}
-                  </div>
-                ))}
-              </div>
+        {/* Heading */}
+        <h2 className="mt-5 text-3xl font-extrabold tracking-[-0.04em] text-white sm:text-4xl lg:text-5xl lg:leading-[1.1]">
+          Turn your products into a{" "}
+          <span className="bg-gradient-to-r from-cyan-200 via-white to-cyan-300 bg-clip-text text-transparent">
+            seamless experience.
+          </span>
+        </h2>
+
+        {/* Lead Text */}
+        <p className="mt-5 max-w-xl text-base leading-relaxed text-blue-100/90 sm:text-lg">
+          Your online store should do more than just display inventory. We craft digital storefronts that simplify product discovery, establish trust, and turn visitors into loyal repeat buyers.
+        </p>
+
+        {/* Feature Highlights Grid */}
+        <div className="mt-8 grid gap-3 sm:grid-cols-2">
+          {ecommerceFeatures.map((feature) => (
+            <div
+              key={feature}
+              className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-3.5 backdrop-blur-md transition-all duration-300 hover:border-cyan-300/40 hover:bg-white/10"
+            >
+              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-cyan-400 text-slate-950 shadow-md shadow-cyan-400/30">
+                <Check size={14} className="stroke-[3]" />
+              </span>
+              <span className="text-xs font-semibold text-slate-100 sm:text-sm">
+                {feature}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* Action Button */}
+        <div className="mt-9">
+          <Link
+            to="/get-quote"
+            className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full border border-white/20 bg-white/10 px-7 py-3.5 text-sm font-bold uppercase tracking-wider text-white backdrop-blur-xl transition-all duration-300 hover:bg-white hover:text-slate-950 hover:shadow-xl hover:shadow-cyan-400/20"
+          >
+            <span>Build an E-commerce Store</span>
+            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/20 text-white transition-all duration-300 group-hover:bg-slate-950 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-0.5">
+              <ArrowUpRight size={16} />
+            </span>
+          </Link>
+        </div>
+      </motion.div>
+
+      {/* Right Column: High-End E-commerce Visual Showcase */}
+      <motion.div
+        initial={{ opacity: 0, x: 30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="relative z-10"
+      >
+        <div className="group relative rounded-[32px] border border-white/20 bg-slate-950/40 p-3.5 backdrop-blur-2xl shadow-[0_25px_60px_rgba(0,0,0,0.3)] transition-all duration-500 hover:border-cyan-300/40 sm:p-4">
+          
+          {/* Main E-commerce Showcase Image */}
+          <div className="relative h-[380px] sm:h-[440px] w-full overflow-hidden rounded-[24px]">
+            <img
+              src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1200&auto=format&fit=crop"
+              alt="Luxury E-commerce Store Experience"
+              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            {/* Gradient Overlay for Text Readability */}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent" />
+
+            {/* Top Left Store Status Badge */}
+            <div className="absolute left-4 top-4 rounded-full border border-white/20 bg-slate-950/70 px-4 py-1.5 backdrop-blur-md">
+              <span className="flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-100">
+                <span className="h-2 w-2 rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]" />
+                Live Storefront Engine
+              </span>
             </div>
 
-            <div className="relative">
-              <div className="absolute -right-10 -top-10 h-56 w-56 rounded-full bg-blue-600/10 blur-3xl" />
+            {/* Bottom Floating Conversion Metrics Glass Box */}
+            <div className="absolute bottom-4 left-4 right-4 grid grid-cols-2 gap-3 rounded-2xl border border-white/20 bg-white/10 p-4 backdrop-blur-xl sm:bottom-6 sm:left-6 sm:right-6 sm:p-5">
+              <div className="border-r border-white/10 pr-2">
+                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-cyan-300">
+                  Checkout Speed
+                </p>
+                <p className="mt-1 text-base font-extrabold text-white sm:text-lg">
+                  Sub-1s Instant
+                </p>
+              </div>
 
-              <div className="relative rounded-[30px] border border-white/10 bg-white/[0.04] p-3">
-                <div className="rounded-[22px] bg-[#F7F8FA] p-5 text-[#0B1220] sm:p-7">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-black tracking-tight">
-                      NORDEN
-                    </span>
-
-                    <div className="flex gap-3">
-                      <div className="h-7 w-7 rounded-full bg-slate-200" />
-                      <div className="h-7 w-7 rounded-full bg-slate-200" />
-                    </div>
-                  </div>
-
-                  <div className="mt-8 grid gap-3 sm:grid-cols-3">
-                    {[1, 2, 3].map((item) => (
-                      <div
-                        key={item}
-                        className="rounded-2xl bg-white p-3 shadow-sm"
-                      >
-                        <div className="aspect-square rounded-xl bg-gradient-to-br from-slate-100 to-blue-50" />
-
-                        <div className="mt-3 h-2 w-16 rounded-full bg-slate-200" />
-                        <div className="mt-2 h-2 w-10 rounded-full bg-[#0B1220]" />
-                      </div>
-                    ))}
-                  </div>
-                </div>
+              <div className="pl-2">
+                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-cyan-300">
+                  Conversion Rate
+                </p>
+                <p className="mt-1 text-base font-extrabold text-white sm:text-lg">
+                  2.8x Industry Avg
+                </p>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </motion.div>
 
+    </div>
+  </div>
+</section>
       {/* =====================================================
           06 — BOOKING
       ====================================================== */}
 
-      <section className="bg-white px-5 py-24 sm:px-8 lg:px-10 lg:py-32">
-        <div className="mx-auto max-w-[1400px]">
-          <div className="grid items-center gap-14 lg:grid-cols-2">
-            <div className="order-2 lg:order-1">
-              <div className="rounded-[30px] border border-slate-200 bg-[#F7F8FA] p-5 sm:p-8">
-                <div className="rounded-[22px] bg-white p-5 shadow-sm sm:p-7">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-xs font-medium text-slate-400">
-                        APPOINTMENT
-                      </p>
+      <section className="relative overflow-hidden bg-white py-12 text-slate-900 selection:bg-blue-600 selection:text-white">
+  {/* Subtle Ambient Light Accents */}
+  <div className="pointer-events-none absolute inset-0">
+    <div className="absolute -left-40 top-1/4 h-[500px] w-[500px] rounded-full bg-blue-50/70 blur-[120px]" />
+    <div className="absolute right-[-100px] bottom-10 h-[500px] w-[500px] rounded-full bg-cyan-50/60 blur-[130px]" />
+  </div>
 
-                      <h3 className="mt-1 text-xl font-semibold">
-                        Choose your time
-                      </h3>
-                    </div>
-
-                    <CalendarCheck2
-                      className="text-blue-600"
-                      size={24}
-                    />
-                  </div>
-
-                  <div className="mt-7 grid grid-cols-3 gap-2">
-                    {[
-                      "10:00",
-                      "11:30",
-                      "12:00",
-                      "14:00",
-                      "15:30",
-                      "17:00",
-                    ].map((time, index) => (
-                      <div
-                        key={time}
-                        className={`rounded-xl border px-3 py-3 text-center text-xs font-medium ${
-                          index === 3
-                            ? "border-blue-600 bg-blue-600 text-white"
-                            : "border-slate-200 text-slate-500"
-                        }`}
-                      >
-                        {time}
-                      </div>
-                    ))}
-                  </div>
-
-                  <button
-                    type="button"
-                    className="mt-6 flex w-full items-center justify-center rounded-xl bg-[#0B1220] py-3 text-sm font-semibold text-white"
-                  >
-                    Confirm appointment
-                  </button>
+  <div className="relative mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-10">
+    <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      
+      {/* Left Column: Interactive Booking Widget Preview */}
+      <div className="order-2 lg:order-1 z-10">
+        <div className="relative rounded-[32px] border-2 border-blue-900/80 bg-[#f0f5ff] p-3 shadow-xl">
+          <div className="rounded-[24px] border border-blue-200 bg-white p-6 sm:p-8 shadow-sm">
+            
+            {/* Widget Top Header */}
+            <div className="flex items-center justify-between border-b border-slate-100 pb-5">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700 border border-blue-100">
+                  <CalendarCheck2 size={20} />
+                </div>
+                <div>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-blue-700">
+                    Live Demo
+                  </p>
+                  <h3 className="text-base font-bold text-slate-900">
+                    Schedule Discovery Call
+                  </h3>
                 </div>
               </div>
+
+              <span className="flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[11px] font-semibold text-emerald-700">
+                <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                Available Today
+              </span>
             </div>
 
-            <div className="order-1 lg:order-2">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">
-                03 / Booking
-              </p>
-
-              <h2 className="mt-5 text-4xl font-semibold tracking-[-0.05em] sm:text-5xl">
-                Make booking as easy as sending a message.
-              </h2>
-
-              <p className="mt-6 max-w-xl text-base leading-7 text-slate-500">
-                Perfect for doctors, consultants, salons, fitness
-                businesses, service providers and appointment-based
-                businesses.
-              </p>
-
-              <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                {[
-                  "Appointment flows",
-                  "Service selection",
-                  "Time slots",
-                  "Lead forms",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-2xl border border-slate-200 p-4 transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg hover:shadow-slate-200/40"
+            {/* Date Picker Bar */}
+            <div className="mt-6 flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50/60 p-2.5">
+              <span className="text-xs font-bold text-slate-700">
+                Oct 2026
+              </span>
+              <div className="flex items-center gap-1">
+                {["19 Mon", "20 Tue", "21 Wed", "22 Thu"].map((day, idx) => (
+                  <button
+                    key={day}
+                    type="button"
+                    className={`rounded-lg px-2.5 py-1 text-[11px] font-medium transition-all ${
+                      idx === 1
+                        ? "bg-blue-600 text-white font-bold shadow-md shadow-blue-600/20"
+                        : "text-slate-500 hover:text-slate-900"
+                    }`}
                   >
-                    <CalendarCheck2
-                      size={18}
-                      className="text-blue-600"
-                    />
-
-                    <p className="mt-3 text-sm font-semibold">
-                      {item}
-                    </p>
-                  </div>
+                    {day}
+                  </button>
                 ))}
               </div>
             </div>
+
+            {/* Time Slot Selection Grid */}
+            <div className="mt-6">
+              <p className="text-xs font-semibold text-slate-500">Select Time Slot</p>
+              <div className="mt-3 grid grid-cols-3 gap-2.5">
+                {[
+                  "10:00 AM",
+                  "11:30 AM",
+                  "01:00 PM",
+                  "02:30 PM",
+                  "04:00 PM",
+                  "05:30 PM",
+                ].map((time, index) => (
+                  <button
+                    key={time}
+                    type="button"
+                    className={`rounded-xl border py-2.5 text-center text-xs font-semibold transition-all duration-300 ${
+                      index === 3
+                        ? "border-blue-700 bg-blue-700 text-white font-bold shadow-md shadow-blue-900/20"
+                        : "border-slate-200 bg-white text-slate-700 hover:border-blue-300 hover:bg-blue-50/50"
+                    }`}
+                  >
+                    {time}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* CTA Action Button */}
+            <button
+              type="button"
+              className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-blue-900 py-3.5 text-xs font-bold uppercase tracking-wider text-white shadow-lg transition-all duration-300 hover:bg-blue-950 hover:scale-[1.01]"
+            >
+              <span>Confirm Instant Booking</span>
+              <ArrowRight size={16} />
+            </button>
           </div>
         </div>
-      </section>
+      </div>
+
+      {/* Right Column: High-Impact Heading & Feature Grid */}
+      <div className="order-1 lg:order-2 z-10">
+        <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50/80 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-blue-700 backdrop-blur-sm">
+          <Sparkles size={14} className="text-blue-600" />
+          
+        </div>
+
+        <h2 className="mt-5 text-[clamp(2.4rem,4.5vw,4.2rem)] font-extrabold leading-[1.08] tracking-[-0.04em] text-slate-900">
+          Make booking as easy as{" "}
+          <span className="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-600 bg-clip-text text-transparent">
+            sending a message.
+          </span>
+        </h2>
+
+        <p className="mt-6 max-w-xl text-base leading-relaxed text-slate-600">
+          Tailored booking workflows engineered for doctors, consultants, fitness studios, salons, and modern service providers looking to automate client acquisition.
+        </p>
+
+        {/* Feature Cards Grid */}
+        <div className="mt-8 grid gap-3.5 sm:grid-cols-2">
+          {[
+            "Custom Appointment Flows",
+            "Multi-Service Selection",
+            "Real-Time Time Slots",
+            "Automated Lead Capture",
+          ].map((item) => (
+            <div
+              key={item}
+              className="group flex items-center gap-3.5 rounded-2xl border-2 border-blue-900/80 bg-[#f0f5ff] p-4 transition-all duration-300 hover:bg-[#e6efff] hover:border-blue-950"
+            >
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-blue-200 bg-white text-blue-700 shadow-sm transition-transform duration-300 group-hover:scale-105">
+                <CalendarCheck2 size={18} />
+              </div>
+
+              <p className="text-sm font-bold text-slate-900">
+                {item}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* =====================================================
           07 — DESIGN
       ====================================================== */}
 
-      <section className="bg-[#F7F8FA] px-5 py-24 sm:px-8 lg:px-10 lg:py-32">
-        <div className="mx-auto max-w-[1400px]">
-          <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">
-                04 / UI & UX
-              </p>
+      <section className="relative overflow-hidden bg-gradient-to-b from-blue-700 via-blue-600 to-indigo-700 py-12 text-white selection:bg-cyan-300 selection:text-slate-900">
+  {/* Soft Light Ambient Synced Glows */}
+  <div className="pointer-events-none absolute inset-0">
+    <div className="absolute -left-36 top-10 h-[550px] w-[550px] rounded-full bg-cyan-400/25 blur-[120px]" />
+    <div className="absolute right-[-100px] bottom-10 h-[550px] w-[550px] rounded-full bg-blue-400/20 blur-[130px]" />
 
-              <h2 className="mt-5 text-4xl font-semibold tracking-[-0.05em] sm:text-5xl">
-                Design that makes your brand feel established.
-              </h2>
-            </div>
+    {/* Micro Mesh Pattern Overlay */}
+    <div
+      className="absolute inset-0 opacity-[0.05] mix-blend-overlay"
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)",
+        backgroundSize: "64px 64px",
+      }}
+    />
+  </div>
 
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="rounded-[28px] bg-[#0B1220] p-8 text-white transition duration-300 hover:-translate-y-1">
-                <Palette
-                  size={22}
-                  className="text-cyan-400"
-                />
-
-                <h3 className="mt-12 text-2xl font-semibold">
-                  Visual Identity
-                </h3>
-
-                <p className="mt-3 text-sm leading-6 text-slate-400">
-                  Typography, spacing, colors and layouts that create
-                  a consistent digital presence.
-                </p>
-              </div>
-
-              <div className="rounded-[28px] bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/50">
-                <PenTool
-                  size={22}
-                  className="text-blue-600"
-                />
-
-                <h3 className="mt-12 text-2xl font-semibold">
-                  User Experience
-                </h3>
-
-                <p className="mt-3 text-sm leading-6 text-slate-500">
-                  Clear navigation and intentional page structure so
-                  visitors know exactly what to do next.
-                </p>
-              </div>
-
-              <div className="rounded-[28px] border border-slate-200 bg-white p-8 sm:col-span-2">
-                <div className="flex flex-col justify-between gap-8 sm:flex-row sm:items-end">
-                  <div>
-                    <Monitor
-                      size={22}
-                      className="text-blue-600"
-                    />
-
-                    <h3 className="mt-8 text-2xl font-semibold">
-                      Responsive by Design
-                    </h3>
-
-                    <p className="mt-3 max-w-xl text-sm leading-6 text-slate-500">
-                      From a 320px phone screen to a 1920px desktop,
-                      your website adapts without losing its visual quality.
-                    </p>
-                  </div>
-
-                  <div className="flex items-end gap-2">
-                    <div className="h-20 w-12 rounded-t-xl border-2 border-slate-200 bg-slate-50" />
-                    <div className="h-28 w-20 rounded-t-xl border-2 border-slate-200 bg-slate-50" />
-                    <div className="h-36 w-28 rounded-t-xl border-2 border-slate-200 bg-slate-50" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+  <div className="relative mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-10">
+    <div className="grid items-center gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+      
+      {/* Left Column: Heading & Executive Intro */}
+      <div>
+        <div className="inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-400/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200 backdrop-blur-md">
+          <Sparkles size={14} className="text-cyan-300" />
+          
         </div>
-      </section>
 
-      {/* =====================================================
-          08 — REDESIGN
-      ====================================================== */}
+        <h2 className="mt-5 text-[clamp(2.5rem,4.5vw,4.5rem)] font-extrabold leading-[1.05] tracking-[-0.04em] text-white">
+          Design that makes your brand feel{" "}
+          <span className="text-cyan-300">
+            instantly established.
+          </span>
+        </h2>
 
-      <section className="bg-white px-5 py-24 sm:px-8 lg:px-10 lg:py-32">
-        <div className="mx-auto max-w-[1400px]">
-          <div className="text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">
-              05 / Redesign
+        <p className="mt-6 max-w-lg text-sm sm:text-base leading-relaxed text-blue-100/90">
+          We combine behavioral psychology, precision typography, and seamless interaction design to build digital experiences that command authority and drive conversions.
+        </p>
+      </div>
+
+      {/* Right Column: High-End Feature Cards */}
+      <div className="grid gap-6 sm:grid-cols-2">
+        
+        {/* Card 1: Brand Identity */}
+        <div className="group relative flex flex-col justify-between rounded-3xl border-2 border-blue-900/80 bg-[#f0f5ff] p-7 transition-all duration-300 hover:border-blue-950 hover:bg-[#e6efff] sm:p-8">
+          <div>
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-blue-200 bg-white text-blue-700 shadow-sm transition-transform duration-300 group-hover:scale-105">
+              <Palette size={22} />
+            </div>
+
+            <h3 className="mt-8 text-2xl font-bold tracking-tight text-slate-900">
+              Visual Systems
+            </h3>
+
+            <p className="mt-3 text-xs sm:text-sm leading-relaxed text-slate-600">
+              Cohesive color theories, bespoke typography, and grid alignment engineered to reflect world-class brand prestige.
             </p>
-
-            <h2 className="mx-auto mt-5 max-w-4xl text-4xl font-semibold tracking-[-0.05em] sm:text-5xl lg:text-6xl">
-              If your website looks outdated,
-              your customers notice.
-            </h2>
           </div>
 
-          <div className="mt-16 grid items-center gap-5 lg:grid-cols-[1fr_auto_1fr]">
-            <div className="rounded-[28px] border border-slate-200 bg-slate-50 p-7">
-              <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-                Before
-              </p>
-
-              <div className="mt-7 space-y-4">
-                <div className="h-5 w-32 rounded bg-slate-200" />
-
-                <div className="h-3 w-full rounded bg-slate-200" />
-
-                <div className="h-3 w-[75%] rounded bg-slate-200" />
-
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="h-32 rounded-xl bg-slate-200" />
-                  <div className="h-32 rounded-xl bg-slate-200" />
-                </div>
-              </div>
-            </div>
-
-            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#0B1220] text-white shadow-lg">
-              <ArrowRight size={18} />
-            </div>
-
-            <div className="rounded-[28px] bg-[#0B1220] p-7 text-white shadow-2xl shadow-slate-300/20">
-              <p className="text-xs font-semibold uppercase tracking-wider text-cyan-400">
-                After
-              </p>
-
-              <div className="mt-7">
-                <div className="flex items-center justify-between">
-                  <div className="h-5 w-32 rounded bg-white" />
-                  <div className="h-6 w-14 rounded-full bg-blue-600" />
-                </div>
-
-                <div className="mt-7 h-8 w-[80%] rounded bg-white" />
-
-                <div className="mt-3 h-3 w-[55%] rounded bg-white/20" />
-
-                <div className="mt-7 grid grid-cols-3 gap-2">
-                  <div className="h-24 rounded-xl bg-white/10" />
-                  <div className="h-24 rounded-xl bg-blue-600/40" />
-                  <div className="h-24 rounded-xl bg-white/10" />
-                </div>
-              </div>
-            </div>
+          <div className="mt-6 flex items-center gap-1.5 text-xs font-bold text-blue-900 uppercase tracking-wider">
+            <span>Precision Driven</span>
+            <ArrowUpRight size={14} />
           </div>
         </div>
-      </section>
 
-      {/* =====================================================
-          09 — CUSTOM APPLICATIONS
-      ====================================================== */}
+        {/* Card 2: User Experience */}
+        <div className="group relative flex flex-col justify-between rounded-3xl border-2 border-blue-900/80 bg-[#f0f5ff] p-7 transition-all duration-300 hover:border-blue-950 hover:bg-[#e6efff] sm:p-8">
+          <div>
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-blue-200 bg-white text-blue-700 shadow-sm transition-transform duration-300 group-hover:scale-105">
+              <PenTool size={22} />
+            </div>
 
-      <section className="bg-[#060B14] px-5 py-24 text-white sm:px-8 lg:px-10 lg:py-32">
-        <div className="mx-auto max-w-[1400px]">
-          <div className="grid gap-16 lg:grid-cols-2">
+            <h3 className="mt-8 text-2xl font-bold tracking-tight text-slate-900">
+              Conversion UX
+            </h3>
+
+            <p className="mt-3 text-xs sm:text-sm leading-relaxed text-slate-600">
+              Frictionless navigation and intentional user journeys designed to guide visitors directly toward meaningful actions.
+            </p>
+          </div>
+
+          <div className="mt-6 flex items-center gap-1.5 text-xs font-bold text-blue-900 uppercase tracking-wider">
+            <span>High Retention</span>
+            <ArrowUpRight size={14} />
+          </div>
+        </div>
+
+        {/* Card 3: Full Width Responsive Device Adaptability */}
+        <div className="group relative rounded-3xl border-2 border-blue-900/80 bg-[#f0f5ff] p-7 transition-all duration-300 hover:border-blue-950 hover:bg-[#e6efff] sm:col-span-2 sm:p-8">
+          <div className="flex flex-col justify-between gap-8 sm:flex-row sm:items-end">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400">
-                06 / Custom applications
-              </p>
-
-              <h2 className="mt-5 text-4xl font-semibold tracking-[-0.05em] sm:text-5xl">
-                When a website isn't enough.
-              </h2>
-
-              <p className="mt-6 max-w-xl text-base leading-7 text-slate-400">
-                We can build custom web applications around specific
-                business workflows, customer journeys and operational
-                requirements.
-              </p>
-
-              <div className="mt-9 flex flex-wrap gap-2">
-                {[
-                  "Dashboards",
-                  "Customer portals",
-                  "Internal tools",
-                  "CRUD systems",
-                  "Lead systems",
-                  "Custom workflows",
-                ].map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-xs text-slate-400 transition hover:border-cyan-400/20 hover:bg-cyan-400/[0.05] hover:text-slate-200"
-                  >
-                    {item}
-                  </span>
-                ))}
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-blue-200 bg-white text-blue-700 shadow-sm transition-transform duration-300 group-hover:scale-105">
+                <Monitor size={22} />
               </div>
+
+              <h3 className="mt-6 text-2xl font-bold tracking-tight text-slate-900">
+                Adaptive Multi-Device Engineering
+              </h3>
+
+              <p className="mt-3 max-w-xl text-xs sm:text-sm leading-relaxed text-slate-600">
+                From mobile screens to ultra-wide displays, every interface dynamically recalibrates layout density without compromising visual fidelity.
+              </p>
             </div>
 
-            <div className="rounded-[30px] border border-white/10 bg-white/[0.035] p-5">
-              <div className="rounded-[22px] bg-[#101722] p-5 sm:p-7">
-                <div className="flex items-center gap-3 border-b border-white/10 pb-5">
-                  <div className="h-9 w-9 rounded-xl bg-blue-600" />
-
-                  <div>
-                    <div className="h-2 w-20 rounded bg-white/20" />
-                    <div className="mt-2 h-1.5 w-12 rounded bg-white/10" />
-                  </div>
-                </div>
-
-                <div className="mt-6 grid grid-cols-3 gap-3">
-                  <div className="h-24 rounded-2xl bg-white/[0.04]" />
-                  <div className="h-24 rounded-2xl bg-blue-600/10" />
-                  <div className="h-24 rounded-2xl bg-cyan-500/10" />
-                </div>
-
-                <div className="mt-4 rounded-2xl bg-white/[0.04] p-4">
-                  <div className="h-2 w-24 rounded bg-white/20" />
-
-                  <div className="mt-5 space-y-3">
-                    <div className="h-2 w-full rounded bg-white/10" />
-                    <div className="h-2 w-[85%] rounded bg-white/10" />
-                    <div className="h-2 w-[70%] rounded bg-white/10" />
-                  </div>
-                </div>
+            {/* Screen Mock Indicators */}
+            <div className="flex items-end gap-2.5">
+              <div className="flex h-16 w-10 flex-col justify-between rounded-xl border border-blue-300 bg-white p-1.5 shadow-sm">
+                <div className="h-1.5 w-full rounded-full bg-blue-200" />
+                <div className="h-3 w-full rounded-md bg-blue-600/20" />
+              </div>
+              <div className="flex h-20 w-14 flex-col justify-between rounded-xl border border-blue-300 bg-white p-2 shadow-sm">
+                <div className="h-2 w-full rounded-full bg-blue-200" />
+                <div className="h-4 w-full rounded-md bg-blue-600/30" />
+              </div>
+              <div className="flex h-28 w-24 flex-col justify-between rounded-xl border-2 border-blue-400 bg-white p-2.5 shadow-md">
+                <div className="h-2.5 w-3/4 rounded-full bg-blue-600" />
+                <div className="h-8 w-full rounded-md bg-blue-100" />
               </div>
             </div>
           </div>
         </div>
-      </section>
 
-      {/* =====================================================
-          10 — SEO + PERFORMANCE
-      ====================================================== */}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    
 
       <section className="bg-[#F7F8FA] px-5 py-24 sm:px-8 lg:px-10 lg:py-32">
         <div className="mx-auto max-w-[1400px]">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">
-              07 / Performance
-            </p>
+            
 
             <h2 className="mt-5 text-4xl font-semibold tracking-[-0.05em] sm:text-5xl">
               Beautiful is only half the job.
@@ -1192,301 +1358,88 @@ function Services() {
         </div>
       </section>
 
-      {/* =====================================================
-          11 — INTEGRATIONS
-      ====================================================== */}
+      
 
-      <section className="bg-white px-5 py-24 sm:px-8 lg:px-10 lg:py-32">
-        <div className="mx-auto max-w-[1400px]">
-          <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">
-                08 / Integrations
-              </p>
+      
 
-              <h2 className="mt-5 text-4xl font-semibold tracking-[-0.05em] sm:text-5xl">
-                Connect your website to the tools your business already uses.
-              </h2>
-            </div>
 
-            <div className="grid gap-3 sm:grid-cols-2">
-              {[
-                ["WhatsApp", LifeBuoy],
-                ["Payment Gateways", CreditCard],
-                ["Google Maps", Globe2],
-                ["Contact Forms", PenTool],
-                ["Analytics", LineChart],
-                ["Business Tools", Settings2],
-              ].map(([name, Icon]) => (
-                <div
-                  key={name}
-                  className="group flex items-center justify-between rounded-2xl border border-slate-200 p-5 transition duration-300 hover:border-blue-200 hover:bg-blue-50/40"
-                >
-                  <div className="flex items-center gap-4">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-600 transition duration-300 group-hover:bg-blue-600 group-hover:text-white">
-                      <Icon size={18} />
-                    </div>
+      
 
-                    <span className="text-sm font-semibold">
-                      {name}
-                    </span>
-                  </div>
 
-                  <ArrowUpRight
-                    size={16}
-                    className="text-slate-300 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-blue-500"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <section className="relative overflow-hidden bg-gradient-to-b from-blue-700 via-blue-600 to-indigo-700 py-12 text-white selection:bg-cyan-300 selection:text-slate-900">
+  {/* Light Ambient Synced Glows */}
+  <div className="pointer-events-none absolute inset-0">
+    <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/25 blur-[140px]" />
+    <div className="absolute -left-32 top-10 h-[400px] w-[400px] rounded-full bg-blue-400/20 blur-[120px]" />
 
-      {/* =====================================================
-          12 — TECHNOLOGY
-      ====================================================== */}
+    {/* Micro Pattern Overlay */}
+    <div
+      className="absolute inset-0 opacity-[0.05] mix-blend-overlay"
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)",
+        backgroundSize: "64px 64px",
+      }}
+    />
+  </div>
 
-      <section className="bg-[#F7F8FA] px-5 py-24 sm:px-8 lg:px-10 lg:py-32">
-        <div className="mx-auto max-w-[1400px]">
-          <div className="text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">
-              09 / Technology
-            </p>
+  <div className="relative mx-auto max-w-5xl px-5 text-center sm:px-8 lg:px-10">
+    {/* Top Badge */}
+    <div className="inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-400/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-cyan-200 backdrop-blur-md">
+      <Sparkles size={14} className="text-cyan-300" />
+      <span>Architecting Digital Distinction</span>
+    </div>
 
-            <h2 className="mt-5 text-4xl font-semibold tracking-[-0.05em] sm:text-5xl">
-              Modern tools.
-              <br />
-              Clean implementation.
-            </h2>
-          </div>
+    {/* Dynamic Heading */}
+    <h2 className="mt-6 text-[clamp(2.5rem,5.5vw,5.5rem)] font-extrabold leading-[0.98] tracking-[-0.04em] text-white">
+      Your digital presence <br className="hidden sm:block" />
+      deserves an <span className="text-cyan-300">unfair advantage.</span>
+    </h2>
 
-          <div className="mx-auto mt-14 grid max-w-5xl grid-cols-2 overflow-hidden rounded-[28px] border border-slate-200 bg-white sm:grid-cols-4">
-            {technologies.map((technology, index) => (
-              <div
-                key={technology}
-                className="group flex min-h-32 items-center justify-center border-b border-r border-slate-200 p-5 text-center text-sm font-semibold text-slate-700 transition duration-300 hover:bg-[#0B1220] hover:text-white"
-              >
-                <div>
-                  <span className="mb-2 block font-mono text-[9px] text-slate-400">
-                    0{index + 1}
-                  </span>
+    {/* World-Class Subtext */}
+    <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-blue-100/90 sm:text-base lg:text-lg">
+      Partner with WebQenzo to engineer high-converting digital infrastructure, tailor-made interfaces, and scalable systems built for global market dominance.
+    </p>
 
-                  {technology}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+    {/* Primary & Secondary CTAs */}
+    <div className="mt-9 flex flex-col justify-center gap-4 sm:flex-row sm:items-center">
+      <Link
+        to="/get-quote"
+        className="group inline-flex items-center justify-center gap-3 rounded-2xl bg-blue-950 px-8 py-4 text-xs font-bold uppercase tracking-wider text-white shadow-xl transition-all duration-300 hover:bg-slate-950 hover:scale-[1.02]"
+      >
+        <span>Initiate Strategy Call</span>
 
-      {/* =====================================================
-          13 — MAINTENANCE
-      ====================================================== */}
+        <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-blue-800 text-cyan-300 transition-transform duration-300 group-hover:rotate-45 group-hover:bg-cyan-400 group-hover:text-slate-950">
+          <ArrowUpRight size={15} />
+        </span>
+      </Link>
 
-      <section className="bg-white px-5 py-24 sm:px-8 lg:px-10 lg:py-32">
-        <div className="mx-auto max-w-[1400px]">
-          <div className="rounded-[36px] bg-[#0B1220] p-8 text-white sm:p-12 lg:p-16">
-            <div className="grid gap-12 lg:grid-cols-[1fr_0.8fr] lg:items-end">
-              <div>
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10">
-                  <LifeBuoy
-                    size={21}
-                    className="text-cyan-400"
-                  />
-                </div>
+      <Link
+        to="/portfolio"
+        className="inline-flex items-center justify-center gap-2.5 rounded-2xl border-2 border-white/30 bg-white/10 px-8 py-4 text-xs font-bold uppercase tracking-wider text-white backdrop-blur-md transition-all duration-300 hover:border-white hover:bg-white/20"
+      >
+        <span>Explore Case Studies</span>
+        <ArrowRight size={16} />
+      </Link>
+    </div>
 
-                <p className="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400">
-                  10 / Maintenance & support
-                </p>
-
-                <h2 className="mt-4 text-4xl font-semibold tracking-[-0.05em] sm:text-5xl">
-                  Launch day isn't the end.
-                </h2>
-
-                <p className="mt-5 max-w-2xl text-base leading-7 text-slate-400">
-                  Websites evolve. Content changes, products get added,
-                  businesses grow and new requirements appear. We can
-                  continue supporting your digital presence after launch.
-                </p>
-              </div>
-
-              <div className="grid gap-3 sm:grid-cols-2">
-                {[
-                  "Content updates",
-                  "Bug fixes",
-                  "Performance checks",
-                  "Feature updates",
-                  "Security maintenance",
-                  "Technical support",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.035] p-4 text-sm text-slate-300 transition duration-300 hover:border-cyan-400/20 hover:bg-white/[0.06]"
-                  >
-                    <Check
-                      size={15}
-                      className="text-cyan-400"
-                    />
-
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* =====================================================
-          14 — PRICING
-      ====================================================== */}
-
-      <section className="bg-[#F7F8FA] px-5 py-24 sm:px-8 lg:px-10 lg:py-32">
-        <div className="mx-auto max-w-[1200px]">
-          <div className="text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">
-              Starting points
-            </p>
-
-            <h2 className="mt-5 text-4xl font-semibold tracking-[-0.05em] sm:text-5xl">
-              Choose the kind of digital experience you need.
-            </h2>
-
-            <p className="mx-auto mt-5 max-w-2xl text-sm leading-6 text-slate-500">
-              Final pricing depends on the scope, functionality,
-              content and integrations required for your project.
-            </p>
-          </div>
-
-          <div className="mt-14 grid gap-4 md:grid-cols-3">
-            {[
-              {
-                name: "Business",
-                price: "₹5,000+",
-                text: "For businesses that need a professional digital presence.",
-              },
-              {
-                name: "E-commerce",
-                price: "Custom",
-                text: "For brands selling products online with a complete storefront.",
-              },
-              {
-                name: "Custom",
-                price: "Let's talk",
-                text: "For applications, advanced workflows and unique requirements.",
-              },
-            ].map((plan, index) => (
-              <div
-                key={plan.name}
-                className={`group rounded-[28px] border p-7 transition duration-300 hover:-translate-y-1 ${
-                  index === 1
-                    ? "border-blue-200 bg-[#0B1220] text-white shadow-xl shadow-blue-900/10 hover:shadow-2xl"
-                    : "border-slate-200 bg-white hover:border-blue-200 hover:shadow-xl hover:shadow-slate-200/50"
-                }`}
-              >
-                <p
-                  className={`text-xs font-semibold uppercase tracking-[0.15em] ${
-                    index === 1
-                      ? "text-cyan-400"
-                      : "text-blue-600"
-                  }`}
-                >
-                  {plan.name}
-                </p>
-
-                <p className="mt-7 text-3xl font-semibold">
-                  {plan.price}
-                </p>
-
-                <p
-                  className={`mt-4 text-sm leading-6 ${
-                    index === 1
-                      ? "text-slate-400"
-                      : "text-slate-500"
-                  }`}
-                >
-                  {plan.text}
-                </p>
-
-                <Link
-                  to="/get-quote"
-                  className={`mt-8 inline-flex items-center gap-2 text-sm font-semibold transition ${
-                    index === 1
-                      ? "text-white hover:text-cyan-300"
-                      : "text-[#0B1220] hover:text-blue-600"
-                  }`}
-                >
-                  Discuss your project
-
-                  <ArrowRight
-                    size={16}
-                    className="transition-transform group-hover:translate-x-1"
-                  />
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* =====================================================
-          15 — FINAL CTA
-      ====================================================== */}
-
-      <section className="relative overflow-hidden bg-[#060B14] px-5 py-28 text-white sm:px-8 lg:px-10 lg:py-36">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-600/10 blur-[120px]" />
-
-          <div
-            className="absolute inset-0 opacity-[0.025]"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)",
-              backgroundSize: "60px 60px",
-            }}
-          />
-        </div>
-
-        <div className="relative mx-auto max-w-4xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-cyan-400">
-            Start something meaningful
-          </p>
-
-          <h2 className="mt-6 text-5xl font-semibold leading-[0.95] tracking-[-0.06em] sm:text-6xl lg:text-7xl">
-            Your next website
-            <br />
-            should feel different.
-          </h2>
-
-          <p className="mx-auto mt-7 max-w-2xl text-base leading-7 text-slate-400 sm:text-lg">
-            Tell us what you're building, what you're trying to achieve
-            and where you want to go next.
-          </p>
-
-          <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
-            <Link
-              to="/get-quote"
-              className="group inline-flex items-center justify-center gap-3 rounded-full bg-white px-7 py-4 text-sm font-semibold text-[#0B1220] transition hover:-translate-y-0.5 hover:bg-slate-100"
-            >
-              Start Your Project
-
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#0B1220] text-white transition group-hover:rotate-45">
-                <ArrowUpRight size={15} />
-              </span>
-            </Link>
-
-            <Link
-              to="/portfolio"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-7 py-4 text-sm font-semibold text-white transition hover:bg-white/[0.06]"
-            >
-              Explore Our Work
-
-              <ArrowRight size={16} />
-            </Link>
-          </div>
-        </div>
-      </section>
+    {/* Executive Trust Badges */}
+    <div className="mt-12 flex flex-wrap items-center justify-center gap-6 border-t border-blue-400/20 pt-8 text-xs font-semibold text-blue-100/80">
+      <div className="flex items-center gap-2">
+        <span className="h-2 w-2 rounded-full bg-cyan-300" />
+        <span>24/7 Dedicated Support</span>
+      </div>
+      <div className="flex items-center gap-2">
+        <span className="h-2 w-2 rounded-full bg-cyan-300" />
+        <span>Custom Enterprise Architecture</span>
+      </div>
+      <div className="flex items-center gap-2">
+        <span className="h-2 w-2 rounded-full bg-cyan-300" />
+        <span>100% Precision Guarantee</span>
+      </div>
+    </div>
+  </div>
+</section>
     </main>
   );
 }

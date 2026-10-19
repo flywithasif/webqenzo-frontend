@@ -1,19 +1,20 @@
 
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { useEffect } from "react";
+import { motion } from "framer-motion";
 import {
   ArrowRight,
   ArrowUpRight,
+  BadgeCheck,
+  BriefcaseBusiness,
   Check,
-  ChevronDown,
   Code2,
   Compass,
+  Eye,
   Layers3,
   MessageCircle,
-  MoveUpRight,
-  PenTool,
+  MonitorSmartphone,
+  Palette,
   Rocket,
-  Search,
   ShieldCheck,
   Sparkles,
   Target,
@@ -24,220 +25,163 @@ import {
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 
-const BLUE = "#123BCE";
 
-const images = {
-  hero: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=85",
-  studio: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=85",
-  code: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1200&q=85",
-  workspace: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85",
+
+const photos = {
+  hero:
+    "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=85",
+  design:
+    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+  development:
+    "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1200&q=85",
+  team:
+    "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1400&q=85",
 };
 
-const steps = [
+const team = [
   {
+    initials: "AS",
+    name: "Asif",
+    role: "Full Stack Developer",
     number: "01",
-    name: "Discovery",
-    eyebrow: "Understand",
-    title: "Every great idea begins with understanding.",
-    description:
-      "Before a single pixel is designed, we immerse ourselves in your business, your audience, and the ambition behind your brand.",
-    icon: Search,
-    outputs: [
-      "Business & brand discovery",
-      "Audience understanding",
-      "Project requirements",
-      "Goals & success criteria",
-    ],
-  },
-  {
-    number: "02",
-    name: "Strategy",
-    eyebrow: "Define",
-    title: "A thoughtful direction, built on purpose.",
-    description:
-      "We transform insights into a clear digital direction, connecting your business objectives with the experience your customers deserve.",
-    icon: Compass,
-    outputs: [
-      "Website architecture",
-      "Content direction",
-      "Feature planning",
-      "Project roadmap",
-    ],
-  },
-  {
-    number: "03",
-    name: "Experience",
-    eyebrow: "Structure",
-    title: "Intuitive by nature. Intentional by design.",
-    description:
-      "We shape the journey before the visuals, creating intuitive pathways that make every interaction feel effortless.",
-    icon: Workflow,
-    outputs: [
-      "User journeys",
-      "Navigation planning",
-      "Wireframe direction",
-      "Interaction strategy",
-    ],
-  },
-  {
-    number: "04",
-    name: "Visual Design",
-    eyebrow: "Create",
-    title: "Where your identity becomes an experience.",
-    description:
-      "Through expressive typography, refined composition, and purposeful details, we create a digital presence that feels unmistakably yours.",
-    icon: PenTool,
-    outputs: [
-      "Creative direction",
-      "Interface design",
-      "Responsive layouts",
-      "Design refinement",
-    ],
-  },
-  {
-    number: "05",
-    name: "Development",
-    eyebrow: "Engineer",
-    title: "Beautiful on the surface. Precise underneath.",
-    description:
-      "Approved designs become carefully engineered digital experiences, balancing performance, responsiveness, and maintainability.",
     icon: Code2,
-    outputs: [
-      "Frontend engineering",
-      "Responsive development",
-      "Functional integrations",
-      "Reusable components",
-    ],
+    description:
+      "Building the frontend, backend and technical foundations behind digital experiences.",
+    tags: ["Development", "Web Architecture"],
   },
   {
-    number: "06",
-    name: "Quality Assurance",
-    eyebrow: "Refine",
-    title: "The smallest details make the difference.",
+    initials: "KM",
+    name: "Kunal",
+    role: "Meta Ads",
+    number: "02",
+    icon: Target,
     description:
-      "We review the details that shape the entire experience, from visual consistency to functionality across devices.",
-    icon: ShieldCheck,
-    outputs: [
-      "Cross-device testing",
-      "Browser compatibility",
-      "Functional validation",
-      "Final refinements",
-    ],
+      "Focused on Meta advertising campaigns and connecting brands with relevant audiences.",
+    tags: ["Meta Ads", "Campaigns"],
   },
   {
-    number: "07",
-    name: "Launch",
-    eyebrow: "Deliver",
-    title: "A confident beginning, not just a finish line.",
+    initials: "DP",
+    name: "Deepak",
+    role: "Marketing & Sales",
+    number: "03",
+    icon: BriefcaseBusiness,
     description:
-      "Once approved, we prepare your website for its debut, ensuring the essential launch details are considered.",
-    icon: Rocket,
-    outputs: [
-      "Final approval",
-      "Deployment preparation",
-      "Launch verification",
-      "Project handover",
-    ],
+      "Supporting marketing initiatives, business outreach and client opportunities.",
+    tags: ["Marketing", "Sales"],
   },
   {
-    number: "08",
-    name: "Evolution",
-    eyebrow: "Grow",
-    title: "Created for today. Ready for what comes next.",
+    initials: "AN",
+    name: "Anni",
+    role: "Business Analytics",
+    number: "04",
+    icon: Workflow,
     description:
-      "Your business never stands still. Your digital presence should have the flexibility to evolve alongside it.",
-    icon: Zap,
-    outputs: [
-      "Future enhancements",
-      "Feature expansion",
-      "Content improvements",
-      "Growth planning",
-    ],
+      "Supporting business analysis, structured insights and informed decision-making.",
+    tags: ["Analytics", "Insights"],
   },
+];
+
+const capabilities = [
+  "Business websites",
+  "Custom web applications",
+  "E-commerce development",
+  "Landing pages",
+  "UI/UX design",
+  "Website redesign",
+  "Responsive development",
+  "Performance optimisation",
+  "Third-party integrations",
+  "SEO-ready architecture",
+  "Booking platforms",
+  "Website improvements",
 ];
 
 const principles = [
   {
-    icon: Target,
     number: "01",
-    title: "Purpose before pixels.",
-    text: "Every creative decision begins with a clear understanding of what your business needs to achieve.",
+    icon: Compass,
+    title: "Clarity before code",
+    text: "We understand your business objectives before choosing the right digital direction.",
   },
   {
-    icon: Layers3,
     number: "02",
-    title: "Craft in every detail.",
-    text: "From typography to technical implementation, the smallest details receive thoughtful attention.",
+    icon: Palette,
+    title: "Design with intention",
+    text: "Every visual decision has a purpose, from typography and spacing to the customer journey.",
   },
   {
-    icon: MessageCircle,
     number: "03",
-    title: "Clarity throughout.",
-    text: "Open communication, defined milestones, and collaborative decisions keep everyone aligned.",
-  },
-  {
     icon: ShieldCheck,
+    title: "Quality in every detail",
+    text: "We pay attention to responsive layouts, usability, implementation and the details that matter.",
+  },
+  {
     number: "04",
-    title: "Built with intention.",
-    text: "A considered balance of aesthetics, usability, responsiveness, and long-term flexibility.",
+    icon: Rocket,
+    title: "Built for what's next",
+    text: "We consider maintainability and future requirements while building your digital presence.",
   },
 ];
 
-const faqs = [
+const standards = [
+  "Responsive layouts",
+  "Structured frontend",
+  "Reusable components",
+  "Accessible interactions",
+  "Performance-conscious code",
+  "Clear visual hierarchy",
+  "Business-focused content",
+  "Maintainable architecture",
+];
+
+const steps = [
   {
-    question: "How do we get started?",
-    answer:
-      "We begin with a conversation about your business, vision, audience, and requirements. From there, we establish the right scope and direction for your project.",
+    number: "01",
+    title: "Understand",
+    text: "Discover your business, audience and goals.",
+    icon: Eye,
   },
   {
-    question: "How long does a website project take?",
-    answer:
-      "Every project is different. The timeline depends on its scope, complexity, content readiness, and feedback cycles. We discuss an estimated schedule during planning.",
+    number: "02",
+    title: "Plan",
+    text: "Define the right structure and direction.",
+    icon: Compass,
   },
   {
-    question: "Will I be involved in the design process?",
-    answer:
-      "Absolutely. Your perspective is essential. We involve you at important milestones to review the direction and provide feedback.",
+    number: "03",
+    title: "Design",
+    text: "Create a distinctive digital experience.",
+    icon: Palette,
   },
   {
-    question: "Can I request design revisions?",
-    answer:
-      "Yes. Feedback and refinement are part of our collaborative process. Revision rounds and their scope are agreed upon for each project.",
-  },
-  {
-    question: "Will my website work on mobile devices?",
-    answer:
-      "Responsive design is part of our approach. We plan and review experiences across mobile, tablet, and desktop screen sizes.",
-  },
-  {
-    question: "What happens after the website launches?",
-    answer:
-      "We provide the agreed handover and can discuss future enhancements, ongoing support, and updates based on your business needs.",
+    number: "04",
+    title: "Develop",
+    text: "Build, test and refine the website.",
+    icon: Code2,
   },
 ];
 
-const fade = {
-  hidden: { opacity: 0, y: 26 },
-  show: {
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.7,
+      duration: 0.65,
       ease: [0.22, 1, 0.36, 1],
     },
   },
 };
 
-function Reveal({ children, className = "", delay = 0 }) {
-  const reduceMotion = useReducedMotion();
+const viewport = { once: true, amount: 0.12 };
 
+function Reveal({ children, className = "" }) {
   return (
     <motion.div
-      initial={reduceMotion ? false : "hidden"}
-      whileInView="show"
-      viewport={{ once: true, amount: 0.12 }}
-      variants={fade}
-      transition={{ delay }}
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewport}
       className={className}
     >
       {children}
@@ -247,56 +191,66 @@ function Reveal({ children, className = "", delay = 0 }) {
 
 function Eyebrow({ children, light = false }) {
   return (
-    <div
-      className={`flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.25em] sm:text-xs ${
-        light ? "text-blue-200" : "text-[#123BCE]"
-      }`}
-    >
+    <div className="flex items-center gap-3">
       <span
-        className={`h-px w-7 ${
-          light ? "bg-blue-300" : "bg-[#123BCE]"
+        className={`h-px w-8 ${
+          light ? "bg-[#08B9E8]" : "bg-[#1454E8]"
         }`}
       />
-      {children}
+      <span
+        className={`text-[10px] font-bold uppercase tracking-[0.25em] sm:text-xs ${
+          light ? "text-[#08B9E8]" : "text-[#1454E8]"
+        }`}
+      >
+        {children}
+      </span>
     </div>
   );
 }
 
-function SectionHeading({ label, title, description }) {
+function Heading({ children, light = false, className = "" }) {
   return (
-    <Reveal className="max-w-3xl">
-      <Eyebrow>{label}</Eyebrow>
-      <h2 className="mt-7 text-4xl font-semibold leading-[1.12] tracking-[-0.055em] text-[#071B45] sm:text-5xl lg:text-[62px]">
-        {title}
-      </h2>
-      {description && (
-        <p className="mt-6 max-w-xl text-base leading-8 text-slate-500">
-          {description}
-        </p>
-      )}
-    </Reveal>
+    <h2
+      className={`font-serif text-4xl font-normal leading-[1.12] tracking-[-0.045em] sm:text-5xl lg:text-6xl ${
+        light ? "text-white" : "text-[#07152E]"
+      } ${className}`}
+    >
+      {children}
+    </h2>
   );
 }
 
-function Process() {
-  const [activeStep, setActiveStep] = useState(0);
-  const [openFaq, setOpenFaq] = useState(0);
-  const reduceMotion = useReducedMotion();
+function ButtonLink({ children, light = false }) {
+  return (
+    <Link
+      to="/get-quote"
+      className={`group inline-flex min-h-14 items-center justify-center gap-5 px-6 text-sm font-semibold transition duration-300 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1454E8] ${
+        light
+          ? "bg-white text-[#07152E] hover:bg-[#08B9E8]"
+          : "bg-[#07152E] text-white hover:bg-[#123B88]"
+      }`}
+    >
+      {children}
+      <ArrowUpRight
+        size={18}
+        className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+      />
+    </Link>
+  );
+}
 
-  const active = steps[activeStep];
-  const ActiveIcon = active.icon;
-
+function About() {
   useEffect(() => {
-    const schema = {
+    const structuredData = {
       "@context": "https://schema.org",
       "@graph": [
         {
-          "@type": "WebPage",
-          "@id": "https://webqenzo.com/process#webpage",
-          url: "https://webqenzo.com/process",
-          name: "Web Design & Development Process | WebQenzo",
+          "@type": "AboutPage",
+          "@id": "https://webqenzo.com/about#webpage",
+          url: "https://webqenzo.com/about",
+          name: "About WebQenzo",
           description:
-            "Explore WebQenzo's website design and development process, from discovery and strategy to design, development, testing and launch.",
+            "Discover WebQenzo's approach to web development, digital design, business strategy and collaboration.",
           isPartOf: {
             "@type": "WebSite",
             "@id": "https://webqenzo.com/#website",
@@ -306,33 +260,28 @@ function Process() {
           inLanguage: "en",
         },
         {
-          "@type": "HowTo",
-          name: "WebQenzo Website Design and Development Process",
-          step: steps.map((step, index) => ({
-            "@type": "HowToStep",
+          "@type": "ItemList",
+          name: "WebQenzo Team",
+          itemListElement: team.map((member, index) => ({
+            "@type": "ListItem",
             position: index + 1,
-            name: step.name,
-            text: step.description,
-          })),
-        },
-        {
-          "@type": "FAQPage",
-          mainEntity: faqs.map((faq) => ({
-            "@type": "Question",
-            name: faq.question,
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: faq.answer,
-            },
+            name: member.name,
+            description: member.role,
           })),
         },
       ],
     };
 
+    const existing = document.querySelector(
+      'script[data-page-schema="about"]'
+    );
+
+    if (existing) existing.remove();
+
     const script = document.createElement("script");
     script.type = "application/ld+json";
-    script.dataset.pageSchema = "process";
-    script.textContent = JSON.stringify(schema);
+    script.dataset.pageSchema = "about";
+    script.textContent = JSON.stringify(structuredData);
     document.head.appendChild(script);
 
     return () => script.remove();
@@ -341,450 +290,236 @@ function Process() {
   return (
     <>
       <SEO
-        title="Web Design & Development Process"
-        description="Discover WebQenzo's premium website design and development process. From strategy and UI/UX design to engineering, testing and launch."
+        title="About WebQenzo | Digital Design & Development Agency"
+        description="Meet WebQenzo, a digital team focused on thoughtful web design, full-stack development, marketing and business-oriented digital experiences."
+        path="/about"
       />
 
-      <main className="overflow-hidden bg-white text-[#071B45] selection:bg-blue-200">
+      <main className="overflow-x-clip bg-white text-[#07152E]">
         {/* HERO */}
-        <section className="relative isolate overflow-hidden bg-[#F6F8FD]">
-          <div className="pointer-events-none absolute right-0 top-0 h-[600px] w-[55%] bg-[radial-gradient(ellipse_at_top_right,rgba(18,59,206,0.08),transparent_65%)]" />
 
-          <div className="mx-auto grid max-w-[1440px] items-center gap-14 px-5 pb-20 pt-20 sm:px-10 sm:pb-28 sm:pt-24 lg:min-h-[760px] lg:grid-cols-[1.02fr_0.98fr] lg:gap-10 lg:px-16 lg:py-24">
-            <motion.div
-              initial={reduceMotion ? false : { opacity: 0, y: 35 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.85 }}
-              className="relative z-10"
-            >
-              <Eyebrow>Inside the WebQenzo studio</Eyebrow>
+        <section className="relative isolate overflow-hidden bg-[#07152E] text-white">
+          <div className="absolute inset-0 -z-10">
+            <img
+              src={photos.hero}
+              alt="Contemporary creative workspace for digital design and development"
+              fetchPriority="high"
+              className="h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-[#07152E]/75" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#07152E] via-[#07152E]/90 to-[#07152E]/35" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#07152E] via-transparent to-transparent" />
+          </div>
 
-              <h1 className="mt-9 max-w-[720px] text-[clamp(3.5rem,6.4vw,6.9rem)] font-semibold leading-[0.99] tracking-[-0.075em]">
-                Behind every
+          <div className="absolute left-5 top-0 hidden h-full w-px bg-white/15 lg:left-12 lg:block" />
+          <div className="absolute right-5 top-0 hidden h-full w-px bg-white/15 lg:right-12 lg:block" />
+
+          <div className="relative mx-auto grid min-h-[720px] max-w-[1440px] items-center gap-12 px-5 py-28 sm:px-8 lg:grid-cols-[1.1fr_.9fr] lg:px-16 lg:py-32">
+            <Reveal>
+              <div className="inline-flex items-center gap-3 border border-white/20 bg-white/5 px-4 py-2.5 backdrop-blur-sm">
+                <span className="h-2 w-2 rounded-full bg-[#08B9E8]" />
+                <span className="text-[10px] font-semibold uppercase tracking-[0.22em]">
+                  Introducing WebQenzo
+                </span>
+              </div>
+
+              <p className="mt-12 text-[11px] font-semibold uppercase tracking-[0.3em] text-[#08B9E8]">
+                Digital craftsmanship / Est. in purpose
+              </p>
+
+              <h1 className="mt-6 max-w-4xl font-serif text-[clamp(3.7rem,8vw,7.7rem)] leading-[0.98] tracking-[-0.065em]">
+                We build
                 <br />
-                remarkable
+                digital with
                 <br />
-                <span className="font-serif font-normal italic tracking-[-0.065em] text-[#123BCE]">
-                  digital experience.
+                <span className="italic text-[#08B9E8]">
+                  intention.
                 </span>
               </h1>
 
-              <p className="mt-9 max-w-[490px] text-base leading-8 text-[#66728A] sm:text-lg">
-                Great digital experiences don't happen by chance.
-                They're imagined with purpose, designed with care,
-                and engineered with precision.
+              <p className="mt-8 max-w-xl text-sm leading-8 text-white/75 sm:text-base sm:leading-9">
+                WebQenzo brings development, design, marketing and
+                business thinking together to create thoughtful
+                digital experiences for ambitious businesses.
               </p>
 
-              <div className="mt-10 flex flex-wrap items-center gap-6">
-                <Link
-                  to="/get-quote"
-                  className="group inline-flex min-h-14 items-center gap-7 bg-[#123BCE] px-7 text-sm font-semibold text-white shadow-[0_14px_35px_rgba(18,59,206,0.18)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#0C2EAB]"
-                >
-                  Start your project
-                  <ArrowUpRight
-                    size={18}
-                    className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
-                  />
-                </Link>
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                <ButtonLink light>Let's build together</ButtonLink>
 
                 <a
-                  href="#our-process"
-                  className="group inline-flex items-center gap-3 text-sm font-semibold text-[#071B45]"
+                  href="#our-approach"
+                  className="inline-flex min-h-14 items-center justify-center gap-3 border border-white/30 px-6 text-sm font-semibold transition hover:border-[#08B9E8] hover:text-[#08B9E8]"
                 >
-                  Explore our process
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 transition group-hover:border-blue-600 group-hover:text-blue-700">
-                    <ArrowRight size={16} />
-                  </span>
+                  Discover our approach
+                  <ArrowRight size={17} />
                 </a>
               </div>
+            </Reveal>
 
-              <div className="mt-16 flex flex-wrap items-center gap-x-10 gap-y-5 border-t border-[#DCE3F0] pt-7">
-                <div>
-                  <span className="block text-3xl font-semibold tracking-tight">
-                    08
-                  </span>
-                  <span className="mt-1 block text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-                    Considered stages
-                  </span>
-                </div>
-                <div className="h-10 w-px bg-slate-200" />
-                <div>
-                  <span className="block text-3xl font-semibold tracking-tight">
-                    01
-                  </span>
-                  <span className="mt-1 block text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-                    Shared vision
-                  </span>
-                </div>
-                <div className="h-10 w-px bg-slate-200" />
-                <div>
-                  <span className="block text-3xl font-semibold tracking-tight">
-                    ∞
-                  </span>
-                  <span className="mt-1 block text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-                    Room to evolve
-                  </span>
-                </div>
-              </div>
-            </motion.div>
+            <Reveal className="relative mx-auto w-full max-w-[470px]">
+              <div className="absolute -inset-5 border border-[#08B9E8]/25" />
 
-            <motion.div
-              initial={reduceMotion ? false : { opacity: 0, x: 35 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.9, delay: 0.15 }}
-              className="relative mx-auto w-full max-w-[650px] lg:ml-auto"
-            >
-              <div className="relative">
-                <div className="absolute -right-5 -top-5 hidden h-full w-full border border-[#C8D6F3] sm:block" />
-
-                <div className="relative aspect-[4/4.7] overflow-hidden bg-[#DCE5F2] sm:aspect-[5/5.2]">
-                  <img
-                    src={images.hero}
-                    alt="Creative development workspace with laptop and code"
-                    fetchPriority="high"
-                    className="h-full w-full object-cover"
+              <div className="relative border border-white/20 bg-[#07152E]/85 p-5 backdrop-blur-md sm:p-7">
+                <div className="flex items-center justify-between border-b border-white/15 pb-5">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.22em] text-[#08B9E8]">
+                      Our philosophy
+                    </p>
+                    <h2 className="mt-2 font-serif text-2xl">
+                      Built with purpose.
+                    </h2>
+                  </div>
+                  <Layers3
+                    size={28}
+                    strokeWidth={1.3}
+                    className="text-[#08B9E8]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#071B45]/65 via-transparent to-transparent" />
-
-                  <div className="absolute bottom-7 left-7 right-7 flex items-end justify-between gap-4 text-white sm:bottom-10 sm:left-10 sm:right-10">
-                    <div>
-                      <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-blue-200">
-                        The art of building digital
-                      </span>
-                      <p className="mt-2 max-w-xs text-2xl font-medium leading-tight tracking-tight sm:text-3xl">
-                        Ideas made tangible.
-                      </p>
-                    </div>
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center border border-white/50">
-                      <ArrowUpRight size={22} />
-                    </div>
-                  </div>
                 </div>
 
-                <div className="absolute -bottom-6 -left-3 flex items-center gap-4 bg-white px-5 py-4 shadow-[0_20px_60px_rgba(7,27,69,0.12)] sm:-left-10 sm:px-7 sm:py-5">
-                  <div className="flex h-11 w-11 items-center justify-center bg-[#EAF0FF] text-[#123BCE]">
-                    <Sparkles size={21} />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold">
-                      The WebQenzo Approach
-                    </p>
-                    <p className="mt-1 text-xs text-slate-500">
-                      Strategy · Design · Engineering
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-          <div className="border-t border-[#DFE6F3] bg-white">
-            <div className="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-5 px-5 py-6 sm:px-10 lg:px-16">
-              <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400">
-                Our creative philosophy
-              </span>
-              <div className="flex flex-wrap gap-x-8 gap-y-3 text-xs font-medium text-[#344566] sm:gap-x-12">
-                <span>01 / Think strategically</span>
-                <span>02 / Design intentionally</span>
-                <span>03 / Build beautifully</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* INTRO */}
-        <section className="px-5 py-24 sm:px-10 sm:py-32 lg:px-16">
-          <div className="mx-auto grid max-w-[1312px] gap-10 lg:grid-cols-[0.45fr_0.55fr] lg:gap-24">
-            <Reveal>
-              <Eyebrow>Our perspective</Eyebrow>
-              <div className="mt-8 flex h-16 w-16 items-center justify-center border border-blue-100 text-[#123BCE]">
-                <MoveUpRight size={30} strokeWidth={1.3} />
-              </div>
-            </Reveal>
-
-            <Reveal>
-              <h2 className="text-4xl font-semibold leading-[1.15] tracking-[-0.055em] sm:text-5xl lg:text-[58px]">
-                We don't just build websites.
-                <span className="font-serif font-normal italic text-[#123BCE]">
-                  {" "}We shape how brands are experienced.
-                </span>
-              </h2>
-              <p className="mt-8 max-w-xl text-base leading-8 text-slate-500">
-                A successful website is more than a beautiful interface.
-                It's a considered balance of business thinking, visual
-                storytelling, intuitive experience, and reliable engineering.
-              </p>
-              <p className="mt-5 max-w-xl text-base leading-8 text-slate-500">
-                Our process brings these disciplines together through
-                clear decisions, meaningful collaboration, and attention
-                to the details that matter.
-              </p>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* INTERACTIVE PROCESS */}
-        <section
-          id="our-process"
-          className="scroll-mt-24 bg-[#F5F7FC] px-5 py-24 sm:px-10 sm:py-32 lg:px-16"
-        >
-          <div className="mx-auto max-w-[1312px]">
-            <div className="flex flex-wrap items-end justify-between gap-8">
-              <SectionHeading
-                label="The methodology"
-                title={
-                  <>
-                    A refined process.
-                    <br />
-                    <span className="font-serif font-normal italic text-[#123BCE]">
-                      An exceptional outcome.
-                    </span>
-                  </>
-                }
-                description="Eight purposeful stages. Each one designed to bring greater clarity, creativity, and confidence to your project."
-              />
-              <span className="pb-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
-                01 — 08 / The journey
-              </span>
-            </div>
-
-            <div className="mt-16 grid overflow-hidden border border-[#DFE5F0] bg-white lg:grid-cols-[0.42fr_0.58fr]">
-              {/* Stage navigation */}
-              <div className="border-b border-[#DFE5F0] lg:border-b-0 lg:border-r">
-                {steps.map((step, index) => {
-                  const selected = activeStep === index;
-                  const Icon = step.icon;
-
-                  return (
-                    <button
-                      key={step.number}
-                      type="button"
-                      onClick={() => setActiveStep(index)}
-                      aria-pressed={selected}
-                      className={`group flex w-full items-center gap-4 border-b border-[#E9EDF5] px-5 py-5 text-left transition-all duration-300 last:border-b-0 sm:px-8 ${
-                        selected
-                          ? "bg-[#123BCE] text-white"
-                          : "bg-white text-[#071B45] hover:bg-[#F4F7FF]"
-                      }`}
+                <div className="py-8">
+                  {[
+                    ["01", "Think clearly", "Understand the real objective"],
+                    ["02", "Create carefully", "Design around real people"],
+                    ["03", "Build properly", "Develop with attention to detail"],
+                    ["04", "Keep improving", "Plan for what comes next"],
+                  ].map(([number, title, description]) => (
+                    <div
+                      key={number}
+                      className="flex gap-4 border-b border-white/10 py-5 last:border-0"
                     >
-                      <span
-                        className={`text-xs font-semibold ${
-                          selected ? "text-blue-200" : "text-slate-400"
-                        }`}
-                      >
-                        {step.number}
+                      <span className="font-serif text-2xl text-[#08B9E8]">
+                        {number}
                       </span>
-
-                      <Icon
-                        size={19}
-                        strokeWidth={1.7}
-                        className={selected ? "text-white" : "text-[#123BCE]"}
+                      <div>
+                        <h3 className="text-sm font-semibold">{title}</h3>
+                        <p className="mt-1 text-xs leading-6 text-white/60">
+                          {description}
+                        </p>
+                      </div>
+                      <Check
+                        size={16}
+                        className="ml-auto mt-1 shrink-0 text-[#08B9E8]"
                       />
-
-                      <span className="flex-1 text-sm font-semibold sm:text-base">
-                        {step.name}
-                      </span>
-
-                      <ArrowUpRight
-                        size={17}
-                        className={`transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${
-                          selected ? "opacity-100" : "opacity-30"
-                        }`}
-                      />
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Stage detail */}
-              <div className="relative flex min-h-[590px] flex-col overflow-hidden p-7 sm:p-11 lg:p-14">
-                <div className="pointer-events-none absolute -right-10 top-4 text-[170px] font-semibold leading-none tracking-[-0.1em] text-[#F3F6FC] sm:text-[230px]">
-                  {active.number}
+                    </div>
+                  ))}
                 </div>
 
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={active.number}
-                    initial={reduceMotion ? false : { opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={reduceMotion ? {} : { opacity: 0, y: -10 }}
-                    transition={{ duration: 0.28 }}
-                    className="relative z-10 flex h-full flex-col"
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="text-[11px] font-bold uppercase tracking-[0.23em] text-[#123BCE]">
-                        Phase {active.number} / {active.eyebrow}
-                      </span>
-                      <div className="flex h-12 w-12 items-center justify-center border border-blue-100 text-[#123BCE]">
-                        <ActiveIcon size={23} strokeWidth={1.5} />
-                      </div>
-                    </div>
-
-                    <h3 className="mt-12 max-w-xl text-3xl font-semibold leading-[1.16] tracking-[-0.05em] sm:text-4xl lg:text-[45px]">
-                      {active.title}
-                    </h3>
-
-                    <p className="mt-6 max-w-lg text-base leading-8 text-slate-500">
-                      {active.description}
-                    </p>
-
-                    <div className="mt-12 border-t border-[#E3E8F2] pt-7">
-                      <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#123BCE]">
-                        What this stage includes
-                      </p>
-
-                      <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                        {active.outputs.map((output) => (
-                          <div
-                            key={output}
-                            className="flex items-start gap-3 text-sm text-[#42516C]"
-                          >
-                            <Check
-                              size={17}
-                              className="mt-0.5 shrink-0 text-[#123BCE]"
-                            />
-                            {output}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="mt-auto flex items-center justify-between gap-5 pt-12">
-                      <span className="text-xs font-medium text-slate-400">
-                        {active.number} of 08
-                      </span>
-
-                      <button
-                        type="button"
-                        onClick={() =>
-                          setActiveStep((current) => (current + 1) % steps.length)
-                        }
-                        className="group inline-flex items-center gap-3 text-sm font-semibold text-[#123BCE]"
-                      >
-                        {activeStep === 7 ? "Back to beginning" : "Next stage"}
-                        <span className="flex h-10 w-10 items-center justify-center border border-blue-200 transition group-hover:bg-[#123BCE] group-hover:text-white">
-                          <ArrowRight size={17} />
-                        </span>
-                      </button>
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
+                <div className="flex items-center justify-between bg-[#08B9E8] px-4 py-4 text-[#07152E]">
+                  <span className="text-xs font-bold uppercase tracking-[0.12em]">
+                    Thoughtful by design
+                  </span>
+                  <ArrowUpRight size={19} />
+                </div>
               </div>
-            </div>
+            </Reveal>
 
-            <p className="mt-6 text-xs leading-6 text-slate-400">
-              Every project is unique. Our approach is adapted to the
-              agreed scope, requirements, and business objectives.
-            </p>
+            <div className="absolute bottom-7 left-5 right-5 flex justify-between border-t border-white/20 pt-5 text-[10px] uppercase tracking-[0.2em] text-white/60 sm:left-8 sm:right-8 lg:left-16 lg:right-16">
+              <span>Design / Development / Growth</span>
+              <span className="hidden sm:block">Scroll to explore ↓</span>
+            </div>
           </div>
         </section>
 
-        {/* EDITORIAL IMAGE SECTION */}
-        <section className="bg-[#071B45] text-white">
-          <div className="grid lg:grid-cols-2">
-            <div className="relative min-h-[370px] overflow-hidden lg:min-h-[650px]">
-              <img
-                src={images.studio}
-                alt="Creative professionals collaborating on a digital project"
-                loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-[#071B45]/25" />
-              <div className="absolute bottom-8 left-8 border-l-2 border-white pl-5 sm:bottom-12 sm:left-12">
-                <span className="text-[11px] font-semibold uppercase tracking-[0.22em]">
-                  Better thinking. Better experiences.
+        {/* BRAND INTRODUCTION */}
+
+        <section className="border-b border-[#DCE5F1] bg-[#F4F8FC]">
+          <div className="mx-auto grid max-w-[1440px] gap-10 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-[.8fr_1.2fr] lg:gap-24 lg:px-12 lg:py-32">
+            <Reveal>
+              <Eyebrow>01 / Who we are</Eyebrow>
+              <Heading className="mt-7">
+                More than a website.
+                <br />
+                <span className="italic text-[#1454E8]">
+                  A digital partnership.
                 </span>
-              </div>
-            </div>
+              </Heading>
+            </Reveal>
 
-            <div className="flex items-center px-7 py-20 sm:px-12 sm:py-24 lg:px-16">
-              <Reveal className="max-w-[570px]">
-                <Eyebrow light>More than a workflow</Eyebrow>
+            <Reveal>
+              <p className="font-serif text-2xl leading-[1.5] tracking-tight sm:text-3xl">
+                Your digital presence should reflect the quality
+                of the business behind it.
+              </p>
 
-                <h2 className="mt-9 text-4xl font-semibold leading-[1.12] tracking-[-0.055em] sm:text-5xl lg:text-[60px]">
-                  Creativity is powerful.
-                  <span className="font-serif font-normal italic text-[#8EABFF]">
-                    {" "}Clarity makes it meaningful.
+              <p className="mt-6 text-sm leading-8 text-slate-600 sm:text-base">
+                At WebQenzo, we bring together creative thinking
+                and technical execution to help businesses present
+                themselves with greater clarity, consistency and
+                confidence online.
+              </p>
+
+              <p className="mt-4 text-sm leading-8 text-slate-600 sm:text-base">
+                Our focus is simple: understand the requirement,
+                choose the right direction and build a digital
+                experience around a meaningful business purpose.
+              </p>
+
+              <Link
+                to="/get-quote"
+                className="mt-7 inline-flex items-center gap-3 text-sm font-bold text-[#1454E8] hover:text-[#07152E]"
+              >
+                Start a conversation <ArrowRight size={17} />
+              </Link>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* OUR APPROACH */}
+
+        <section
+          id="our-approach"
+          className="scroll-mt-16 bg-white px-5 py-24 sm:px-8 sm:py-32 lg:px-12"
+        >
+          <div className="mx-auto max-w-[1440px]">
+            <div className="grid items-end gap-8 lg:grid-cols-2">
+              <Reveal>
+                <Eyebrow>02 / How we think</Eyebrow>
+                <Heading className="mt-7">
+                  Good ideas deserve
+                  <br />
+                  <span className="italic text-[#1454E8]">
+                    thoughtful execution.
                   </span>
-                </h2>
+                </Heading>
+              </Reveal>
 
-                <p className="mt-8 text-base leading-8 text-[#B9C8E3]">
-                  The strongest digital experiences emerge when ideas,
-                  expertise, and perspective come together. That's why
-                  collaboration is at the heart of how we work.
+              <Reveal>
+                <p className="max-w-xl text-sm leading-8 text-slate-600 sm:text-base">
+                  We do not approach every project with the same
+                  template. We first understand what your business
+                  needs, then build a direction that makes sense
+                  for the audience, objectives and scope.
                 </p>
-
-                <div className="mt-12 grid grid-cols-2 gap-7 border-t border-white/20 pt-9">
-                  <div>
-                    <span className="text-3xl font-semibold">01</span>
-                    <p className="mt-3 text-sm leading-6 text-blue-200">
-                      A shared understanding of your vision
-                    </p>
-                  </div>
-                  <div>
-                    <span className="text-3xl font-semibold">02</span>
-                    <p className="mt-3 text-sm leading-6 text-blue-200">
-                      A clear direction for every decision
-                    </p>
-                  </div>
-                </div>
-
-                <Link
-                  to="/get-quote"
-                  className="group mt-12 inline-flex items-center gap-4 border-b border-blue-300 pb-3 text-sm font-semibold transition hover:gap-6"
-                >
-                  Let's collaborate
-                  <ArrowUpRight size={18} />
-                </Link>
               </Reveal>
             </div>
-          </div>
-        </section>
 
-        {/* PRINCIPLES */}
-        <section className="px-5 py-24 sm:px-10 sm:py-32 lg:px-16">
-          <div className="mx-auto max-w-[1312px]">
-            <SectionHeading
-              label="The WebQenzo standard"
-              title={
-                <>
-                  The thinking behind
-                  <br />
-                  <span className="font-serif font-normal italic text-[#123BCE]">
-                    everything we create.
-                  </span>
-                </>
-              }
-              description="Not just a list of steps. A set of principles that shape how we approach every digital experience."
-            />
-
-            <div className="mt-16 grid border-l border-t border-[#E1E7F1] md:grid-cols-2">
+            <div className="mt-14 grid gap-0 border-l border-t border-[#DCE5F1] sm:grid-cols-2 lg:grid-cols-4">
               {principles.map((item) => {
                 const Icon = item.icon;
 
                 return (
-                  <Reveal
-                    key={item.number}
-                    className="group border-b border-r border-[#E1E7F1] p-7 transition-colors duration-300 hover:bg-[#F7F9FF] sm:p-11"
-                  >
-                    <div className="flex items-start justify-between">
-                      <Icon
-                        size={29}
-                        strokeWidth={1.4}
-                        className="text-[#123BCE]"
-                      />
-                      <span className="text-xs font-semibold text-slate-400">
-                        / {item.number}
-                      </span>
-                    </div>
+                  <Reveal key={item.number}>
+                    <article className="group flex h-full min-h-[290px] flex-col border-b border-r border-[#DCE5F1] p-6 transition duration-300 hover:bg-[#F4F8FC] sm:p-8">
+                      <div className="flex items-center justify-between">
+                        <Icon
+                          size={25}
+                          strokeWidth={1.5}
+                          className="text-[#1454E8]"
+                        />
+                        <span className="font-serif text-2xl text-[#C5D5EC]">
+                          {item.number}
+                        </span>
+                      </div>
 
-                    <h3 className="mt-12 text-2xl font-semibold tracking-[-0.04em] sm:text-3xl">
-                      {item.title}
-                    </h3>
-
-                    <p className="mt-5 max-w-sm text-sm leading-8 text-slate-500">
-                      {item.text}
-                    </p>
+                      <div className="mt-auto pt-12">
+                        <h3 className="text-lg font-semibold tracking-tight">
+                          {item.title}
+                        </h3>
+                        <p className="mt-3 text-sm leading-7 text-slate-600">
+                          {item.text}
+                        </p>
+                      </div>
+                    </article>
                   </Reveal>
                 );
               })}
@@ -792,324 +527,502 @@ function Process() {
           </div>
         </section>
 
-        {/* DESIGN & DEVELOPMENT */}
-        <section className="bg-[#F5F7FC] px-5 py-24 sm:px-10 sm:py-32 lg:px-16">
-          <div className="mx-auto max-w-[1312px]">
-            <div className="grid items-end gap-8 lg:grid-cols-2">
-              <SectionHeading
-                label="Two disciplines. One vision."
-                title={
-                  <>
-                    Art meets
-                    <br />
-                    <span className="font-serif font-normal italic text-[#123BCE]">
-                      engineering.
-                    </span>
-                  </>
-                }
+        {/* VISUAL FEATURE */}
+
+        <section className="px-5 pb-24 sm:px-8 lg:px-12">
+          <div className="mx-auto grid max-w-[1440px] overflow-hidden bg-[#07152E] lg:grid-cols-2">
+            <div className="relative min-h-[340px] overflow-hidden sm:min-h-[500px]">
+              <img
+                src={photos.design}
+                alt="Website interface design and digital analytics"
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105"
               />
-
-              <Reveal className="lg:pb-2">
-                <p className="max-w-lg text-base leading-8 text-slate-500">
-                  A remarkable website needs more than visual appeal.
-                  We bring creative thinking and technical execution
-                  together to create digital experiences that feel
-                  as good as they function.
+              <div className="absolute inset-0 bg-gradient-to-t from-[#07152E]/70 to-transparent" />
+              <div className="absolute bottom-7 left-7 text-white sm:bottom-10 sm:left-10">
+                <p className="text-[10px] uppercase tracking-[0.25em] text-[#08B9E8]">
+                  Design with intention
                 </p>
-              </Reveal>
-            </div>
-
-            <div className="mt-14 grid gap-6 lg:grid-cols-2">
-              <Reveal>
-                <div className="group relative aspect-[1.22/1] overflow-hidden bg-[#DCE4F2]">
-                  <img
-                    src={images.workspace}
-                    alt="Digital creative team working together on website design"
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#071B45]/80 via-transparent to-transparent" />
-                  <div className="absolute bottom-8 left-8 right-8 text-white sm:bottom-10 sm:left-10">
-                    <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-blue-200">
-                      The creative discipline
-                    </span>
-                    <h3 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-                      Design with intention.
-                    </h3>
-                    <p className="mt-3 max-w-sm text-sm leading-7 text-white/80">
-                      Thoughtful interfaces, distinctive aesthetics,
-                      and intuitive experiences.
-                    </p>
-                  </div>
-                </div>
-              </Reveal>
-
-              <Reveal delay={0.08}>
-                <div className="group relative aspect-[1.22/1] overflow-hidden bg-[#DCE4F2]">
-                  <img
-                    src={images.code}
-                    alt="Professional web development code on a computer screen"
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#071B45]/85 via-transparent to-transparent" />
-                  <div className="absolute bottom-8 left-8 right-8 text-white sm:bottom-10 sm:left-10">
-                    <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-blue-200">
-                      The technical discipline
-                    </span>
-                    <h3 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-                      Built with precision.
-                    </h3>
-                    <p className="mt-3 max-w-sm text-sm leading-7 text-white/80">
-                      Responsive engineering, functional detail,
-                      and considered technical foundations.
-                    </p>
-                  </div>
-                </div>
-              </Reveal>
-            </div>
-          </div>
-        </section>
-
-        {/* PARTNERSHIP */}
-        <section className="px-5 py-24 sm:px-10 sm:py-32 lg:px-16">
-          <div className="mx-auto max-w-[1312px]">
-            <SectionHeading
-              label="A collaborative partnership"
-              title={
-                <>
-                  Your vision.
-                  <br />
-                  <span className="font-serif font-normal italic text-[#123BCE]">
-                    Our expertise.
-                  </span>
-                </>
-              }
-              description="A great partnership is built on shared understanding, clear responsibilities, and meaningful collaboration."
-            />
-
-            <div className="mt-14 grid border border-[#E1E7F1] lg:grid-cols-2">
-              <div className="p-7 sm:p-12">
-                <div className="flex items-center justify-between">
-                  <Users
-                    size={30}
-                    strokeWidth={1.5}
-                    className="text-[#123BCE]"
-                  />
-                  <span className="text-xs font-semibold text-slate-400">
-                    01 / You
-                  </span>
-                </div>
-
-                <h3 className="mt-10 text-3xl font-semibold tracking-tight">
-                  Your perspective.
-                </h3>
-                <p className="mt-4 max-w-md text-sm leading-8 text-slate-500">
-                  You bring the knowledge, ambition, and unique
-                  understanding of your business.
+                <p className="mt-3 font-serif text-3xl sm:text-4xl">
+                  Form meets function.
                 </p>
-
-                <div className="mt-9 space-y-5 border-t border-slate-200 pt-8">
-                  {[
-                    "Share your goals and requirements",
-                    "Provide available brand assets and content",
-                    "Review key milestones",
-                    "Share feedback and approvals",
-                  ].map((item) => (
-                    <div key={item} className="flex gap-3 text-sm text-slate-600">
-                      <Check size={17} className="shrink-0 text-[#123BCE]" />
-                      {item}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="bg-[#123BCE] p-7 text-white sm:p-12">
-                <div className="flex items-center justify-between">
-                  <Code2 size={30} strokeWidth={1.5} />
-                  <span className="text-xs font-semibold text-blue-200">
-                    02 / WebQenzo
-                  </span>
-                </div>
-
-                <h3 className="mt-10 text-3xl font-semibold tracking-tight">
-                  Our craftsmanship.
-                </h3>
-                <p className="mt-4 max-w-md text-sm leading-8 text-blue-100">
-                  We bring creative direction, digital expertise,
-                  and a structured approach to execution.
-                </p>
-
-                <div className="mt-9 space-y-5 border-t border-white/25 pt-8">
-                  {[
-                    "Translate your vision into a clear plan",
-                    "Design the agreed digital experience",
-                    "Develop, test, and refine the website",
-                    "Prepare for launch and handover",
-                  ].map((item) => (
-                    <div key={item} className="flex gap-3 text-sm text-blue-50">
-                      <Check size={17} className="shrink-0 text-white" />
-                      {item}
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
-          </div>
-        </section>
 
-        {/* FAQ */}
-        <section className="border-t border-[#E4EAF4] bg-[#FAFBFE] px-5 py-24 sm:px-10 sm:py-32 lg:px-16">
-          <div className="mx-auto grid max-w-[1312px] gap-14 lg:grid-cols-[0.42fr_0.58fr] lg:gap-20">
-            <div>
-              <SectionHeading
-                label="Good to know"
-                title={
-                  <>
-                    Questions,
-                    <br />
-                    <span className="font-serif font-normal italic text-[#123BCE]">
-                      answered.
-                    </span>
-                  </>
-                }
-                description="A little more clarity on what working together looks like."
-              />
+            <div className="flex flex-col justify-center px-7 py-12 text-white sm:px-12 sm:py-16 lg:px-16">
+              <Eyebrow light>03 / Digital craftsmanship</Eyebrow>
 
-              <Link
-                to="/get-quote"
-                className="group mt-9 inline-flex items-center gap-3 text-sm font-semibold text-[#123BCE]"
-              >
-                <MessageCircle size={18} />
-                Have another question?
-                <ArrowUpRight
-                  size={17}
-                  className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
-                />
-              </Link>
-            </div>
+              <Heading light className="mt-7">
+                A better experience,
+                <br />
+                <span className="italic text-[#08B9E8]">
+                  from every angle.
+                </span>
+              </Heading>
 
-            <div className="border-t border-[#DCE4F0]">
-              {faqs.map((faq, index) => {
-                const isOpen = openFaq === index;
+              <p className="mt-6 text-sm leading-8 text-white/70 sm:text-base">
+                We bring visual direction and technical thinking
+                together, considering how your website looks,
+                feels and functions across different devices.
+              </p>
 
-                return (
-                  <div
-                    key={faq.question}
-                    className="border-b border-[#DCE4F0]"
-                  >
-                    <button
-                      type="button"
-                      onClick={() => setOpenFaq(isOpen ? -1 : index)}
-                      aria-expanded={isOpen}
-                      aria-controls={`process-faq-${index}`}
-                      className="group flex w-full items-center justify-between gap-6 py-7 text-left"
+              <div className="mt-8 space-y-0 border-t border-white/15">
+                {[
+                  {
+                    icon: Palette,
+                    title: "Visual identity",
+                    text: "Consistent colour, typography and composition.",
+                  },
+                  {
+                    icon: MonitorSmartphone,
+                    title: "Responsive experience",
+                    text: "Layouts designed for desktop and mobile.",
+                  },
+                  {
+                    icon: Code2,
+                    title: "Technical foundations",
+                    text: "Maintainable implementation built around the project.",
+                  },
+                ].map((item) => {
+                  const Icon = item.icon;
+
+                  return (
+                    <div
+                      key={item.title}
+                      className="flex gap-4 border-b border-white/15 py-5"
                     >
-                      <span
-                        className={`text-base font-semibold leading-7 tracking-tight transition-colors sm:text-lg ${
-                          isOpen
-                            ? "text-[#123BCE]"
-                            : "text-[#071B45] group-hover:text-[#123BCE]"
-                        }`}
-                      >
-                        {faq.question}
-                      </span>
-                      <span
-                        className={`flex h-9 w-9 shrink-0 items-center justify-center border transition-colors ${
-                          isOpen
-                            ? "border-[#123BCE] bg-[#123BCE] text-white"
-                            : "border-slate-200 text-[#123BCE]"
-                        }`}
-                      >
-                        <ChevronDown
-                          size={17}
-                          className={`transition-transform duration-300 ${
-                            isOpen ? "rotate-180" : ""
-                          }`}
-                        />
-                      </span>
-                    </button>
-
-                    <AnimatePresence initial={false}>
-                      {isOpen && (
-                        <motion.div
-                          id={`process-faq-${index}`}
-                          key="answer"
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.25 }}
-                          className="overflow-hidden"
-                        >
-                          <p className="max-w-xl pb-7 pr-10 text-sm leading-8 text-slate-500">
-                            {faq.answer}
-                          </p>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                );
-              })}
+                      <Icon
+                        size={21}
+                        className="mt-1 shrink-0 text-[#08B9E8]"
+                      />
+                      <div>
+                        <h3 className="text-sm font-semibold">{item.title}</h3>
+                        <p className="mt-2 text-xs leading-6 text-white/60">
+                          {item.text}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </section>
 
-        {/* FINAL CTA */}
-        <section className="relative isolate overflow-hidden bg-[#123BCE] px-5 py-24 text-white sm:px-10 sm:py-32 lg:px-16">
-          <div className="pointer-events-none absolute -right-32 -top-52 h-[600px] w-[600px] rounded-full border border-white/15" />
-          <div className="pointer-events-none absolute -right-16 -top-36 h-[470px] w-[470px] rounded-full border border-white/15" />
-          <div className="pointer-events-none absolute -bottom-64 left-[-150px] h-[500px] w-[500px] rounded-full border border-white/10" />
+        {/* CAPABILITIES */}
 
-          <div className="relative mx-auto max-w-[1312px]">
+        <section className="border-y border-[#DCE5F1] bg-[#F4F8FC] py-24 sm:py-32">
+          <div className="mx-auto grid max-w-[1440px] gap-12 px-5 sm:px-8 lg:grid-cols-[.8fr_1.2fr] lg:gap-20 lg:px-12">
             <Reveal>
-              <Eyebrow light>The next chapter begins here</Eyebrow>
+              <Eyebrow>04 / What we do</Eyebrow>
+              <Heading className="mt-7">
+                Everything begins
+                <br />
+                <span className="italic text-[#1454E8]">
+                  with your needs.
+                </span>
+              </Heading>
 
-              <div className="mt-10 grid items-end gap-12 lg:grid-cols-[1fr_auto]">
-                <div>
-                  <h2 className="max-w-[960px] text-[clamp(3.5rem,7.5vw,7.5rem)] font-semibold leading-[1.01] tracking-[-0.075em]">
-                    Let's create
-                    <br />
-                    something
-                    <br />
-                    <span className="font-serif font-normal italic text-[#C7D5FF]">
-                      extraordinary.
-                    </span>
-                  </h2>
+              <p className="mt-6 max-w-md text-sm leading-8 text-slate-600">
+                From a focused landing page to a custom web
+                application, we consider the right solution
+                for your requirements.
+              </p>
 
-                  <p className="mt-9 max-w-xl text-base leading-8 text-blue-100">
-                    Have a vision worth bringing to life? Let's explore
-                    what we can create together, with thoughtful design,
-                    clear strategy, and purposeful execution.
-                  </p>
-                </div>
-
-                <Link
-                  to="/get-quote"
-                  className="group flex h-36 w-36 shrink-0 flex-col items-center justify-center gap-3 rounded-full bg-white text-center text-sm font-semibold text-[#123BCE] shadow-[0_25px_60px_rgba(0,0,0,0.12)] transition-transform duration-300 hover:-translate-y-2 sm:h-44 sm:w-44"
-                >
-                  <ArrowUpRight
-                    size={27}
-                    strokeWidth={1.5}
-                    className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
-                  />
-                  Start a project
-                </Link>
+              <div className="mt-8">
+                <ButtonLink>Discuss your project</ButtonLink>
               </div>
+            </Reveal>
 
-              <div className="mt-20 flex flex-wrap items-center justify-between gap-5 border-t border-white/25 pt-7">
-                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-100">
-                  WebQenzo — Digital experiences, considered.
-                </span>
-                <span className="text-xs text-blue-200">
-                  Strategy / Design / Development
-                </span>
+            <Reveal>
+              <div className="grid gap-x-8 sm:grid-cols-2">
+                {capabilities.map((item, index) => (
+                  <div
+                    key={item}
+                    className="group flex items-center gap-3 border-b border-[#D6E1F0] py-5"
+                  >
+                    <span className="text-xs font-semibold text-[#1454E8]">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className="flex-1 text-sm font-medium text-[#07152E] transition group-hover:translate-x-1">
+                      {item}
+                    </span>
+                    <ArrowUpRight
+                      size={16}
+                      className="text-[#87A6D9] transition group-hover:text-[#1454E8]"
+                    />
+                  </div>
+                ))}
               </div>
             </Reveal>
           </div>
         </section>
+
+        {/* PROCESS */}
+
+        <section className="bg-white py-24 sm:py-32">
+          <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
+            <Reveal>
+              <Eyebrow>05 / Our working process</Eyebrow>
+              <Heading className="mt-7 max-w-4xl">
+                Clear thinking.
+                <br />
+                <span className="italic text-[#1454E8]">
+                  A considered process.
+                </span>
+              </Heading>
+              <p className="mt-6 max-w-2xl text-sm leading-8 text-slate-600 sm:text-base">
+                Each project follows a structured direction, with
+                room for collaboration, feedback and refinement
+                at agreed stages.
+              </p>
+            </Reveal>
+
+            <div className="mt-14 grid border-l border-t border-[#DCE5F1] sm:grid-cols-2 lg:grid-cols-4">
+              {steps.map((step) => {
+                const Icon = step.icon;
+
+                return (
+                  <Reveal key={step.number}>
+                    <article className="flex h-full min-h-[235px] flex-col border-b border-r border-[#DCE5F1] p-6 sm:p-8">
+                      <div className="flex items-center justify-between">
+                        <Icon
+                          size={24}
+                          strokeWidth={1.5}
+                          className="text-[#1454E8]"
+                        />
+                        <span className="font-serif text-3xl text-[#C5D5EC]">
+                          {step.number}
+                        </span>
+                      </div>
+                      <h3 className="mt-9 text-lg font-semibold">
+                        {step.title}
+                      </h3>
+                      <p className="mt-3 text-sm leading-7 text-slate-600">
+                        {step.text}
+                      </p>
+                    </article>
+                  </Reveal>
+                );
+              })}
+            </div>
+
+            <div className="mt-8">
+              <Link
+                to="/process"
+                className="inline-flex items-center gap-3 text-sm font-semibold text-[#1454E8] transition hover:gap-4"
+              >
+                Explore our complete process
+                <ArrowRight size={17} />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* DEVELOPMENT */}
+
+        <section className="bg-[#F4F8FC] px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
+          <div className="mx-auto grid max-w-[1440px] items-center gap-12 lg:grid-cols-2 lg:gap-20">
+            <Reveal>
+              <Eyebrow>06 / Development standards</Eyebrow>
+              <Heading className="mt-7">
+                The details matter.
+                <br />
+                <span className="italic text-[#1454E8]">
+                  So does the foundation.
+                </span>
+              </Heading>
+
+              <p className="mt-6 text-sm leading-8 text-slate-600 sm:text-base">
+                A professional website needs more than a good
+                first impression. We consider usability,
+                maintainability and implementation quality
+                throughout development.
+              </p>
+
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                {standards.map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-start gap-3 border border-[#DCE5F1] bg-white p-4"
+                  >
+                    <BadgeCheck
+                      size={18}
+                      className="mt-0.5 shrink-0 text-[#1454E8]"
+                    />
+                    <span className="text-xs font-medium leading-6 text-[#07152E]">
+                      {item}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+
+            <Reveal className="relative">
+              <div className="absolute -bottom-4 -right-4 h-full w-full border border-[#08B9E8]/50" />
+
+              <div className="relative min-h-[430px] overflow-hidden bg-[#07152E] sm:min-h-[560px]">
+                <img
+                  src={photos.development}
+                  alt="Software development and code on a computer screen"
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover opacity-75"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-[#07152E] via-[#07152E]/20 to-transparent" />
+
+                <div className="absolute left-6 right-6 top-6 border border-white/20 bg-[#07152E]/70 p-5 backdrop-blur-md sm:left-8 sm:right-8 sm:top-8">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center bg-[#08B9E8] text-[#07152E]">
+                      <Code2 size={20} />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-white">
+                        Engineering mindset
+                      </p>
+                      <p className="mt-1 text-[10px] uppercase tracking-[0.15em] text-white/60">
+                        Thoughtfully implemented
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="absolute bottom-7 left-6 right-6 text-white sm:bottom-10 sm:left-8 sm:right-8">
+                  <Eyebrow light>Made with care</Eyebrow>
+                  <h3 className="mt-5 font-serif text-3xl sm:text-4xl">
+                    Design that works.
+                    <br />
+                    Code that supports it.
+                  </h3>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* TEAM */}
+
+        <section
+          id="our-team"
+          className="scroll-mt-20 bg-white py-24 sm:py-32"
+        >
+          <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
+            <div className="grid items-end gap-8 lg:grid-cols-[1fr_.65fr]">
+              <Reveal>
+                <Eyebrow>07 / The people behind the work</Eyebrow>
+                <Heading className="mt-7">
+                  Different strengths.
+                  <br />
+                  <span className="italic text-[#1454E8]">
+                    One shared vision.
+                  </span>
+                </Heading>
+              </Reveal>
+
+              <Reveal>
+                <p className="max-w-lg text-sm leading-8 text-slate-600 sm:text-base">
+                  Our team brings together development, advertising,
+                  marketing and business analysis — different
+                  disciplines working towards a more complete
+                  digital experience.
+                </p>
+              </Reveal>
+            </div>
+
+            <Reveal className="mt-12">
+              <div className="relative h-[250px] overflow-hidden sm:h-[360px] lg:h-[430px]">
+                <img
+                  src={photos.team}
+                  alt="Creative team collaborating on digital projects"
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#07152E]/80 via-[#07152E]/30 to-transparent" />
+                <div className="absolute bottom-7 left-6 max-w-lg text-white sm:bottom-12 sm:left-12">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#08B9E8]">
+                    Meet the team
+                  </p>
+                  <p className="mt-4 font-serif text-3xl sm:text-5xl">
+                    Good work is a team effort.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+
+            <div className="mt-7 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+              {team.map((member) => {
+                const Icon = member.icon;
+
+                return (
+                  <Reveal key={member.number}>
+                    <article className="group flex h-full flex-col border border-[#DCE5F1] bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#08B9E8] hover:shadow-[0_20px_55px_rgba(16,50,57,0.09)] sm:p-7">
+                      <div className="flex items-start justify-between">
+                        <div className="flex h-[62px] w-[62px] items-center justify-center border border-[#C8D9F3] bg-[#F4F8FC] font-serif text-2xl text-[#07152E] transition group-hover:bg-[#08B9E8]">
+                          {member.initials}
+                        </div>
+                        <span className="font-serif text-2xl text-[#C5D5EC]">
+                          {member.number}
+                        </span>
+                      </div>
+
+                      <p className="mt-7 text-[10px] font-bold uppercase tracking-[0.2em] text-[#1454E8]">
+                        {member.role}
+                      </p>
+
+                      <h3 className="mt-2 font-serif text-3xl tracking-tight text-[#07152E]">
+                        {member.name}
+                      </h3>
+
+                      <p className="mt-4 flex-1 text-sm leading-7 text-slate-600">
+                        {member.description}
+                      </p>
+
+                      <div className="mt-6 flex flex-wrap gap-2 border-t border-[#DCE5F1] pt-5">
+                        {member.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="border border-[#DCE5F1] px-2.5 py-1.5 text-[10px] font-medium text-[#465A7C]"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="mt-5 flex items-center gap-2 text-xs font-semibold text-[#1454E8]">
+                        <Icon size={15} />
+                        Team / {member.number}
+                      </div>
+                    </article>
+                  </Reveal>
+                );
+              })}
+            </div>
+
+            <p className="mt-6 text-xs leading-6 text-slate-500">
+              Team roles describe the responsibilities shared for this
+              page. Individual profiles, portraits and contact details
+              can be added when approved.
+            </p>
+          </div>
+        </section>
+
+        {/* TRANSPARENCY */}
+
+        <section className="border-y border-[#DCE5F1] bg-[#F4F8FC] py-20 sm:py-28">
+          <div className="mx-auto grid max-w-[1440px] gap-12 px-5 sm:px-8 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-20 lg:px-12">
+            <Reveal>
+              <Eyebrow>08 / Our commitment</Eyebrow>
+              <Heading className="mt-7">
+                Clear expectations.
+                <br />
+                <span className="italic text-[#1454E8]">
+                  Honest collaboration.
+                </span>
+              </Heading>
+              <p className="mt-6 text-sm leading-8 text-slate-600 sm:text-base">
+                Strong working relationships depend on clear
+                communication, agreed deliverables and a shared
+                understanding of the project.
+              </p>
+            </Reveal>
+
+            <Reveal>
+              <div className="border border-[#DCE5F1] bg-white p-6 sm:p-9">
+                {[
+                  "Clearly defined project scope",
+                  "Agreed deliverables and priorities",
+                  "Transparent communication",
+                  "Feedback at agreed milestones",
+                  "Attention to quality and usability",
+                ].map((item, index) => (
+                  <div
+                    key={item}
+                    className="flex items-center gap-4 border-b border-[#E5ECF6] py-5 last:border-0 last:pb-0"
+                  >
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center bg-[#E8F1FF] text-[#1454E8]">
+                      <Check size={16} />
+                    </span>
+                    <span className="text-sm font-medium text-[#07152E]">
+                      {item}
+                    </span>
+                    <span className="ml-auto text-[10px] text-[#91A9CF]">
+                      0{index + 1}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* FINAL CTA */}
+
+        <section className="relative isolate overflow-hidden bg-[#07152E] px-5 py-24 text-white sm:px-8 sm:py-32 lg:px-12 lg:py-40">
+          <div className="pointer-events-none absolute inset-0 opacity-[0.12] [background-image:linear-gradient(rgba(255,255,255,0.2)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.2)_1px,transparent_1px)] [background-size:64px_64px]" />
+
+          <div className="pointer-events-none absolute -right-32 -top-40 h-[480px] w-[480px] rounded-full border border-[#08B9E8]/30" />
+          <div className="pointer-events-none absolute -bottom-64 -left-32 h-[500px] w-[500px] rounded-full border border-[#08B9E8]/20" />
+
+          <Reveal className="relative mx-auto max-w-5xl text-center">
+            <div className="flex justify-center">
+              <Eyebrow light>Let's create something meaningful</Eyebrow>
+            </div>
+
+            <h2 className="mt-9 font-serif text-[clamp(3.2rem,7vw,7rem)] leading-[1.02] tracking-[-0.06em]">
+              Your next chapter
+              <br />
+              <span className="italic text-[#08B9E8]">
+                starts with a conversation.
+              </span>
+            </h2>
+
+            <p className="mx-auto mt-7 max-w-2xl text-sm leading-8 text-white/70 sm:text-base">
+              Tell us about your business, your goals and the
+              digital experience you want to create. Let's explore
+              the right direction together.
+            </p>
+
+            <div className="mt-10 flex justify-center">
+              <ButtonLink light>Start your project</ButtonLink>
+            </div>
+
+            <div className="mx-auto mt-14 flex max-w-2xl flex-wrap justify-center gap-x-7 gap-y-4 border-t border-white/20 pt-7">
+              {[
+                "Thoughtful design",
+                "Purposeful development",
+                "Clear communication",
+              ].map((item) => (
+                <span
+                  key={item}
+                  className="flex items-center gap-2 text-xs text-white/75"
+                >
+                  <Check size={15} className="text-[#08B9E8]" />
+                  {item}
+                </span>
+              ))}
+            </div>
+          </Reveal>
+        </section>
+
+        {/* BRAND FOOTER STRIP */}
+
+        <div className="bg-[#07152E] px-5 py-6 text-white sm:px-8 lg:px-12">
+          <div className="mx-auto flex max-w-[1440px] flex-col items-center justify-between gap-3 sm:flex-row">
+            <Link
+              to="/"
+              className="text-sm font-bold uppercase tracking-[0.24em]"
+            >
+              WEBQENZO<span className="text-[#08B9E8]">.</span>
+            </Link>
+
+            <span className="text-center text-[10px] tracking-wide text-white/60 sm:text-right">
+              Thoughtfully designed. Purposefully developed.
+            </span>
+          </div>
+        </div>
       </main>
     </>
   );
 }
 
-export default Process;
+export default About;
