@@ -1,38 +1,21 @@
-
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
   ArrowUpRight,
   BadgeCheck,
-  BriefcaseBusiness,
   Check,
   Code2,
   Compass,
   Eye,
   Layers3,
-  MessageCircle,
   MonitorSmartphone,
   Palette,
   Rocket,
   ShieldCheck,
-  Sparkles,
-  Target,
-  Users,
-  Workflow,
-  Zap,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
-
-const C = {
-  green: "#103239",
-  deep: "#09272C",
-  cyan: "#00DDE0",
-  blue: "#2563eb",
-  white: "#FFFFFF",
-  mist: "#F3F8F8",
-};
 
 const photos = {
   hero:
@@ -47,44 +30,44 @@ const photos = {
 
 const team = [
   {
-    initials: "AS",
-    name: "Asif",
-    role: "Full Stack Developer",
+    name: "Anni",
+    role: "Founder",
+    designation: "CEO",
     number: "01",
-    icon: Code2,
+    image: "/webqenzoteam.png",
     description:
-      "Building the frontend, backend and technical foundations behind digital experiences.",
+      "Leading development and technical foundations behind digital experiences.",
     tags: ["Development", "Web Architecture"],
   },
   {
-    initials: "KM",
-    name: "Kunal",
-    role: "Meta Ads",
+    name: "Deepak",
+    role: "Strategy Head",
+    designation: "Business & Strategy Consultant",
     number: "02",
-    icon: Target,
+    image: "/webqenzoteam.png",
     description:
-      "Focused on Meta advertising campaigns and connecting brands with relevant audiences.",
+      "Driving strategic expansion, client partnerships, and brand positioning.",
+    tags: ["Business Strategy", "Brand Expansion"],
+  },
+  {
+    name: "Kunal",
+    role: "Marketing",
+    designation: "Marketing Lead",
+    number: "03",
+    image: "/Kunal.png",
+    description:
+      "Supporting marketing initiatives, business outreach and client opportunities.",
     tags: ["Meta Ads", "Campaigns"],
   },
   {
-    initials: "DP",
-    name: "Deepak",
-    role: "Marketing & Sales",
-    number: "03",
-    icon: BriefcaseBusiness,
-    description:
-      "Supporting marketing initiatives, business outreach and client opportunities.",
-    tags: ["Marketing", "Sales"],
-  },
-  {
-    initials: "AN",
-    name: "Anni",
-    role: "Business Analytics",
+    name: "Asif",
+    role: "Developer",
+    designation: "Full Stack Developer",
     number: "04",
-    icon: Workflow,
+    image: "/Asif.png",
     description:
-      "Supporting business analysis, structured insights and informed decision-making.",
-    tags: ["Analytics", "Insights"],
+      "Architecting high-performance digital platforms and interactive UI/UX.",
+    tags: ["Full Stack", "UI/UX"],
   },
 ];
 
@@ -201,12 +184,12 @@ function Eyebrow({ children, light = false }) {
     <div className="flex items-center gap-3">
       <span
         className={`h-px w-8 ${
-          light ? "bg-[#00DDE0]" : "bg-[#2563eb]"
+          light ? "bg-[#22D3EE]" : "bg-[#2563EB]"
         }`}
       />
       <span
         className={`text-[10px] font-bold uppercase tracking-[0.25em] sm:text-xs ${
-          light ? "text-[#00DDE0]" : "text-[#2563eb]"
+          light ? "text-[#22D3EE]" : "text-[#2563EB]"
         }`}
       >
         {children}
@@ -219,7 +202,7 @@ function Heading({ children, light = false, className = "" }) {
   return (
     <h2
       className={`font-serif text-4xl font-normal leading-[1.12] tracking-[-0.045em] sm:text-5xl lg:text-6xl ${
-        light ? "text-white" : "text-[#103239]"
+        light ? "text-white" : "text-[#0A0D12]"
       } ${className}`}
     >
       {children}
@@ -231,10 +214,10 @@ function ButtonLink({ children, light = false }) {
   return (
     <Link
       to="/get-quote"
-      className={`group inline-flex min-h-14 items-center justify-center gap-5 px-6 text-sm font-semibold transition duration-300 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2563eb] ${
+      className={`group inline-flex min-h-14 items-center justify-center gap-5 px-6 text-sm font-semibold transition duration-300 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2563EB] ${
         light
-          ? "bg-white text-[#103239] hover:bg-[#00DDE0]"
-          : "bg-[#103239] text-white hover:bg-[#17484F]"
+          ? "bg-white text-[#0A0D12] hover:bg-[#22D3EE]"
+          : "bg-[#0A0D12] text-white hover:bg-[#17484F]"
       }`}
     >
       {children}
@@ -302,10 +285,9 @@ function About() {
         path="/about"
       />
 
-      <main className="overflow-x-clip bg-white text-[#103239]">
+      <main className="overflow-x-clip bg-white text-[#0A0D12] selection:bg-[#22D3EE]/25">
         {/* HERO */}
-
-        <section className="relative isolate overflow-hidden bg-[#09272C] text-white">
+        <section className="relative isolate overflow-hidden bg-[#05070B] text-white">
           <div className="absolute inset-0 -z-10">
             <img
               src={photos.hero}
@@ -313,9 +295,9 @@ function About() {
               fetchPriority="high"
               className="h-full w-full object-cover"
             />
-            <div className="absolute inset-0 bg-[#09272C]/75" />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#09272C] via-[#09272C]/90 to-[#09272C]/35" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#09272C] via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-[#05070B]/75" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#05070B] via-[#05070B]/90 to-[#05070B]/35" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#05070B] via-transparent to-transparent" />
           </div>
 
           <div className="absolute left-5 top-0 hidden h-full w-px bg-white/15 lg:left-12 lg:block" />
@@ -324,13 +306,13 @@ function About() {
           <div className="relative mx-auto grid min-h-[720px] max-w-[1440px] items-center gap-12 px-5 py-28 sm:px-8 lg:grid-cols-[1.1fr_.9fr] lg:px-16 lg:py-32">
             <Reveal>
               <div className="inline-flex items-center gap-3 border border-white/20 bg-white/5 px-4 py-2.5 backdrop-blur-sm">
-                <span className="h-2 w-2 rounded-full bg-[#00DDE0]" />
+                <span className="h-2 w-2 rounded-full bg-[#22D3EE]" />
                 <span className="text-[10px] font-semibold uppercase tracking-[0.22em]">
                   Introducing WebQenzo
                 </span>
               </div>
 
-              <p className="mt-12 text-[11px] font-semibold uppercase tracking-[0.3em] text-[#00DDE0]">
+              <p className="mt-12 text-[11px] font-semibold uppercase tracking-[0.3em] text-[#22D3EE]">
                 Digital craftsmanship / Est. in purpose
               </p>
 
@@ -339,7 +321,7 @@ function About() {
                 <br />
                 digital with
                 <br />
-                <span className="italic text-[#00DDE0]">
+                <span className="italic text-[#22D3EE]">
                   intention.
                 </span>
               </h1>
@@ -355,7 +337,7 @@ function About() {
 
                 <a
                   href="#our-approach"
-                  className="inline-flex min-h-14 items-center justify-center gap-3 border border-white/30 px-6 text-sm font-semibold transition hover:border-[#00DDE0] hover:text-[#00DDE0]"
+                  className="inline-flex min-h-14 items-center justify-center gap-3 border border-white/30 px-6 text-sm font-semibold transition hover:border-[#22D3EE] hover:text-[#22D3EE]"
                 >
                   Discover our approach
                   <ArrowRight size={17} />
@@ -364,12 +346,12 @@ function About() {
             </Reveal>
 
             <Reveal className="relative mx-auto w-full max-w-[470px]">
-              <div className="absolute -inset-5 border border-[#00DDE0]/25" />
+              <div className="absolute -inset-5 border border-[#22D3EE]/25" />
 
-              <div className="relative border border-white/20 bg-[#103239]/85 p-5 backdrop-blur-md sm:p-7">
+              <div className="relative rounded-3xl border border-white/15 bg-[#0A0D12]/85 p-5 shadow-[0_30px_100px_rgba(0,0,0,0.28)] backdrop-blur-md sm:p-7">
                 <div className="flex items-center justify-between border-b border-white/15 pb-5">
                   <div>
-                    <p className="text-xs uppercase tracking-[0.22em] text-[#00DDE0]">
+                    <p className="text-xs uppercase tracking-[0.22em] text-[#22D3EE]">
                       Our philosophy
                     </p>
                     <h2 className="mt-2 font-serif text-2xl">
@@ -379,7 +361,7 @@ function About() {
                   <Layers3
                     size={28}
                     strokeWidth={1.3}
-                    className="text-[#00DDE0]"
+                    className="text-[#22D3EE]"
                   />
                 </div>
 
@@ -394,7 +376,7 @@ function About() {
                       key={number}
                       className="flex gap-4 border-b border-white/10 py-5 last:border-0"
                     >
-                      <span className="font-serif text-2xl text-[#00DDE0]">
+                      <span className="font-serif text-2xl text-[#22D3EE]">
                         {number}
                       </span>
                       <div>
@@ -405,13 +387,13 @@ function About() {
                       </div>
                       <Check
                         size={16}
-                        className="ml-auto mt-1 shrink-0 text-[#00DDE0]"
+                        className="ml-auto mt-1 shrink-0 text-[#22D3EE]"
                       />
                     </div>
                   ))}
                 </div>
 
-                <div className="flex items-center justify-between bg-[#00DDE0] px-4 py-4 text-[#09272C]">
+                <div className="flex items-center justify-between bg-[#22D3EE] px-4 py-4 text-[#05070B]">
                   <span className="text-xs font-bold uppercase tracking-[0.12em]">
                     Thoughtful by design
                   </span>
@@ -428,15 +410,14 @@ function About() {
         </section>
 
         {/* BRAND INTRODUCTION */}
-
-        <section className="border-b border-[#DCE8E8] bg-[#F3F8F8]">
+        <section className="border-b border-[#E2E8F0] bg-[#F8FAFC]">
           <div className="mx-auto grid max-w-[1440px] gap-10 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-[.8fr_1.2fr] lg:gap-24 lg:px-12 lg:py-32">
             <Reveal>
               <Eyebrow>01 / Who we are</Eyebrow>
               <Heading className="mt-7">
                 More than a website.
                 <br />
-                <span className="italic text-[#2563eb]">
+                <span className="italic text-[#2563EB]">
                   A digital partnership.
                 </span>
               </Heading>
@@ -463,7 +444,7 @@ function About() {
 
               <Link
                 to="/get-quote"
-                className="mt-7 inline-flex items-center gap-3 text-sm font-bold text-[#2563eb] hover:text-[#103239]"
+                className="mt-7 inline-flex items-center gap-3 text-sm font-bold text-[#2563EB] hover:text-[#0A0D12]"
               >
                 Start a conversation <ArrowRight size={17} />
               </Link>
@@ -472,7 +453,6 @@ function About() {
         </section>
 
         {/* OUR APPROACH */}
-
         <section
           id="our-approach"
           className="scroll-mt-16 bg-white px-5 py-24 sm:px-8 sm:py-32 lg:px-12"
@@ -484,7 +464,7 @@ function About() {
                 <Heading className="mt-7">
                   Good ideas deserve
                   <br />
-                  <span className="italic text-[#2563eb]">
+                  <span className="italic text-[#2563EB]">
                     thoughtful execution.
                   </span>
                 </Heading>
@@ -500,20 +480,20 @@ function About() {
               </Reveal>
             </div>
 
-            <div className="mt-14 grid gap-0 border-l border-t border-[#DCE8E8] sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-14 grid gap-0 border-l border-t border-[#E2E8F0] sm:grid-cols-2 lg:grid-cols-4">
               {principles.map((item) => {
                 const Icon = item.icon;
 
                 return (
                   <Reveal key={item.number}>
-                    <article className="group flex h-full min-h-[290px] flex-col border-b border-r border-[#DCE8E8] p-6 transition duration-300 hover:bg-[#F3F8F8] sm:p-8">
+                    <article className="group flex h-full min-h-[290px] flex-col border-b border-r border-[#E2E8F0] bg-white p-6 transition duration-300 hover:bg-[#F8FAFC] hover:shadow-[0_18px_45px_rgba(5,7,11,0.06)] sm:p-8">
                       <div className="flex items-center justify-between">
                         <Icon
                           size={25}
                           strokeWidth={1.5}
-                          className="text-[#2563eb]"
+                          className="text-[#2563EB]"
                         />
-                        <span className="font-serif text-2xl text-[#B6D1D2]">
+                        <span className="font-serif text-2xl text-[#CBD5E1]">
                           {item.number}
                         </span>
                       </div>
@@ -535,9 +515,8 @@ function About() {
         </section>
 
         {/* VISUAL FEATURE */}
-
         <section className="px-5 pb-24 sm:px-8 lg:px-12">
-          <div className="mx-auto grid max-w-[1440px] overflow-hidden bg-[#103239] lg:grid-cols-2">
+          <div className="mx-auto grid max-w-[1440px] overflow-hidden rounded-[28px] bg-[#0A0D12] shadow-[0_30px_90px_rgba(5,7,11,0.12)] lg:grid-cols-2">
             <div className="relative min-h-[340px] overflow-hidden sm:min-h-[500px]">
               <img
                 src={photos.design}
@@ -545,9 +524,9 @@ function About() {
                 loading="lazy"
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#09272C]/70 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#05070B]/70 to-transparent" />
               <div className="absolute bottom-7 left-7 text-white sm:bottom-10 sm:left-10">
-                <p className="text-[10px] uppercase tracking-[0.25em] text-[#00DDE0]">
+                <p className="text-[10px] uppercase tracking-[0.25em] text-[#22D3EE]">
                   Design with intention
                 </p>
                 <p className="mt-3 font-serif text-3xl sm:text-4xl">
@@ -562,7 +541,7 @@ function About() {
               <Heading light className="mt-7">
                 A better experience,
                 <br />
-                <span className="italic text-[#00DDE0]">
+                <span className="italic text-[#22D3EE]">
                   from every angle.
                 </span>
               </Heading>
@@ -600,7 +579,7 @@ function About() {
                     >
                       <Icon
                         size={21}
-                        className="mt-1 shrink-0 text-[#00DDE0]"
+                        className="mt-1 shrink-0 text-[#22D3EE]"
                       />
                       <div>
                         <h3 className="text-sm font-semibold">{item.title}</h3>
@@ -617,15 +596,14 @@ function About() {
         </section>
 
         {/* CAPABILITIES */}
-
-        <section className="border-y border-[#DCE8E8] bg-[#F3F8F8] py-24 sm:py-32">
+        <section className="border-y border-[#E2E8F0] bg-[#F8FAFC] py-24 sm:py-32">
           <div className="mx-auto grid max-w-[1440px] gap-12 px-5 sm:px-8 lg:grid-cols-[.8fr_1.2fr] lg:gap-20 lg:px-12">
             <Reveal>
               <Eyebrow>04 / What we do</Eyebrow>
               <Heading className="mt-7">
                 Everything begins
                 <br />
-                <span className="italic text-[#2563eb]">
+                <span className="italic text-[#2563EB]">
                   with your needs.
                 </span>
               </Heading>
@@ -646,17 +624,17 @@ function About() {
                 {capabilities.map((item, index) => (
                   <div
                     key={item}
-                    className="group flex items-center gap-3 border-b border-[#D0E0E0] py-5"
+                    className="group flex items-center gap-3 border-b border-[#E2E8F0] py-5"
                   >
-                    <span className="text-xs font-semibold text-[#2563eb]">
+                    <span className="text-xs font-semibold text-[#2563EB]">
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    <span className="flex-1 text-sm font-medium text-[#103239] transition group-hover:translate-x-1">
+                    <span className="flex-1 text-sm font-medium text-[#0A0D12] transition group-hover:translate-x-1">
                       {item}
                     </span>
                     <ArrowUpRight
                       size={16}
-                      className="text-[#87B7B9] transition group-hover:text-[#2563eb]"
+                      className="text-[#94A3B8] transition group-hover:text-[#2563EB]"
                     />
                   </div>
                 ))}
@@ -666,7 +644,6 @@ function About() {
         </section>
 
         {/* PROCESS */}
-
         <section className="bg-white py-24 sm:py-32">
           <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
             <Reveal>
@@ -674,7 +651,7 @@ function About() {
               <Heading className="mt-7 max-w-4xl">
                 Clear thinking.
                 <br />
-                <span className="italic text-[#2563eb]">
+                <span className="italic text-[#2563EB]">
                   A considered process.
                 </span>
               </Heading>
@@ -685,20 +662,20 @@ function About() {
               </p>
             </Reveal>
 
-            <div className="mt-14 grid border-l border-t border-[#DCE8E8] sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-14 grid border-l border-t border-[#E2E8F0] sm:grid-cols-2 lg:grid-cols-4">
               {steps.map((step) => {
                 const Icon = step.icon;
 
                 return (
                   <Reveal key={step.number}>
-                    <article className="flex h-full min-h-[235px] flex-col border-b border-r border-[#DCE8E8] p-6 sm:p-8">
+                    <article className="flex h-full min-h-[235px] flex-col border-b border-r border-[#E2E8F0] p-6 sm:p-8">
                       <div className="flex items-center justify-between">
                         <Icon
                           size={24}
                           strokeWidth={1.5}
-                          className="text-[#2563eb]"
+                          className="text-[#2563EB]"
                         />
-                        <span className="font-serif text-3xl text-[#B6D1D2]">
+                        <span className="font-serif text-3xl text-[#CBD5E1]">
                           {step.number}
                         </span>
                       </div>
@@ -717,7 +694,7 @@ function About() {
             <div className="mt-8">
               <Link
                 to="/process"
-                className="inline-flex items-center gap-3 text-sm font-semibold text-[#2563eb] transition hover:gap-4"
+                className="inline-flex items-center gap-3 text-sm font-semibold text-[#2563EB] transition hover:gap-4"
               >
                 Explore our complete process
                 <ArrowRight size={17} />
@@ -727,15 +704,14 @@ function About() {
         </section>
 
         {/* DEVELOPMENT */}
-
-        <section className="bg-[#F3F8F8] px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
+        <section className="bg-[#F8FAFC] px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
           <div className="mx-auto grid max-w-[1440px] items-center gap-12 lg:grid-cols-2 lg:gap-20">
             <Reveal>
               <Eyebrow>06 / Development standards</Eyebrow>
               <Heading className="mt-7">
                 The details matter.
                 <br />
-                <span className="italic text-[#2563eb]">
+                <span className="italic text-[#2563EB]">
                   So does the foundation.
                 </span>
               </Heading>
@@ -751,13 +727,13 @@ function About() {
                 {standards.map((item) => (
                   <div
                     key={item}
-                    className="flex items-start gap-3 border border-[#DCE8E8] bg-white p-4"
+                    className="flex items-start gap-3 border border-[#E2E8F0] bg-white p-4"
                   >
                     <BadgeCheck
                       size={18}
-                      className="mt-0.5 shrink-0 text-[#2563eb]"
+                      className="mt-0.5 shrink-0 text-[#2563EB]"
                     />
-                    <span className="text-xs font-medium leading-6 text-[#103239]">
+                    <span className="text-xs font-medium leading-6 text-[#0A0D12]">
                       {item}
                     </span>
                   </div>
@@ -766,9 +742,9 @@ function About() {
             </Reveal>
 
             <Reveal className="relative">
-              <div className="absolute -bottom-4 -right-4 h-full w-full border border-[#00BFC4]/50" />
+              <div className="absolute -bottom-4 -right-4 h-full w-full border border-[#22D3EE]/50" />
 
-              <div className="relative min-h-[430px] overflow-hidden bg-[#103239] sm:min-h-[560px]">
+              <div className="relative min-h-[430px] overflow-hidden rounded-2xl bg-[#0A0D12] shadow-[0_24px_70px_rgba(5,7,11,0.12)] sm:min-h-[560px]">
                 <img
                   src={photos.development}
                   alt="Software development and code on a computer screen"
@@ -776,11 +752,11 @@ function About() {
                   className="absolute inset-0 h-full w-full object-cover opacity-75"
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-[#09272C] via-[#09272C]/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#05070B] via-[#05070B]/20 to-transparent" />
 
-                <div className="absolute left-6 right-6 top-6 border border-white/20 bg-[#103239]/70 p-5 backdrop-blur-md sm:left-8 sm:right-8 sm:top-8">
+                <div className="absolute left-6 right-6 top-6 border border-white/20 bg-[#0A0D12]/70 p-5 backdrop-blur-md sm:left-8 sm:right-8 sm:top-8">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center bg-[#00DDE0] text-[#09272C]">
+                    <div className="flex h-10 w-10 items-center justify-center bg-[#22D3EE] text-[#05070B]">
                       <Code2 size={20} />
                     </div>
                     <div>
@@ -808,7 +784,6 @@ function About() {
         </section>
 
         {/* TEAM */}
-
         <section
           id="our-team"
           className="scroll-mt-20 bg-white py-24 sm:py-32"
@@ -816,11 +791,11 @@ function About() {
           <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
             <div className="grid items-end gap-8 lg:grid-cols-[1fr_.65fr]">
               <Reveal>
-                <Eyebrow>07 / The people behind the work</Eyebrow>
+                <Eyebrow> The people behind the work</Eyebrow>
                 <Heading className="mt-7">
                   Different strengths.
                   <br />
-                  <span className="italic text-[#2563eb]">
+                  <span className="italic text-[#2563EB]">
                     One shared vision.
                   </span>
                 </Heading>
@@ -837,92 +812,95 @@ function About() {
             </div>
 
             <Reveal className="mt-12">
-              <div className="relative h-[250px] overflow-hidden sm:h-[360px] lg:h-[430px]">
+              <div className="relative h-[250px] overflow-hidden rounded-[24px] sm:h-[360px] lg:h-[430px]">
                 <img
-                  src={photos.team}
+                  src="/webqenzoteam.png"
                   alt="Creative team collaborating on digital projects"
                   loading="lazy"
                   className="h-full w-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#09272C]/80 via-[#09272C]/30 to-transparent" />
-                <div className="absolute bottom-7 left-6 max-w-lg text-white sm:bottom-12 sm:left-12">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#00DDE0]">
-                    Meet the team
-                  </p>
-                  <p className="mt-4 font-serif text-3xl sm:text-5xl">
-                    Good work is a team effort.
-                  </p>
-                </div>
               </div>
             </Reveal>
 
-            <div className="mt-7 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-              {team.map((member) => {
-                const Icon = member.icon;
-
-                return (
-                  <Reveal key={member.number}>
-                    <article className="group flex h-full flex-col border border-[#DCE8E8] bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#00BFC4] hover:shadow-[0_20px_55px_rgba(16,50,57,0.09)] sm:p-7">
-                      <div className="flex items-start justify-between">
-                        <div className="flex h-[62px] w-[62px] items-center justify-center border border-[#B9DCDD] bg-[#F0F8F8] font-serif text-2xl text-[#103239] transition group-hover:bg-[#00DDE0]">
-                          {member.initials}
-                        </div>
-                        <span className="font-serif text-2xl text-[#B6D1D2]">
-                          {member.number}
+            {/* Team Grid Cards */}
+            <div className="mt-12 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+              {team.map((member) => (
+                <Reveal key={member.number || member.name}>
+                  <article className="group flex flex-col overflow-hidden rounded-2xl border border-[#E2E8F0] bg-white transition duration-300 hover:-translate-y-1 hover:border-[#22D3EE] hover:shadow-[0_24px_60px_rgba(5,7,11,0.10)]">
+                    
+                    {/* Card Image Header with Fixed Aspect Ratio & Cover */}
+                    <div className="relative h-[260px] w-full overflow-hidden bg-[#0A0D12] sm:h-[300px]">
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        loading="lazy"
+                        className="h-full w-full object-cover object-[center_20%] transition duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#05070B]/90 via-[#05070B]/30 to-transparent" />
+                      
+                      <div className="absolute bottom-4 left-4 right-4 text-white">
+                        <span className="inline-block rounded-[4px] bg-[#2563EB] px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.15em] text-white">
+                          {member.role}
                         </span>
+                        <h3 className="mt-2 font-serif text-2xl sm:text-3xl tracking-tight text-white">
+                          {member.name}
+                        </h3>
+                        {member.designation && (
+                          <p className="mt-0.5 text-xs text-slate-300">
+                            {member.designation}
+                          </p>
+                        )}
                       </div>
+                    </div>
 
-                      <p className="mt-7 text-[10px] font-bold uppercase tracking-[0.2em] text-[#2563eb]">
-                        {member.role}
-                      </p>
-
-                      <h3 className="mt-2 font-serif text-3xl tracking-tight text-[#103239]">
-                        {member.name}
-                      </h3>
-
-                      <p className="mt-4 flex-1 text-sm leading-7 text-slate-600">
+                    {/* Card Body */}
+                    <div className="flex flex-col p-5 sm:p-6">
+                      <p className="text-xs sm:text-sm leading-6 text-slate-600">
                         {member.description}
                       </p>
 
-                      <div className="mt-6 flex flex-wrap gap-2 border-t border-[#DCE8E8] pt-5">
-                        {member.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="border border-[#DCE8E8] px-2.5 py-1.5 text-[10px] font-medium text-[#456266]"
-                          >
-                            {tag}
-                          </span>
-                        ))}
+                      {/* Core Focus Tags */}
+                      <div className="mt-4 border-t border-[#E2E8F0] pt-3.5">
+                        <p className="text-[9px] font-bold uppercase tracking-[0.15em] text-slate-400">
+                          Core Focus
+                        </p>
+                        <div className="mt-2 flex flex-wrap gap-1.5">
+                          {member.tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="rounded-md border border-[#E2E8F0] bg-slate-50 px-2 py-1 text-[9px] font-medium text-[#475569]"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
                       </div>
 
-                      <div className="mt-5 flex items-center gap-2 text-xs font-semibold text-[#2563eb]">
-                        <Icon size={15} />
-                        Team / {member.number}
+                      {/* Footer / Action */}
+                      <div className="mt-4 flex items-center justify-between border-t border-[#E2E8F0] pt-3.5 text-xs font-semibold text-slate-500">
+                        <span>Webqenzo</span>
+                        <span className="flex items-center gap-1 text-[#2563EB] transition group-hover:translate-x-1">
+                          Consult &rarr;
+                        </span>
                       </div>
-                    </article>
-                  </Reveal>
-                );
-              })}
+                    </div>
+
+                  </article>
+                </Reveal>
+              ))}
             </div>
-
-            <p className="mt-6 text-xs leading-6 text-slate-500">
-              Team roles describe the responsibilities shared for this
-              page. Individual profiles, portraits and contact details
-              can be added when approved.
-            </p>
           </div>
         </section>
 
         {/* TRANSPARENCY */}
-
-        <section className="border-y border-[#DCE8E8] bg-[#F3F8F8] py-20 sm:py-28">
+        <section className="border-y border-[#E2E8F0] bg-[#F8FAFC] py-20 sm:py-28">
           <div className="mx-auto grid max-w-[1440px] gap-12 px-5 sm:px-8 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-20 lg:px-12">
             <Reveal>
               <Eyebrow>08 / Our commitment</Eyebrow>
               <Heading className="mt-7">
                 Clear expectations.
                 <br />
-                <span className="italic text-[#2563eb]">
+                <span className="italic text-[#2563EB]">
                   Honest collaboration.
                 </span>
               </Heading>
@@ -934,7 +912,7 @@ function About() {
             </Reveal>
 
             <Reveal>
-              <div className="border border-[#DCE8E8] bg-white p-6 sm:p-9">
+              <div className="rounded-2xl border border-[#E2E8F0] bg-white p-6 shadow-[0_20px_60px_rgba(5,7,11,0.05)] sm:p-9">
                 {[
                   "Clearly defined project scope",
                   "Agreed deliverables and priorities",
@@ -944,15 +922,15 @@ function About() {
                 ].map((item, index) => (
                   <div
                     key={item}
-                    className="flex items-center gap-4 border-b border-[#E5EEEE] py-5 last:border-0 last:pb-0"
+                    className="flex items-center gap-4 border-b border-[#E2E8F0] py-5 last:border-0 last:pb-0"
                   >
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center bg-[#E7F7F7] text-[#2563eb]">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center bg-[#EFF6FF] text-[#2563EB]">
                       <Check size={16} />
                     </span>
-                    <span className="text-sm font-medium text-[#103239]">
+                    <span className="text-sm font-medium text-[#0A0D12]">
                       {item}
                     </span>
-                    <span className="ml-auto text-[10px] text-[#91B2B4]">
+                    <span className="ml-auto text-[10px] text-[#94A3B8]">
                       0{index + 1}
                     </span>
                   </div>
@@ -963,12 +941,11 @@ function About() {
         </section>
 
         {/* FINAL CTA */}
-
-        <section className="relative isolate overflow-hidden bg-[#103239] px-5 py-24 text-white sm:px-8 sm:py-32 lg:px-12 lg:py-40">
+        <section className="relative isolate overflow-hidden bg-[#05070B] px-5 py-24 text-white sm:px-8 sm:py-32 lg:px-12 lg:py-40">
           <div className="pointer-events-none absolute inset-0 opacity-[0.12] [background-image:linear-gradient(rgba(255,255,255,0.2)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.2)_1px,transparent_1px)] [background-size:64px_64px]" />
 
-          <div className="pointer-events-none absolute -right-32 -top-40 h-[480px] w-[480px] rounded-full border border-[#00DDE0]/30" />
-          <div className="pointer-events-none absolute -bottom-64 -left-32 h-[500px] w-[500px] rounded-full border border-[#00DDE0]/20" />
+          <div className="pointer-events-none absolute -right-32 -top-40 h-[480px] w-[480px] rounded-full border border-[#22D3EE]/30" />
+          <div className="pointer-events-none absolute -bottom-64 -left-32 h-[500px] w-[500px] rounded-full border border-[#22D3EE]/20" />
 
           <Reveal className="relative mx-auto max-w-5xl text-center">
             <div className="flex justify-center">
@@ -978,7 +955,7 @@ function About() {
             <h2 className="mt-9 font-serif text-[clamp(3.2rem,7vw,7rem)] leading-[1.02] tracking-[-0.06em]">
               Your next chapter
               <br />
-              <span className="italic text-[#00DDE0]">
+              <span className="italic text-[#22D3EE]">
                 starts with a conversation.
               </span>
             </h2>
@@ -1003,7 +980,7 @@ function About() {
                   key={item}
                   className="flex items-center gap-2 text-xs text-white/75"
                 >
-                  <Check size={15} className="text-[#00DDE0]" />
+                  <Check size={15} className="text-[#22D3EE]" />
                   {item}
                 </span>
               ))}
@@ -1012,14 +989,13 @@ function About() {
         </section>
 
         {/* BRAND FOOTER STRIP */}
-
-        <div className="bg-[#09272C] px-5 py-6 text-white sm:px-8 lg:px-12">
+        <div className="bg-[#05070B] px-5 py-6 text-white sm:px-8 lg:px-12">
           <div className="mx-auto flex max-w-[1440px] flex-col items-center justify-between gap-3 sm:flex-row">
             <Link
               to="/"
               className="text-sm font-bold uppercase tracking-[0.24em]"
             >
-              WEBQENZO<span className="text-[#00DDE0]">.</span>
+              WEBQENZO<span className="text-[#22D3EE]">.</span>
             </Link>
 
             <span className="text-center text-[10px] tracking-wide text-white/60 sm:text-right">
