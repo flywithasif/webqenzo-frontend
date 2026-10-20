@@ -23,281 +23,148 @@ function Home() {
       <main className="home-page overflow-x-clip">
 
       {/* =====================================================
-          HERO SECTION (NEW ULTRA-PREMIUM REDESIGN)
+          CENTERED HERO — LUXURY 3D FLOATING SHOWCASE
       ====================================================== */}
-      <section className="relative isolate overflow-hidden bg-[#030712] text-white">
-        {/* Dynamic Background Effects */}
+      <section className="relative isolate overflow-hidden bg-[#050B1D] text-white">
         <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-          {/* Subtle Ambient Mesh Orbs */}
-          <div className="absolute left-1/2 top-[-10%] h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-gradient-to-tr from-blue-600/20 via-cyan-500/15 to-indigo-600/10 blur-[150px]" />
-          <div className="absolute -left-20 top-1/3 h-[380px] w-[380px] rounded-full bg-cyan-500/10 blur-[130px]" />
-          <div className="absolute -right-20 top-1/2 h-[420px] w-[420px] rounded-full bg-blue-600/10 blur-[140px]" />
-          
-          {/* Sleek Fine Grid Overlay */}
-          <div
-            className="absolute inset-0 opacity-[0.04]"
-            style={{
-              backgroundImage:
-                "radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1px)",
-              backgroundSize: "32px 32px",
-            }}
-          />
-
-          {/* Bottom Blend Gradient */}
-          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#030712] via-[#030712]/80 to-transparent" />
+          <div className="absolute left-1/2 top-[-12rem] h-[36rem] w-[55rem] -translate-x-1/2 rounded-full bg-blue-600/25 blur-[140px]" />
+          <div className="absolute left-[8%] top-[35%] h-72 w-72 rounded-full bg-cyan-500/15 blur-[120px]" />
+          <div className="absolute right-[5%] top-[42%] h-80 w-80 rounded-full bg-blue-500/20 blur-[130px]" />
+          <div className="absolute inset-0 opacity-[0.055]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.7) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.7) 1px, transparent 1px)", backgroundSize: "54px 54px", maskImage: "linear-gradient(to bottom, black, transparent 92%)" }} />
+          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#050B1D] to-transparent" />
         </div>
 
-        <div className="relative mx-auto max-w-[1440px] px-5 pb-20 pt-12 sm:px-8 sm:pb-24 sm:pt-16 lg:px-12 lg:pb-28 lg:pt-20">
-          <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12 xl:gap-16">
+        <div className="relative mx-auto flex max-w-[1440px] flex-col items-center px-5 pb-20 pt-16 text-center sm:px-8 sm:pb-24 sm:pt-20 lg:px-12 lg:pb-28 lg:pt-24">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="relative z-20 flex items-center gap-2 rounded-full border border-cyan-300/25 bg-white/[0.06] px-4 py-2.5 shadow-[0_0_35px_rgba(34,211,238,0.08)] backdrop-blur-xl"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-300 opacity-70" />
+              <span className="relative h-2 w-2 rounded-full bg-cyan-300" />
+            </span>
+            <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-100 sm:text-xs">WebQenzo · Digital Experiences</span>
+          </motion.div>
 
-            {/* LEFT: Hero Content */}
+          <motion.h1
+            initial={{ opacity: 0, y: 26 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.08, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="relative z-20 mt-7 max-w-5xl text-balance text-[clamp(2.8rem,7.5vw,6.8rem)] font-bold leading-[0.98] tracking-[-0.065em] text-white"
+          >
+            Websites that make
+            <br className="hidden sm:block" /> your brand{" "}
+            <span className="bg-gradient-to-r from-[#315BFF] via-[#20B8F4] to-[#63E8FF] bg-clip-text text-transparent">impossible to ignore.</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.16, duration: 0.7 }}
+            className="relative z-20 mt-6 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base sm:leading-8 lg:text-lg"
+          >
+            We design and develop high-performance websites that turn first impressions into lasting trust — and visitors into customers.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.24, duration: 0.7 }}
+            className="relative z-20 mt-8 flex w-full flex-col justify-center gap-3 min-[420px]:w-auto min-[420px]:flex-row sm:mt-9"
+          >
+            <Link to="/get-quote" className="group inline-flex min-h-14 items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-[#2457FF] via-[#168FF5] to-[#16C9E8] px-7 py-4 text-sm font-bold text-white shadow-[0_12px_35px_rgba(22,143,245,0.3)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(22,201,232,0.35)]">
+              Let's Build Your Website
+              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-white/15 transition-transform group-hover:translate-x-1"><ArrowUpRight size={16} /></span>
+            </Link>
+            <Link to="/portfolio" className="inline-flex min-h-14 items-center justify-center gap-2.5 rounded-xl border border-white/15 bg-white/[0.05] px-7 py-4 text-sm font-semibold text-white backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyan-300/50 hover:bg-white/10">
+              Explore Our Work <ArrowRight size={16} className="text-cyan-300" />
+            </Link>
+          </motion.div>
+
+          {/* 3D-style floating visual composition */}
+          <div className="relative mt-14 w-full max-w-[1100px] sm:mt-16 lg:mt-20">
+            <div className="pointer-events-none absolute left-1/2 top-1/2 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/20 blur-[100px]" />
             <motion.div
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="mx-auto w-full max-w-2xl lg:mx-0"
+              initial={{ opacity: 0, y: 35, rotateX: 8, scale: 0.94 }}
+              animate={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+              transition={{ delay: 0.22, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="relative z-10 mx-auto w-[92%] max-w-[760px] [perspective:1400px]"
             >
-              {/* Status Pill */}
-              <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-cyan-500/25 bg-cyan-950/30 px-4 py-2 text-xs font-semibold backdrop-blur-md">
-                <span className="relative flex h-2.5 w-2.5 shrink-0">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75" />
-                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-cyan-400" />
-                </span>
-                <span className="uppercase tracking-[0.2em] text-cyan-300 text-[10px] sm:text-xs">
-                  WebQenzo · Digital Experiences
-                </span>
-              </div>
-
-              {/* Main Heading */}
-              <h1 className="max-w-[760px] text-[clamp(2.75rem,6vw,5.5rem)] font-bold leading-[1.02] tracking-[-0.055em] text-white">
-                Websites that
-                <br />
-                make your brand
-                <br />
-                <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-400 bg-clip-text text-transparent">
-                  impossible to ignore.
-                </span>
-              </h1>
-
-              {/* Subtitle */}
-              <p className="mt-6 max-w-xl text-base leading-7 text-slate-300/85 sm:mt-7 sm:text-lg sm:leading-8">
-                We design and develop high-performance websites that turn first
-                impressions into lasting trust — and visitors into customers.
-              </p>
-
-              {/* Action CTAs */}
-              <div className="mt-9 flex flex-col gap-3.5 min-[420px]:flex-row sm:mt-10">
-                <Link
-                  to="/get-quote"
-                  className="group relative inline-flex min-h-14 items-center justify-center gap-3 overflow-hidden rounded-xl bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-600 p-[1px] font-semibold text-white shadow-[0_10px_30px_rgba(37,99,235,0.3)] transition-all duration-300 hover:shadow-[0_15px_40px_rgba(34,211,238,0.4)] hover:-translate-y-0.5"
-                >
-                  <span className="inline-flex h-full w-full items-center justify-center gap-3 rounded-[11px] bg-[#070D1D] px-7 py-3.5 text-sm font-semibold text-white transition-all duration-300 group-hover:bg-transparent">
-                    Let's Build Your Website
-                    <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-white/10 text-white transition-transform duration-300 group-hover:translate-x-1 group-hover:bg-white group-hover:text-[#070D1D]">
-                      <ArrowUpRight size={16} />
-                    </span>
-                  </span>
-                </Link>
-
-                <Link
-                  to="/portfolio"
-                  className="group inline-flex min-h-14 items-center justify-center gap-2.5 rounded-xl border border-white/15 bg-white/[0.04] px-7 py-3.5 text-sm font-medium text-white backdrop-blur-md transition-all duration-300 hover:border-cyan-400/40 hover:bg-white/[0.08] hover:-translate-y-0.5"
-                >
-                  Explore Our Work
-                  <ArrowRight
-                    size={16}
-                    className="transition-transform duration-300 group-hover:translate-x-1 text-cyan-400"
-                  />
-                </Link>
-              </div>
-
-              {/* Trust badges */}
-              <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-white/10 pt-7 text-xs font-medium text-slate-300 sm:text-sm">
-                {[
-                  "Responsive by design",
-                  "Performance focused",
-                  "Built for growth",
-                ].map((item) => (
-                  <span key={item} className="inline-flex items-center gap-2">
-                    <span className="flex h-4 w-4 items-center justify-center rounded-full bg-cyan-500/20 text-cyan-400">
-                      <Check size={12} strokeWidth={3} />
-                    </span>
-                    {item}
-                  </span>
-                ))}
+              <div className="overflow-hidden rounded-[22px] border border-white/20 bg-[#F8FBFF] p-2 shadow-[0_35px_100px_rgba(0,0,0,0.5),0_0_70px_rgba(37,99,235,0.18)] sm:rounded-[30px] sm:p-3" style={{ transform: "rotateX(2deg) rotateY(-2deg)", transformStyle: "preserve-3d" }}>
+                <div className="flex h-8 items-center justify-between rounded-t-xl border-b border-slate-200 bg-white px-3 sm:h-10 sm:px-5">
+                  <div className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-[#FF6058] sm:h-2.5 sm:w-2.5" /><span className="h-2 w-2 rounded-full bg-[#FFBD2E] sm:h-2.5 sm:w-2.5" /><span className="h-2 w-2 rounded-full bg-[#28C840] sm:h-2.5 sm:w-2.5" /></div>
+                  <div className="rounded-full bg-slate-100 px-4 py-1 text-[8px] font-medium text-slate-500 sm:px-10 sm:text-[10px]">webqenzo.com</div>
+                  <span className="text-xs text-slate-400">↗</span>
+                </div>
+                <div className="relative grid min-h-[240px] grid-cols-1 items-center gap-4 overflow-hidden rounded-b-xl bg-gradient-to-br from-white via-[#EFF7FF] to-[#D9F5FF] p-5 text-left sm:min-h-[350px] sm:grid-cols-[1.05fr_.95fr] sm:p-9 lg:min-h-[390px] lg:p-12">
+                  <div className="relative z-10">
+                    <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/80 px-3 py-1.5 text-[8px] font-bold uppercase tracking-[0.16em] text-blue-700 shadow-sm sm:text-[10px]"><Sparkles size={12} /> Digital, reimagined</div>
+                    <h2 className="mt-4 max-w-md text-3xl font-black leading-[0.98] tracking-[-0.06em] text-[#071B4D] sm:mt-5 sm:text-5xl lg:text-6xl">Think bigger.<br /><span className="bg-gradient-to-r from-[#175BFF] to-[#12BFEA] bg-clip-text text-transparent">Grow faster.</span></h2>
+                    <p className="mt-3 max-w-sm text-[10px] leading-5 text-slate-600 sm:mt-4 sm:text-sm sm:leading-6">A premium digital experience, crafted to move your business forward.</p>
+                    <div className="mt-5 inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-[#2457FF] to-[#11BCEB] px-4 py-2.5 text-[10px] font-bold text-white shadow-lg shadow-blue-500/20 sm:mt-7 sm:px-5 sm:py-3 sm:text-xs">Discover our work <ArrowRight size={13} /></div>
+                  </div>
+                  <div className="relative mx-auto h-36 w-full max-w-[300px] sm:h-64 sm:max-w-none">
+                    <div className="absolute right-2 top-1 h-28 w-28 rounded-full bg-gradient-to-br from-[#1C5DFF] to-[#1CD6F2] opacity-90 blur-[1px] sm:right-4 sm:top-4 sm:h-48 sm:w-48" />
+                    <motion.img
+                      src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=85"
+                      alt="Creative team collaborating on a digital project"
+                      loading="lazy"
+                      animate={{ y: [0, -7, 0], rotate: [1, 0, 1] }}
+                      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                      className="absolute right-0 top-4 h-28 w-[78%] rounded-2xl border-4 border-white object-cover shadow-[0_22px_45px_rgba(7,27,77,0.2)] sm:top-8 sm:h-48 sm:rounded-3xl sm:border-[6px]"
+                    />
+                    <div className="absolute bottom-1 left-0 rounded-xl border border-white/80 bg-white/90 p-2.5 shadow-xl backdrop-blur-xl sm:bottom-3 sm:p-4">
+                      <div className="flex items-center gap-2"><span className="flex h-7 w-7 items-center justify-center rounded-lg bg-blue-600 text-white sm:h-9 sm:w-9"><Monitor size={17} /></span><div><p className="text-[8px] font-bold text-slate-400 sm:text-[9px]">DIGITAL EXPERIENCE</p><p className="text-[10px] font-extrabold text-[#081B42] sm:text-xs">Made to impress</p></div></div>
+                    </div>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-cyan-400 to-blue-500" />
+                </div>
               </div>
             </motion.div>
 
-            {/* RIGHT: Modern Floating Card Preview */}
+            {/* Floating image cards */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 30 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ delay: 0.15, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="relative mx-auto w-full max-w-[620px]"
+              animate={{ y: [0, -13, 0], rotate: [-5, -3, -5] }}
+              transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -left-1 top-[15%] z-20 hidden w-40 rounded-2xl border border-white/20 bg-white/10 p-2 shadow-[0_25px_60px_rgba(0,0,0,0.35)] backdrop-blur-xl md:block lg:-left-2 lg:w-48"
             >
-              {/* Outer Glow */}
-              <div className="pointer-events-none absolute -inset-2 rounded-[32px] bg-gradient-to-r from-blue-500/20 to-cyan-500/20 blur-2xl" />
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=500&q=85" alt="Analytics dashboard design" loading="lazy" className="h-24 w-full rounded-xl object-cover lg:h-28" />
+              <div className="px-1 pb-1 pt-2 text-left"><p className="text-[9px] font-bold uppercase tracking-[0.15em] text-cyan-300">01 / Strategy</p><p className="mt-1 text-xs font-semibold text-white">Built for growth</p></div>
+            </motion.div>
 
-              {/* Top Floating Badge */}
-              <motion.div
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -left-4 -top-6 z-20 hidden items-center gap-3 rounded-2xl border border-white/15 bg-[#0D1527]/90 px-4 py-3 shadow-2xl backdrop-blur-xl sm:flex"
-              >
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-cyan-400/15 text-cyan-300">
-                  <Code2 size={18} />
-                </div>
-                <div>
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">
-                    Development
-                  </p>
-                  <p className="text-xs font-semibold text-white">
-                    Clean. Modern. Scalable.
-                  </p>
-                </div>
-              </motion.div>
+            <motion.div
+              animate={{ y: [0, 12, 0], rotate: [5, 3, 5] }}
+              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -right-1 bottom-[12%] z-20 hidden w-40 rounded-2xl border border-white/20 bg-white/10 p-2 shadow-[0_25px_60px_rgba(0,0,0,0.35)] backdrop-blur-xl md:block lg:-right-2 lg:w-48"
+            >
+              <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=500&q=85" alt="Creative brand and visual design" loading="lazy" className="h-24 w-full rounded-xl object-cover lg:h-28" />
+              <div className="px-1 pb-1 pt-2 text-left"><p className="text-[9px] font-bold uppercase tracking-[0.15em] text-cyan-300">02 / Design</p><p className="mt-1 text-xs font-semibold text-white">Every pixel matters</p></div>
+            </motion.div>
 
-              {/* Browser Window Frame */}
-              <div className="relative overflow-hidden rounded-[24px] border border-white/15 bg-[#0A101D]/90 p-3 shadow-[0_25px_80px_rgba(0,0,0,0.6)] backdrop-blur-xl sm:rounded-[28px] sm:p-4">
-                {/* Window Header Bar */}
-                <div className="flex h-9 items-center justify-between border-b border-white/10 pb-3">
-                  <div className="flex items-center gap-2">
-                    <span className="h-3 w-3 rounded-full bg-[#FF5F56]" />
-                    <span className="h-3 w-3 rounded-full bg-[#FFBD2E]" />
-                    <span className="h-3 w-3 rounded-full bg-[#27C93F]" />
-                  </div>
-                  <div className="flex h-6 items-center rounded-md border border-white/10 bg-white/5 px-3">
-                    <span className="text-[10px] font-medium tracking-wide text-slate-400">
-                      webqenzo.com / your-next-project
-                    </span>
-                  </div>
-                  <span className="text-xs text-slate-500">↗</span>
-                </div>
+            <motion.div animate={{ y: [0, -6, 0] }} transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }} className="absolute -left-2 bottom-[5%] z-20 hidden items-center gap-2 rounded-xl border border-white/15 bg-[#0C1730]/90 px-3 py-2.5 shadow-xl backdrop-blur-xl sm:flex lg:-left-8">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-cyan-400/15 text-cyan-300"><Code2 size={17} /></span><span className="text-left"><span className="block text-[9px] uppercase tracking-widest text-slate-400">Development</span><span className="block text-xs font-semibold text-white">Clean & scalable</span></span>
+            </motion.div>
 
-                {/* Simulated Web App Workspace */}
-                <div className="mt-3 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-[#0F172A] via-[#0B132B] to-[#080D1A] p-5 sm:p-6">
-                  <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                    <div className="flex items-center gap-2.5">
-                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-tr from-blue-500 to-cyan-400 text-xs font-black text-white shadow-md">
-                        N
-                      </div>
-                      <span className="text-xs font-bold tracking-wider text-white">
-                        NEXORA
-                      </span>
-                    </div>
-                    <span className="rounded-full bg-cyan-400/10 px-3 py-1 text-[9px] font-bold uppercase tracking-widest text-cyan-300 border border-cyan-400/20">
-                      Get Started ↗
-                    </span>
-                  </div>
-
-                  <div className="grid grid-cols-[1.1fr_0.9fr] gap-4 pt-5 items-center">
-                    <div>
-                      <span className="inline-block rounded-full bg-blue-500/15 px-2.5 py-1 text-[8px] font-bold uppercase tracking-wider text-blue-300 border border-blue-400/20">
-                        Built for what's next
-                      </span>
-                      <h2 className="mt-2 text-xl font-bold leading-tight text-white sm:text-2xl">
-                        Think bigger.
-                        <br />
-                        <span className="text-cyan-400">Grow faster.</span>
-                      </h2>
-                      <p className="mt-2 text-[10px] text-slate-400 leading-normal">
-                        A digital experience designed to move your business forward.
-                      </p>
-                      <div className="mt-4 inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-400 px-3 py-1.5 text-[9px] font-bold text-white shadow-lg">
-                        Discover More <ArrowRight size={10} />
-                      </div>
-                    </div>
-
-                    {/* Stats Widget */}
-                    <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3 backdrop-blur-md">
-                      <div className="flex items-center justify-between border-b border-white/10 pb-2">
-                        <div className="h-1.5 w-10 rounded-full bg-slate-600" />
-                        <Monitor size={12} className="text-cyan-400" />
-                      </div>
-                      <div className="mt-3 space-y-2">
-                        <div className="rounded-lg bg-blue-500/10 p-2 border border-blue-400/20">
-                          <p className="text-[8px] text-slate-400">User experience</p>
-                          <p className="text-[11px] font-bold text-cyan-300">Made to impress</p>
-                        </div>
-                        <div className="flex h-8 items-end gap-1 pt-1">
-                          {[40, 65, 45, 80, 60, 100].map((h, i) => (
-                            <div
-                              key={i}
-                              className="flex-1 rounded-t bg-gradient-to-t from-blue-600 to-cyan-400"
-                              style={{ height: `${h}%` }}
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Bottom Frame Details */}
-                <div className="mt-3 flex items-center justify-between px-2 pt-1 text-[10px] text-slate-400">
-                  <span className="font-semibold text-slate-300">DESIGNED WITH PURPOSE</span>
-                  <span className="flex items-center gap-1.5">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                    Responsive on every screen
-                  </span>
-                </div>
-              </div>
-
-              {/* Bottom Floating Card */}
-              <motion.div
-                animate={{ y: [0, 6, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-5 -right-3 z-20 hidden items-center gap-3 rounded-2xl border border-white/15 bg-[#0D1527]/90 px-4 py-3 shadow-2xl backdrop-blur-xl sm:flex"
-              >
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-500/15 text-blue-300">
-                  <Sparkles size={18} />
-                </div>
-                <div>
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">
-                    Design approach
-                  </p>
-                  <p className="text-xs font-semibold text-white">
-                    Every pixel has a purpose.
-                  </p>
-                </div>
-              </motion.div>
+            <motion.div animate={{ y: [0, 7, 0] }} transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut" }} className="absolute -right-2 top-[8%] z-20 hidden items-center gap-2 rounded-xl border border-white/15 bg-[#0C1730]/90 px-3 py-2.5 shadow-xl backdrop-blur-xl sm:flex lg:-right-8">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-400/15 text-blue-300"><Sparkles size={17} /></span><span className="text-left"><span className="block text-[9px] uppercase tracking-widest text-slate-400">Design approach</span><span className="block text-xs font-semibold text-white">Made to stand out</span></span>
             </motion.div>
           </div>
 
-          {/* Bottom Industry Bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="mt-12 border-t border-white/10 pt-6 sm:mt-16 sm:pt-8"
-          >
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-400/90 sm:text-xs">
-                Digital solutions for ambitious brands
-              </p>
-              <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs font-medium text-slate-400 sm:text-sm">
-                {[
-                  "Healthcare",
-                  "Fitness",
-                  "Legal",
-                  "Finance",
-                  "Events",
-                  "E-commerce",
-                ].map((industry) => (
-                  <span
-                    key={industry}
-                    className="transition-colors hover:text-cyan-300 cursor-default"
-                  >
-                    {industry}
-                  </span>
-                ))}
-              </div>
-            </div>
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.6 }} className="relative z-20 mt-10 flex max-w-3xl flex-wrap items-center justify-center gap-x-6 gap-y-3 border-t border-white/10 pt-6 text-xs font-medium text-slate-300 sm:mt-12 sm:gap-x-9 sm:pt-7 sm:text-sm">
+            {["Responsive by design", "Performance focused", "Built for growth"].map((item) => (
+              <span key={item} className="inline-flex items-center gap-2"><span className="flex h-4 w-4 items-center justify-center rounded-full bg-cyan-400/15 text-cyan-300"><Check size={11} strokeWidth={3} /></span>{item}</span>
+            ))}
           </motion.div>
+
+          <div className="mt-8 flex flex-wrap justify-center gap-x-5 gap-y-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 sm:gap-x-7 sm:text-xs">
+            {["Healthcare", "Fitness", "Legal", "Finance", "Events", "E-commerce"].map((industry) => <span key={industry} className="transition-colors hover:text-cyan-300">{industry}</span>)}
+          </div>
         </div>
       </section>
 
-      {/* =====================================================
+            {/* =====================================================
           ABOUT PREVIEW SECTION
       ====================================================== */}
       <section className="relative overflow-hidden bg-white py-16 text-slate-900 sm:py-20 lg:py-24">
