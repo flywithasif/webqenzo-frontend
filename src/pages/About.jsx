@@ -17,18 +17,27 @@ import {
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 
-const photos = {
-  hero:
-    "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=85",
-  design:
-    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
-  development:
-    "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1200&q=85",
-  team:
-    "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1400&q=85",
-};
-
 const team = [
+  {
+    name: "Asif",
+    role: "Developer",
+    designation: "Full Stack Developer",
+    number: "04",
+    image: "/Asif.png",
+    description:
+      "Building robust full-stack architectures, scalable backend systems, and seamless user experiences.",
+    tags: ["Full Stack", "UI/UX"],
+  },
+  {
+    name: "Kunal",
+    role: "Marketing",
+    designation: "Marketing Lead",
+    number: "03",
+    image: "/Kunal.png",
+    description:
+      "Supporting marketing initiatives, business outreach and client opportunities.",
+    tags: ["Meta Ads", "Campaigns"],
+  },
   {
     name: "Anni",
     role: "Founder",
@@ -48,26 +57,6 @@ const team = [
     description:
       "Driving strategic expansion, client partnerships, and brand positioning.",
     tags: ["Business Strategy", "Brand Expansion"],
-  },
-  {
-    name: "Kunal",
-    role: "Marketing",
-    designation: "Marketing Lead",
-    number: "03",
-    image: "/Kunal.png",
-    description:
-      "Supporting marketing initiatives, business outreach and client opportunities.",
-    tags: ["Meta Ads", "Campaigns"],
-  },
-  {
-    name: "Asif",
-    role: "Developer",
-    designation: "Full Stack Developer",
-    number: "04",
-    image: "/Asif.png",
-    description:
-      "Architecting high-performance digital platforms and interactive UI/UX.",
-    tags: ["Full Stack", "UI/UX"],
   },
 ];
 
@@ -290,13 +279,13 @@ function About() {
         <section className="relative isolate overflow-hidden bg-[#05070B] text-white">
           <div className="absolute inset-0 -z-10">
             <img
-              src={photos.hero}
+              src="/Every Angel.png"
               alt="Contemporary creative workspace for digital design and development"
               fetchPriority="high"
               className="h-full w-full object-cover"
             />
-            <div className="absolute inset-0 bg-[#05070B]/75" />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#05070B] via-[#05070B]/90 to-[#05070B]/35" />
+            <div className="absolute inset-0 bg-[#05070B]/50" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#05070B] via-[#05070B]/80 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#05070B] via-transparent to-transparent" />
           </div>
 
@@ -519,7 +508,7 @@ function About() {
           <div className="mx-auto grid max-w-[1440px] overflow-hidden rounded-[28px] bg-[#0A0D12] shadow-[0_30px_90px_rgba(5,7,11,0.12)] lg:grid-cols-2">
             <div className="relative min-h-[340px] overflow-hidden sm:min-h-[500px]">
               <img
-                src={photos.design}
+                src="/Every Angel.png"
                 alt="Website interface design and digital analytics"
                 loading="lazy"
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105"
@@ -746,13 +735,13 @@ function About() {
 
               <div className="relative min-h-[430px] overflow-hidden rounded-2xl bg-[#0A0D12] shadow-[0_24px_70px_rgba(5,7,11,0.12)] sm:min-h-[560px]">
                 <img
-                  src={photos.development}
+                  src="/Development.png"
                   alt="Software development and code on a computer screen"
                   loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover opacity-75"
+                  className="absolute inset-0 h-full w-full object-cover"
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-[#05070B] via-[#05070B]/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#05070B] via-transparent to-transparent" />
 
                 <div className="absolute left-6 right-6 top-6 border border-white/20 bg-[#0A0D12]/70 p-5 backdrop-blur-md sm:left-8 sm:right-8 sm:top-8">
                   <div className="flex items-center gap-3">

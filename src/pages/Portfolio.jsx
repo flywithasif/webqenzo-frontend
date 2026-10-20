@@ -1,4 +1,3 @@
-
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import {
@@ -27,7 +26,7 @@ const projects = [
       "A calm, credible digital experience designed to make healthcare services easier to understand and access.",
     image:
       "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1400&q=85",
-    theme: "bg-[#EAF2FF]",
+    theme: "bg-[#0B132B]",
     tags: ["Healthcare", "UX Strategy", "Responsive"],
     path: "/portfolio/medicare",
   },
@@ -40,7 +39,7 @@ const projects = [
       "A high-energy digital presence for fitness brands, built around programs, facilities and membership enquiries.",
     image:
       "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1400&q=85",
-    theme: "bg-[#F2F0EA]",
+    theme: "bg-[#0B132B]",
     tags: ["Fitness", "Membership", "Lead Generation"],
     path: "/portfolio/fitzone",
   },
@@ -53,7 +52,7 @@ const projects = [
       "A confident, understated interface that communicates expertise, professionalism and trust from the first visit.",
     image:
       "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1400&q=85",
-    theme: "bg-[#EEEAE3]",
+    theme: "bg-[#0B132B]",
     tags: ["Legal", "Brand Authority", "Enquiries"],
     path: "/portfolio/lexpro",
   },
@@ -66,7 +65,7 @@ const projects = [
       "A clear, structured experience that makes complex financial services feel approachable and professional.",
     image:
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=85",
-    theme: "bg-[#E9F1EF]",
+    theme: "bg-[#0B132B]",
     tags: ["Finance", "Clarity", "Trust"],
     path: "/portfolio/finedge",
   },
@@ -79,7 +78,7 @@ const projects = [
       "A bold visual direction for entertainment brands, designed to bring events, media and enquiries together.",
     image:
       "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1400&q=85",
-    theme: "bg-[#F1E9F5]",
+    theme: "bg-[#0B132B]",
     tags: ["Events", "Visual Storytelling", "Media"],
     path: "/portfolio/beathouse",
   },
@@ -92,7 +91,7 @@ const projects = [
       "A considered storefront concept combining strong product imagery, refined merchandising and a smoother shopping journey.",
     image:
       "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1400&q=85",
-    theme: "bg-[#F3EDE6]",
+    theme: "bg-[#0B132B]",
     tags: ["Fashion", "E-commerce", "Product UX"],
     path: "/portfolio/threadrare",
   },
@@ -149,8 +148,8 @@ const principles = [
 function SectionLabel({ children }) {
   return (
     <div className="mb-5 flex items-center gap-3">
-      <span className="h-px w-8 bg-blue-700" />
-      <span className="text-[10px] font-bold uppercase tracking-[0.24em] text-blue-800 sm:text-xs">
+      <span className="h-px w-8 bg-cyan-400" />
+      <span className="text-[10px] font-bold uppercase tracking-[0.24em] text-cyan-400 sm:text-xs">
         {children}
       </span>
     </div>
@@ -160,10 +159,10 @@ function SectionLabel({ children }) {
 function ProjectCard({ project, index }) {
   return (
     <motion.article
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.12 }}
-      transition={{ duration: 0.55, delay: (index % 2) * 0.08 }}
+      transition={{ duration: 0.6, delay: (index % 2) * 0.1 }}
       className="group min-w-0"
     >
       <Link
@@ -171,27 +170,25 @@ function ProjectCard({ project, index }) {
         aria-label={`Explore the ${project.name} project`}
         className="block"
       >
-        <div
-          className={`relative aspect-[1.13/1] overflow-hidden rounded-[1.25rem] sm:rounded-[1.65rem] ${project.theme}`}
-        >
+        <div className="relative aspect-[1.13/1] overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border border-white/10 bg-[#0B132B] shadow-[0_20px_50px_rgba(0,0,0,0.4)]">
           <img
             src={project.image}
             alt={`${project.name} ${project.type} design concept`}
             loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.045]"
+            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-90"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-t from-[#07132B]/45 via-transparent to-white/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#030712]/90 via-[#030712]/30 to-transparent" />
 
-          <span className="absolute left-4 top-4 rounded-full border border-white/50 bg-white/90 px-3 py-1.5 text-[10px] font-semibold tracking-wide text-slate-800 backdrop-blur-md sm:left-6 sm:top-6 sm:text-xs">
+          <span className="absolute left-4 top-4 rounded-full border border-white/15 bg-white/10 px-3.5 py-1.5 text-[10px] font-semibold tracking-wide text-white backdrop-blur-md sm:left-6 sm:top-6 sm:text-xs">
             {project.category}
           </span>
 
-          <span className="absolute bottom-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#123D91] shadow-lg transition duration-300 group-hover:-translate-y-1 group-hover:bg-blue-700 group-hover:text-white sm:bottom-6 sm:right-6 sm:h-12 sm:w-12">
-            <ArrowUpRight size={20} />
+          <span className="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-full bg-cyan-400 text-[#030712] shadow-xl transition-all duration-300 group-hover:-translate-y-1 group-hover:scale-110 sm:bottom-6 sm:right-6 sm:h-12 sm:w-12">
+            <ArrowUpRight size={20} strokeWidth={2.5} />
           </span>
 
-          <span className="absolute bottom-5 left-4 text-xs font-medium text-white/90 sm:bottom-7 sm:left-6">
+          <span className="absolute bottom-5 left-4 text-xs font-medium text-slate-300 sm:bottom-7 sm:left-6">
             Selected concept · {project.id}
           </span>
         </div>
@@ -199,15 +196,15 @@ function ProjectCard({ project, index }) {
 
       <div className="flex items-start justify-between gap-4 pt-5 sm:pt-6">
         <div className="min-w-0">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.17em] text-slate-400 sm:text-xs">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.17em] text-cyan-400 sm:text-xs">
             {project.type}
           </p>
           <Link to={project.path} className="group/title inline-block">
-            <h3 className="mt-2 text-2xl font-semibold tracking-[-0.055em] text-[#101B32] transition-colors group-hover/title:text-blue-700 sm:text-3xl">
+            <h3 className="mt-2 text-2xl font-bold tracking-[-0.04em] text-white transition-colors group-hover/title:text-cyan-300 sm:text-3xl">
               {project.name}
             </h3>
           </Link>
-          <p className="mt-3 max-w-md text-sm leading-6 text-slate-600 sm:text-[15px] sm:leading-7">
+          <p className="mt-3 max-w-md text-sm leading-6 text-slate-400 sm:text-[15px] sm:leading-7">
             {project.description}
           </p>
 
@@ -215,7 +212,7 @@ function ProjectCard({ project, index }) {
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-[10px] font-medium text-slate-600 sm:text-xs"
+                className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[10px] font-medium text-slate-300 sm:text-xs backdrop-blur-sm"
               >
                 {tag}
               </span>
@@ -226,7 +223,7 @@ function ProjectCard({ project, index }) {
         <Link
           to={project.path}
           aria-label={`Read the ${project.name} case study`}
-          className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition hover:border-blue-700 hover:bg-blue-700 hover:text-white sm:h-11 sm:w-11"
+          className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/5 text-slate-300 transition hover:border-cyan-400 hover:bg-cyan-400 hover:text-[#030712] sm:h-11 sm:w-11"
         >
           <ChevronRight size={18} />
         </Link>
@@ -247,7 +244,7 @@ function Portfolio() {
   );
 
   return (
-    <main className="overflow-hidden bg-white text-[#101B32]">
+    <main className="overflow-hidden bg-[#030712] text-white selection:bg-cyan-500/30">
       <SEO
         title="Our Portfolio | Premium Website Design & Development"
         description="Explore WebQenzo's website design and development concepts across healthcare, fitness, legal, finance, events and e-commerce."
@@ -255,9 +252,18 @@ function Portfolio() {
       />
 
       {/* HERO */}
-      <section className="relative isolate overflow-hidden bg-[#F7F9FD]">
-        <div className="pointer-events-none absolute -right-40 -top-40 -z-10 h-[420px] w-[420px] rounded-full bg-blue-200/40 blur-[100px] sm:h-[600px] sm:w-[600px]" />
-        <div className="pointer-events-none absolute -bottom-48 -left-40 -z-10 h-[360px] w-[360px] rounded-full bg-indigo-100/70 blur-[100px]" />
+      <section className="relative isolate overflow-hidden bg-[#030712] text-white">
+        <div className="pointer-events-none absolute -right-40 -top-40 -z-10 h-[500px] w-[500px] rounded-full bg-blue-600/20 blur-[150px] sm:h-[700px] sm:w-[700px]" />
+        <div className="pointer-events-none absolute -bottom-48 -left-40 -z-10 h-[400px] w-[400px] rounded-full bg-cyan-500/15 blur-[150px]" />
+
+        <div
+          className="absolute inset-0 opacity-[0.035] -z-10"
+          style={{
+            backgroundImage:
+              "radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1px)",
+            backgroundSize: "32px 32px",
+          }}
+        />
 
         <div className="mx-auto grid max-w-[1440px] items-center gap-12 px-5 pb-16 pt-20 sm:px-8 sm:pb-24 sm:pt-28 lg:grid-cols-[1.02fr_.98fr] lg:gap-16 lg:px-14 lg:pb-28 lg:pt-32">
           <motion.div
@@ -267,60 +273,62 @@ function Portfolio() {
           >
             <SectionLabel>Selected work · WebQenzo</SectionLabel>
 
-            <h1 className="max-w-3xl text-[clamp(3.2rem,7.3vw,6.8rem)] font-semibold leading-[0.94] tracking-[-0.075em] text-[#101B32]">
+            <h1 className="max-w-3xl text-[clamp(3.2rem,7.3vw,6.8rem)] font-bold leading-[0.94] tracking-[-0.075em] text-white">
               Good design.
               <br />
-              <span className="text-blue-700">Lasting impact.</span>
+              <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-400 bg-clip-text text-transparent">
+                Lasting impact.
+              </span>
             </h1>
 
-            <p className="mt-7 max-w-xl text-base leading-7 text-slate-600 sm:mt-9 sm:text-lg sm:leading-8">
+            <p className="mt-7 max-w-xl text-base leading-7 text-slate-300 sm:mt-9 sm:text-lg sm:leading-8">
               We create thoughtful digital experiences that bring together
               brand identity, useful functionality and a clear purpose.
               Explore concepts across industries, each with its own direction.
             </p>
 
-            <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3.5 sm:mt-10 sm:flex-row">
               <Link
                 to="/get-quote"
-                className="inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-blue-700 px-7 py-3.5 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(29,78,216,0.18)] transition hover:-translate-y-0.5 hover:bg-blue-800"
+                className="inline-flex min-h-14 items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-400 px-7 py-3.5 text-sm font-semibold text-[#030712] shadow-[0_10px_30px_rgba(34,211,238,0.3)] transition hover:-translate-y-0.5 hover:shadow-[0_15px_40px_rgba(34,211,238,0.4)]"
               >
                 Discuss your project
-                <ArrowUpRight size={17} />
+                <ArrowUpRight size={17} strokeWidth={2.5} />
               </Link>
 
               <a
                 href="#selected-work"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-slate-300 bg-white/70 px-7 py-3.5 text-sm font-semibold text-[#101B32] transition hover:border-blue-400 hover:text-blue-700"
+                className="inline-flex min-h-14 items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.04] px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition hover:border-cyan-400/40 hover:bg-white/[0.08]"
               >
                 Explore our work
                 <ArrowDown size={16} />
               </a>
             </div>
 
-            <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-3 border-t border-slate-200 pt-6 sm:mt-14">
+            <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-3 border-t border-white/10 pt-6 sm:mt-14">
               <div>
-                <p className="text-2xl font-semibold tracking-tight text-[#101B32]">
+                <p className="text-2xl font-bold tracking-tight text-white">
                   06
                 </p>
-                <p className="mt-1 text-[10px] uppercase tracking-[0.15em] text-slate-500 sm:text-xs">
+                <p className="mt-1 text-[10px] uppercase tracking-[0.15em] text-slate-400 sm:text-xs">
                   Featured concepts
                 </p>
               </div>
-              <span className="h-10 w-px bg-slate-200" />
+              <span className="h-10 w-px bg-white/10" />
               <div>
-                <p className="text-2xl font-semibold tracking-tight text-[#101B32]">
+                <p className="text-2xl font-bold tracking-tight text-white">
                   06
                 </p>
-                <p className="mt-1 text-[10px] uppercase tracking-[0.15em] text-slate-500 sm:text-xs">
+                <p className="mt-1 text-[10px] uppercase tracking-[0.15em] text-slate-400 sm:text-xs">
                   Industry directions
                 </p>
               </div>
-              <span className="h-10 w-px bg-slate-200" />
+              <span className="h-10 w-px bg-white/10" />
               <div>
-                <p className="text-sm font-semibold text-blue-800">
+                <p className="text-sm font-bold text-cyan-400">
                   Strategy first
                 </p>
-                <p className="mt-1 text-[10px] uppercase tracking-[0.15em] text-slate-500 sm:text-xs">
+                <p className="mt-1 text-[10px] uppercase tracking-[0.15em] text-slate-400 sm:text-xs">
                   Purposeful design
                 </p>
               </div>
@@ -333,14 +341,14 @@ function Portfolio() {
             transition={{ duration: 0.8, delay: 0.12 }}
             className="relative mx-auto w-full max-w-[620px] lg:ml-auto"
           >
-            <div className="absolute -inset-4 rounded-[2rem] border border-blue-100 sm:-inset-6 sm:rounded-[2.5rem]" />
+            <div className="absolute -inset-4 rounded-[2rem] border border-cyan-500/20 sm:-inset-6 sm:rounded-[2.5rem]" />
 
-            <div className="relative overflow-hidden rounded-[1.5rem] bg-[#E6EDF8] p-3 shadow-[0_30px_90px_rgba(20,45,90,0.13)] sm:rounded-[2rem] sm:p-4">
-              <div className="flex items-center gap-2 rounded-t-xl border-b border-slate-200/80 bg-white px-4 py-3 sm:rounded-t-2xl sm:px-5">
-                <span className="h-2 w-2 rounded-full bg-slate-300" />
-                <span className="h-2 w-2 rounded-full bg-slate-300" />
-                <span className="h-2 w-2 rounded-full bg-slate-300" />
-                <div className="ml-3 flex-1 truncate rounded-md bg-slate-50 px-3 py-1.5 text-[9px] text-slate-500 sm:text-[10px]">
+            <div className="relative overflow-hidden rounded-[1.5rem] border border-white/15 bg-[#0B132B] p-3 shadow-[0_30px_90px_rgba(0,0,0,0.7)] backdrop-blur-xl sm:rounded-[2rem] sm:p-4">
+              <div className="flex items-center gap-2 rounded-t-xl border-b border-white/10 bg-[#0A101D] px-4 py-3 sm:rounded-t-2xl sm:px-5">
+                <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F56]" />
+                <span className="h-2.5 w-2.5 rounded-full bg-[#FFBD2E]" />
+                <span className="h-2.5 w-2.5 rounded-full bg-[#27C93F]" />
+                <div className="ml-3 flex-1 truncate rounded-md bg-white/5 px-3 py-1.5 text-[9px] text-slate-400 sm:text-[10px]">
                   webqenzo.com / selected-work
                 </div>
               </div>
@@ -350,39 +358,39 @@ function Portfolio() {
                   src={projects[5].image}
                   alt="Fashion e-commerce visual concept"
                   fetchPriority="high"
-                  className="h-[300px] w-full object-cover sm:h-[420px] lg:h-[460px]"
+                  className="h-[300px] w-full object-cover opacity-85 sm:h-[420px] lg:h-[460px]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#101B32]/75 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent" />
 
                 <div className="absolute bottom-0 left-0 right-0 p-5 text-white sm:p-8">
-                  <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/15 px-3 py-1.5 text-[10px] font-medium backdrop-blur-md sm:text-xs">
-                    <Sparkles size={12} />
+                  <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[10px] font-medium backdrop-blur-md sm:text-xs">
+                    <Sparkles size={12} className="text-cyan-400" />
                     Featured concept
                   </span>
-                  <h2 className="mt-4 text-3xl font-semibold tracking-[-0.06em] sm:text-5xl">
+                  <h2 className="mt-4 text-3xl font-bold tracking-[-0.04em] sm:text-5xl">
                     ThreadRare
                   </h2>
                   <div className="mt-3 flex items-center justify-between gap-3">
-                    <p className="text-xs text-white/80 sm:text-sm">
+                    <p className="text-xs text-slate-300 sm:text-sm">
                       Fashion · Digital commerce
                     </p>
                     <Link
                       to="/portfolio/threadrare"
                       aria-label="Explore ThreadRare"
-                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-blue-800 transition hover:bg-blue-100"
+                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cyan-400 text-[#030712] transition hover:scale-110"
                     >
-                      <ArrowUpRight size={19} />
+                      <ArrowUpRight size={19} strokeWidth={2.5} />
                     </Link>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="absolute -bottom-5 right-2 hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_15px_45px_rgba(20,45,90,0.12)] sm:block lg:-right-5">
-              <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-slate-400">
+            <div className="absolute -bottom-5 right-2 hidden rounded-2xl border border-white/10 bg-[#0B132B]/90 p-4 shadow-2xl backdrop-blur-md sm:block lg:-right-5">
+              <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-cyan-400">
                 Our design principle
               </p>
-              <p className="mt-1.5 text-sm font-semibold text-[#101B32]">
+              <p className="mt-1.5 text-sm font-semibold text-white">
                 Form follows purpose.
               </p>
             </div>
@@ -393,19 +401,19 @@ function Portfolio() {
       {/* SELECTED WORK */}
       <section
         id="selected-work"
-        className="scroll-mt-20 px-5 py-20 sm:px-8 sm:py-28 lg:px-14 lg:py-32"
+        className="scroll-mt-20 px-5 py-20 sm:px-8 sm:py-28 lg:px-14 lg:py-32 bg-[#060B21]"
       >
         <div className="mx-auto max-w-[1440px]">
           <div className="grid gap-6 lg:grid-cols-[1fr_.7fr] lg:items-end">
             <div>
               <SectionLabel>The portfolio</SectionLabel>
-              <h2 className="max-w-3xl text-4xl font-semibold leading-[1.03] tracking-[-0.065em] sm:text-6xl">
+              <h2 className="max-w-3xl text-4xl font-bold leading-[1.03] tracking-[-0.055em] text-white sm:text-6xl">
                 Different industries.
                 <br />
-                <span className="text-slate-400">One thoughtful approach.</span>
+                <span className="text-slate-500">One thoughtful approach.</span>
               </h2>
             </div>
-            <p className="max-w-lg text-sm leading-7 text-slate-600 sm:text-base sm:leading-8 lg:justify-self-end">
+            <p className="max-w-lg text-sm leading-7 text-slate-400 sm:text-base sm:leading-8 lg:justify-self-end">
               Every business has different needs. Browse our concepts to see
               how layout, visual language and user experience can adapt to
               different audiences and goals.
@@ -424,8 +432,8 @@ function Portfolio() {
                   aria-pressed={isActive}
                   className={`shrink-0 rounded-full border px-4 py-2.5 text-xs font-semibold transition sm:px-5 sm:text-sm ${
                     isActive
-                      ? "border-blue-700 bg-blue-700 text-white"
-                      : "border-slate-200 bg-white text-slate-600 hover:border-blue-300 hover:text-blue-700"
+                      ? "border-cyan-400 bg-cyan-400 text-[#030712] shadow-lg shadow-cyan-500/20"
+                      : "border-white/10 bg-white/[0.04] text-slate-300 hover:border-cyan-400/40 hover:text-white"
                   }`}
                 >
                   {filter}
@@ -434,10 +442,10 @@ function Portfolio() {
             })}
           </div>
 
-          <div className="mt-8 flex items-center justify-between border-b border-slate-200 pb-4">
-            <p className="text-xs text-slate-500 sm:text-sm">
+          <div className="mt-8 flex items-center justify-between border-b border-white/10 pb-4">
+            <p className="text-xs text-slate-400 sm:text-sm">
               Showing{" "}
-              <span className="font-semibold text-[#101B32]">
+              <span className="font-semibold text-white">
                 {visibleProjects.length.toString().padStart(2, "0")}
               </span>{" "}
               {activeFilter === "All"
@@ -458,18 +466,20 @@ function Portfolio() {
       </section>
 
       {/* APPROACH */}
-      <section className="border-y border-slate-200 bg-[#F7F9FD] px-5 py-20 sm:px-8 sm:py-28 lg:px-14 lg:py-32">
+      <section className="border-y border-white/10 bg-[#030712] px-5 py-20 sm:px-8 sm:py-28 lg:px-14 lg:py-32">
         <div className="mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-[.9fr_1.1fr] lg:gap-20">
           <div>
             <SectionLabel>Our approach</SectionLabel>
-            <h2 className="text-4xl font-semibold leading-[1.04] tracking-[-0.065em] sm:text-6xl">
+            <h2 className="text-4xl font-bold leading-[1.04] tracking-[-0.055em] text-white sm:text-6xl">
               Premium isn't
               <br />
               just a look.
               <br />
-              <span className="text-blue-700">It's how it works.</span>
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+                It's how it works.
+              </span>
             </h2>
-            <p className="mt-6 max-w-lg text-sm leading-7 text-slate-600 sm:mt-8 sm:text-base sm:leading-8">
+            <p className="mt-6 max-w-lg text-sm leading-7 text-slate-300 sm:mt-8 sm:text-base sm:leading-8">
               A polished website should feel considered at every level:
               clear messaging, useful interactions, consistent visual
               decisions and a structure that supports the business.
@@ -477,7 +487,7 @@ function Portfolio() {
 
             <Link
               to="/services"
-              className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-blue-800 transition hover:gap-3"
+              className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-cyan-400 transition hover:gap-3"
             >
               Explore our services
               <ArrowRight size={16} />
@@ -495,20 +505,20 @@ function Portfolio() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.45, delay: index * 0.07 }}
-                  className="rounded-2xl border border-slate-200 bg-white p-5 transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-[0_18px_45px_rgba(20,45,90,0.06)] sm:p-7"
+                  className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition duration-300 hover:-translate-y-1 hover:border-cyan-400/40 hover:bg-white/[0.06] hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] sm:p-7 backdrop-blur-md"
                 >
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-semibold tracking-widest text-slate-400">
                       {service.number}
                     </span>
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-400/10 text-cyan-400 border border-cyan-400/20">
                       <Icon size={19} />
                     </span>
                   </div>
-                  <h3 className="mt-7 text-xl font-semibold tracking-[-0.04em] sm:text-2xl">
+                  <h3 className="mt-7 text-xl font-bold tracking-tight text-white sm:text-2xl">
                     {service.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-6 text-slate-600">
+                  <p className="mt-3 text-sm leading-6 text-slate-400">
                     {service.description}
                   </p>
                 </motion.div>
@@ -519,35 +529,37 @@ function Portfolio() {
       </section>
 
       {/* QUALITY */}
-      <section className="px-5 py-20 sm:px-8 sm:py-28 lg:px-14 lg:py-32">
+      <section className="px-5 py-20 sm:px-8 sm:py-28 lg:px-14 lg:py-32 bg-[#060B21]">
         <div className="mx-auto grid max-w-[1440px] items-start gap-12 lg:grid-cols-[.9fr_1.1fr] lg:gap-20">
           <div>
             <SectionLabel>Built with intention</SectionLabel>
-            <h2 className="text-4xl font-semibold leading-[1.04] tracking-[-0.065em] sm:text-6xl">
+            <h2 className="text-4xl font-bold leading-[1.04] tracking-[-0.055em] text-white sm:text-6xl">
               Details matter.
               <br />
-              <span className="text-blue-700">So does the bigger picture.</span>
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+                So does the bigger picture.
+              </span>
             </h2>
-            <p className="mt-6 max-w-xl text-sm leading-7 text-slate-600 sm:text-base sm:leading-8">
+            <p className="mt-6 max-w-xl text-sm leading-7 text-slate-400 sm:text-base sm:leading-8">
               Our focus is on creating a coherent experience—not just a
               collection of attractive sections. Design choices should make
               the website easier to understand, navigate and use.
             </p>
           </div>
 
-          <div className="divide-y divide-slate-200 border-y border-slate-200">
+          <div className="divide-y divide-white/10 border-y border-white/10">
             {principles.map((principle, index) => (
               <div
                 key={principle}
                 className="flex items-center gap-4 py-5 sm:py-6"
               >
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-50 text-blue-700">
-                  <Check size={17} />
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-cyan-400/10 text-cyan-400 border border-cyan-400/20">
+                  <Check size={17} strokeWidth={2.5} />
                 </span>
-                <p className="flex-1 text-sm font-medium text-[#101B32] sm:text-base">
+                <p className="flex-1 text-sm font-medium text-white sm:text-base">
                   {principle}
                 </p>
-                <span className="text-xs font-medium text-slate-400">
+                <span className="text-xs font-medium text-slate-500">
                   0{index + 1}
                 </span>
               </div>
@@ -557,24 +569,23 @@ function Portfolio() {
       </section>
 
       {/* FINAL CTA */}
-      <section className="px-5 pb-8 sm:px-8 sm:pb-12 lg:px-14">
-        <div className="relative mx-auto max-w-[1440px] overflow-hidden rounded-[1.5rem] bg-[#102D68] px-6 py-14 text-white sm:rounded-[2rem] sm:px-12 sm:py-20 lg:px-20 lg:py-24">
+      <section className="px-5 pb-12 sm:px-8 sm:pb-16 lg:px-14 bg-[#030712]">
+        <div className="relative mx-auto max-w-[1440px] overflow-hidden rounded-[1.5rem] border border-white/15 bg-gradient-to-br from-[#0B132B] via-[#070D1D] to-[#030712] px-6 py-14 text-white sm:rounded-[2rem] sm:px-12 sm:py-20 lg:px-20 lg:py-24 shadow-[0_30px_100px_rgba(0,0,0,0.8)]">
           <div className="pointer-events-none absolute -right-20 -top-32 h-80 w-80 rounded-full border border-white/10 sm:h-[480px] sm:w-[480px]" />
-          <div className="pointer-events-none absolute -right-5 -top-16 h-60 w-60 rounded-full border border-white/10 sm:h-[360px] sm:w-[360px]" />
-          <div className="pointer-events-none absolute bottom-0 right-0 h-64 w-64 rounded-full bg-blue-400/20 blur-[90px]" />
+          <div className="pointer-events-none absolute bottom-0 right-0 h-64 w-64 rounded-full bg-cyan-500/20 blur-[120px]" />
 
           <div className="relative grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
             <div className="max-w-3xl">
-              <p className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.23em] text-blue-200 sm:text-xs">
+              <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.23em] text-cyan-400 sm:text-xs">
                 <Sparkles size={14} />
                 Your next chapter starts here
               </p>
-              <h2 className="mt-5 text-4xl font-semibold leading-[1.02] tracking-[-0.065em] sm:text-6xl lg:text-7xl">
+              <h2 className="mt-5 text-4xl font-bold leading-[1.02] tracking-[-0.055em] sm:text-6xl lg:text-7xl text-white">
                 Let's make your
                 <br />
                 next move count.
               </h2>
-              <p className="mt-5 max-w-xl text-sm leading-7 text-blue-100/80 sm:mt-7 sm:text-base sm:leading-8">
+              <p className="mt-5 max-w-xl text-sm leading-7 text-slate-300 sm:mt-7 sm:text-base sm:leading-8">
                 Tell us about your business, your audience and what you want
                 to achieve. Let's explore the right digital direction for you.
               </p>
@@ -582,20 +593,20 @@ function Portfolio() {
 
             <Link
               to="/get-quote"
-              className="inline-flex min-h-14 items-center justify-center gap-3 self-start rounded-full bg-white px-7 py-4 text-sm font-semibold text-[#102D68] transition hover:-translate-y-1 hover:bg-blue-50 lg:self-end"
+              className="inline-flex min-h-14 items-center justify-center gap-3 self-start rounded-xl bg-gradient-to-r from-blue-500 to-cyan-400 px-7 py-4 text-sm font-bold text-[#030712] shadow-[0_10px_30px_rgba(34,211,238,0.3)] transition hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(34,211,238,0.4)] lg:self-end"
             >
               Start a conversation
-              <ArrowUpRight size={18} />
+              <ArrowUpRight size={18} strokeWidth={2.5} />
             </Link>
           </div>
 
-          <div className="relative mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-white/15 pt-5">
-            <p className="text-xs text-blue-100/70">
+          <div className="relative mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-5">
+            <p className="text-xs text-slate-400">
               WebQenzo · Digital design & development
             </p>
             <Link
               to="/services"
-              className="inline-flex items-center gap-2 text-xs font-semibold text-white transition hover:text-blue-200"
+              className="inline-flex items-center gap-2 text-xs font-semibold text-white transition hover:text-cyan-400"
             >
               Discover our services
               <ArrowRight size={14} />
