@@ -158,17 +158,17 @@ function Contact() {
         path="/contact"
       />
 
-      <main className="bg-[#05070B] text-white">
+      <main className="bg-white text-slate-900">
         {/* =====================================================
             HERO
         ====================================================== */}
-        <section className="relative overflow-hidden border-b border-white/[0.07]">
+        <section className="relative overflow-hidden border-b border-slate-200">
           {/* Ambient lights */}
-          <div className="pointer-events-none absolute left-1/2 top-[-220px] h-[560px] w-[760px] -translate-x-1/2 rounded-full bg-blue-600/[0.09] blur-[150px]" />
+          <div className="pointer-events-none absolute left-1/2 top-[-220px] h-[560px] w-[760px] -translate-x-1/2 rounded-full bg-[#2457FF]/[0.09] blur-[150px]" />
 
-          <div className="pointer-events-none absolute right-[-140px] top-[180px] h-[360px] w-[360px] rounded-full bg-cyan-400/[0.055] blur-[130px]" />
+          <div className="pointer-events-none absolute right-[-140px] top-[180px] h-[360px] w-[360px] rounded-full bg-[#08C5EE]/[0.055] blur-[130px]" />
 
-          <div className="pointer-events-none absolute bottom-[-180px] left-[-120px] h-[320px] w-[320px] rounded-full bg-blue-500/[0.035] blur-[120px]" />
+          <div className="pointer-events-none absolute bottom-[-180px] left-[-120px] h-[320px] w-[320px] rounded-full bg-[#2457FF]/[0.035] blur-[120px]" />
 
           <div className="relative mx-auto max-w-[1300px] px-5 pb-20 pt-20 sm:px-8 lg:px-12 lg:pb-28 lg:pt-28">
             <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
@@ -178,9 +178,9 @@ function Contact() {
                   initial={{ opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
-                  className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400"
+                  className="mb-7 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500"
                 >
-                  <Sparkles size={14} className="text-cyan-300" />
+                  <Sparkles size={14} className="text-[#08C5EE]" />
                   Start a conversation
                 </motion.div>
 
@@ -191,7 +191,7 @@ function Contact() {
                   className="max-w-4xl text-5xl font-black leading-[0.93] tracking-[-0.06em] sm:text-6xl lg:text-8xl"
                 >
                   Let's build
-                  <span className="block bg-gradient-to-r from-blue-400 via-cyan-300 to-white bg-clip-text text-transparent">
+                  <span className="block bg-gradient-to-r from-[#2457FF] via-[#08C5EE] to-white bg-clip-text text-transparent">
                     something great.
                   </span>
                 </motion.h1>
@@ -200,7 +200,7 @@ function Contact() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.65, delay: 0.16 }}
-                  className="mt-8 max-w-2xl text-base leading-8 text-slate-400 sm:text-lg"
+                  className="mt-8 max-w-2xl text-base leading-8 text-slate-500 sm:text-lg"
                 >
                   Have a website idea, a business that needs a better digital
                   presence, or an existing website that needs a serious
@@ -215,7 +215,7 @@ function Contact() {
                 >
                   <Link
                     to="/get-quote"
-                    className="group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 px-6 py-3.5 text-sm font-bold text-white shadow-[0_18px_45px_rgba(37,99,235,.2)] transition duration-300 hover:-translate-y-1"
+                    className="group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#2457FF] to-[#08C5EE] px-6 py-3.5 text-sm font-bold text-white shadow-[0_18px_45px_rgba(37,99,235,.2)] transition duration-300 hover:-translate-y-1"
                   >
                     Start a Project
                     <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/15 transition duration-300 group-hover:rotate-45">
@@ -225,7 +225,7 @@ function Contact() {
 
                   <a
                     href="mailto:hello@webqenzo.com"
-                    className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-6 py-3.5 text-sm font-semibold text-slate-200 transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.07]"
+                    className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3.5 text-sm font-semibold text-slate-500 transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:bg-blue-50"
                   >
                     Email Us
                     <Mail size={16} />
@@ -240,18 +240,18 @@ function Contact() {
                 transition={{ duration: 0.9, delay: 0.12 }}
                 className="relative mx-auto w-full max-w-[520px]"
               >
-                <div className="absolute inset-8 rounded-[40px] bg-blue-500/[0.12] blur-[70px]" />
+                <div className="absolute inset-8 rounded-[40px] bg-[#2457FF]/[0.12] blur-[70px]" />
 
-                <div className="relative rounded-[34px] border border-white/[0.1] bg-[#0A0F18] p-4 shadow-[0_35px_100px_rgba(0,0,0,.55)]">
+                <div className="relative rounded-[34px] border border-slate-200 bg-white p-4 shadow-[0_35px_100px_rgba(15,23,42,.10)]">
                   {/* Window bar */}
-                  <div className="flex items-center justify-between border-b border-white/[0.07] px-3 pb-4">
+                  <div className="flex items-center justify-between border-b border-slate-200 px-3 pb-4">
                     <div className="flex gap-1.5">
                       <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
                       <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
                       <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
                     </div>
 
-                    <span className="text-[9px] uppercase tracking-[0.22em] text-slate-600">
+                    <span className="text-[9px] uppercase tracking-[0.22em] text-slate-500">
                       WebQenzo / Connect
                     </span>
                   </div>
@@ -260,7 +260,7 @@ function Contact() {
                   <div className="p-5 sm:p-7">
                     <div className="flex items-start justify-between">
                       <div>
-                        <p className="text-[10px] uppercase tracking-[0.22em] text-slate-600">
+                        <p className="text-[10px] uppercase tracking-[0.22em] text-slate-500">
                           Project Brief
                         </p>
 
@@ -269,38 +269,38 @@ function Contact() {
                         </h2>
                       </div>
 
-                      <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-cyan-300/15 bg-cyan-300/[0.06] text-cyan-300">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#08C5EE]/25 bg-[#08C5EE]/10 text-[#08C5EE]">
                         <MessageCircle size={20} />
                       </div>
                     </div>
 
                     <div className="mt-7 space-y-3">
-                      <div className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-4">
+                      <div className="rounded-2xl border border-slate-200 bg-white p-4">
                         <div className="h-2 w-24 rounded-full bg-white/10" />
-                        <div className="mt-3 h-2 w-40 rounded-full bg-white/[0.05]" />
+                        <div className="mt-3 h-2 w-40 rounded-full bg-blue-50" />
                       </div>
 
                       <div className="grid grid-cols-2 gap-3">
-                        <div className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-4">
-                          <div className="h-2 w-16 rounded-full bg-blue-400/30" />
-                          <div className="mt-3 h-2 w-20 rounded-full bg-white/[0.05]" />
+                        <div className="rounded-2xl border border-slate-200 bg-white p-4">
+                          <div className="h-2 w-16 rounded-full bg-[#2457FF]/30" />
+                          <div className="mt-3 h-2 w-20 rounded-full bg-blue-50" />
                         </div>
 
-                        <div className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-4">
-                          <div className="h-2 w-16 rounded-full bg-cyan-300/25" />
-                          <div className="mt-3 h-2 w-20 rounded-full bg-white/[0.05]" />
+                        <div className="rounded-2xl border border-slate-200 bg-white p-4">
+                          <div className="h-2 w-16 rounded-full bg-[#08C5EE]/25" />
+                          <div className="mt-3 h-2 w-20 rounded-full bg-blue-50" />
                         </div>
                       </div>
 
-                      <div className="rounded-2xl border border-blue-400/15 bg-gradient-to-r from-blue-500/[0.1] to-cyan-400/[0.06] p-4">
+                      <div className="rounded-2xl border border-[#2457FF]/20 bg-gradient-to-r from-[#2457FF]/[0.08] to-[#08C5EE]/[0.06] p-4">
                         <div className="flex items-center justify-between">
-                          <span className="text-xs font-semibold text-slate-300">
+                          <span className="text-xs font-semibold text-slate-500">
                             Let's create
                           </span>
 
                           <ArrowUpRight
                             size={15}
-                            className="text-cyan-300"
+                            className="text-[#08C5EE]"
                           />
                         </div>
                       </div>
@@ -316,19 +316,19 @@ function Contact() {
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
-                  className="absolute -bottom-5 -left-4 rounded-2xl border border-white/10 bg-[#0A0F18]/95 px-4 py-3 shadow-[0_20px_50px_rgba(0,0,0,.4)] sm:-left-8"
+                  className="absolute -bottom-5 -left-4 rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-[0_20px_50px_rgba(15,23,42,.08)] sm:-left-8"
                 >
                   <div className="flex items-center gap-3">
-                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-400/[0.08] text-emerald-300">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-400/[0.08] text-emerald-600">
                       <CheckCircle2 size={16} />
                     </span>
 
                     <div>
-                      <p className="text-[10px] uppercase tracking-wider text-slate-600">
+                      <p className="text-[10px] uppercase tracking-wider text-slate-500">
                         Next step
                       </p>
 
-                      <p className="mt-0.5 text-xs font-semibold text-slate-300">
+                      <p className="mt-0.5 text-xs font-semibold text-slate-500">
                         Share your idea
                       </p>
                     </div>
@@ -381,13 +381,13 @@ function Contact() {
         ====================================================== */}
         <section
           aria-labelledby="contact-form-heading"
-          className="border-y border-white/[0.07] bg-[#05070B]"
+          className="border-y border-slate-200 bg-white"
         >
           <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
             {!submitted ? (
               <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr]">
                 <div className="lg:sticky lg:top-28 lg:self-start">
-                  <p className="text-xs font-bold uppercase tracking-[0.24em] text-cyan-300">
+                  <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#08C5EE]">
                     Send a message
                   </p>
 
@@ -412,13 +412,13 @@ function Contact() {
                     ].map((item) => (
                       <div
                         key={item}
-                        className="flex items-center gap-3 rounded-2xl border border-white/[0.07] bg-white/[0.025] px-4 py-3.5"
+                        className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3.5"
                       >
                         <CheckCircle2
                           size={17}
-                          className="shrink-0 text-cyan-300"
+                          className="shrink-0 text-[#08C5EE]"
                         />
-                        <span className="text-sm text-slate-400">
+                        <span className="text-sm text-slate-500">
                           {item}
                         </span>
                       </div>
@@ -429,15 +429,15 @@ function Contact() {
                 <form
                   aria-label="WebQenzo contact form"
                   onSubmit={handleSubmit}
-                  className="rounded-[30px] border border-white/[0.08] bg-white/[0.025] p-6 shadow-[0_30px_90px_rgba(0,0,0,.28)] sm:p-8"
+                  className="rounded-[30px] border border-slate-200 bg-white p-6 shadow-[0_30px_90px_rgba(15,23,42,.06)] sm:p-8"
                 >
                   <div className="grid gap-6 sm:grid-cols-2">
                     <div>
                       <label
                         htmlFor="contact-name"
-                        className="mb-2.5 block text-xs font-semibold uppercase tracking-[0.16em] text-slate-400"
+                        className="mb-2.5 block text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
                       >
-                        Name <span className="ml-1 text-cyan-300">*</span>
+                        Name <span className="ml-1 text-[#08C5EE]">*</span>
                       </label>
 
                       <input
@@ -452,16 +452,16 @@ function Contact() {
                           updateField("name", e.target.value)
                         }
                         placeholder="Your name"
-                        className="w-full rounded-2xl border border-white/[0.08] bg-white/[0.035] px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-700 focus:border-cyan-400/40 focus:bg-white/[0.05]"
+                        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#08C5EE]/60 focus:bg-blue-50"
                       />
                     </div>
 
                     <div>
                       <label
                         htmlFor="contact-mobile"
-                        className="mb-2.5 block text-xs font-semibold uppercase tracking-[0.16em] text-slate-400"
+                        className="mb-2.5 block text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
                       >
-                        Mobile Number <span className="ml-1 text-cyan-300">*</span>
+                        Mobile Number <span className="ml-1 text-[#08C5EE]">*</span>
                       </label>
 
                       <input
@@ -478,16 +478,16 @@ function Contact() {
                           updateField("mobile", e.target.value.replace(/\\D/g, "").slice(0, 10))
                         }
                         placeholder="9877777777"
-                        className="w-full rounded-2xl border border-white/[0.08] bg-white/[0.035] px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-700 focus:border-cyan-400/40 focus:bg-white/[0.05]"
+                        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#08C5EE]/60 focus:bg-blue-50"
                       />
                     </div>
 
                     <div>
                       <label
                         htmlFor="contact-email"
-                        className="mb-2.5 block text-xs font-semibold uppercase tracking-[0.16em] text-slate-400"
+                        className="mb-2.5 block text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
                       >
-                        Email <span className="ml-1 text-cyan-300">*</span>
+                        Email <span className="ml-1 text-[#08C5EE]">*</span>
                       </label>
 
                       <input
@@ -501,16 +501,16 @@ function Contact() {
                           updateField("email", e.target.value)
                         }
                         placeholder="you@company.com"
-                        className="w-full rounded-2xl border border-white/[0.08] bg-white/[0.035] px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-700 focus:border-cyan-400/40 focus:bg-white/[0.05]"
+                        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#08C5EE]/60 focus:bg-blue-50"
                       />
                     </div>
 
                     <div className="sm:col-span-2">
                       <label
                         htmlFor="contact-subject"
-                        className="mb-2.5 block text-xs font-semibold uppercase tracking-[0.16em] text-slate-400"
+                        className="mb-2.5 block text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
                       >
-                        Subject <span className="ml-1 text-cyan-300">*</span>
+                        Subject <span className="ml-1 text-[#08C5EE]">*</span>
                       </label>
 
                       <input
@@ -524,16 +524,16 @@ function Contact() {
                           updateField("subject", e.target.value)
                         }
                         placeholder="What would you like to discuss?"
-                        className="w-full rounded-2xl border border-white/[0.08] bg-white/[0.035] px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-700 focus:border-cyan-400/40 focus:bg-white/[0.05]"
+                        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#08C5EE]/60 focus:bg-blue-50"
                       />
                     </div>
 
                     <div className="sm:col-span-2">
                       <label
                         htmlFor="contact-message"
-                        className="mb-2.5 block text-xs font-semibold uppercase tracking-[0.16em] text-slate-400"
+                        className="mb-2.5 block text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
                       >
-                        Message <span className="ml-1 text-cyan-300">*</span>
+                        Message <span className="ml-1 text-[#08C5EE]">*</span>
                       </label>
 
                       <textarea
@@ -547,7 +547,7 @@ function Contact() {
                           updateField("message", e.target.value)
                         }
                         placeholder="Tell us about your business, project, question or what you would like to build."
-                        className="w-full resize-none rounded-2xl border border-white/[0.08] bg-white/[0.035] px-4 py-4 text-sm leading-7 text-white outline-none transition placeholder:text-slate-700 focus:border-cyan-400/40 focus:bg-white/[0.05]"
+                        className="w-full resize-none rounded-2xl border border-slate-200 bg-white px-4 py-4 text-sm leading-7 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#08C5EE]/60 focus:bg-blue-50"
                       />
                     </div>
                   </div>
@@ -555,17 +555,17 @@ function Contact() {
                   {submitError && (
                     <div
                       role="alert"
-                      className="mt-6 rounded-2xl border border-red-400/20 bg-red-400/[0.05] px-5 py-4 text-sm leading-6 text-red-300"
+                      className="mt-6 rounded-2xl border border-red-200 bg-red-50 px-5 py-4 text-sm leading-6 text-red-600"
                     >
                       {submitError}
                     </div>
                   )}
 
-                  <div className="mt-7 rounded-2xl border border-cyan-400/10 bg-cyan-400/[0.025] p-5">
+                  <div className="mt-7 rounded-2xl border border-cyan-400/10 bg-[#08C5EE]/[0.025] p-5">
                     <div className="flex gap-3">
                       <CheckCircle2
                         size={18}
-                        className="mt-0.5 shrink-0 text-cyan-300"
+                        className="mt-0.5 shrink-0 text-[#08C5EE]"
                       />
 
                       <p className="text-xs leading-6 text-slate-500">
@@ -579,11 +579,11 @@ function Contact() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="group mt-6 flex w-full items-center justify-center gap-3 rounded-2xl bg-white px-6 py-4 text-sm font-bold text-[#05070B] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_50px_rgba(255,255,255,.08)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+                    className="group mt-6 flex w-full items-center justify-center gap-3 rounded-2xl bg-white px-6 py-4 text-sm font-bold text-slate-900 transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_50px_rgba(36,87,255,.12)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
                   >
                     {submitting ? "Sending Message..." : "Send Message"}
 
-                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#05070B] text-white transition group-hover:translate-x-1">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-slate-900 transition group-hover:translate-x-1">
                       {submitting ? (
                         <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-white/30 border-t-white" />
                       ) : (
@@ -599,15 +599,15 @@ function Contact() {
                 animate={{ opacity: 1, y: 0 }}
                 className="mx-auto max-w-4xl"
               >
-                <div className="relative overflow-hidden rounded-[34px] border border-cyan-400/15 bg-gradient-to-br from-[#0B1522] via-[#080D15] to-[#071015] p-8 text-center shadow-[0_40px_120px_rgba(0,0,0,.45)] sm:p-14"
+                <div className="relative overflow-hidden rounded-[34px] border border-cyan-400/15 bg-gradient-to-br from-[#0B1522] via-[#080D15] to-[#071015] p-8 text-center shadow-[0_40px_120px_rgba(15,23,42,.08)] sm:p-14"
                 >
-                  <div className="pointer-events-none absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-cyan-400/[0.07] blur-[100px]" />
+                  <div className="pointer-events-none absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-[#08C5EE]/[0.07] blur-[100px]" />
 
-                  <div className="relative mx-auto flex h-20 w-20 items-center justify-center rounded-[26px] border border-cyan-400/20 bg-cyan-400/[0.08]">
-                    <CheckCircle2 size={35} className="text-cyan-300" />
+                  <div className="relative mx-auto flex h-20 w-20 items-center justify-center rounded-[26px] border border-cyan-400/20 bg-[#08C5EE]/[0.08]">
+                    <CheckCircle2 size={35} className="text-[#08C5EE]" />
                   </div>
 
-                  <p className="relative mt-8 text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
+                  <p className="relative mt-8 text-xs font-bold uppercase tracking-[0.3em] text-[#08C5EE]">
                     Message received
                   </p>
 
@@ -615,7 +615,7 @@ function Contact() {
                     Thank you, {form.name || "there"}.
                   </h2>
 
-                  <p className="relative mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-400">
+                  <p className="relative mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-500">
                     Your message has been successfully submitted to WebQenzo.
                     Your enquiry has been securely stored for review.
                   </p>
@@ -624,14 +624,14 @@ function Contact() {
                     <button
                       type="button"
                       onClick={resetForm}
-                      className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.035] px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/[0.07]"
+                      className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-blue-50"
                     >
                       Send another message
                     </button>
 
                     <Link
                       to="/get-quote"
-                      className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-[#05070B]"
+                      className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-slate-900"
                     >
                       Start a project
                       <ArrowUpRight size={16} />
@@ -648,12 +648,12 @@ function Contact() {
         ====================================================== */}
         <section
           aria-labelledby="project-context-heading"
-          className="border-y border-white/[0.07] bg-[#070A10]"
+          className="border-y border-slate-200 bg-slate-50"
         >
           <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
             <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.24em] text-cyan-300">
+                <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#08C5EE]">
                   Before we start
                 </p>
 
@@ -687,14 +687,14 @@ function Contact() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.05 }}
-                    className="flex items-center gap-3 rounded-2xl border border-white/[0.07] bg-white/[0.025] px-5 py-4"
+                    className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-5 py-4"
                   >
                     <CheckCircle2
                       size={17}
-                      className="shrink-0 text-cyan-300"
+                      className="shrink-0 text-[#08C5EE]"
                     />
 
-                    <span className="text-sm text-slate-400">{item}</span>
+                    <span className="text-sm text-slate-500">{item}</span>
                   </motion.div>
                 ))}
               </div>
@@ -738,10 +738,10 @@ function Contact() {
         ====================================================== */}
         <section
           aria-labelledby="contact-cta-heading"
-          className="border-t border-white/[0.07]"
+          className="border-t border-slate-200"
         >
           <div className="mx-auto max-w-[1000px] px-5 py-20 text-center sm:px-8 lg:py-32">
-            <p className="text-xs font-bold uppercase tracking-[0.24em] text-blue-300">
+            <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#2457FF]">
               Ready when you are
             </p>
 
@@ -750,7 +750,7 @@ function Contact() {
               className="mt-5 text-4xl font-black tracking-[-0.05em] sm:text-6xl"
             >
               Your idea deserves
-              <span className="block bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-[#2457FF] to-[#08C5EE] bg-clip-text text-transparent">
                 a serious digital home.
               </span>
             </h2>
@@ -761,7 +761,7 @@ function Contact() {
 
             <Link
               to="/get-quote"
-              className="group mt-9 inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 px-7 py-4 text-sm font-bold text-white shadow-[0_20px_50px_rgba(37,99,235,.2)] transition duration-300 hover:-translate-y-1"
+              className="group mt-9 inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#2457FF] to-[#08C5EE] px-7 py-4 text-sm font-bold text-white shadow-[0_20px_50px_rgba(37,99,235,.2)] transition duration-300 hover:-translate-y-1"
             >
               Start Your Project
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 transition group-hover:rotate-45">
@@ -789,24 +789,24 @@ function ContactCard({
   return (
     <a
       href={href}
-      className="group rounded-[28px] border border-white/[0.08] bg-white/[0.025] p-7 transition duration-500 hover:-translate-y-1 hover:border-blue-400/20 hover:bg-white/[0.04]"
+      className="group rounded-[28px] border border-slate-200 bg-white p-7 transition duration-500 hover:-translate-y-1 hover:border-[#2457FF]/20 hover:bg-white"
     >
       <div className="flex items-start justify-between">
-        <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.05] text-cyan-300">
+        <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-200 bg-blue-50 text-[#08C5EE]">
           <Icon size={20} />
         </div>
 
         <ArrowUpRight
           size={18}
-          className="text-slate-700 transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-cyan-300"
+          className="text-slate-500 transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-[#08C5EE]"
         />
       </div>
 
-      <p className="mt-7 text-[10px] font-bold uppercase tracking-[0.22em] text-slate-600">
+      <p className="mt-7 text-[10px] font-bold uppercase tracking-[0.22em] text-slate-500">
         {label}
       </p>
 
-      <h3 className="mt-2 text-lg font-bold text-white">{title}</h3>
+      <h3 className="mt-2 text-lg font-bold text-slate-900">{title}</h3>
 
       <p className="mt-3 text-sm leading-7 text-slate-500">
         {description}
@@ -821,8 +821,8 @@ function ContactCard({
 
 function InfoCard({ icon: Icon, title, text }) {
   return (
-    <div className="rounded-[28px] border border-white/[0.08] bg-white/[0.025] p-7">
-      <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.05] text-cyan-300">
+    <div className="rounded-[28px] border border-slate-200 bg-white p-7">
+      <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 bg-blue-50 text-[#08C5EE]">
         <Icon size={19} />
       </div>
 

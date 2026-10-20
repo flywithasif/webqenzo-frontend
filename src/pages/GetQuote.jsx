@@ -147,9 +147,9 @@ const faqs = [
 
 function FieldLabel({ children, required = false }) {
   return (
-    <label className="mb-2.5 block text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
+    <label className="mb-2.5 block text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
       {children}
-      {required && <span className="ml-1 text-cyan-300">*</span>}
+      {required && <span className="ml-1 text-[#2457FF]">*</span>}
     </label>
   );
 }
@@ -339,7 +339,7 @@ function GetQuote() {
         path="/get-quote"
       />
 
-      <main className="overflow-hidden bg-[#05070B] text-white">
+      <main className="overflow-hidden bg-white text-slate-900">
       {/* =====================================================
           01 — CINEMATIC HERO
       ====================================================== */}
@@ -355,7 +355,7 @@ function GetQuote() {
             className="absolute inset-0 opacity-[0.035]"
             style={{
               backgroundImage:
-                "linear-gradient(rgba(255,255,255,.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.8) 1px, transparent 1px)",
+                "linear-gradient(rgba(36,87,255,.10) 1px, transparent 1px), linear-gradient(90deg, rgba(36,87,255,.10) 1px, transparent 1px)",
               backgroundSize: "72px 72px",
             }}
           />
@@ -369,41 +369,41 @@ function GetQuote() {
               variants={fadeUp}
               className="max-w-3xl"
             >
-              <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.035] px-4 py-2 text-xs font-medium text-slate-300 backdrop-blur-xl">
+              <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-medium text-slate-700 backdrop-blur-xl">
                 <span className="h-2 w-2 rounded-full bg-cyan-400 shadow-[0_0_18px_rgba(34,211,238,.8)]" />
                 Start a project with WebQenzo
               </div>
 
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#2457FF]">
                 Get a Quote
               </p>
 
               <h1 className="mt-5 text-5xl font-black leading-[0.94] tracking-[-0.06em] sm:text-6xl lg:text-8xl">
                 Let's build something
-                <span className="block bg-gradient-to-r from-white via-blue-100 to-cyan-300 bg-clip-text text-transparent">
+                <span className="block bg-gradient-to-r from-[#2457FF] via-[#168BFA] to-[#08C5EE] bg-clip-text text-transparent">
                   worth remembering.
                 </span>
               </h1>
 
-              <p className="mt-8 max-w-2xl text-base leading-8 text-slate-400 sm:text-lg">
+              <p className="mt-8 max-w-2xl text-base leading-8 text-slate-500 sm:text-lg">
                 Tell us about your business, your idea or the digital
                 experience you want to improve. The more context you share,
                 the better we can understand where to begin.
               </p>
 
-              <div className="mt-9 flex flex-wrap gap-x-7 gap-y-3 text-sm text-slate-500">
+              <div className="mt-9 flex flex-wrap gap-x-7 gap-y-3 text-sm text-slate-600">
                 <span className="flex items-center gap-2">
-                  <ShieldCheck size={16} className="text-cyan-300" />
+                  <ShieldCheck size={16} className="text-[#2457FF]" />
                   Professional enquiry
                 </span>
 
                 <span className="flex items-center gap-2">
-                  <MessageCircle size={16} className="text-cyan-300" />
+                  <MessageCircle size={16} className="text-[#2457FF]" />
                   Clear communication
                 </span>
 
                 <span className="flex items-center gap-2">
-                  <Target size={16} className="text-cyan-300" />
+                  <Target size={16} className="text-[#2457FF]" />
                   Business-focused
                 </span>
               </div>
@@ -430,17 +430,17 @@ function GetQuote() {
               className="relative mx-auto w-full max-w-[570px] [perspective:1800px]"
             >
               <div className="relative aspect-square [transform-style:preserve-3d]">
-                <div className="absolute inset-[7%] rounded-[44px] border border-white/10 bg-white/[0.025] shadow-[0_50px_120px_rgba(0,0,0,.55)] backdrop-blur-xl" />
+                <div className="absolute inset-[7%] rounded-[44px] border border-slate-200 bg-[#F8FBFF] shadow-[0_50px_120px_rgba(0,0,0,.55)] backdrop-blur-xl" />
 
                 <div className="absolute inset-[14%] rounded-[38px] border border-blue-400/20 bg-gradient-to-br from-blue-500/[0.13] via-transparent to-cyan-400/[0.08] [transform:translateZ(35px)]" />
 
-                <div className="absolute inset-[22%] rounded-[32px] border border-white/10 bg-[#080D15]/95 p-6 shadow-[inset_0_0_80px_rgba(37,99,235,.08)] [transform:translateZ(75px)]">
+                <div className="absolute inset-[22%] rounded-[32px] border border-slate-200 bg-white/95 p-6 shadow-[inset_0_0_80px_rgba(37,99,235,.08)] [transform:translateZ(75px)]">
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-600">
                       Project Brief
                     </span>
 
-                    <Sparkles size={17} className="text-cyan-300" />
+                    <Sparkles size={17} className="text-[#2457FF]" />
                   </div>
 
                   <div className="mt-9 space-y-3">
@@ -453,19 +453,19 @@ function GetQuote() {
                     ].map(([number, title]) => (
                       <div
                         key={number}
-                        className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] px-3 py-2.5"
+                        className="flex items-center gap-3 rounded-xl border border-slate-100 bg-[#F8FBFF] px-3 py-2.5"
                       >
-                        <span className="text-[9px] font-bold text-blue-400">
+                        <span className="text-[9px] font-bold text-[#2457FF]">
                           {number}
                         </span>
 
-                        <span className="text-xs font-medium text-slate-300">
+                        <span className="text-xs font-medium text-slate-700">
                           {title}
                         </span>
 
                         <Check
                           size={13}
-                          className="ml-auto text-cyan-300"
+                          className="ml-auto text-[#2457FF]"
                         />
                       </div>
                     ))}
@@ -486,9 +486,9 @@ function GetQuote() {
                   </div>
                 </div>
 
-                <div className="absolute -left-1 top-[18%] rounded-2xl border border-white/10 bg-[#0B111C]/90 px-4 py-3 shadow-2xl backdrop-blur-xl [transform:translateZ(110px)] sm:-left-5">
+                <div className="absolute -left-1 top-[18%] rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 shadow-2xl backdrop-blur-xl [transform:translateZ(110px)] sm:-left-5">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-500/10 text-blue-300">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-500/10 text-[#2457FF]">
                       <BriefcaseBusiness size={17} />
                     </div>
 
@@ -497,16 +497,16 @@ function GetQuote() {
                         First step
                       </p>
 
-                      <p className="text-xs font-semibold text-white">
+                      <p className="text-xs font-semibold text-slate-900">
                         Tell us your idea
                       </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="absolute -right-1 bottom-[18%] rounded-2xl border border-white/10 bg-[#0B111C]/90 px-4 py-3 shadow-2xl backdrop-blur-xl [transform:translateZ(125px)] sm:-right-5">
+                <div className="absolute -right-1 bottom-[18%] rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 shadow-2xl backdrop-blur-xl [transform:translateZ(125px)] sm:-right-5">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-cyan-400/10 text-cyan-300">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-cyan-400/10 text-[#2457FF]">
                       <Rocket size={17} />
                     </div>
 
@@ -515,7 +515,7 @@ function GetQuote() {
                         Next step
                       </p>
 
-                      <p className="text-xs font-semibold text-white">
+                      <p className="text-xs font-semibold text-slate-900">
                         Shape the project
                       </p>
                     </div>
@@ -530,7 +530,7 @@ function GetQuote() {
       {/* =====================================================
           02 — TRUST STRIP
       ====================================================== */}
-      <section className="border-y border-white/[0.07] bg-[#080C13]">
+      <section className="border-y border-slate-200 bg-white">
         <div className="mx-auto grid max-w-[1500px] gap-px px-5 sm:px-8 md:grid-cols-2 lg:grid-cols-4 lg:px-12">
           {[
             ["01", "Understand", "Your business first"],
@@ -540,12 +540,12 @@ function GetQuote() {
           ].map(([number, title, text]) => (
             <div
               key={number}
-              className="flex items-center gap-4 border-white/[0.07] py-7 md:border-r md:px-7 lg:py-9"
+              className="flex items-center gap-4 border-slate-200 py-7 md:border-r md:px-7 lg:py-9"
             >
-              <span className="text-xs font-bold text-blue-400">{number}</span>
+              <span className="text-xs font-bold text-[#2457FF]">{number}</span>
 
               <div>
-                <p className="text-sm font-bold text-white">{title}</p>
+                <p className="text-sm font-bold text-slate-900">{title}</p>
                 <p className="mt-1 text-xs text-slate-600">{text}</p>
               </div>
             </div>
@@ -558,7 +558,7 @@ function GetQuote() {
       ====================================================== */}
       <section
         aria-labelledby="project-enquiry-heading"
-        className="relative bg-[#05070B]"
+        className="relative bg-[#F8FBFF]"
       >
         <div className="pointer-events-none absolute left-1/2 top-[15%] h-[700px] w-[700px] -translate-x-1/2 rounded-full bg-blue-500/[0.045] blur-[130px]" />
 
@@ -567,7 +567,7 @@ function GetQuote() {
             <div className="grid gap-14 lg:grid-cols-[.72fr_1.28fr]">
               {/* Form intro */}
               <div className="lg:sticky lg:top-28 lg:self-start">
-                <p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
+                <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#2457FF]">
                   Project enquiry
                 </p>
 
@@ -578,7 +578,7 @@ function GetQuote() {
                   Tell us what you're building.
                 </h2>
 
-                <p className="mt-6 text-sm leading-7 text-slate-500">
+                <p className="mt-6 text-sm leading-7 text-slate-600">
                   You do not need to write a perfect project brief. Just give
                   us enough information to understand your business and what
                   you are looking for.
@@ -607,14 +607,14 @@ function GetQuote() {
                     return (
                       <div
                         key={item.title}
-                        className="flex gap-4 rounded-2xl border border-white/[0.07] bg-white/[0.02] p-5"
+                        className="flex gap-4 rounded-2xl border border-slate-200 bg-[#F8FBFF] p-5"
                       >
-                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-400/[0.07] text-cyan-300">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-400/[0.07] text-[#2457FF]">
                           <Icon size={18} />
                         </div>
 
                         <div>
-                          <p className="text-sm font-semibold text-slate-200">
+                          <p className="text-sm font-semibold text-slate-800">
                             {item.title}
                           </p>
 
@@ -632,12 +632,12 @@ function GetQuote() {
               <form
                 aria-label="WebQenzo project enquiry form"
                 onSubmit={handleSubmit}
-                className="rounded-[36px] border border-white/[0.09] bg-gradient-to-br from-[#0B111B] to-[#070A10] p-6 shadow-[0_40px_120px_rgba(0,0,0,.38)] sm:p-9 lg:p-12"
+                className="rounded-[36px] border border-slate-200 bg-gradient-to-br from-white to-white p-6 shadow-[0_40px_120px_rgba(0,0,0,.38)] sm:p-9 lg:p-12"
               >
                 {/* Section A */}
                 <div>
                   <div className="flex items-center gap-4">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-500/10 text-xs font-bold text-blue-300">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-500/10 text-xs font-bold text-[#2457FF]">
                       01
                     </span>
 
@@ -662,7 +662,7 @@ function GetQuote() {
                         value={form.name}
                         onChange={(e) => updateField("name", e.target.value)}
                         placeholder="Your name"
-                        className="w-full rounded-2xl border border-white/[0.08] bg-white/[0.035] px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-700 focus:border-cyan-400/40 focus:bg-white/[0.05]"
+                        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-600 focus:border-[#08C5EE] focus:bg-blue-50"
                       />
                     </div>
 
@@ -675,7 +675,7 @@ function GetQuote() {
                         value={form.email}
                         onChange={(e) => updateField("email", e.target.value)}
                         placeholder="you@company.com"
-                        className="w-full rounded-2xl border border-white/[0.08] bg-white/[0.035] px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-700 focus:border-cyan-400/40 focus:bg-white/[0.05]"
+                        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-600 focus:border-[#08C5EE] focus:bg-blue-50"
                       />
                     </div>
 
@@ -688,7 +688,7 @@ function GetQuote() {
                         value={form.phone}
                         onChange={(e) => updateField("phone", e.target.value)}
                         placeholder="+91 XXXXX XXXXX"
-                        className="w-full rounded-2xl border border-white/[0.08] bg-white/[0.035] px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-700 focus:border-cyan-400/40 focus:bg-white/[0.05]"
+                        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-600 focus:border-[#08C5EE] focus:bg-blue-50"
                       />
                     </div>
 
@@ -702,18 +702,18 @@ function GetQuote() {
                           updateField("company", e.target.value)
                         }
                         placeholder="Your business / brand"
-                        className="w-full rounded-2xl border border-white/[0.08] bg-white/[0.035] px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-700 focus:border-cyan-400/40 focus:bg-white/[0.05]"
+                        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-600 focus:border-[#08C5EE] focus:bg-blue-50"
                       />
                     </div>
                   </div>
                 </div>
 
-                <div className="my-12 h-px bg-white/[0.07]" />
+                <div className="my-12 h-px bg-blue-50" />
 
                 {/* Section B */}
                 <div>
                   <div className="flex items-center gap-4">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-500/10 text-xs font-bold text-blue-300">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-500/10 text-xs font-bold text-[#2457FF]">
                       02
                     </span>
 
@@ -739,14 +739,14 @@ function GetQuote() {
                           onClick={() => updateField("service", service)}
                           className={`flex items-center justify-between rounded-xl border px-4 py-3 text-left text-sm transition ${
                             form.service === service
-                              ? "border-cyan-400/30 bg-cyan-400/[0.07] text-white"
-                              : "border-white/[0.07] bg-white/[0.02] text-slate-500 hover:border-white/[0.14] hover:bg-white/[0.04] hover:text-slate-300"
+                              ? "border-cyan-400/30 bg-cyan-400/[0.07] text-slate-900"
+                              : "border-slate-200 bg-[#F8FBFF] text-slate-600 hover:border-white/[0.14] hover:bg-white hover:text-slate-700"
                           }`}
                         >
                           <span>{service}</span>
 
                           {form.service === service && (
-                            <Check size={15} className="text-cyan-300" />
+                            <Check size={15} className="text-[#2457FF]" />
                           )}
                         </button>
                       ))}
@@ -754,12 +754,12 @@ function GetQuote() {
                   </div>
                 </div>
 
-                <div className="my-12 h-px bg-white/[0.07]" />
+                <div className="my-12 h-px bg-blue-50" />
 
                 {/* Section C */}
                 <div>
                   <div className="flex items-center gap-4">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-500/10 text-xs font-bold text-blue-300">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-500/10 text-xs font-bold text-[#2457FF]">
                       03
                     </span>
 
@@ -789,9 +789,9 @@ function GetQuote() {
                           onChange={(e) =>
                             updateField("budget", e.target.value)
                           }
-                          className="w-full appearance-none rounded-2xl border border-white/[0.08] bg-white/[0.035] px-11 py-3.5 text-sm text-slate-300 outline-none focus:border-cyan-400/40"
+                          className="w-full appearance-none rounded-2xl border border-slate-200 bg-white px-11 py-3.5 text-sm text-slate-700 outline-none focus:border-[#08C5EE]"
                         >
-                          <option value="" className="bg-[#080D15]">
+                          <option value="" className="bg-white">
                             Select a range
                           </option>
 
@@ -799,7 +799,7 @@ function GetQuote() {
                             <option
                               key={budget}
                               value={budget}
-                              className="bg-[#080D15]"
+                              className="bg-white"
                             >
                               {budget}
                             </option>
@@ -827,9 +827,9 @@ function GetQuote() {
                           onChange={(e) =>
                             updateField("timeline", e.target.value)
                           }
-                          className="w-full appearance-none rounded-2xl border border-white/[0.08] bg-white/[0.035] px-11 py-3.5 text-sm text-slate-300 outline-none focus:border-cyan-400/40"
+                          className="w-full appearance-none rounded-2xl border border-slate-200 bg-white px-11 py-3.5 text-sm text-slate-700 outline-none focus:border-[#08C5EE]"
                         >
-                          <option value="" className="bg-[#080D15]">
+                          <option value="" className="bg-white">
                             Select timeline
                           </option>
 
@@ -837,7 +837,7 @@ function GetQuote() {
                             <option
                               key={timeline}
                               value={timeline}
-                              className="bg-[#080D15]"
+                              className="bg-white"
                             >
                               {timeline}
                             </option>
@@ -867,7 +867,7 @@ function GetQuote() {
                             updateField("website", e.target.value)
                           }
                           placeholder="https://yourwebsite.com"
-                          className="w-full rounded-2xl border border-white/[0.08] bg-white/[0.035] px-11 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-700 focus:border-cyan-400/40 focus:bg-white/[0.05]"
+                          className="w-full rounded-2xl border border-slate-200 bg-white px-11 py-3.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-600 focus:border-[#08C5EE] focus:bg-blue-50"
                         />
                       </div>
                     </div>
@@ -885,7 +885,7 @@ function GetQuote() {
                           updateField("message", e.target.value)
                         }
                         placeholder="What does your business do? What do you want to build or improve? Who is the website for? What would you like it to achieve?"
-                        className="w-full resize-none rounded-2xl border border-white/[0.08] bg-white/[0.035] px-4 py-4 text-sm leading-7 text-white outline-none transition placeholder:text-slate-700 focus:border-cyan-400/40 focus:bg-white/[0.05]"
+                        className="w-full resize-none rounded-2xl border border-slate-200 bg-white px-4 py-4 text-sm leading-7 text-slate-900 outline-none transition placeholder:text-slate-600 focus:border-[#08C5EE] focus:bg-blue-50"
                       />
                     </div>
                   </div>
@@ -896,10 +896,10 @@ function GetQuote() {
                   <div className="flex gap-3">
                     <ShieldCheck
                       size={18}
-                      className="mt-0.5 shrink-0 text-cyan-300"
+                      className="mt-0.5 shrink-0 text-[#2457FF]"
                     />
 
-                    <p className="text-xs leading-6 text-slate-500">
+                    <p className="text-xs leading-6 text-slate-600">
                       By submitting this enquiry, you are starting a project
                       conversation with WebQenzo. Please share only the
                       information relevant to your project requirements.
@@ -919,11 +919,11 @@ function GetQuote() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="group mt-6 flex w-full items-center justify-center gap-3 rounded-2xl bg-white px-6 py-4 text-sm font-bold text-[#05070B] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_50px_rgba(255,255,255,.08)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+                  className="group mt-6 flex w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-[#2457FF] to-[#08C5EE] px-6 py-4 text-sm font-bold text-white shadow-[0_12px_35px_rgba(36,87,255,0.18)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_50px_rgba(8,197,238,0.20)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
                 >
                   {submitting ? "Sending Enquiry..." : "Send Project Enquiry"}
 
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#05070B] text-white transition group-hover:translate-x-1">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/20 text-white transition group-hover:translate-x-1">
                     {submitting ? (
                       <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-white/30 border-t-white" />
                     ) : (
@@ -942,14 +942,14 @@ function GetQuote() {
               animate={{ opacity: 1, y: 0 }}
               className="mx-auto max-w-5xl"
             >
-              <div className="relative overflow-hidden rounded-[40px] border border-cyan-400/15 bg-gradient-to-br from-[#0B1522] via-[#080D15] to-[#071015] p-8 text-center shadow-[0_40px_120px_rgba(0,0,0,.45)] sm:p-14 lg:p-20">
+              <div className="relative overflow-hidden rounded-[40px] border border-cyan-400/15 bg-gradient-to-br from-white via-[#F8FBFF] to-white p-8 text-center shadow-[0_40px_120px_rgba(0,0,0,.45)] sm:p-14 lg:p-20">
                 <div className="pointer-events-none absolute left-1/2 top-0 h-80 w-80 -translate-x-1/2 rounded-full bg-cyan-400/[0.07] blur-[100px]" />
 
                 <div className="relative mx-auto flex h-20 w-20 items-center justify-center rounded-[26px] border border-cyan-400/20 bg-cyan-400/[0.08]">
-                  <Check size={35} className="text-cyan-300" />
+                  <Check size={35} className="text-[#2457FF]" />
                 </div>
 
-                <p className="relative mt-8 text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
+                <p className="relative mt-8 text-xs font-bold uppercase tracking-[0.3em] text-[#2457FF]">
                   Enquiry prepared
                 </p>
 
@@ -957,7 +957,7 @@ function GetQuote() {
                   Thank you, {form.name || "there"}.
                 </h2>
 
-                <p className="relative mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-400">
+                <p className="relative mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-500">
                   Your project enquiry has been submitted successfully and
                   securely stored. We have received your requirements and can
                   now review the project details you shared with WebQenzo.
@@ -967,13 +967,13 @@ function GetQuote() {
                   {afterSubmit.map((item) => (
                     <div
                       key={item.number}
-                      className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-5 text-left"
+                      className="rounded-2xl border border-slate-200 bg-[#F8FBFF] p-5 text-left"
                     >
-                      <span className="text-[10px] font-bold text-blue-400">
+                      <span className="text-[10px] font-bold text-[#2457FF]">
                         {item.number}
                       </span>
 
-                      <p className="mt-3 text-sm font-bold text-white">
+                      <p className="mt-3 text-sm font-bold text-slate-900">
                         {item.title}
                       </p>
 
@@ -988,7 +988,7 @@ function GetQuote() {
                   <button
                     type="button"
                     onClick={resetForm}
-                    className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.035] px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/[0.07]"
+                    className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-blue-50"
                   >
                     <ArrowRight size={16} className="rotate-180" />
                     Submit another enquiry
@@ -996,7 +996,7 @@ function GetQuote() {
 
                   <Link
                     to="/portfolio"
-                    className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-[#05070B]"
+                    className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-slate-900"
                   >
                     Explore our work
                     <ArrowUpRight size={16} />
@@ -1011,11 +1011,11 @@ function GetQuote() {
       {/* =====================================================
           04 — WHY THIS FORM
       ====================================================== */}
-      <section className="border-y border-white/[0.07] bg-[#080C13]">
+      <section className="border-y border-slate-200 bg-white">
         <div className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
           <div className="grid gap-14 lg:grid-cols-[.75fr_1.25fr]">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
+              <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#2457FF]">
                 Why we ask
               </p>
 
@@ -1023,7 +1023,7 @@ function GetQuote() {
                 Better questions create better project conversations.
               </h2>
 
-              <p className="mt-6 max-w-lg text-base leading-8 text-slate-500">
+              <p className="mt-6 max-w-lg text-base leading-8 text-slate-600">
                 The form is intentionally detailed enough to understand your
                 project without turning the first interaction into a lengthy
                 technical document.
@@ -1037,15 +1037,15 @@ function GetQuote() {
                 return (
                   <div
                     key={item.title}
-                    className="group rounded-[28px] border border-white/[0.08] bg-white/[0.025] p-7 transition duration-500 hover:-translate-y-1 hover:border-blue-400/20 hover:bg-white/[0.045]"
+                    className="group rounded-[28px] border border-slate-200 bg-[#F8FBFF] p-7 transition duration-500 hover:-translate-y-1 hover:border-blue-400/20 hover:bg-blue-50"
                   >
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500/[0.08] text-blue-300">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500/[0.08] text-[#2457FF]">
                       <Icon size={20} />
                     </div>
 
                     <h3 className="mt-7 text-lg font-bold">{item.title}</h3>
 
-                    <p className="mt-3 text-sm leading-7 text-slate-500">
+                    <p className="mt-3 text-sm leading-7 text-slate-600">
                       {item.text}
                     </p>
                   </div>
@@ -1059,10 +1059,10 @@ function GetQuote() {
       {/* =====================================================
           05 — WHAT HAPPENS NEXT
       ====================================================== */}
-      <section className="bg-[#05070B]">
+      <section className="bg-white">
         <div className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
           <div className="text-center">
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#2457FF]">
               After your enquiry
             </p>
 
@@ -1070,7 +1070,7 @@ function GetQuote() {
               What happens after you click send?
             </h2>
 
-            <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-500">
+            <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-600">
               The enquiry is the beginning of the conversation, not the end of
               it.
             </p>
@@ -1082,15 +1082,15 @@ function GetQuote() {
             {afterSubmit.map((item) => (
               <div
                 key={item.number}
-                className="relative rounded-[28px] border border-white/[0.08] bg-white/[0.025] p-7"
+                className="relative rounded-[28px] border border-slate-200 bg-[#F8FBFF] p-7"
               >
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-blue-400/10 bg-blue-500/[0.07] text-xs font-bold text-blue-300">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-blue-400/10 bg-blue-500/[0.07] text-xs font-bold text-[#2457FF]">
                   {item.number}
                 </div>
 
                 <h3 className="mt-8 text-xl font-black">{item.title}</h3>
 
-                <p className="mt-3 text-sm leading-7 text-slate-500">
+                <p className="mt-3 text-sm leading-7 text-slate-600">
                   {item.text}
                 </p>
               </div>
@@ -1102,14 +1102,14 @@ function GetQuote() {
       {/* =====================================================
           06 — TRUST / TRANSPARENCY
       ====================================================== */}
-      <section className="border-y border-white/[0.07] bg-[#080C13]">
+      <section className="border-y border-slate-200 bg-white">
         <div className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
-          <div className="mx-auto max-w-5xl rounded-[38px] border border-white/[0.08] bg-gradient-to-br from-[#0B1220] to-[#071015] p-8 shadow-[0_35px_100px_rgba(0,0,0,.4)] sm:p-12 lg:p-16">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-cyan-400/[0.07] text-cyan-300">
+          <div className="mx-auto max-w-5xl rounded-[38px] border border-slate-200 bg-gradient-to-br from-white to-white p-8 shadow-[0_35px_100px_rgba(0,0,0,.4)] sm:p-12 lg:p-16">
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-cyan-400/[0.07] text-[#2457FF]">
               <ShieldCheck size={25} />
             </div>
 
-            <p className="mt-10 text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
+            <p className="mt-10 text-xs font-bold uppercase tracking-[0.3em] text-[#2457FF]">
               Transparency matters
             </p>
 
@@ -1118,7 +1118,7 @@ function GetQuote() {
               something too early.
             </h2>
 
-            <p className="mt-6 max-w-3xl text-base leading-8 text-slate-400">
+            <p className="mt-6 max-w-3xl text-base leading-8 text-slate-500">
               Every project is different. Requirements, complexity, number of
               pages, integrations, content and desired functionality can all
               affect the scope. That is why project discussions should happen
@@ -1134,11 +1134,11 @@ function GetQuote() {
               ].map((item) => (
                 <div
                   key={item}
-                  className="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.025] px-4 py-3"
+                  className="flex items-center gap-3 rounded-xl border border-slate-200 bg-[#F8FBFF] px-4 py-3"
                 >
-                  <Check size={16} className="text-cyan-300" />
+                  <Check size={16} className="text-[#2457FF]" />
 
-                  <span className="text-sm text-slate-300">{item}</span>
+                  <span className="text-sm text-slate-700">{item}</span>
                 </div>
               ))}
             </div>
@@ -1149,11 +1149,11 @@ function GetQuote() {
       {/* =====================================================
           07 — SERVICES SNAPSHOT
       ====================================================== */}
-      <section className="bg-[#05070B]">
+      <section className="bg-white">
         <div className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
           <div className="mb-14 flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
+              <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#2457FF]">
                 What we can build
               </p>
 
@@ -1164,7 +1164,7 @@ function GetQuote() {
 
             <Link
               to="/services"
-              className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/[0.025] px-5 py-3 text-sm font-semibold text-slate-300 transition hover:bg-white/[0.06] hover:text-white"
+              className="inline-flex w-fit items-center gap-2 rounded-full border border-slate-200 bg-[#F8FBFF] px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-white/[0.06] hover:text-slate-900"
             >
               Explore services
               <ArrowRight size={16} />
@@ -1199,13 +1199,13 @@ function GetQuote() {
               return (
                 <div
                   key={item.title}
-                  className="rounded-[28px] border border-white/[0.08] bg-white/[0.025] p-7"
+                  className="rounded-[28px] border border-slate-200 bg-[#F8FBFF] p-7"
                 >
-                  <Icon size={22} className="text-cyan-300" />
+                  <Icon size={22} className="text-[#2457FF]" />
 
                   <h3 className="mt-8 text-xl font-bold">{item.title}</h3>
 
-                  <p className="mt-3 text-sm leading-7 text-slate-500">
+                  <p className="mt-3 text-sm leading-7 text-slate-600">
                     {item.text}
                   </p>
                 </div>
@@ -1218,10 +1218,10 @@ function GetQuote() {
       {/* =====================================================
           08 — FAQ
       ====================================================== */}
-      <section className="border-y border-white/[0.07] bg-[#080C13]">
+      <section className="border-y border-slate-200 bg-white">
         <div className="mx-auto max-w-[1050px] px-5 py-24 sm:px-8 lg:py-32">
           <div className="text-center">
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#2457FF]">
               Frequently asked
             </p>
 
@@ -1234,18 +1234,18 @@ function GetQuote() {
             {faqs.map((faq) => (
               <details
                 key={faq.question}
-                className="group rounded-2xl border border-white/[0.08] bg-white/[0.02]"
+                className="group rounded-2xl border border-slate-200 bg-[#F8FBFF]"
               >
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 p-6 text-sm font-semibold text-slate-200 sm:p-7">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 p-6 text-sm font-semibold text-slate-800 sm:p-7">
                   {faq.question}
 
                   <ChevronDown
                     size={18}
-                    className="shrink-0 text-slate-500 transition group-open:rotate-180"
+                    className="shrink-0 text-slate-600 transition group-open:rotate-180"
                   />
                 </summary>
 
-                <div className="px-6 pb-7 text-sm leading-7 text-slate-500 sm:px-7">
+                <div className="px-6 pb-7 text-sm leading-7 text-slate-600 sm:px-7">
                   {faq.answer}
                 </div>
               </details>
@@ -1257,17 +1257,17 @@ function GetQuote() {
       {/* =====================================================
           09 — FINAL CTA
       ====================================================== */}
-      <section className="bg-[#05070B]">
+      <section className="bg-white">
         <div className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
-          <div className="relative overflow-hidden rounded-[40px] border border-white/10 bg-gradient-to-br from-[#0D1726] via-[#09101B] to-[#071015] p-8 text-center shadow-[0_40px_120px_rgba(0,0,0,.4)] sm:p-14 lg:p-20">
+          <div className="relative overflow-hidden rounded-[40px] border border-slate-200 bg-gradient-to-br from-white via-[#F8FBFF] to-white p-8 text-center shadow-[0_40px_120px_rgba(0,0,0,.4)] sm:p-14 lg:p-20">
             <div className="pointer-events-none absolute left-1/2 top-[-100px] h-[400px] w-[400px] -translate-x-1/2 rounded-full bg-blue-500/[0.08] blur-[110px]" />
 
             <div className="relative">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.035] text-cyan-300">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-slate-200 bg-white text-[#2457FF]">
                 <Sparkles size={24} />
               </div>
 
-              <p className="mt-8 text-xs font-bold uppercase tracking-[0.3em] text-cyan-300">
+              <p className="mt-8 text-xs font-bold uppercase tracking-[0.3em] text-[#2457FF]">
                 Your next digital chapter
               </p>
 
@@ -1275,14 +1275,14 @@ function GetQuote() {
                 The first step is simply starting the conversation.
               </h2>
 
-              <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-500">
+              <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-600">
                 You bring the business idea. We can explore what the digital
                 experience should become.
               </p>
 
               <a
                 href="#top"
-                className="mt-9 inline-flex items-center gap-3 rounded-full bg-white px-6 py-3.5 text-sm font-bold text-[#05070B] transition hover:-translate-y-1"
+                className="mt-9 inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#2457FF] to-[#08C5EE] px-6 py-3.5 text-sm font-bold text-white shadow-[0_10px_30px_rgba(36,87,255,0.18)] transition hover:-translate-y-1"
               >
                 Start Your Enquiry
                 <ArrowUpRight size={17} />
