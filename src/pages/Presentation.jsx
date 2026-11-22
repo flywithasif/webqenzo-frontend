@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+﻿import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronLeft,
@@ -6,6 +6,9 @@ import {
   Sparkles,
   CheckCircle2,
   Workflow,
+  ArrowUpRight,
+  Maximize2,
+  Minimize2,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
@@ -391,7 +394,7 @@ const slidesData = [
     subtitle: "Proven Business Impact",
     category: "Success",
     content:
-      "“WebQenzo completely transformed our online presence. Our site looks exceptionally premium, and customer inquiries tripled within weeks.” — Aarav K.",
+      "â€œWebQenzo completely transformed our online presence. Our site looks exceptionally premium, and customer inquiries tripled within weeks.â€ â€” Aarav K.",
     highlights: ["Verified Reviews", "Measurable ROI", "Long-Term Partners"],
     image:
       "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=80",
@@ -432,10 +435,10 @@ const slidesData = [
   {
     id: 39,
     title: "Connect With Our Team",
-    subtitle: "Let’s Build Something Iconic",
+    subtitle: "Letâ€™s Build Something Iconic",
     category: "Partnership",
     content:
-      "Speak directly with our technical strategists. Share your vision, and we’ll architect the perfect digital roadmap.",
+      "Speak directly with our technical strategists. Share your vision, and weâ€™ll architect the perfect digital roadmap.",
     highlights: ["Direct Consultation", "Quick Response", "Expert Guidance"],
     image:
       "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80",
@@ -446,7 +449,7 @@ const slidesData = [
     subtitle: "WebQenzo Studio Deck",
     category: "Conclusion",
     content:
-      "Thank you for reviewing our capabilities. Let’s start your project today and shape the future of your brand together! ✨",
+      "Thank you for reviewing our capabilities. Letâ€™s start your project today and shape the future of your brand together! âœ¨",
     highlights: ["www.webqenzo.com", "Let's Build", "Shaping Digital Futures"],
     image:
       "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80",
@@ -455,242 +458,177 @@ const slidesData = [
 
 function Presentation() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const slide = slidesData[currentSlide];
+  const progress = ((currentSlide + 1) / slidesData.length) * 100;
 
-  const prevSlide = useCallback(() => {
-    setCurrentSlide((previous) => Math.max(0, previous - 1));
-  }, []);
-
-  const nextSlide = useCallback(() => {
-    setCurrentSlide((previous) =>
-      Math.min(slidesData.length - 1, previous + 1)
-    );
-  }, []);
+  const prevSlide = useCallback(() => setCurrentSlide((p) => Math.max(0, p - 1)), []);
+  const nextSlide = useCallback(() => setCurrentSlide((p) => Math.min(slidesData.length - 1, p + 1)), []);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (
-        event.target instanceof HTMLElement &&
-        ["INPUT", "TEXTAREA", "SELECT"].includes(event.target.tagName)
-      ) {
-        return;
-      }
-
-      if (event.key === "ArrowRight") nextSlide();
-      if (event.key === "ArrowLeft") prevSlide();
+      if (event.target instanceof HTMLElement && ["INPUT", "TEXTAREA", "SELECT"].includes(event.target.tagName)) return;
+      if (event.key === "ArrowRight" || event.key === "PageDown") nextSlide();
+      if (event.key === "ArrowLeft" || event.key === "PageUp") prevSlide();
+      if (event.key === "Home") setCurrentSlide(0);
+      if (event.key === "End") setCurrentSlide(slidesData.length - 1);
+      if (event.key === "Escape" && isFullscreen) setIsFullscreen(false);
     };
-
     window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [nextSlide, prevSlide, isFullscreen]);
 
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [nextSlide, prevSlide]);
+  const toggleFullscreen = async () => {
+    try {
+      if (!document.fullscreenElement) {
+        await document.documentElement.requestFullscreen();
+        setIsFullscreen(true);
+      } else {
+        await document.exitFullscreen();
+        setIsFullscreen(false);
+      }
+    } catch {
+      setIsFullscreen(Boolean(document.fullscreenElement));
+    }
+  };
 
   return (
     <>
       <SEO
-        title="High-End Company Presentation | WebQenzo"
-        description="Explore WebQenzo's 40-slide presentation showcasing web design, development, digital services, workflow, and technical standards."
+        title="WebQenzo â€” Digital Studio Presentation"
+        description="Discover WebQenzo's digital strategy, design, engineering, services and delivery standards."
         path="/presentation"
       />
-
-      <main className="relative flex min-h-screen min-h-dvh flex-col overflow-x-clip bg-[#050811] text-white selection:bg-blue-600 selection:text-white">
-        {/* Background */}
+      <main className="relative min-h-screen min-h-dvh overflow-hidden bg-[#050914] text-white selection:bg-cyan-400 selection:text-[#06101e]">
+        {/* Cinematic atmosphere */}
         <div className="pointer-events-none fixed inset-0 overflow-hidden">
-          <div className="absolute -left-32 top-10 h-72 w-72 rounded-full bg-blue-600/15 blur-[100px] sm:h-[500px] sm:w-[500px]" />
-          <div className="absolute -right-32 bottom-0 h-80 w-80 rounded-full bg-cyan-500/10 blur-[100px] sm:h-[500px] sm:w-[500px]" />
-
-          <div
-            className="absolute inset-0 opacity-[0.03]"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)",
-              backgroundSize: "40px 40px",
-            }}
-          />
+          <div className="absolute -left-[20%] -top-[30%] h-[75vw] w-[75vw] rounded-full bg-blue-700/15 blur-[150px]" />
+          <div className="absolute -right-[20%] top-[25%] h-[65vw] w-[65vw] rounded-full bg-cyan-500/10 blur-[150px]" />
+          <div className="absolute bottom-[-40%] left-[25%] h-[60vw] w-[60vw] rounded-full bg-indigo-500/10 blur-[140px]" />
+          <div className="absolute inset-0 opacity-[0.035]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#050914]/20 to-[#050914]" />
         </div>
 
-        {/* Header */}
-        <header className="relative z-10 flex w-full flex-wrap items-center justify-between gap-3 border-b border-white/10 bg-[#0A0E1A]/95 px-3 py-3 shadow-xl backdrop-blur-xl sm:px-6 sm:py-4">
-          <Link
-            to="/"
-            className="flex min-w-0 items-center gap-2 text-base font-black tracking-tight sm:gap-3 sm:text-xl"
-            aria-label="WebQenzo home"
-          >
-            <span className="h-2.5 w-2.5 shrink-0 animate-pulse rounded-full bg-cyan-400 shadow-[0_0_12px_#22d3ee]" />
-
-            <span>WEBQENZO</span>
-
-            <span className="hidden rounded border border-cyan-500/20 bg-cyan-500/10 px-2 py-1 font-mono text-[10px] text-cyan-400 min-[400px]:inline sm:text-xs">
-              STUDIO DECK
-            </span>
-          </Link>
-
-          <div className="flex items-center gap-2 sm:gap-4">
-            <span className="hidden items-center gap-2 font-mono text-xs text-slate-400 md:flex">
-              <Workflow size={14} className="text-cyan-400" />
-              Interactive Presentation System
-            </span>
-
-            <span className="whitespace-nowrap rounded-full border border-cyan-500/30 bg-cyan-500/10 px-2.5 py-1.5 font-mono text-[10px] font-bold text-cyan-300 sm:px-3 sm:text-xs">
-              Slide {currentSlide + 1} / {slidesData.length}
-            </span>
-
-            <Link
-              to="/"
-              className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-slate-300 transition hover:bg-white/10 hover:text-white sm:px-4"
-            >
-              Exit ✕
+        {/* Premium navigation */}
+        <header className="relative z-20 border-b border-white/[0.08] bg-[#050914]/65 backdrop-blur-2xl">
+          <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-4 px-5 py-4 sm:px-8 lg:px-12">
+            <Link to="/" className="group flex items-center gap-3" aria-label="WebQenzo home">
+              <div className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-cyan-300/25 bg-gradient-to-br from-blue-500/20 to-cyan-400/10 shadow-[0_0_30px_rgba(14,165,233,0.12)]">
+                <span className="text-sm font-black tracking-tighter text-cyan-300">WQ</span>
+                <span className="absolute -right-1 -top-1 h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_12px_#67e8f9]" />
+              </div>
+              <div>
+                <div className="text-sm font-black tracking-[0.18em] sm:text-base">WEBQENZO</div>
+                <div className="mt-0.5 text-[9px] font-medium uppercase tracking-[0.28em] text-slate-500">Digital Experience Studio</div>
+              </div>
             </Link>
+            <div className="hidden items-center gap-2 rounded-full border border-white/10 bg-white/[0.035] px-4 py-2 md:flex">
+              <Workflow size={14} className="text-cyan-300" />
+              <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">Studio Presentation</span>
+            </div>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 font-mono text-[10px] text-slate-300 sm:px-4 sm:text-xs">
+                <span className="text-cyan-300">{String(currentSlide + 1).padStart(2, "0")}</span><span className="text-slate-600"> / {String(slidesData.length).padStart(2, "0")}</span>
+              </div>
+              <button onClick={toggleFullscreen} className="hidden h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-300 transition hover:border-cyan-300/30 hover:bg-cyan-300/10 hover:text-cyan-200 sm:flex" aria-label="Toggle fullscreen">
+                {isFullscreen ? <Minimize2 size={15} /> : <Maximize2 size={15} />}
+              </button>
+              <Link to="/" className="rounded-full border border-white/10 px-3 py-2 text-[10px] font-semibold text-slate-400 transition hover:border-white/25 hover:text-white sm:px-4 sm:text-xs">EXIT</Link>
+            </div>
           </div>
         </header>
 
-        {/* Main content */}
-        <section className="relative z-10 flex w-full flex-1 flex-col items-center justify-center px-3 py-5 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
-          <div className="grid w-full max-w-7xl grid-cols-1 items-stretch gap-5 overflow-hidden rounded-2xl border border-white/15 bg-gradient-to-br from-[#0D1526]/95 via-[#0A101D]/95 to-[#060B14]/95 p-4 shadow-[0_25px_80px_rgba(0,0,0,0.5)] backdrop-blur-2xl sm:gap-8 sm:rounded-3xl sm:p-6 md:p-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10 lg:p-10 xl:p-12">
-            {/* Slide text */}
+        {/* Main slide */}
+        <section className="relative z-10 flex min-h-[calc(100dvh-150px)] items-center px-4 py-7 sm:px-8 sm:py-10 lg:px-12">
+          <div className="mx-auto w-full max-w-[1600px]">
             <AnimatePresence mode="wait">
-              <motion.div
-                key={currentSlide}
-                initial={{ opacity: 0, x: 16 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -16 }}
-                transition={{ duration: 0.25 }}
-                className="flex min-w-0 flex-col justify-between gap-7"
-              >
-                <div>
-                  <div className="mb-5 flex flex-wrap items-center gap-3 sm:mb-6">
-                    <span className="inline-flex max-w-full items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-cyan-400 sm:px-4 sm:text-xs">
-                      <Sparkles size={13} className="shrink-0" />
-                      {slide.category}
-                    </span>
-
-                    <span className="font-mono text-[10px] text-slate-500 sm:text-xs">
-                      INDEX: {String(currentSlide + 1).padStart(2, "0")}
-                    </span>
+              <motion.article key={currentSlide} initial={{ opacity: 0, y: 18, filter: "blur(8px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} exit={{ opacity: 0, y: -12, filter: "blur(5px)" }} transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }} className="relative grid overflow-hidden rounded-[28px] border border-white/[0.09] bg-[#0b1220]/70 shadow-[0_40px_120px_rgba(0,0,0,0.5)] backdrop-blur-xl lg:min-h-[640px] lg:grid-cols-[0.95fr_1.05fr] xl:rounded-[36px]">
+                {/* Editorial text panel */}
+                <div className="relative flex flex-col justify-between p-6 sm:p-10 lg:p-12 xl:p-16">
+                  <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-cyan-400/70 via-blue-500/30 to-transparent" />
+                  <div>
+                    <div className="mb-8 flex flex-wrap items-center gap-3">
+                      <span className="inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/[0.06] px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.2em] text-cyan-200 sm:text-[10px]">
+                        <Sparkles size={12} /> {slide.category}
+                      </span>
+                      <span className="font-mono text-[10px] tracking-widest text-slate-600">CHAPTER {String(currentSlide + 1).padStart(2, "02")}</span>
+                    </div>
+                    <p className="mb-3 max-w-xl text-[10px] font-bold uppercase tracking-[0.3em] text-blue-300 sm:text-xs">{slide.subtitle}</p>
+                    <h1 className="max-w-3xl text-4xl font-semibold leading-[1.05] tracking-[-0.045em] text-white sm:text-5xl md:text-6xl xl:text-[clamp(3.4rem,5.5vw,6rem)]">
+                      {slide.title}
+                    </h1>
+                    <div className="my-7 h-px w-20 bg-gradient-to-r from-cyan-300 to-transparent sm:my-9" />
+                    <p className="max-w-xl text-sm leading-7 text-slate-300 sm:text-base sm:leading-8 xl:text-lg">{slide.content}</p>
                   </div>
 
-                  <h2 className="text-[10px] font-bold uppercase leading-relaxed tracking-[0.18em] text-blue-400 sm:text-xs sm:tracking-[0.22em]">
-                    {slide.subtitle}
-                  </h2>
-
-                  <h1 className="mt-3 break-words text-3xl font-black leading-tight tracking-tight text-white sm:text-4xl md:text-5xl xl:text-6xl">
-                    {slide.title}
-                  </h1>
-
-                  <p className="mt-4 max-w-2xl break-words text-sm leading-7 text-slate-300 sm:mt-6 sm:text-base sm:leading-8 lg:text-lg">
-                    {slide.content}
-                  </p>
-                </div>
-
-                {/* Highlights */}
-                <div className="grid grid-cols-1 gap-2 border-t border-white/10 pt-5 sm:grid-cols-2 sm:gap-3 lg:grid-cols-1 xl:grid-cols-3">
-                  {slide.highlights.map((item, index) => (
-                    <div
-                      key={`${slide.id}-${index}`}
-                      className="flex min-w-0 items-start gap-2.5 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-3 backdrop-blur-sm sm:items-center"
-                    >
-                      <CheckCircle2
-                        size={16}
-                        className="mt-0.5 shrink-0 text-cyan-400 sm:mt-0"
-                      />
-
-                      <span className="break-words text-xs font-semibold leading-5 text-slate-200 sm:text-sm">
-                        {item}
-                      </span>
+                  <div className="mt-10">
+                    <div className="mb-4 flex items-center justify-between text-[9px] font-bold uppercase tracking-[0.22em] text-slate-500">
+                      <span>Key capabilities</span><span>01 â€” 03</span>
                     </div>
-                  ))}
+                    <div className="grid gap-2 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+                      {slide.highlights.map((item, index) => (
+                        <div key={`${slide.id}-${index}`} className="group flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.025] px-3 py-3 transition duration-300 hover:border-cyan-300/20 hover:bg-cyan-300/[0.04]">
+                          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-400/10 text-cyan-300"><CheckCircle2 size={14} /></div>
+                          <span className="text-xs font-medium leading-5 text-slate-300">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </motion.div>
+
+                {/* Cinematic visual panel */}
+                <div className="relative min-h-[280px] overflow-hidden border-t border-white/[0.07] lg:min-h-full lg:border-l lg:border-t-0">
+                  <motion.img key={slide.image} src={slide.image} alt={slide.title} initial={{ scale: 1.08, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.8 }} className="absolute inset-0 h-full w-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#07101f]/15 via-[#07101f]/25 to-[#050914]/90" />
+                  <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[#0b1220]/45 lg:to-[#0b1220]/20" />
+                  <div className="absolute left-6 top-6 flex items-center gap-2 rounded-full border border-white/15 bg-black/20 px-3 py-2 backdrop-blur-xl sm:left-8 sm:top-8">
+                    <span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_10px_#67e8f9]" />
+                    <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/70">WebQenzo / Studio</span>
+                  </div>
+                  <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-8 sm:right-8">
+                    <div className="flex items-end justify-between gap-4">
+                      <div>
+                        <p className="mb-2 text-[9px] font-bold uppercase tracking-[0.25em] text-cyan-200/80">Digital excellence</p>
+                        <p className="max-w-sm text-xl font-semibold leading-tight tracking-tight text-white sm:text-2xl">Designed to make a lasting impression.</p>
+                      </div>
+                      <div className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/[0.05] backdrop-blur-xl sm:flex"><ArrowUpRight size={19} className="text-white" /></div>
+                    </div>
+                  </div>
+                  <div className="absolute right-0 top-0 h-32 w-32 border-r border-t border-cyan-300/20" />
+                  <div className="absolute bottom-0 left-0 h-24 w-24 border-b border-l border-cyan-300/20" />
+                </div>
+              </motion.article>
             </AnimatePresence>
 
-            {/* Slide image */}
-            <div className="group relative isolate min-h-[220px] w-full overflow-hidden rounded-xl border border-white/10 bg-slate-900 sm:min-h-[300px] sm:rounded-2xl lg:min-h-[420px]">
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={slide.image}
-                  src={slide.image}
-                  alt={slide.title}
-                  initial={{ opacity: 0, scale: 1.02 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                />
-              </AnimatePresence>
-
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#060B14] via-transparent to-black/30" />
-
-              <div className="absolute inset-x-2 bottom-2 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-white/15 bg-slate-950/85 p-3 backdrop-blur-md sm:inset-x-4 sm:bottom-4 sm:gap-3 sm:rounded-xl sm:p-4">
-                <div className="flex min-w-0 items-center gap-2">
-                  <span className="h-2 w-2 shrink-0 animate-pulse rounded-full bg-cyan-400" />
-
-                  <span className="break-words font-mono text-[10px] text-cyan-300 sm:text-xs">
-                    WebQenzo Architecture v2.6
-                  </span>
+            {/* Navigation system */}
+            <div className="mx-auto mt-5 flex max-w-[1600px] flex-col gap-4 sm:mt-7">
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-3 text-[9px] font-bold uppercase tracking-[0.22em] text-slate-500 sm:text-[10px]"><span>Presentation progress</span><span className="text-cyan-300">{Math.round(progress)}%</span></div>
+                <div className="hidden font-mono text-[10px] text-slate-600 sm:block">â† â†’ NAVIGATE Â· HOME / END</div>
+              </div>
+              <div className="h-[2px] w-full overflow-hidden rounded-full bg-white/[0.07]">
+                <motion.div className="h-full bg-gradient-to-r from-blue-500 via-cyan-300 to-blue-500" animate={{ width: `${progress}%` }} transition={{ duration: 0.45 }} />
+              </div>
+              <div className="flex items-center justify-between gap-3">
+                <button type="button" onClick={prevSlide} disabled={currentSlide === 0} className="group flex min-h-11 items-center gap-2 rounded-full border border-white/10 bg-white/[0.035] px-4 text-xs font-semibold text-slate-300 transition hover:border-white/20 hover:bg-white/[0.08] hover:text-white disabled:cursor-not-allowed disabled:opacity-30 sm:px-6">
+                  <ChevronLeft size={16} /><span>Previous</span>
+                </button>
+                <div className="flex items-center gap-1.5">
+                  {Array.from({ length: slidesData.length }).map((_, index) => (
+                    <button key={index} onClick={() => setCurrentSlide(index)} aria-label={`Go to slide ${index + 1}`} className={`h-1.5 rounded-full transition-all duration-300 ${index === currentSlide ? "w-7 bg-cyan-300 shadow-[0_0_10px_rgba(103,232,249,0.45)]" : "w-1.5 bg-white/20 hover:bg-white/50"}`} />
+                  ))}
                 </div>
-
-                <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400 sm:text-[10px]">
-                  Verified System
-                </span>
+                <button type="button" onClick={nextSlide} disabled={currentSlide === slidesData.length - 1} className="group flex min-h-11 items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 px-4 text-xs font-bold text-white shadow-[0_8px_30px_rgba(14,165,233,0.2)] transition hover:shadow-[0_8px_40px_rgba(14,165,233,0.35)] disabled:cursor-not-allowed disabled:opacity-30 sm:px-6">
+                  <span>Next</span><ChevronRight size={16} />
+                </button>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Navigation footer */}
-        <footer className="relative z-10 w-full border-t border-white/10 bg-[#0A0E1A]/95 px-3 py-4 shadow-2xl backdrop-blur-xl sm:px-6 sm:py-5">
-          <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 sm:gap-5">
-            {/* Progress bar */}
-            <div
-              className="h-1.5 w-full overflow-hidden rounded-full bg-slate-800 sm:h-2"
-              role="progressbar"
-              aria-label="Presentation progress"
-              aria-valuemin={0}
-              aria-valuemax={slidesData.length}
-              aria-valuenow={currentSlide + 1}
-            >
-              <div
-                className="h-full rounded-full bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-600 transition-all duration-300"
-                style={{
-                  width: `${((currentSlide + 1) / slidesData.length) * 100}%`,
-                }}
-              />
-            </div>
-
-            {/* Buttons */}
-            <div className="flex w-full items-center justify-between gap-3">
-              <button
-                type="button"
-                onClick={prevSlide}
-                disabled={currentSlide === 0}
-                className="inline-flex min-h-11 min-w-0 flex-1 items-center justify-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-3 text-xs font-bold text-white transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-30 sm:flex-none sm:gap-2 sm:px-6 sm:text-sm"
-                aria-label="Go to previous slide"
-              >
-                <ChevronLeft size={18} className="shrink-0" />
-                <span>Back Slide</span>
-              </button>
-
-              <span className="shrink-0 font-mono text-[10px] text-slate-400 sm:text-xs">
-                {currentSlide + 1} / {slidesData.length}
-              </span>
-
-              <button
-                type="button"
-                onClick={nextSlide}
-                disabled={currentSlide === slidesData.length - 1}
-                className="inline-flex min-h-11 min-w-0 flex-1 items-center justify-center gap-1.5 rounded-full bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 px-3 py-3 text-xs font-bold text-white shadow-lg transition hover:shadow-cyan-500/20 disabled:cursor-not-allowed disabled:opacity-30 sm:flex-none sm:gap-2 sm:px-8 sm:text-sm"
-                aria-label="Go to next slide"
-              >
-                <span>Next Slide</span>
-                <ChevronRight size={18} className="shrink-0" />
-              </button>
-            </div>
-
-            <p className="text-center text-[10px] text-slate-500">
-              Use ← → arrow keys to navigate
-            </p>
+        <footer className="relative z-10 border-t border-white/[0.06] px-5 py-4 sm:px-8 lg:px-12">
+          <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-3 text-[9px] uppercase tracking-[0.2em] text-slate-600 sm:text-[10px]">
+            <span>WEBQENZO Â© {new Date().getFullYear()}</span><span className="hidden sm:block">Digital experiences engineered for growth</span><span>Confidential Â· Studio Deck</span>
           </div>
         </footer>
       </main>
@@ -699,3 +637,5 @@ function Presentation() {
 }
 
 export default Presentation;
+
+
