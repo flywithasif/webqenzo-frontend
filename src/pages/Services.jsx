@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+﻿import { motion } from "framer-motion";
 import {
   ArrowDownRight,
   ArrowRight,
@@ -43,32 +43,32 @@ const reveal = {
 const industries = [
   {
     name: "Healthcare",
-    icon: "✦",
+    icon: "âœ¦",
     text: "Professional websites for doctors, clinics and healthcare brands.",
   },
   {
     name: "Fitness",
-    icon: "↗",
+    icon: "â†—",
     text: "High-energy digital experiences for gyms and fitness businesses.",
   },
   {
     name: "Legal",
-    icon: "◇",
+    icon: "â—‡",
     text: "Trust-focused websites for advocates and law firms.",
   },
   {
     name: "Finance",
-    icon: "◌",
+    icon: "â—Œ",
     text: "Credible digital platforms for CA and accounting firms.",
   },
   {
     name: "Events",
-    icon: "✦",
+    icon: "âœ¦",
     text: "Visual websites for DJs, artists and event businesses.",
   },
   {
     name: "Commerce",
-    icon: "□",
+    icon: "â–¡",
     text: "Conversion-focused storefronts for modern brands.",
   },
 ];
@@ -165,7 +165,7 @@ function Services() {
       />
 
       {/* =====================================================
-          01 — HERO
+          01 â€” HERO
       ====================================================== */}
 
       <section className="relative overflow-hidden bg-[#060B14] text-white">
@@ -285,11 +285,11 @@ function Services() {
 
 
       {/* =========================================================
-    WEBSITE SHOWCASE — INFINITE MARQUEE
+    WEBSITE SHOWCASE â€” INFINITE MARQUEE
 ========================================================= */}
 
 {/* =========================================================
-    WEBSITE SHOWCASE — INFINITE RIGHT TO LEFT MARQUEE
+    WEBSITE SHOWCASE â€” INFINITE RIGHT TO LEFT MARQUEE
 ========================================================= */}
 
 <section
@@ -347,7 +347,7 @@ function Services() {
     <div className="website-showcase-marquee flex w-max items-start gap-5 pl-5 sm:gap-6 sm:pl-8 lg:gap-7 lg:pl-10">
 
       {/* ===================================================
-          FIRST SET — 20 IMAGES
+          FIRST SET â€” 20 IMAGES
       ==================================================== */}
 
       {[
@@ -396,7 +396,7 @@ function Services() {
       ))}
 
       {/* ===================================================
-          SECOND SET — SAME 20 IMAGES
+          SECOND SET â€” SAME 20 IMAGES
           Required for seamless infinite loop
       ==================================================== */}
 
@@ -499,7 +499,7 @@ function Services() {
   `}</style>
 </section>
       {/* =====================================================
-          02 — INDUSTRIES
+          02 â€” INDUSTRIES
       ====================================================== */}
 
 
@@ -555,7 +555,7 @@ function Services() {
       </section>
 
       {/* =====================================================
-          03 — CORE SERVICES
+          03 â€” CORE SERVICES
       ====================================================== */}
 
       <section className="bg-[#F7F8FA] px-5 py-24 sm:px-8 lg:px-10 lg:py-32">
@@ -627,7 +627,7 @@ function Services() {
       </section>
 
       {/* =====================================================
-          04 — BUSINESS WEBSITE
+          04 â€” BUSINESS WEBSITE
       ====================================================== */}
 
       <section className="bg-white px-5 py-24 sm:px-8 lg:px-10 lg:py-32">
@@ -731,7 +731,7 @@ function Services() {
       </section>
 
       {/* =====================================================
-          05 — ECOMMERCE
+          05 â€” ECOMMERCE
       ====================================================== */}
 
       <section className="bg-[#0B1220] px-5 py-24 text-white sm:px-8 lg:px-10 lg:py-32">
@@ -802,7 +802,7 @@ function Services() {
       </section>
 
       {/* =====================================================
-          06 — BOOKING
+          06 â€” BOOKING
       ====================================================== */}
 
       <section className="bg-white px-5 py-24 sm:px-8 lg:px-10 lg:py-32">
@@ -903,7 +903,7 @@ function Services() {
       </section>
 
       {/* =====================================================
-          07 — DESIGN
+          07 â€” DESIGN
       ====================================================== */}
 
       <section className="bg-[#F7F8FA] px-5 py-24 sm:px-8 lg:px-10 lg:py-32">
@@ -983,7 +983,7 @@ function Services() {
       </section>
 
       {/* =====================================================
-          08 — REDESIGN
+          08 â€” REDESIGN
       ====================================================== */}
 
       <section className="bg-white px-5 py-24 sm:px-8 lg:px-10 lg:py-32">
@@ -1050,7 +1050,7 @@ function Services() {
       </section>
 
       {/* =====================================================
-          09 — CUSTOM APPLICATIONS
+          09 â€” CUSTOM APPLICATIONS
       ====================================================== */}
 
       <section className="bg-[#060B14] px-5 py-24 text-white sm:px-8 lg:px-10 lg:py-32">
@@ -1123,7 +1123,7 @@ function Services() {
       </section>
 
       {/* =====================================================
-          10 — SEO + PERFORMANCE
+          10 â€” SEO + PERFORMANCE
       ====================================================== */}
 
       <section className="bg-[#F7F8FA] px-5 py-24 sm:px-8 lg:px-10 lg:py-32">
@@ -1193,7 +1193,7 @@ function Services() {
       </section>
 
       {/* =====================================================
-          11 — INTEGRATIONS
+          11 â€” INTEGRATIONS
       ====================================================== */}
 
       <section className="bg-white px-5 py-24 sm:px-8 lg:px-10 lg:py-32">
@@ -1244,7 +1244,7 @@ function Services() {
       </section>
 
       {/* =====================================================
-          12 — TECHNOLOGY
+          12 â€” TECHNOLOGY
       ====================================================== */}
 
       <section className="bg-[#F7F8FA] px-5 py-24 sm:px-8 lg:px-10 lg:py-32">
@@ -1281,7 +1281,7 @@ function Services() {
       </section>
 
       {/* =====================================================
-          13 — MAINTENANCE
+          13 â€” MAINTENANCE
       ====================================================== */}
 
       <section className="bg-white px-5 py-24 sm:px-8 lg:px-10 lg:py-32">
@@ -1339,7 +1339,7 @@ function Services() {
       </section>
 
       {/* =====================================================
-          14 — PRICING
+          14 â€” PRICING
       ====================================================== */}
 
       <section className="bg-[#F7F8FA] px-5 py-24 sm:px-8 lg:px-10 lg:py-32">
@@ -1363,7 +1363,7 @@ function Services() {
             {[
               {
                 name: "Business",
-                price: "₹5,000+",
+                price: "₹ 5,000+",
                 text: "For businesses that need a professional digital presence.",
               },
               {
@@ -1431,7 +1431,7 @@ function Services() {
       </section>
 
       {/* =====================================================
-          15 — FINAL CTA
+          15 â€” FINAL CTA
       ====================================================== */}
 
       <section className="relative overflow-hidden bg-[#060B14] px-5 py-28 text-white sm:px-8 lg:px-10 lg:py-36">
@@ -1487,7 +1487,93 @@ function Services() {
           </div>
         </div>
       </section>
-    </main>
+    <style>{`
+  /* =====================================================
+     WEBQENZO PREMIUM SERVICES PAGE
+  ====================================================== */
+
+  .wq-premium-hero {
+    isolation: isolate;
+  }
+
+  .wq-premium-hero h1 {
+    text-wrap: balance;
+  }
+
+  /* Premium section typography */
+
+  main section h2 {
+    text-wrap: balance;
+  }
+
+  /* Premium cards */
+
+  main section .group {
+    transition:
+      transform 0.4s cubic-bezier(.2,.8,.2,1),
+      box-shadow 0.4s ease,
+      border-color 0.4s ease,
+      background-color 0.4s ease;
+  }
+
+  /* Blue hover treatment */
+
+  main section .group:hover {
+    border-color: rgba(7, 157, 224, 0.25);
+  }
+
+  /* Premium section spacing */
+
+  main section {
+    position: relative;
+  }
+
+  /* Smooth visual transitions */
+
+  main section a {
+    transition:
+      color 0.25s ease,
+      background-color 0.25s ease,
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  /* Blue selection */
+
+  main::selection {
+    background: #079DE0;
+    color: white;
+  }
+
+  /* Mobile refinement */
+
+  @media (max-width: 640px) {
+    .wq-premium-hero {
+      background:
+        radial-gradient(
+          circle at 85% 15%,
+          rgba(25,181,232,0.12),
+          transparent 40%
+        ),
+        #071B49;
+    }
+
+    .wq-premium-hero h1 {
+      letter-spacing: -0.075em;
+    }
+  }
+
+  /* Accessibility */
+
+  @media (prefers-reduced-motion: reduce) {
+    .wq-premium-hero *,
+    main section * {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+`}</style>
+</main>
   );
 }
 

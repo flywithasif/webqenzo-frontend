@@ -102,7 +102,7 @@ function Footer() {
         ==================================================== */}
 
         <section className="py-10 sm:py-12 lg:py-14">
-          <div className="relative overflow-hidden rounded-[28px] border border-white/[0.075] bg-[#0A0D12]">
+          <div className="relative overflow-hidden rounded-[28px] border border-white/[0.075] bg-white">
             {/* GRID */}
 
             <div
@@ -110,7 +110,7 @@ function Footer() {
               aria-hidden="true"
               style={{
                 backgroundImage:
-                  "linear-gradient(rgba(255,255,255,.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.8) 1px, transparent 1px)",
+                  "linear-gradient(rgba(37,99,235,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.08) 1px, transparent 1px)",
                 backgroundSize: "42px 42px",
               }}
             />
@@ -124,24 +124,24 @@ function Footer() {
 
             <div className="relative flex flex-col gap-7 px-6 py-8 sm:px-9 sm:py-9 lg:flex-row lg:items-center lg:justify-between lg:px-11 lg:py-10">
               <div className="max-w-3xl">
-                <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-400/15 bg-blue-500/[0.06] px-3 py-1.5">
-                  <span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_10px_rgba(34,211,238,.7)]" />
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-500/[0.06] px-3 py-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#2563EB] shadow-[0_0_10px_rgba(37,99,235,0.7)]" />
 
-                  <span className="text-[9px] font-bold uppercase tracking-[0.24em] text-blue-200/80">
+                  <span className="text-[9px] font-bold uppercase tracking-[0.24em] text-blue-600">
                     Start Something Great
                   </span>
                 </div>
 
-                <h2 className="text-3xl font-black leading-[1.02] tracking-[-0.045em] text-white sm:text-4xl lg:text-[44px]">
+                <h2 className="text-3xl font-black leading-[1.02] tracking-[-0.045em] text-[#0A0D12] sm:text-4xl lg:text-[44px]">
                   Have a project in mind?
                   <br />
 
-                  <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-400 bg-clip-text text-transparent">
                     Let's build it.
                   </span>
                 </h2>
 
-                <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-500">
+                <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-600">
                   Tell us what you are building, what you want to improve,
                   or where your current website is falling short.
                 </p>
@@ -149,7 +149,7 @@ function Footer() {
 
               <Link
                 to="/get-quote"
-                className="group inline-flex shrink-0 items-center justify-center gap-3 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 px-5 py-3.5 text-sm font-bold text-white shadow-[0_12px_35px_rgba(37,99,235,.18)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_rgba(37,99,235,.25)]"
+                className="group inline-flex shrink-0 items-center justify-center gap-3 rounded-full bg-[#2563EB] px-5 py-3.5 text-sm font-bold text-white shadow-[0_12px_35px_rgba(37,99,235,.18)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_rgba(37,99,235,.25)]"
               >
                 <span>Start a Project</span>
 
@@ -434,3 +434,4 @@ function FooterColumn({ title, links }) {
 }
 
 export default Footer;
+

@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from "react";
+﻿import { lazy, Suspense, useEffect } from "react";
 import {
   BrowserRouter,
   Routes,
@@ -60,6 +60,22 @@ const BeatHouse = lazy(() =>
 const ThreadRare = lazy(() =>
   import("./pages/case-studies/ThreadRare")
 );
+const Project1 = lazy(() => import("./pages/case-studies/Project1"));
+const Project2 = lazy(() => import("./pages/case-studies/Project2"));
+const Project3 = lazy(() => import("./pages/case-studies/Project3"));
+const Project4 = lazy(() => import("./pages/case-studies/Project4"));
+const Project5 = lazy(() => import("./pages/case-studies/Project5"));
+const Project6 = lazy(() => import("./pages/case-studies/Project6"));
+const Project7 = lazy(() => import("./pages/case-studies/Project7"));
+const Project8 = lazy(() => import("./pages/case-studies/Project8"));
+const Project9 = lazy(() => import("./pages/case-studies/Project9"));
+const Project10 = lazy(() => import("./pages/case-studies/Project10"));
+const Project11 = lazy(() => import("./pages/case-studies/Project11"));
+const Project12 = lazy(() => import("./pages/case-studies/Project12"));
+const Project13 = lazy(() => import("./pages/case-studies/Project13"));
+const Project14 = lazy(() => import("./pages/case-studies/Project14"));
+const Project15 = lazy(() => import("./pages/case-studies/Project15"));
+const Project16 = lazy(() => import("./pages/case-studies/Project16"));
 
 /* =========================================================
    404
@@ -302,6 +318,28 @@ function PublicWebsite() {
             {/* =================================================
                 PUBLIC 404
             ================================================= */}
+            {/* =================================================
+                PORTFOLIO PROJECT CASE STUDIES
+            ================================================= */}
+
+            <Route path="/portfolio/project1" element={<Project1 />} />
+            <Route path="/portfolio/project2" element={<Project2 />} />
+            <Route path="/portfolio/project3" element={<Project3 />} />
+            <Route path="/portfolio/project4" element={<Project4 />} />
+            <Route path="/portfolio/project5" element={<Project5 />} />
+            <Route path="/portfolio/project6" element={<Project6 />} />
+            <Route path="/portfolio/project7" element={<Project7 />} />
+            <Route path="/portfolio/project8" element={<Project8 />} />
+            <Route path="/portfolio/project9" element={<Project9 />} />
+            <Route path="/portfolio/project10" element={<Project10 />} />
+            <Route path="/portfolio/project11" element={<Project11 />} />
+            <Route path="/portfolio/project12" element={<Project12 />} />
+            <Route path="/portfolio/project13" element={<Project13 />} />
+            <Route path="/portfolio/project14" element={<Project14 />} />
+            <Route path="/portfolio/project15" element={<Project15 />} />
+            <Route path="/portfolio/project16" element={<Project16 />} />
+
+            
 
             <Route
               path="*"
@@ -431,10 +469,10 @@ function AppRouter() {
     Admin and public website are completely separated.
 
     /admin/*
-       → AdminPanel
+       â†’ AdminPanel
 
     Everything else
-       → PublicWebsite
+       â†’ PublicWebsite
   */
 
   const isAdminRoute =
@@ -463,3 +501,4 @@ function App() {
 }
 
 export default App;
+
